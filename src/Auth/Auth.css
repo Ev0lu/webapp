@@ -51,9 +51,19 @@
     background-color: #373737;
     outline: none;
     border: none;
+    box-sizing: border-box;
+
   }
-  .eye{
+  .toggle-password {
     position: absolute;
-    left: 895px;
-    top: 206px;
-  }
+    top: 38.5%;
+    right: 15%; /* Расстояние от правого края инпута */
+    transform: translateY(-100%);
+    cursor: pointer;
+}
+
+  .toggle-password svg {
+    fill: #666;
+    width: 100%; /* Заполнение всей ширины контейнера */
+    height: 100%; /* Заполнение всей высоты контейнера */
+}

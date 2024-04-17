@@ -28,15 +28,8 @@ const Auth = () => {
                 value={password}
                 onChange={handleChange}
             />
-            <span className="toggle-password" onClick={handleTogglePassword}>
-                {showPassword ? (
-                    <img className='eye' src={eye} width="24" height="24">
-                        </img>
-                ) : (
-                    <img className='eye' src={eye} width="24" height="24">
-
-                   </img>
-                )}
+            <span className="toggle-password" onClick={handleTogglePassword}>             
+                <img className='eye' src={eye}></img>
             </span>
         </div>
         <button className='greetings_btn'>Далее</button>
