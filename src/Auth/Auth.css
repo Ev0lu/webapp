@@ -1,0 +1,59 @@
+.greetings{
+    height: 100%;
+    background-color: #232323;
+  
+  }
+  
+  .greetings_wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding-top: 40px;
+    
+  }
+  
+  .greetings_text{
+    color: white;
+    font-size: 28px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  .greetings_btn{
+    border: none;
+    outline: none;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
+    color: white;
+    padding: 15px 0px;
+    width: 320px;
+    border-radius: 25px;
+  }
+  .greetings_btn:active{
+  
+    background-color: #D3C5A7;
+   
+  
+  }
+  
+  .greetings_btn:hover{
+    background-color: #B7AA8C;
+  }
+
+
+  .password-field{
+    position: relative;
+    width: 316px;
+    padding: 10px 25px 11px 20px;
+ 
+    border-radius: 5px;
+    color: #C7C7C7;
+    background-color: #373737;
+    outline: none;
+    border: none;
+  }
+  .eye{
+    position: absolute;
+    left: 895px;
+    top: 206px;
+  }

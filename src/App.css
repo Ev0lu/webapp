@@ -21,7 +21,7 @@
   justify-content: center;
   align-items: center;
   gap: 30px;
-  padding-top: 30px;
+  padding-top: 40px;
   
 }
 
@@ -31,10 +31,24 @@
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 .greetings_btn{
+  border: none;
+  outline: none;
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  background-color: #B7AA8C;
+  
   color: white;
   padding: 15px 0px;
   width: 320px;
   border-radius: 25px;
+  transition: background-color 0.2s ease;
+}
+.greetings_btn:active{
+
+  background-color: #D3C5A7;
+  color: black;
+
+}
+
+.greetings_btn:hover{
+  background-color: #B7AA8C;
+  color: black;
 }

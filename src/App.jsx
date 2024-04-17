@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
-
+import { Route, Routes, Link, Router } from 'react-router-dom';
 import './App.css'
 import Header from './Header/Header'
+import Reg from './Registration/Reg'
+import Auth from './Auth/Auth'
+import Greetings from './Greetings/Greetings';
 const tg = window.Telegram.WebApp
 function App() {
   const [count, setCount] = useState(0)
@@ -15,17 +18,19 @@ function App() {
     tg.close()
   }
   return (
+
     <div className="app">
       <Header />
-      <div className="greetings">
-        <div className="greetings_wrapper">
-          <h1 className='greetings_text'>Добро пожаловать</h1>
-          <button className='greetings_btn'>Зарегистироваться</button>
-          <button className='greetings_btn'>У меня уже есть аккаунт</button>
+ 
+
+        <Routes>
+          <Route path="/" element={<Greetings />} />
+          <Route path="/registration" element={<Reg />} />
+          <Route path="/authorization" element={<Auth />} />
+      </Routes> 
+
         </div>
-      </div>
-    
-      </div>
+
   )
 }
 
