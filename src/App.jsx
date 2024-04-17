@@ -15,11 +15,17 @@ function App() {
     tg.close()
   }
   return (
-    <>
+    <div className="app">
       <Header />
-    works
-    <button onClick={onClose}>Закрыть</button>
-    </>
+      <div className="greetings">
+        <div className="greetings_wrapper">
+          <h1 className='greetings_text'>Добро пожаловать</h1>
+          <button className='greetings_btn'>Зарегистироваться</button>
+          <button className='greetings_btn'>У меня уже есть аккаунт</button>
+        </div>
+      </div>
+    
+      </div>
   )
 }
 
