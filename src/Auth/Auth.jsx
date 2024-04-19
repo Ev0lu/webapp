@@ -4,7 +4,7 @@ import './Auth.css';
 import eye from '../assets/eye-clos.svg'
 
 
-const Auth = () => {
+const Auth = (props) => {
     const [showPassword, setShowPassword] = useState(false);
     const [password, setPassword] = useState('');
     
@@ -17,9 +17,9 @@ const Auth = () => {
     };
 
     return (
-        <div className="greetings">
+        <div className="greetings" style={props.color==='light' ? {backgroundColor:'white'} : {backgroundColor:'#232323'} }>
         <div className="greetings_wrapper">
-          <h1 className='greetings_text'>Авторизация</h1>
+        <h1 className='greetings_text'style={props.color==='light' ? {color:'black'} : {color:'white'} }>Авторизация</h1>
           <div className="password-input">
             <input
                 type={showPassword ? 'text' : 'password'}

@@ -9,10 +9,15 @@ import Isp from './Isp/Isp'
 import Zak from './Zak/Zak'
 const tg = window.Telegram.WebApp
 function App() {
-  const [count, setCount] = useState(0)
+  const [color, setColor] = useState('light')
 
   useEffect( ()=> {
     tg.ready()
+    if (tg.colorSheme === 'light') {
+      setColor('light')
+    } else {
+      setColor('dark')
+    }
   }, [])
 
 
@@ -26,7 +31,7 @@ function App() {
  
 
         <Routes>
-          <Route path="/" element={<Greetings />} />
+          <Route path="/" element={<Greetings pColor={color}/>} />
           <Route path="/registration" element={<Reg />} />
           <Route path="/authorization" element={<Auth />} />
           <Route path="/isp_reg" element={<Isp />} />

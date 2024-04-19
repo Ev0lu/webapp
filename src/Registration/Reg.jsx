@@ -1,10 +1,10 @@
 import { Route, Routes, Link, Router } from 'react-router-dom';
-function Reg() {
+function Reg(props) {
 
     return (
-        <div className="greetings">
-        <div className="greetings_wrapper">
-          <h1 className='greetings_text'>Регистрация</h1>
+      <div className="greetings" style={props.color==='light' ? {backgroundColor:'white'} : {backgroundColor:'#232323'} }>
+      <div className="greetings_wrapper">
+      <h1 className='greetings_text'style={props.color==='light' ? {color:'black'} : {color:'white'} }>Регистрация</h1>
           <Link to="/zak_reg">
           <button className='greetings_btn'>Я заказчик</button>
           </Link>

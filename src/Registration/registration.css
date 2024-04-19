@@ -24,18 +24,20 @@
     outline: none;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     
-    color: white;
+    color: black;
     padding: 15px 0px;
     width: 320px;
     border-radius: 25px;
+    transition: background-color 0.2s ease;
   }
   .greetings_btn:active{
   
     background-color: #D3C5A7;
-   
+    color: white;
   
   }
   
   .greetings_btn:hover{
     background-color: #B7AA8C;
+    color: white;
   }
