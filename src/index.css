@@ -1,8 +1,8 @@
 
 
 body {
-background: var(--tg-theme-button-color);
-color: var(--tg-theme-button-text-color);
+background: var(--tg-color-scheme);
+color: var(--tg-color-scheme);
 
 
 }
