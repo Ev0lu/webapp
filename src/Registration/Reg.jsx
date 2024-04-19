@@ -1,11 +1,18 @@
+import { Route, Routes, Link, Router } from 'react-router-dom';
 function Reg() {
 
     return (
         <div className="greetings">
         <div className="greetings_wrapper">
           <h1 className='greetings_text'>Регистрация</h1>
-          <button className='greetings_btn'>Зарегистироваться</button>
-          <button className='greetings_btn'>У меня уже есть аккаунт</button>
+          <Link to="/zak_reg">
+          <button className='greetings_btn'>Я заказчик</button>
+          </Link>
+          <Link to="/isp_reg">
+
+          <button className='greetings_btn'>Я исполнитель</button>
+          </Link>
+
         </div>
       </div>
     )
