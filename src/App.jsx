@@ -10,6 +10,7 @@ import Zak from './Zak/Zak'
 import Zak1 from './Zak/Zak1/Zak1';
 import Zak2 from './Zak/Zak2/Zak2';
 import ZakPh from './Zak/ZakPh/ZakPh';
+import Isp1 from './Isp/Isp1/Isp1'
 
 const tg = window.Telegram.WebApp
 function App() {
@@ -43,6 +44,8 @@ function App() {
           <Route path="/zak1_reg" element={<Zak1 color={color} />} />
           <Route path="/zak2_reg" element={<Zak2 color={color} />} />
           <Route path="/zak_reg_photo" element={<ZakPh color={color} />} />
+          <Route path="/isp1_reg" element={<Isp1 color={color} />} />
+          
           
       </Routes> 
         </div>

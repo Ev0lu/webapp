@@ -103,7 +103,7 @@ function Isp(props) {
                 <label htmlFor="female" className="genderlabel">Женский</label>
             </div>
         </div>
-        <Link to={gender === '' || name === '' || lname === '' ? '/zak_reg' : '/zak1_reg'}>
+        <Link to={gender === '' || name === '' || lname === '' ? '/isp_reg' : '/isp1_reg'}>
             <button className='greetings_btn' onClick={() => {
                 changeFio()
             }}>Далее</button>

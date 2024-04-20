@@ -1,0 +1,131 @@
+.country-selector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+  }
+  
+  .country-dropdown {
+    position: relative;
+    margin-bottom: 20px;
+    width: 315px;
+  }
+  
+  .selected-country {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .arrow-down {
+    width: 15px;
+    height: 15px;
+    transition: transform 0.3s ease;
+  }
+  
+  .rotated {
+    transform: rotate(180deg);
+  }
+  
+  .dropdown-list {
+    position: absolute;
+    
+    z-index: 2;
+    top: calc(100% + 5px);
+    left: 0;
+    width: 100%;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-height: 150px;
+    overflow-y: auto;
+  }
+  
+  .country {
+    padding: 8px 10px;
+    cursor: pointer;
+    
+  }
+  
+  .country:hover {
+    background-color: #ddd;
+  }
+  
+  .selected {
+    background-color: #007bff;
+    color: #fff;
+    color: white;
+  }
+  
+  .city-input {
+    margin-bottom: 20px;
+  }
+  
+  .city-input input {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .next-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .next-button:hover {
+    background-color: #0056b3;
+  }
+
+  .greetings{
+    height: 100%;
+    background-color: #232323;
+  
+  }
+  
+  .greetings_wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding-top: 40px;
+    
+  }
+  
+  .greetings_text{
+    color: black;
+    font-size: 28px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  .greetings_btn{
+    border: none;
+    outline: none;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    z-index: 1;
+    color: black;
+    padding: 15px 0px;
+    width: 320px;
+    border-radius: 25px;
+    transition: background-color 0.2s ease;
+  }
+  .greetings_btn:active{
+  
+    background-color: #D3C5A7;
+    color: white;
+  
+  }
+  
+  .greetings_btn:hover{
+    background-color: #B7AA8C;
+    color: white;
+  }
