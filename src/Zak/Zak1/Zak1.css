@@ -130,3 +130,14 @@
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
   }
+
+.reg{
+    display: flex;
+    width: 315px;
+  
+  
+  }
+.reg_arrow{
+    margin-right: 50px;
+    margin-top: 3px;
+  }

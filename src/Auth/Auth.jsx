@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Auth.css';
-
+import { Route, Routes, Link, Router } from 'react-router-dom';
 import eye from '../assets/eye-clos.svg'
 
 
@@ -28,11 +28,13 @@ const Auth = (props) => {
                 value={password}
                 onChange={handleChange}
             />
-            <span className="toggle-password" onClick={handleTogglePassword}>             
-                <img className='eye' src={eye}></img>
-            </span>
+                       
+                <img className='toggle-password' onClick={handleTogglePassword} src={eye}></img>
+        
         </div>
+        <Link to={(password.length<8) || (password.length > 25) ? '/authorization' : '/'}>
         <button className='greetings_btn'>Далее</button>
+        </Link>
         </div>
       
        

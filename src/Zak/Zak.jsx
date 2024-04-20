@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Zak.css"
 import { Link } from "react-router-dom";
+import arrowsvg from '../assets/arrow.svg'
 
 function Zak(props) {
     const [name, setName] = useState('');
     const [lname, setLname] = useState('');
     const [fname, setFname] = useState('')
+    const [fio, setFio] = useState('')
+    const [rlink, setRlink] = useState('/zak1_reg')
 
-    
-    const handleTogglePassword = () => {
-        setShowPassword(!showPassword);
-    };
+
 
     const handleChange = (event) => {
         setName(event.target.value);
@@ -22,17 +22,46 @@ function Zak(props) {
         setFname(event.target.value);
     };
 
+
     const [gender, setGender] = useState('');
 
 
     const handleGenderChange = (event) => {
       setGender(event.target.value);
     };
+    const changeFio = () => {
+        setFio(name + ' ' + lname + ' ' + fname)
+    }
+
+    useEffect(() => {
+        changeFio()
+    }, [name, lname, fname])
+
+    useEffect(() => {
+        console.log(fio)
+    }, [fio])
+
+
+    const checking = () => {
+        if ((gender === '') || (name === '') || (lname === '')) {
+            console.log('error')
+            setRlink('/zak_reg')
+        } else {
+            setRlink('/zak1_reg')
+        }
+    }
+
+
 
     return (
         <div className="greetings" style={props.color==='light' ? {backgroundColor:'white'} : {backgroundColor:'#232323'} }>
         <div className="greetings_wrapper">
-        <h1 className='greetings_text'style={props.color==='light' ? {color:'black'} : {color:'white'} }>Регистрация</h1>
+        <div className="reg">
+        <Link to='/registration'>
+            <img src={arrowsvg} className="reg_arrow"></img>
+        </Link>
+            <h1 className='greetings_text'style={props.color==='light' ? {color:'black'} : {color:'white'} }>Регистрация</h1>
+        </div>
         <div className="password-input">
             <input
                 type={'text'}
@@ -74,8 +103,10 @@ function Zak(props) {
                 <label htmlFor="female" className="genderlabel">Женский</label>
             </div>
         </div>
-        <Link to='/zak1_reg'>
-            <button className='greetings_btn'>Далее</button>
+        <Link to={gender === '' || name === '' || lname === '' ? '/zak_reg' : '/zak1_reg'}>
+            <button className='greetings_btn' onClick={() => {
+                changeFio()
+            }}>Далее</button>
         </Link>
         </div>
       </div>
