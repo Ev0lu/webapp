@@ -42,7 +42,7 @@ function Zak1(props) {
       const daysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate();
 
     return (
-      <div className="greetings" style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"232323"} }>        <div className="greetings_wrapper">
+      <div className="greetings" style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>              <div className="greetings_wrapper">
         <div className="reg">
             <Link to='/zak_reg'>
                 <img src={arrowsvg} className="reg_arrow"></img>

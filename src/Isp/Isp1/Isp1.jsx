@@ -66,7 +66,7 @@ function Isp1(props) {
   };
 
   return (
-    <div className="greetings" style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"232323"} }>        <div className="greetings_wrapper">
+    <div className="greetings" style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>       <div className="greetings_wrapper">
         <div className="reg">
         <Link to='/isp_reg'>
             <img src={arrowsvg} className="reg_arrow"></img>
