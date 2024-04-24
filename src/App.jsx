@@ -16,11 +16,11 @@ import Isp3 from './Isp/Isp3/Isp3'
 
 const tg = window.Telegram.WebApp
 function App() {
-  const [color, setColor] = useState('dark')
+  const [color, setColor] = useState('light')
 
   useEffect( () => {
     tg.ready()
-    if (tg.colorSheme === "light") {
+    if (tg.colorSheme === 'light') {
       setColor('light')
     } else {
       setColor('dark')
