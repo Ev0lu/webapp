@@ -3,6 +3,12 @@
     background-color: #232323;
   
   }
+  @media (prefers-color-scheme: dark) {
+    .greetings {
+        background-color: white;
+        color: #ffffff;
+    }
+}
   
   .greetings_wrapper{
     display: flex;

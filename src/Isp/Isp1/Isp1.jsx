@@ -1,7 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './Isp1.css';
-import arrowDownSvg from '../../assets/arrow.svg';
-function Isp1() {
+import arrowsvg from '../../assets/arrow.svg';
+
+import { Link } from 'react-router-dom';
+function Isp1(props) {
   const countries = ['Россия', 'Казахстан', 'Армения', 'Азербайджан', 'Грузия' , 'Грузия', 'Грузия', 'Грузия', 'Грузия', 'Грузия', 'Грузия', 'Россия', 'Казахстан', 'Армения', 'Азербайджан', 'Грузия' , 'Грузия', 'Грузия', 'Грузия', 'Грузия'];
   const [city, setCity] = useState('');
   const [isOpen, setIsOpen] = useState(false);
@@ -66,8 +68,12 @@ function Isp1() {
   return (
     <div className="greetings">
         <div className="greetings_wrapper">
-
-
+        <div className="reg">
+        <Link to='/isp_reg'>
+            <img src={arrowsvg} className="reg_arrow"></img>
+        </Link>
+            <h1 className='greetings_text'style={props.color==='light' ? {color:'black'} : {color:'white'} }>Регистрация</h1>
+        </div>
         <div className="dropdown-container" ref={dropdownRef}>
       <input
       className='password-field'
@@ -100,7 +106,9 @@ function Isp1() {
           onChange={(e) => setCity(e.target.value)}
         />
       </div>
-      <button className="greetings_btn">Далее</button>
+      <Link to='/isp2_reg'>
+        <button className="greetings_btn">Далее</button>
+      </Link>
       </div>
     </div>
   );
