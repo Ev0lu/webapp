@@ -18,7 +18,7 @@ const tg = window.Telegram.WebApp
 function App() {
   const [colorB, setColorB] = useState("light")
   const updateColor = () => {
-    if (window.Telegram.WebApp.colorSheme === "light") {
+    if (window.Telegram.WebApp.colorSсheme === "light") {
       setColorB("light")
     } else {
       setColorB("dark")
