@@ -16,17 +16,25 @@ import Isp3 from './Isp/Isp3/Isp3'
 
 const tg = window.Telegram.WebApp
 function App() {
-  const [color, setColor] = useState('light')
-
+  const [colorB, setColorB] = useState("light")
+  const updateColor = () => {
+    if (tg.colorSheme === "light") {
+      setColorB("light")
+    } else {
+      setColorB("dark")
+    }
+  }
   useEffect( () => {
     tg.ready()
-    if (tg.colorSheme === 'light') {
-      setColor('light')
-    } else {
-      setColor('dark')
-    }
+
+
+    updateColor()
   }, [])
 
+  useEffect( () => {
+
+    updateColor()
+  }, [])
 
   const onClose = () => {
     tg.close()
@@ -38,17 +46,17 @@ function App() {
  
 
         <Routes>
-          <Route path="/" element={<Greetings color={color}/>} />
-          <Route path="/registration" element={<Reg color={color} />} />
-          <Route path="/authorization" element={<Auth color={color} />} />
-          <Route path="/isp_reg" element={<Isp  color={color}/>} />
-          <Route path="/zak_reg" element={<Zak color={color} />} />
-          <Route path="/zak1_reg" element={<Zak1 color={color} />} />
-          <Route path="/zak2_reg" element={<Zak2 color={color} />} />
-          <Route path="/zak_reg_photo" element={<ZakPh color={color} />} />
-          <Route path="/isp1_reg" element={<Isp1 color={color} />} />
-          <Route path="/isp2_reg" element={<Isp2 color={color} />} />
-          <Route path="/isp3_reg" element={<Isp3 color={color} />} />
+          <Route path="/" element={<Greetings colorB={colorB}/>} />
+          <Route path="/registration" element={<Reg colorB={colorB} />} />
+          <Route path="/authorization" element={<Auth colorB={colorB} />} />
+          <Route path="/isp_reg" element={<Isp  colorB={colorB}/>} />
+          <Route path="/zak_reg" element={<Zak colorB={colorB} />} />
+          <Route path="/zak1_reg" element={<Zak1 colorB={colorB} />} />
+          <Route path="/zak2_reg" element={<Zak2 colorB={colorB} />} />
+          <Route path="/zak_reg_photo" element={<ZakPh colorB={colorB} />} />
+          <Route path="/isp1_reg" element={<Isp1 colorB={colorB} />} />
+          <Route path="/isp2_reg" element={<Isp2 colorB={colorB} />} />
+          <Route path="/isp3_reg" element={<Isp3 colorB={colorB} />} />
           
           
           

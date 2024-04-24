@@ -112,8 +112,7 @@ function Isp3(props) {
     <img src={Vector}></img>
   );
   return (
-    <div className="greetings">
-      <div className="greetings_wrapper">
+    <div className="greetings" style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"232323"} }>      <div className="greetings_wrapper">
         <div className="reg">
           <Link to='/isp2_reg'>
             <img src={arrowsvg} className="reg_arrow"></img>
