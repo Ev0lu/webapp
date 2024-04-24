@@ -18,7 +18,7 @@ const tg = window.Telegram.WebApp
 function App() {
   const [colorB, setColorB] = useState("light")
   const updateColor = () => {
-    if (tg.colorSheme === "light") {
+    if (window.Telegram.WebApp.colorSheme === "light") {
       setColorB("light")
     } else {
       setColorB("dark")
@@ -31,10 +31,7 @@ function App() {
     updateColor()
   }, [])
 
-  useEffect( () => {
 
-    updateColor()
-  }, [])
 
   const onClose = () => {
     tg.close()
