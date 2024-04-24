@@ -18,9 +18,10 @@ const Auth = (props) => {
 
     return (
         <div className="greetings" style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>        <div className="greetings_wrapper">
-        <h1 className='greetings_text'style={props.color==='light' ? {color:'black'} : {color:'white'} }>Авторизация</h1>
+        <h1 className='greetings_text' style={props.colorB==='light' ? {color:'white'} : {color:'black'} }>Авторизация</h1>
           <div className="password-input">
             <input
+                style={props.colorB==='light' ? {color:'black'} : {color:'white'} }
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Пароль"
                 className="password-field"
@@ -32,7 +33,7 @@ const Auth = (props) => {
         
         </div>
         <Link to={(password.length<8) || (password.length > 25) ? '/authorization' : '/'}>
-        <button className='greetings_btn'>Далее</button>
+        <button  style={props.colorB==='light' ? {color:'white'} : {color:'black'} } className='greetings_btn'>Далее</button>
         </Link>
         </div>
       

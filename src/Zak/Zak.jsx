@@ -54,7 +54,8 @@ function Zak(props) {
 
 
     return (
-        <div className="greetings" style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>         <div className="greetings_wrapper">
+        <div className="greetings" style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }> 
+                <div className="greetings_wrapper">
         <div className="reg">
         <Link to='/registration'>
             <img src={arrowsvg} className="reg_arrow"></img>
@@ -68,11 +69,13 @@ function Zak(props) {
                 className="password-field"
                 value={name}
                 onChange={handleChange}
+                style={props.colorB==='light' ? {backgroundColor:'white'} : {backgroundColor:'#232323'} }
             />
 
         </div>
         <div className="password-input">
             <input
+            style={props.colorB==='light' ? {backgroundColor:'white'} : {backgroundColor:'#232323'} }
                 type={'text'}
                 placeholder="Фамилия*"
                 className="password-field"
@@ -83,6 +86,7 @@ function Zak(props) {
         </div>
         <div className="password-input">
             <input
+            style={props.colorB==='light' ? {backgroundColor:'white'} : {backgroundColor:'#232323'} }
                 type={'text'}
                 placeholder="Отчество"
                 className="password-field"
@@ -91,7 +95,7 @@ function Zak(props) {
             />
 
         </div>
-        <div className="radio_gender">
+        <div className="radio_gender" style={props.colorB==='light' ? {color:'black'} : {backgroundColor:'white'} }>
             <label htmlFor="gender" style={{ fontSize: '14px' }}>Ваш пол:</label>
             <div>
                 <input type="radio" id="male" name="gender" value="male" checked={gender === 'male'} onChange={handleGenderChange} />
