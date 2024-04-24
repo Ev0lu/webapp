@@ -17,7 +17,7 @@ const Auth = (props) => {
     };
 
     return (
-        <div className="greetings" style={props.color==='light' ? {backgroundColor:'white'} : {backgroundColor:'#232323'} }>
+        <div className="greetings">
         <div className="greetings_wrapper">
         <h1 className='greetings_text'style={props.color==='light' ? {color:'black'} : {color:'white'} }>Авторизация</h1>
           <div className="password-input">

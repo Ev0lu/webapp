@@ -1,14 +1,9 @@
 .greetings{
     height: 100%;
-    background-color: white;
+    background-color: var(--tg-color-scheme);
   
   }
-  @media (prefers-color-scheme: dark) {
-    .greetings {
-        background-color: white;
-        color: #ffffff;
-    }
-}
+
   
   .greetings_wrapper{
     display: flex;

@@ -1,4 +1,4 @@
-.greetings{
+/*.greetings{
 
     background-color: #232323;
   
@@ -14,19 +14,7 @@
     
   }
   
-  .password-field{
-    position: relative;
-    width: 316px;
-    padding: 10px 25px 11px 20px;
-    border: 1px solid #A3A3A3;
-    border-radius: 5px;
-    color: #C7C7C7;
-    background-color: #373737;
-    outline: none;
-  
-    box-sizing: border-box;
 
-  }
 
 .greetings_text{
     color: black;
@@ -54,8 +42,20 @@
     background-color: #B7AA8C;
     color: white;
   }
+*/
+  .password-field{
+    position: relative;
+    width: 316px;
+    padding: 10px 25px 11px 20px;
+    border: 1px solid #A3A3A3;
+    border-radius: 5px;
+    color: #C7C7C7;
+    background-color: #373737;
+    outline: none;
+  
+    box-sizing: border-box;
 
-
+  }
   
 .gender_title{
   color: white;
