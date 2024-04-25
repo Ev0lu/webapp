@@ -13,6 +13,7 @@ import ZakPh from './Zak/ZakPh/ZakPh';
 import Isp1 from './Isp/Isp1/Isp1'
 import Isp2 from './Isp/Isp2/Isp2'
 import Isp3 from './Isp/Isp3/Isp3'
+import IspPh from './Isp/IspPh/IspPh'
 
 const tg = window.Telegram.WebApp
 function App() {
@@ -55,6 +56,7 @@ function App() {
           <Route path="/isp1_reg" element={<Isp1 colorB={colorB} />} />
           <Route path="/isp2_reg" element={<Isp2 colorB={colorB} />} />
           <Route path="/isp3_reg" element={<Isp3 colorB={colorB} />} />
+          <Route path="/isp_reg_photo" element={<IspPh colorB={colorB} />} />
           
           
           

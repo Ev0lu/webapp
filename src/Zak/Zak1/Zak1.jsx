@@ -5,6 +5,8 @@ import minus from '../../assets/minus.svg'
 import lightplus from '../../assets/lightplus.svg'
 import lightminus from '../../assets/lightminus.svg'
 import arrowsvg from '../../assets/arrow.svg'
+import blackarr from '../../assets/black.svg'
+
 import { Link } from "react-router-dom";
 function Zak1(props) {
     const months = [
@@ -48,7 +50,7 @@ function Zak1(props) {
        <div className={s.greetings_wrapper}>
         <div className={s.reg}>
             <Link to='/zak_reg'>
-                <img src={arrowsvg} className={s.reg_arrow}></img>
+                <img src={props.colorB === 'light' ? blackarr : arrowsvg} className={s.reg_arrow}></img>
             </Link>
             <h1 className={s.greetings_text} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Дата рождения</h1>
         </div>

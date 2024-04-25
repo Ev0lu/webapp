@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import s from "./Isp2.module.css"
 import { Link } from "react-router-dom";
 import arrowsvg from '../../assets/arrow.svg'
+import blackarr from '../../assets/black.svg'
 function Isp2(props) {
     const [login, setLogin] = useState('');
     const [tele, setTele] = useState('');
@@ -48,7 +49,7 @@ function Isp2(props) {
         <div className={s.greetings_wrapper}>
         <div className={s.reg}>
         <Link to='/isp1_reg'>
-            <img src={arrowsvg} className={s.reg_arrow}></img>
+            <img src={props.colorB === 'light' ? blackarr : arrowsvg} className={s.reg_arrow}></img>
         </Link>
             <h1 className={s.greetings_text} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Регистрация</h1>
         </div>

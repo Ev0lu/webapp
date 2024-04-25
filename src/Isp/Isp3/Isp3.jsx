@@ -200,7 +200,7 @@ function Isp3(props) {
         </div>
 
 
-        <Link to='/isp_photo_reg'>
+        <Link to='/isp_reg_photo'>
           <button className={s.greetings_btn}>Далее</button>
         </Link>
       </div>

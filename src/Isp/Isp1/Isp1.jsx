@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import s from './Isp1.module.css';
 import arrowsvg from '../../assets/angle-light.svg';
 import arrowsvg2 from '../../assets/angle-dark.svg';
-
+import blackarr from '../../assets/black.svg'
 import { Link } from 'react-router-dom';
 function Isp1(props) {
   const countries = ['Россия', 'Казахстан', 'Армения', 'Азербайджан', 'Грузия' , 'Грузия', 'Грузия', 'Грузия', 'Грузия', 'Грузия', 'Грузия', 'Россия', 'Казахстан', 'Армения', 'Азербайджан', 'Грузия' , 'Грузия', 'Грузия', 'Грузия', 'Грузия'];
@@ -71,7 +71,7 @@ function Isp1(props) {
          <div className={s.greetings_wrapper}>
         <div className={s.reg}>
         <Link to='/isp_reg'>
-            <img src={arrowsvg} className={s.reg_arrow}></img>
+            <img src={props.colorB === 'light' ? blackarr : arrowsvg} className={s.reg_arrow}></img>
         </Link>
             <h1 className={s.greetings_text} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Регистрация</h1>
         </div>
