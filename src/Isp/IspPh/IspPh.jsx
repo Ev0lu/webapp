@@ -4,7 +4,7 @@ import plusSvg from '../../assets/plus2.svg';
 import pencilSvg from '../../assets/pencil.svg';
 import { useEffect, useState } from 'react';
 function IspPh(props) {
-  const [isRegistered, setIsRegistered] = useState(true);
+  const [isRegistered, setIsRegistered] = useState(false);
   const [isRegistered2, setIsRegistered2] = useState(false);
 
     const [avatar, setAvatar] = useState(null);

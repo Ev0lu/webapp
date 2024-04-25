@@ -4,7 +4,16 @@
     background-color: #232323;
   
   }
-  
+  .reg{
+    display: flex;
+    width: 315px;
+    
+    
+    }
+    .reg_arrow{
+    margin-right: 50px;
+    margin-top: 3px;
+    }
   .greetings_wrapper{
     display: flex;
     flex-direction: column;

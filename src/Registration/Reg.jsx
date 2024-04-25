@@ -3,7 +3,7 @@ import s from './registration.module.css'
 import { useState } from 'react';
 function Reg(props) {
   const [isRegistered, setIsRegistered] = useState(false);
-  const [isRegistered2, setIsRegistered2] = useState(true);
+  const [isRegistered2, setIsRegistered2] = useState(false);
     return (
       <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>    
       <div className={s.greetings_wrapper}>

@@ -55,7 +55,7 @@ function Zak(props) {
 
     return (
         <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }> 
-                <div className={s.greetings_wrapper}>
+        <div className={s.greetings_wrapper}>
         <div className={s.reg}>
         <Link to='/registration'>
             <img src={props.colorB === 'light' ? blackarr : arrowsvg} className={s.reg_arrow}></img>
@@ -76,7 +76,7 @@ function Zak(props) {
         </div>
         <div className={s.password_input}>
             <input
-style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }                type={'text'}
+            style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }                type={'text'}
                 placeholder="Фамилия*"
                 className={s.password_field}
                 value={lname}

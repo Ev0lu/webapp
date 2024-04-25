@@ -80,7 +80,7 @@ function Isp1(props) {
       className={`${s.password_field} ${props.colorB === 'light' ? s.light : s.dark}`}
         type="text"
         value={selectedCountry}
-        placeholder="Select a country"
+        placeholder="Страна"
         onClick={toggleDropdown}
         readOnly
       />

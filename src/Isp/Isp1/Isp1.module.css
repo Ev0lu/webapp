@@ -64,7 +64,16 @@
     cursor: pointer;
     
   }
-  
+  .reg{
+    display: flex;
+    width: 315px;
+    
+    
+    }
+    .reg_arrow{
+    margin-right: 50px;
+    margin-top: 3px;
+    }
   .dropdown_options {
     display: none;
     position: absolute;

@@ -129,7 +129,7 @@ function Isp3(props) {
             className={`${s.password_field} ${props.colorB === 'light' ? s.light : s.dark}`}
             type="text"
             value={selectedCountries1}
-            placeholder="Select a country"
+            placeholder="Навыки"
             onClick={toggleDropdown1}
             readOnly
           />
@@ -169,7 +169,7 @@ function Isp3(props) {
             className={`${s.password_field__1} ${props.colorB === 'light' ? s.light : s.dark}`}
             type="text"
             value={selectedCountries2}
-            placeholder="Select a country"
+            placeholder="Языки"
             onClick={toggleDropdown2}
             readOnly
           />
