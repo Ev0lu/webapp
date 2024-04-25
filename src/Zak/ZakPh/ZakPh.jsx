@@ -31,7 +31,7 @@ function ZakPh(props) {
     return (
       <div className="greetings" style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }> 
                 <div className="greetings_wrapper">
-      <h1 className='greetings_text'style={props.color==='light' ? {color:'black'} : {color:'white'} }>Регистрация</h1>
+      <h1 className='greetings_text'style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Регистрация</h1>
       <div className="avatar-container">
       <label htmlFor="avatar-input" className="avatar">
         {avatar ? (

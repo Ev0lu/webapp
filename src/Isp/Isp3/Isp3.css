@@ -322,6 +322,9 @@
   .checkbox-icon{
     position: absolute;
   }
+  .checkbox-icon--1{
+    position: absolute;
+  }
 
 
   .dropdown-option--1{
@@ -331,7 +334,4 @@
 
   .dropdown-option--1{
     cursor: pointer;
-  }
-  .dropdown-option{
-    
   }

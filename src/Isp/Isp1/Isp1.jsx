@@ -71,7 +71,7 @@ function Isp1(props) {
         <Link to='/isp_reg'>
             <img src={arrowsvg} className="reg_arrow"></img>
         </Link>
-            <h1 className='greetings_text'style={props.color==='light' ? {color:'black'} : {color:'white'} }>Регистрация</h1>
+            <h1 className='greetings_text'style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Регистрация</h1>
         </div>
         <div className="dropdown-container" ref={dropdownRef}>
       <input

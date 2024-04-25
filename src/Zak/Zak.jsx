@@ -60,16 +60,17 @@ function Zak(props) {
         <Link to='/registration'>
             <img src={arrowsvg} className="reg_arrow"></img>
         </Link>
-            <h1 className='greetings_text'style={props.color==='light' ? {color:'black'} : {color:'white'} }>Регистрация</h1>
+            <h1 className='greetings_text'style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Регистрация</h1>
         </div>
         <div className="password-input">
             <input
+                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
+
                 type={'text'}
                 placeholder="Имя*"
                 className="password-field"
                 value={name}
                 onChange={handleChange}
-                style={props.colorB==='light' ? {backgroundColor:'white'} : {backgroundColor:'#232323'} }
             />
 
         </div>
@@ -95,7 +96,7 @@ function Zak(props) {
             />
 
         </div>
-        <div className="radio_gender" style={props.colorB==='light' ? {color:'black'} : {backgroundColor:'white'} }>
+        <div className="radio_gender" style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>
             <label htmlFor="gender" style={{ fontSize: '14px' }}>Ваш пол:</label>
             <div>
                 <input type="radio" id="male" name="gender" value="male" checked={gender === 'male'} onChange={handleGenderChange} />

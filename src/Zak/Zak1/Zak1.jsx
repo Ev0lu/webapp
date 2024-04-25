@@ -42,17 +42,20 @@ function Zak1(props) {
       const daysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate();
 
     return (
-      <div className="greetings" style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>              <div className="greetings_wrapper">
+      <div className="greetings" style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>             
+       <div className="greetings_wrapper">
         <div className="reg">
             <Link to='/zak_reg'>
                 <img src={arrowsvg} className="reg_arrow"></img>
             </Link>
-            <h1 className='greetings_text'style={props.color==='light' ? {color:'black'} : {color:'white'} }>Дата рождения</h1>
+            <h1 className='greetings_text'style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Дата рождения</h1>
         </div>
      <div className="date-picker">
       <input
         type="text"
         className="password-field"
+        style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
+
         value={selectedDate ? selectedDate.toLocaleDateString('ru-RU') : ''}
         readOnly
       />

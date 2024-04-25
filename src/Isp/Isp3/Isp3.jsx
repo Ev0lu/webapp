@@ -129,10 +129,10 @@ function Isp3(props) {
             onClick={toggleDropdown1}
             readOnly
           />
-          <div className={`dropdown-options ${isOpen1 ? 'open' : ''}`}>
-            <div className="scroll-container" ref={scrollContainerRef1} onScroll={handleScroll1}>
+          <div  className={`dropdown-options ${isOpen1 ? 'open' : ''}`}>
+            <div  className="scroll-container" ref={scrollContainerRef1} onScroll={handleScroll1}>
               {countries.map((country, index) => (
-                <div key={index} className="dropdown-option" onClick={() => selectCountry1(country)}  >
+                <div key={index} className="dropdown-option" >
                 <label style={{ display: 'flex', alignItems: 'center' }}>
                      <input
                      type="checkbox"
@@ -148,7 +148,7 @@ function Isp3(props) {
                          marginRight: 10,
                      }}
                      />
-                     {selectedCountries1.includes(' ' + country) && <img className="checkbox-icon--1" src={Vector} alt="checkmark"></img>}
+                     {selectedCountries1.includes(' ' + country) && <img className="checkbox-icon--1"  src={Vector} alt="checkmark"></img>}
                     
                       <span style={{ marginLeft: 10 }}>{country}</span>
                  </label>
@@ -169,7 +169,7 @@ function Isp3(props) {
             onClick={toggleDropdown2}
             readOnly
           />
-          <div onClick={() => selectCountry2(country)} className={`dropdown-options--1 ${isOpen2 ? 'open' : ''}`}>
+          <div  onClick={() => selectCountry2(country)} className={`dropdown-options--1 ${isOpen2 ? 'open' : ''}`}>
             <div className="scroll-container--1" ref={scrollContainerRef2} onScroll={handleScroll2}>
               {countries.map((country, index) => (
                 <div key={index} className="dropdown-option--1" >
@@ -200,22 +200,7 @@ function Isp3(props) {
           </div>
         </div>
 
-        <div className="password-input">
-          <input
-            type="text"
-            placeholder="Город 1"
-            value={city1}
-            className='password-field'
-            onChange={(e) => setCity1(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Город 2"
-            value={city2}
-            className='password-field'
-            onChange={(e) => setCity2(e.target.value)}
-          />
-        </div>
+
         <Link to='/isp_photo_reg'>
           <button className="greetings_btn">Далее</button>
         </Link>

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import './Auth.css';
+import s from './Auth.module.css';
 import { Route, Routes, Link, Router } from 'react-router-dom';
 import eye from '../assets/eye-clos.svg'
+import eyeLight from '../assets/eye-closed.svg'
 
 
 const Auth = (props) => {
@@ -17,23 +18,24 @@ const Auth = (props) => {
     };
 
     return (
-        <div className="greetings" style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>        <div className="greetings_wrapper">
-        <h1 className='greetings_text' style={props.colorB==='light' ? {color:'white'} : {color:'black'} }>Авторизация</h1>
-          <div className="password-input">
+        <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>
+        <div className={s.greetings_wrapper}>
+        <h1 className={s.greetings_text} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Авторизация</h1>
+          <div className={s.password_input}>
             <input
-                style={props.colorB==='light' ? {color:'black'} : {color:'white'} }
+                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Пароль"
-                className="password-field"
+                className={s.password_field}
                 value={password}
                 onChange={handleChange}
             />
                        
-                <img className='toggle-password' onClick={handleTogglePassword} src={eye}></img>
+                <img className={s.toggle_password} onClick={handleTogglePassword} src={props.colorB === 'dark' ? eye : eyeLight}></img>
         
         </div>
         <Link to={(password.length<8) || (password.length > 25) ? '/authorization' : '/'}>
-        <button  style={props.colorB==='light' ? {color:'white'} : {color:'black'} } className='greetings_btn'>Далее</button>
+        <button className={`${s.greetings_btn2} ${props.colorB==="light" ? s.authPassword1 : s.authPassword1}` }>Далее</button>
         </Link>
         </div>
       

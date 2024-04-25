@@ -49,7 +49,7 @@ function Zak2(props) {
         <Link to='/zak1_reg'>
             <img src={arrowsvg} className="reg_arrow"></img>
         </Link>
-            <h1 className='greetings_text'style={props.color==='light' ? {color:'black'} : {color:'white'} }>Регистрация</h1>
+            <h1 className='greetings_text'style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Регистрация</h1>
         </div>
         <div className="password-input">
             <input
@@ -58,6 +58,8 @@ function Zak2(props) {
                 className="password-field"
                 value={login}
                 onChange={handleChange}
+                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
+
             />
 
         </div>
@@ -68,6 +70,8 @@ function Zak2(props) {
                 className="password-field"
                 value={tele}
                 onChange={handleChange2}
+                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
+
             />
 
         </div>
@@ -78,6 +82,8 @@ function Zak2(props) {
                 className="password-field"
                 value={mail}
                 onChange={handleChange3}
+                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
+
             />
              </div>
         <div className="password-input">
@@ -87,6 +93,8 @@ function Zak2(props) {
                 className="password-field"
                 value={pass}
                 onChange={handleChange4}
+                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
+
             />
              </div>
         <div className="password-input">
@@ -96,6 +104,8 @@ function Zak2(props) {
                 className="password-field"
                 value={pass2}
                 onChange={handleChange5}
+                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
+
             />
         </div>
 
