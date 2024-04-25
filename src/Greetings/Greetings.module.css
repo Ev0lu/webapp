@@ -62,10 +62,18 @@
     background-color: #B7AA8C;
 }
 
-
 .greetings_btn.lightMode:active {
   color: white;
   background-color: #D3C5A7;
+}
+
+.greetings_btn.darkMode {
+  color: white;
+  background-color: #232323;
+}
+.greetings_btn.lightMode {
+  color: black;
+  background-color: white;
 }
 
 .greetings_btn.darkMode:active {
