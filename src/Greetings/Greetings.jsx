@@ -2,7 +2,7 @@ import { useState } from "react";
 import s from "./Greetings.module.css"
 import { Route, Routes, Link, Router } from 'react-router-dom';
 function Greetings(props) {
-    const [isRegistered, setIsRegistered] = useState(true);
+    const [isRegistered, setIsRegistered] = useState(false);
     const [isRegistered2, setIsRegistered2] = useState(false);
     return (
         <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"}}>   
