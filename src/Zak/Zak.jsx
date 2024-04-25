@@ -56,7 +56,7 @@ function Zak(props) {
     return (
         <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }> 
                 <div className={s.greetings_wrapper}>
-        <div className="reg">
+        <div className={s.reg}>
         <Link to='/registration'>
             <img src={props.colorB === 'light' ? blackarr : arrowsvg} className={s.reg_arrow}></img>
         </Link>
