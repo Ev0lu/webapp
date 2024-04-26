@@ -17,11 +17,11 @@ import IspPh from './Isp/IspPh/IspPh'
 
 const tg = window.Telegram.WebApp
 function App() {
-  const [colorB, setColorB] = useState("light")
+  const [colorB, setColorB] = useState("dark")
   const updateColor = () => {
     tg.ready()
     if (window.Telegram.WebApp.colorScheme === "light") {
-      setColorB("light")
+      setColorB("dark")
     } else {
       setColorB("dark")
     }

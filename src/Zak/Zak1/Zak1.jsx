@@ -75,7 +75,7 @@ function Zak1(props) {
       />
       {selectedDate === null && (errorFields.selectedDate && <span className={s.error_message}>Пожалуйста, введите имя</span>)}
       </div>
-      <div className={s.icon} onClick={toggleCalendar}>
+      <div className={`${s.icon} ${errorFields.selectedDate && s.open}`} onClick={toggleCalendar}>
         {showCalendar ? <img src={props.colorB === 'light' ? lightplus : plus}></img>: <img src={props.colorB === 'dark' ? minus : lightminus}></img>}
       </div>
       {showCalendar && (

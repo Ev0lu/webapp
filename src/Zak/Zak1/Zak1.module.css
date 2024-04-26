@@ -57,7 +57,10 @@
     transform: translateY(-50%);
     cursor: pointer;
     color: white;
-    bottom: -10px;
+    bottom: -5px;
+  }
+  .icon.open{
+    bottom: -15px;
   }
   
   .calendar {
