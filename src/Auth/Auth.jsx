@@ -1,14 +1,24 @@
 import React, { useState } from 'react';
 import s from './Auth.module.css';
 import { Route, Routes, Link, Router } from 'react-router-dom';
-import eye from '../assets/eye-clos.svg'
+import eyed from '../assets/eye-clos.svg'
 import eyeLight from '../assets/eye-closed.svg'
 
 
 const Auth = (props) => {
     const [showPassword, setShowPassword] = useState(false);
     const [password, setPassword] = useState('');
+    const [errorFields, setErrorFields] = useState({
+        password: password
+    });
     
+      const validateFields = () => {
+        const errors = {
+            password: password === ''
+        };
+        setErrorFields(errors);
+        return !Object.values(errors).some(Boolean);
+    };
     const handleTogglePassword = () => {
         setShowPassword(!showPassword);
     };
@@ -31,11 +41,12 @@ const Auth = (props) => {
                 onChange={handleChange}
             />
                        
-                <img className={s.toggle_password} onClick={handleTogglePassword} src={props.colorB === 'dark' ? eye : eyeLight}></img>
-        
+                <img className={s.toggle_password} onClick={handleTogglePassword} src={props.colorB === 'dark' ? eyed : eyeLight}></img>
+                { password === '' && (errorFields.password && <span className={s.error_message}>Пожалуйста, введите пароль</span>)}
+
         </div>
         <Link to={(password.length<8) || (password.length > 25) ? '/authorization' : '/'}>
-        <button className={`${s.greetings_btn2} ${props.colorB==="light" ? s.authPassword1 : s.authPassword1}` }>Далее</button>
+        <button onClick={() => {validateFields()}} className={`${s.greetings_btn2} ${props.colorB==="light" ? s.authPassword1 : s.authPassword1}` }>Далее</button>
         </Link>
         </div>
       
