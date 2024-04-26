@@ -25,6 +25,18 @@ function Isp3(props) {
   const scrollbarRef2 = useRef(null);
   const [scrollbarHeight1, setScrollbarHeight1] = useState(0);
   const [scrollbarHeight2, setScrollbarHeight2] = useState(0);
+  const [errorFields, setErrorFields] = useState({
+    selectedCountries1: false,
+    selectedCountries2: false
+});
+  const validateFields = () => {
+    const errors = {
+      selectedCountries1: selectedCountries1.length === 0,
+      selectedCountries2: selectedCountries2.length === 0
+    };
+    setErrorFields(errors);
+    return !Object.values(errors).some(Boolean);
+  };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -118,9 +130,7 @@ function Isp3(props) {
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>  
             <div className={s.greetings_wrapper}>
         <div className={s.reg}>
-          <Link to='/isp2_reg'>
-            <img src={arrowsvg} className={s.reg_arrow}></img>
-          </Link>
+
           <h1 className={s.greetings_text} style={props.color === 'light' ? { color: 'white' } : { color: 'black' }}>Осталось совсем немного</h1>
         </div>
 
@@ -162,6 +172,8 @@ function Isp3(props) {
             <div className={`${s.scrollbar_1} ${props.colorB === 'light' ? s.light : s.dark}`}  />
             <div className={`${s.scrollbar} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef1} style={{ height: `${scrollbarHeight1}%` }} />
           </div>
+          { selectedCountries1.length === 0 && (errorFields.selectedCountries1 && <span className={s.error_message}>Пожалуйста, выберите навыки</span>)}
+
         </div>
 
         <div className={s.dropdown_container__1} ref={dropdownRef2}>
@@ -179,15 +191,20 @@ function Isp3(props) {
                 <div key={index} className={`${s.dropdown_option__1} ${props.colorB === 'light' ? s.light : s.dark}`} >
                    <label style={{ display: 'flex', alignItems: 'center' }}>
                    <input
-                        type="checkbox"
-                        className={`${s.inputCheck} ${props.colorB === 'light' ? s.light : s.dark}`}
-                        checked={selectedCountries2.includes(country)}
-                        onChange={() => selectCountry2(country)}
-                        style={{
-
-                        }}
-                        />
-                        {selectedCountries2.includes(' ' + country) && <img className={s.checkbox_icon} src={props.colorB === 'light' ? Vector : darkgal} alt="checkmark" />}
+                     type="checkbox"
+                     className={`${s.inputCheck} ${props.colorB === 'light' ? s.light : s.dark}`}
+                     checked={selectedCountries2.includes(country)}
+                     onChange={() => selectCountry2(country)}
+                     style={{
+                         width: 20,
+                         height: 20,
+                         backgroundColor: 'white',
+                         border: 'none',
+                         cursor: 'pointer',
+                         marginRight: 10,
+                     }}
+                     />
+                     {selectedCountries2.includes(' ' + country) && <img className={s.checkbox_icon__1}  src={props.colorB === 'light' ? Vector : darkgal} alt="checkmark"></img>}
                        
                          <span style={{ marginLeft: 10 }}>{country}</span>
                     </label>
@@ -197,11 +214,15 @@ function Isp3(props) {
             <div className={`${s.scrollbar_1__1} ${props.colorB === 'light' ? s.light : s.dark}`} />
             <div className={`${s.scrollbar__1} ${props.colorB === 'light' ? s.light : s.dark}`}  ref={scrollbarRef2} style={{ height: `${scrollbarHeight2}%` }} />
           </div>
+          { selectedCountries2.length === 0 && (errorFields.selectedCountries2 && <span className={s.error_message}>Пожалуйста, выберите языки</span>)}
+
         </div>
 
 
-        <Link to='/isp_reg_photo'>
-          <button className={s.greetings_btn}>Далее</button>
+        <Link to={selectedCountries1.length !== 0 || selectedCountries2.length !== 0 ? '/isp_reg_photo' : '/isp3_reg'}>
+          <button onClick={() => {
+            validateFields()
+          }} className={s.greetings_btn}>Далее</button>
         </Link>
       </div>
     </div>

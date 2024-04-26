@@ -13,7 +13,19 @@ function Isp1(props) {
   const scrollContainerRef = useRef(null);
   const scrollbarRef = useRef(null);
   const [scrollbarHeight, setScrollbarHeight] = useState(0);
+  const [errorFields, setErrorFields] = useState({
+    city: false,
+    selectedCountry: false
+});
 
+  const validateFields = () => {
+    const errors = {
+      city: city === '',
+      selectedCountry: selectedCountry === ''
+    };
+    setErrorFields(errors);
+    return !Object.values(errors).some(Boolean);
+};
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -97,7 +109,9 @@ function Isp1(props) {
         
       </div>
       
+      {selectedCountry === '' && (errorFields.selectedCountry && <span className={s.error_message}>Выберите вашу страну</span>)}
     </div>
+    
       <div className={s.password_input}>
         <input
           type="text"
@@ -106,9 +120,13 @@ function Isp1(props) {
           className={`${s.password_field} ${props.colorB === 'light' ? s.light : s.dark}`}
           onChange={(e) => setCity(e.target.value)}
         />
+        {city === '' && (errorFields.city && <span className={s.error_message}>Выберите ваш город</span>)}
+
       </div>
-      <Link to='/isp2_reg'>
-        <button className={`${s.greetings_btn} ${props.colorB === 'light' ? s.light : s.dark}`}>Далее</button>
+      <Link to={(city === '') || (selectedCountry == '') ? '/isp1_reg' : '/isp2_reg'}>
+        <button onClick={() => {
+          validateFields()
+        }}className={`${s.greetings_btn} ${props.colorB === 'light' ? s.light : s.dark}`}>Далее</button>
       </Link>
       </div>
     </div>

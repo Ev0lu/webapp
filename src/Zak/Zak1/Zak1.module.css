@@ -57,7 +57,7 @@
     transform: translateY(-50%);
     cursor: pointer;
     color: white;
-    bottom: -5px;
+    bottom: -14px;
   }
   
   .calendar {
@@ -194,3 +194,20 @@
   color: white;
   background-color: #D3C5A7;
 }
+
+
+.error {
+  border: 1px solid #FF0000;
+}
+
+.error_message {
+  color: #FF0000;
+  font-size: 12px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+}
+.date_flex{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+

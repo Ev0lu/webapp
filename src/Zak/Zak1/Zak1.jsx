@@ -14,13 +14,22 @@ function Zak1(props) {
         "май", "июнь", "июль", "август",
         "сентябрь", "октябрь", "ноябрь", "декабрь"
       ];
-      
+
       const years = Array.from({ length: 100 }, (_, index) => 2024 - index);
       const [showCalendar, setShowCalendar] = useState(false);
       const [selectedDate, setSelectedDate] = useState(null);
       const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
       const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
-    
+      const [errorFields, setErrorFields] = useState({
+        selectedDate: false
+    });
+      const validateFields = () => {
+        const errors = {
+          selectedDate: selectedDate === null
+        };
+        setErrorFields(errors);
+        return !Object.values(errors).some(Boolean);
+    };
       const toggleCalendar = () => {
         setShowCalendar(!showCalendar);
       };
@@ -55,14 +64,17 @@ function Zak1(props) {
             <h1 className={s.greetings_text} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Дата рождения</h1>
         </div>
      <div className={s.date_picker}>
+      <div className={s.date_flex}>
       <input
         type="text"
-        className={s.password_field}
+        className={`${s.password_field} ${errorFields.selectedDate && s.error}`}
         style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
 
         value={selectedDate ? selectedDate.toLocaleDateString('ru-RU') : ''}
         readOnly
       />
+      {selectedDate === null && (errorFields.selectedDate && <span className={s.error_message}>Пожалуйста, введите имя</span>)}
+      </div>
       <div className={s.icon} onClick={toggleCalendar}>
         {showCalendar ? <img src={props.colorB === 'light' ? lightplus : plus}></img>: <img src={props.colorB === 'dark' ? minus : lightminus}></img>}
       </div>
@@ -98,8 +110,8 @@ function Zak1(props) {
         </div>
       )}
     </div>
-    <Link to="/zak2_reg">
-        <button className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>Далее</button>
+    <Link to={selectedDate !== null ? "/zak2_reg" : "/zak1_reg"}>
+        <button onClick={validateFields} className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>Далее</button>
     </Link>
         </div>
       </div>

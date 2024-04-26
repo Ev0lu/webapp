@@ -157,6 +157,9 @@ background-color: white;
 
 .password_input{
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 .password_field{
 
@@ -170,4 +173,14 @@ background-color: white;
 
   box-sizing: border-box;
 
+}
+
+.error {
+  border: 1px solid #FF0000;
+}
+
+.error_message {
+  color: #FF0000;
+  font-size: 12px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
 }

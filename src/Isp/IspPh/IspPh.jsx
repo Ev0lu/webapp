@@ -9,7 +9,17 @@ function IspPh(props) {
 
     const [avatar, setAvatar] = useState(null);
     const [showEditIcon, setShowEditIcon] = useState(false);
-  
+    const [errorFields, setErrorFields] = useState({
+      avatar: false
+  });
+  const validateFields = () => {
+    const errors = {
+      avatar: avatar === null
+    };
+    setErrorFields(errors);
+    return !Object.values(errors).some(Boolean);
+};
+
     const handleAvatarChange = (event) => {
       const file = event.target.files[0];
       if (file) {
@@ -60,27 +70,29 @@ function IspPh(props) {
           </div>
         )}
       </label>
-      <input
-        id={s.avatar_input}
-        type="file"
-        accept="image/*"
-        onChange={handleAvatarChange}
-        className={s.avatar_input}
-      />
+      <div className={s.avatar_flex}>
+        <input
+          id={s.avatar_input}
+          type="file"
+          accept="image/*"
+          onChange={handleAvatarChange}
+          className={s.avatar_input}
+        />
+        { avatar === null && (errorFields.avatar && <span className={s.error_message}>Пожалуйста, приложите изображение</span>)}
+      </div>
     </div>
-          <Link to="/">
+          <Link to={avatar !== null ? '/' : '/isp_reg_photo'}>
           <button onClick={() => {
-                    setIsRegistered(true)
-                    setIsRegistered2(false)
-                
+
+                    validateFields()
                 }} className={`${s.greetings_btn} ${isRegistered ? s.lightMode1 : (props.colorB === 'light' ? s.lightMode : s.darkMode)}`}>Далее</button>
           </Link>
-          <Link to="/">
+          <Link to={'/'}>
 
           <button onClick={() => {
                     setIsRegistered2(true)
                     setIsRegistered(false)
-                
+                    
                 }} className={`${s.greetings_btn} ${isRegistered2 ? s.lightMode1 : (props.colorB === 'light' ? s.lightMode : s.darkMode)}`}>пропустить</button>
           </Link>
 

@@ -61,6 +61,9 @@
   
   .password_input{
     position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
   }
 .gender_title{
   color: white;
@@ -145,4 +148,14 @@ p {
 .greetings_btn.lightMode {
   color: black;
   background-color: white;
+}
+
+.error {
+  border: 1px solid #FF0000;
+}
+
+.error_message {
+  color: #FF0000;
+  font-size: 12px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
 }

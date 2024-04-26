@@ -237,3 +237,18 @@
   display: block;
   
 }
+
+.error {
+  border: 1px solid #FF0000;
+}
+
+.error_message {
+  color: #FF0000;
+  font-size: 12px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+}
+.password_input{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
