@@ -81,7 +81,7 @@ function IspPh(props) {
         { avatar === null && (errorFields.avatar && <span className={s.error_message}>Пожалуйста, приложите изображение</span>)}
       </div>
     </div>
-          <Link to={avatar !== null ? '/' : '/isp_reg_photo'}>
+          <Link to={avatar !== null ? '/create' : '/isp_reg_photo'}>
           <button onClick={() => {
 
                     validateFields()

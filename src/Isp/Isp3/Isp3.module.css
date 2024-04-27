@@ -77,7 +77,7 @@
     top: calc(100% + 5px);
     left: 0;
     width: 315px;
-   
+    min-height: 132px;
     max-height: 224px;
     overflow: hidden;
     border: 1px solid #ccc;
@@ -130,6 +130,7 @@
   }
   .dropdown_option:last-child {
     padding-bottom: 15px;
+    border: none;
     
   }
   .scroll_container {
@@ -146,15 +147,13 @@
     bottom: 0px;
     right: 0.3px;
     width: 5px;
-    height: 75px;
+    height: 30%;
     
     background-color: grey;
     border-radius: 5px;
     z-index: 2;
     margin-right: 20px;
-    margin-top: 12.5px;
-    margin-bottom: 41px;
-    
+    margin-top: 4%;
   }
   
   .scrollbar:hover {
@@ -166,12 +165,12 @@
     top: 0px;
     right: -2.5px;
     width: 10px;
-    height: 198px;
+    height: 90%;
     margin-right: 20.3px;
     background-color: lightgray;
     border-radius: 5px;
     z-index: 1;
-    margin-top: 10px;
+    margin-top: 3%;  
 
   }
 
@@ -201,7 +200,7 @@
     top: calc(100% + 5px);
     left: 0;
     width: 315px;
-   
+    min-height: 132px;
     max-height: 224px;
     overflow: hidden;
     border: 1px solid #ccc;
@@ -270,35 +269,35 @@
     bottom: 0px;
     right: 0.3px;
     width: 5px;
-    height: 75px;
+    height: 30%;
     
     background-color: grey;
     border-radius: 5px;
     z-index: 2;
     margin-right: 20px;
-    margin-top: 12.5px;
+    margin-top: 4%;
     
   }
   
   .scrollbar__1:hover {
     background-color: #bbb;
   }
+  
 
   .scrollbar_1__1{
     position: absolute;
     top: 0px;
     right: -2.5px;
     width: 10px;
-    height: 198px;
+    height: 90%;
     margin-right: 20.3px;
     background-color: lightgray;
     border-radius: 5px;
     z-index: 1;
-    margin-top: 10px;
-    
+    margin-top: 3%;    
 
   }
-
+ 
 
 
   .dropdown_option__1 label {
@@ -312,7 +311,7 @@
     cursor: pointer;
   }
   .dropdown_option__1:last-child {
-    padding: 10px 10px 20px 10px;
+    padding: 12px 10px 14px 10px;
     
     border-bottom: 0px solid #ccc;
     cursor: pointer;

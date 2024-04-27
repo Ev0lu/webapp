@@ -81,7 +81,7 @@ function ZakPh(props) {
         { avatar === null && (errorFields.avatar && <span className={s.error_message}>Пожалуйста, приложите изображение</span>)}
       </div>
     </div>
-          <Link to={avatar !== null ? '/' : '/zak_reg_photo'}>
+          <Link to={avatar !== null ? '/create' : '/zak_reg_photo'}>
           <button onClick={() => {
 
                     validateFields()

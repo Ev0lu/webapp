@@ -9,6 +9,8 @@ import blackarr from '../../assets/black.svg'
 function Isp3(props) {
   const skills = ['Россия', 'Казахстан', 'Армения', 'Азербайджан', 'Грузия', 'a', 'b', 'v'];
   const lang = ['Россия', 'Казахстан', 'Армения', 'Азербайджан', 'Грузия', 'a', 'b', 'v'];
+  const [searchQuery1, setSearchQuery1] = useState('');
+  const [searchQuery2, setSearchQuery2] = useState('');
   const [city1, setCity1] = useState('');
   const [city2, setCity2] = useState('');
   const [isOpen1, setIsOpen1] = useState(false);
@@ -126,6 +128,10 @@ function Isp3(props) {
   const checkmarkSvg = (
     <img src={Vector}></img>
   );
+
+  const filteredSkills = skills.filter((skill) => skill.toLowerCase().includes(searchQuery1.toLowerCase()));
+  const filteredLang = lang.filter((lang) => lang.toLowerCase().includes(searchQuery2.toLowerCase()));
+
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>  
             <div className={s.greetings_wrapper}>
@@ -138,14 +144,15 @@ function Isp3(props) {
           <input
             className={`${s.password_field} ${props.colorB === 'light' ? s.light : s.dark}`}
             type="text"
-            value={selectedCountries1}
+            value={searchQuery1}
             placeholder="Навыки"
             onClick={toggleDropdown1}
-            readOnly
+            onChange={(e) => setSearchQuery1(e.target.value)}
+            
           />
           <div  className={`${s.dropdown_options} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen1 ? s.open : ''}`}>
             <div  className={s.scroll_container} ref={scrollContainerRef1} onScroll={handleScroll1}>
-              {skills.map((country, index) => (
+              {filteredSkills.map((country, index) => (
                 <div key={index} className={`${s.dropdown_option} ${props.colorB === 'light' ? s.light : s.dark}`} >
                 <label style={{ display: 'flex', alignItems: 'center' }}>
                      <input
@@ -180,14 +187,16 @@ function Isp3(props) {
           <input
             className={`${s.password_field__1} ${props.colorB === 'light' ? s.light : s.dark}`}
             type="text"
-            value={selectedCountries2}
+            value={searchQuery2}
             placeholder="Языки"
             onClick={toggleDropdown2}
-            readOnly
+            onChange={(e) => setSearchQuery2(e.target.value)}
+
+            
           />
           <div className={`${s.dropdown_options__1} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen2 ? s.open : ''}`}>
             <div className={s.scroll_container__1} ref={scrollContainerRef2} onScroll={handleScroll2}>
-              {lang.map((country, index) => (
+              {filteredLang.map((country, index) => (
                 <div key={index} className={`${s.dropdown_option__1} ${props.colorB === 'light' ? s.light : s.dark}`} >
                    <label style={{ display: 'flex', alignItems: 'center' }}>
                    {props.colorB === 'light' ? <input
@@ -228,6 +237,7 @@ function Isp3(props) {
                 </div>
               ))}
             </div>
+            
             <div className={`${s.scrollbar_1__1} ${props.colorB === 'light' ? s.light : s.dark}`} />
             <div className={`${s.scrollbar__1} ${props.colorB === 'light' ? s.light : s.dark}`}  ref={scrollbarRef2} style={{ height: `${scrollbarHeight2}%` }} />
           </div>
