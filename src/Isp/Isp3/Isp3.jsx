@@ -131,7 +131,7 @@ function Isp3(props) {
             <div className={s.greetings_wrapper}>
         <div className={s.reg}>
 
-          <h1 className={s.greetings_text} style={props.color === 'light' ? { color: 'white' } : { color: 'black' }}>Осталось совсем немного</h1>
+          <h1 className={s.greetings_text} style={props.colorB === 'light' ? { color: 'black' } : { color: 'white' }}>Осталось совсем немного</h1>
         </div>
 
         <div className={s.dropdown_container} ref={dropdownRef1}>
@@ -156,13 +156,13 @@ function Isp3(props) {
                      style={{
                          width: 20,
                          height: 20,
-                         backgroundColor: 'white',
+                         
                          border: 'none',
                          cursor: 'pointer',
                          marginRight: 10,
                      }}
                      />
-                     {selectedCountries1.includes(' ' + country) && <img className={s.checkbox_icon__1}  src={props.colorB === 'light' ? Vector : darkgal} alt="checkmark"></img>}
+                     {selectedCountries1.includes(' ' + country) && <img className={s.checkbox_icon__1}  src={props.colorB === 'light' ? Vector : Vector} alt="checkmark"></img>}
                     
                       <span style={{ marginLeft: 10 }}>{country}</span>
                  </label>
@@ -190,21 +190,38 @@ function Isp3(props) {
               {lang.map((country, index) => (
                 <div key={index} className={`${s.dropdown_option__1} ${props.colorB === 'light' ? s.light : s.dark}`} >
                    <label style={{ display: 'flex', alignItems: 'center' }}>
-                   <input
+                   {props.colorB === 'light' ? <input
                      type="checkbox"
                      className={`${s.inputCheck} ${props.colorB === 'light' ? s.light : s.dark}`}
                      checked={selectedCountries2.includes(country)}
                      onChange={() => selectCountry2(country)}
                      style={{
-                         width: 20,
-                         height: 20,
-                         backgroundColor: 'white',
-                         border: 'none',
-                         cursor: 'pointer',
-                         marginRight: 10,
-                     }}
+                      width: 20,
+                      height: 20,
+                      backgroundColor: 'white',
+                      border: 'none',
+                      cursor: 'pointer',
+                      marginRight: 10,
+                    }}/>
+                    :
+                    <input
+                     type="checkbox"
+                     className={`${s.inputCheck} ${props.colorB === 'light' ? s.light : s.dark}`}
+                     checked={selectedCountries2.includes(country)}
+                     onChange={() => selectCountry2(country)}
+                     style={{
+                      width: 20,
+                      height: 20,
+                      backgroundColor: '#232323',
+                      border: 'none',
+                      cursor: 'pointer',
+                      marginRight: 10,
+                    }}
+      
                      />
-                     {selectedCountries2.includes(' ' + country) && <img className={s.checkbox_icon__1}  src={props.colorB === 'light' ? Vector : darkgal} alt="checkmark"></img>}
+                    
+                    }
+                     {selectedCountries2.includes(' ' + country) && <img className={s.checkbox_icon__1}  src={props.colorB === 'light' ? Vector : Vector} alt="checkmark"></img>}
                        
                          <span style={{ marginLeft: 10 }}>{country}</span>
                     </label>
@@ -219,7 +236,7 @@ function Isp3(props) {
         </div>
 
 
-        <Link to={selectedCountries1.length !== 0 || selectedCountries2.length !== 0 ? '/isp_reg_photo' : '/isp3_reg'}>
+        <Link to={selectedCountries1.length !== 0 || selectedCountries2.length !== 0 ? '/isp_con' : '/isp3_reg'}>
           <button onClick={() => {
             validateFields()
           }} className={s.greetings_btn}>Далее</button>

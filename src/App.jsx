@@ -14,14 +14,16 @@ import Isp1 from './Isp/Isp1/Isp1'
 import Isp2 from './Isp/Isp2/Isp2'
 import Isp3 from './Isp/Isp3/Isp3'
 import IspPh from './Isp/IspPh/IspPh'
+import IspCon from './Isp/IspCon/IspCon';
+import ZakCon from './Zak/ZakCon/ZakCon';
 
 const tg = window.Telegram.WebApp
 function App() {
-  const [colorB, setColorB] = useState("dark")
+  const [colorB, setColorB] = useState("light")
   const updateColor = () => {
     tg.ready()
     if (window.Telegram.WebApp.colorScheme === "light") {
-      setColorB("dark")
+      setColorB("light")
     } else {
       setColorB("dark")
     }
@@ -57,6 +59,9 @@ function App() {
           <Route path="/isp2_reg" element={<Isp2 colorB={colorB} />} />
           <Route path="/isp3_reg" element={<Isp3 colorB={colorB} />} />
           <Route path="/isp_reg_photo" element={<IspPh colorB={colorB} />} />
+          <Route path="/isp_con" element={<IspCon colorB={colorB} />} />
+          <Route path="/zak_con" element={<ZakCon colorB={colorB} />} />
+
           
           
           

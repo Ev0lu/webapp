@@ -140,7 +140,7 @@ function Zak2(props) {
 
         </div>
 
-        <Link to={pass === pass2 && login !== '' && tele !== '' && mail !== '' ? '/zak_reg_photo' : '/zak2_reg'}>
+        <Link to={pass === pass2 && login !== '' && tele !== '' && mail !== '' ? '/zak_con' : '/zak2_reg'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
                 validateFields()
             }}>Далее</button>
