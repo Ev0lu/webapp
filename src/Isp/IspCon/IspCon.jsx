@@ -105,7 +105,7 @@ const IspCon = (props) => {
           />
         </div>
         {error && <div className={s.error_message}>Неправильный код</div>}
-    <Link to={code1 == '' || code2 == '' || code3 == '' || code4 == '' ? '/isp_con' : '/isp_reg_photo'}>
+    <Link to={code1 == '' || code2 == '' || code3 == '' || code4 == '' ? '/isp_con' : '/isp3_reg'}>
         <button className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`} onClick={handleSubmit}>
           Подтвердить
         </button>

@@ -140,7 +140,7 @@ function Isp2(props) {
 
         </div>
 
-        <Link to={pass === pass2 && login !== '' && tele !== '' && mail !== '' ? '/isp3_reg' : '/isp2_reg'}>
+        <Link to={pass === pass2 && login !== '' && tele !== '' && mail !== '' ? '/isp_con' : '/isp2_reg'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
                 validateFields()
             }}>Далее</button>

@@ -143,6 +143,7 @@ function Zak2(props) {
         <Link to={pass === pass2 && login !== '' && tele !== '' && mail !== '' ? '/zak_con' : '/zak2_reg'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
                 validateFields()
+                localStorage.setItem('login', JSON.stringify(login));
             }}>Далее</button>
         </Link>
         </div>

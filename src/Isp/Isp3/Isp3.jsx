@@ -246,7 +246,7 @@ function Isp3(props) {
         </div>
 
 
-        <Link to={selectedCountries1.length !== 0 || selectedCountries2.length !== 0 ? '/isp_con' : '/isp3_reg'}>
+        <Link to={selectedCountries1.length !== 0 || selectedCountries2.length !== 0 ? '/isp_reg_photo' : '/isp3_reg'}>
           <button onClick={() => {
             validateFields()
           }} className={s.greetings_btn}>Далее</button>
