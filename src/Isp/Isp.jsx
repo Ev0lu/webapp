@@ -170,10 +170,10 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
                 <label htmlFor="female" className={s.genderlabel}>Женский</label>
             </div>
             {gender === '' && (errorFields.gender && <span className={s.error_message}>Выберите ваш пол</span>)}
-            {isexist === true  && (<span className={s.error_message}>Такой пользователь уже существует</span>) }
+            {isexist === false  && (<span className={s.error_message}>Такой пользователь уже существует</span>) }
             {isexist === undefined  && (<span className={s.error_message}>Пожалуйста, откройте приложение в телеграме</span>) }
         </div>
-        <Link to={gender === '' || name === '' || lname === '' || isexist === true ? '/isp_reg' : '/isp1_reg'}>
+        <Link to={gender === '' || name === '' || lname === '' || isexist === false ? '/isp_reg' : '/isp1_reg'}>
             <button className={s.greetings_btn} onClick={() => {
                 changeFio()
                 validateFields()
