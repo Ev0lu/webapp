@@ -73,9 +73,10 @@ function Isp(props) {
 
     useEffect(() => {
         const fetchQuestion = async () => {
-          //const telegramId = props.tg.WebAppUser.id;
+            
+          const telegramId = props.tg.initDataUnsafe.user.id;
           try {
-            const url = `http://localhost/users/check/worker?telegram_id=${941501054}`;
+            const url = `http://localhost/users/check/worker?telegram_id=${telegramId}`;
             console.log(`Sending request to: ${url}`);
             const res = await fetch(url);
             console.log(`Response status: ${res.status}`);
