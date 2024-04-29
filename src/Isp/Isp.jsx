@@ -10,8 +10,8 @@ function Isp(props) {
     const [lname, setLname] = useState('');
     const [fname, setFname] = useState('')
     const [fio, setFio] = useState('')
-    const [isexist, setIsexist] = useState('')
-    const [telegramId, setTelegramId] = useState('')
+    const [isexist, setIsexist] = useState()
+    const [telegramId, setTelegramId] = useState()
     const [rlink, setRlink] = useState('/zak1_reg')
     const [errorFields, setErrorFields] = useState({
         name: false,
@@ -97,6 +97,7 @@ function Isp(props) {
           }
         };
         fetchQuestion();*/
+
         setTelegramId(props.tg.initDataUnsafe.user.id);
         fetch(`http://localhost/users/check/worker?telegram_id=${telegramId}`)
         .then(response => response.json())
