@@ -171,7 +171,7 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
             </div>
             {gender === '' && (errorFields.gender && <span className={s.error_message}>Выберите ваш пол</span>)}
             {isexist === true  && (<span className={s.error_message}>Такой пользователь уже существует</span>) }
-            {isexist === undefined || isexist === ''  && (<span className={s.error_message}>Пожалуйста, откройте приложение в телеграме</span>) }
+            {isexist === undefined  && (<span className={s.error_message}>Пожалуйста, откройте приложение в телеграме</span>) }
         </div>
         <Link to={gender === '' || name === '' || lname === '' || isexist === true ? '/isp_reg' : '/isp1_reg'}>
             <button className={s.greetings_btn} onClick={() => {
