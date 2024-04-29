@@ -72,7 +72,7 @@ function Isp(props) {
 
 
     useEffect(() => {
-        const fetchQuestion = async () => {
+       /* const fetchQuestion = async () => {
             
           
            
@@ -96,7 +96,12 @@ function Isp(props) {
             console.error(`Error: ${error.message}`);
           }
         };
-        fetchQuestion();
+        fetchQuestion();*/
+        const initData = props.tg.initDataUnsafe;
+        setTelegramId(initData.user.id);
+        fetch(`http://localhost/users/check/worker?telegram_id=${telegramId}`)
+        .then(response => response.json())
+        .then(data => setIsexist(data.exist));
       }, []);
 
    /* const postRequest = async () => {
