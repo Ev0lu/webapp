@@ -97,7 +97,7 @@ function Isp(props) {
           }
         };
         fetchQuestion();
-      }, [telegramId]);
+      }, []);
 
    /* const postRequest = async () => {
         let answersStr = answers.toString()
