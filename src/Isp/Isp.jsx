@@ -168,7 +168,7 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
             </div>
             <div>
                 <input type="radio" id="female" name="gender" value="female" checked={gender === 'female'} onChange={handleGenderChange} />
-                <label htmlFor="female" className={s.genderlabel}>Женский</label>
+                <label htmlFor="female" className={s.genderlabel}>Женский{isexist}</label>
             </div>
             {gender === '' && (errorFields.gender && <span className={s.error_message}>Выберите ваш пол</span>)}
             {isexist === false  && (<span className={s.error_message}>Такой пользователь уже существует</span>) }
