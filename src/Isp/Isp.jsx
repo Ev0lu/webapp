@@ -15,8 +15,7 @@ function Isp(props) {
     const [errorFields, setErrorFields] = useState({
         name: false,
         lname: false,
-        gender: false,
-        isexist: ''
+        gender: false
     });
 
 
@@ -74,7 +73,7 @@ function Isp(props) {
     useEffect(() => {
         const fetchQuestion = async () => {
             
-          const telegramId = props.tg.initDataUnsafe.user.id;
+         const telegramId = props.tg.initData.user.id;
           try {
             const url = `http://localhost/users/check/worker?telegram_id=${telegramId}`;
             console.log(`Sending request to: ${url}`);
