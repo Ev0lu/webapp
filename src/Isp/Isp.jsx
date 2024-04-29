@@ -100,7 +100,8 @@ function Isp(props) {
         //setTelegramId(props.tg.initDataUnsafe.user.id);
         fetch(`http://localhost/users/check/worker?telegram_id=${536036487}`)
         .then(response => response.json())
-        .then(data => setIsexist(data.exist === true ? "true" : "false"))
+        .then(data =>{ setIsexist(JSON.stringify(data.exist))
+        })
         .catch(console.error)
       }, []);
 
@@ -191,7 +192,7 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
                 changeFio()
                 validateFields()
                 console.log(isexist)
-            }}>Далее`${toString(isexist)}`</button>
+            }}>Далее</button>
         </Link>
         </div>
       </div>
