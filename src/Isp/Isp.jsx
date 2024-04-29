@@ -75,10 +75,14 @@ function Isp(props) {
         const fetchQuestion = async () => {
             
           
-            setTelegramId(props.tg.initDataUnsafe.user.id)
+           
 
           try {
+            const initData = await props.tg.initDataUnsafe;
+            setTelegramId(initData.user.id);
+              
             const url = `http://localhost/users/check/worker?telegram_id=${telegramId}`;
+            
             console.log(`Sending request to: ${url}`);
             const res = await fetch(url);
             console.log(`Response status: ${res.status}`);
