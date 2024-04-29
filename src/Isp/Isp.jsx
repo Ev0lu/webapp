@@ -114,7 +114,7 @@ function Isp(props) {
             const response = await fetch(`http://localhost/users/check/worker?telegram_id=${536036487}`);
             const data = await response.json();
             const exist = await data.exist;
-            setIsexist(JSON.stringify(exist));
+            setTimeout(setIsexist(JSON.stringify(exist)),1000)
           } catch (error) {
             console.error(error);
           }
