@@ -50,7 +50,7 @@ function App() {
           <Route path="/" element={<Greetings colorB={colorB}/>} />
           <Route path="/registration" element={<Reg colorB={colorB} />} />
           <Route path="/authorization" element={<Auth colorB={colorB} />} />
-          <Route path="/isp_reg" element={<Isp  colorB={colorB}/>} />
+          <Route path="/isp_reg" element={<Isp tg={tg} colorB={colorB}/>} />
           <Route path="/zak_reg" element={<Zak colorB={colorB} />} />
           <Route path="/zak1_reg" element={<Zak1 colorB={colorB} />} />
           <Route path="/zak2_reg" element={<Zak2 colorB={colorB} />} />
