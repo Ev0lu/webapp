@@ -97,11 +97,11 @@ function Isp(props) {
           }
         };
         fetchQuestion();*/
-
-        setTelegramId(props.tg.initDataUnsafe.user.id);
-        fetch(`http://localhost/users/check/worker?telegram_id=${telegramId}`)
+        //setTelegramId(props.tg.initDataUnsafe.user.id);
+        fetch(`http://localhost/users/check/worker?telegram_id=${536036487}`)
         .then(response => response.json())
-        .then(data => setIsexist(data.exist));
+        .then(data => setIsexist(data.exist === true ? "true" : "false"))
+        .catch(console.error)
       }, []);
 
    /* const postRequest = async () => {
@@ -183,14 +183,15 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
             {gender === '' && (errorFields.gender && <span className={s.error_message}>Выберите ваш пол</span>)}
             {isexist === true  && (<span className={s.error_message}>Такой пользователь уже существует</span>) }
             {isexist === undefined  && (<span className={s.error_message}>Пожалуйста, откройте приложение в телеграме</span>) }
-            {isexist === null  && (<span className={s.error_message}>`${props.tg.initDataUnsafe.user.id}`(Empty)</span>) }
+            {isexist === null  && (<span className={s.error_message}>Empty</span>) }
         </div>
             
         <Link to={gender === '' || name === '' || lname === '' || isexist === true || isexist === null ? '/isp_reg' : '/isp1_reg'}>
             <button className={s.greetings_btn} onClick={() => {
                 changeFio()
                 validateFields()
-            }}>Далее</button>
+                console.log(isexist)
+            }}>Далее`${toString(isexist)}`</button>
         </Link>
         </div>
       </div>
