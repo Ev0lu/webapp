@@ -15,7 +15,8 @@ function Isp(props) {
     const [errorFields, setErrorFields] = useState({
         name: false,
         lname: false,
-        gender: false
+        gender: false,
+        isexist: ''
     });
 
 
@@ -63,6 +64,7 @@ function Isp(props) {
             name: name === '',
             lname: lname === '',
             gender: gender === ''
+
         };
         setErrorFields(errors);
         return !Object.values(errors).some(Boolean);
@@ -71,9 +73,9 @@ function Isp(props) {
 
     useEffect(() => {
         const fetchQuestion = async () => {
-          const telegramId = props.tg.WebAppUser.id;
+          //const telegramId = props.tg.WebAppUser.id;
           try {
-            const url = `http://localhost/users/check/worker?telegram_id=${telegramId}`;
+            const url = `http://localhost/users/check/worker?telegram_id=${941501054}`;
             console.log(`Sending request to: ${url}`);
             const res = await fetch(url);
             console.log(`Response status: ${res.status}`);
@@ -81,7 +83,8 @@ function Isp(props) {
               throw new Error(`Error: ${res.status}`);
             }
             const data = await res.json();
-            setIsexist(data.exist);
+            const e = data.exist
+            setIsexist(e);
           } catch (error) {
             console.error(`Error: ${error.message}`);
           }
@@ -166,10 +169,10 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
                 <label htmlFor="female" className={s.genderlabel}>Женский</label>
             </div>
             {gender === '' && (errorFields.gender && <span className={s.error_message}>Выберите ваш пол</span>)}
-            {isexist === false  && (<span className={s.error_message}>Такой пользователь уже существует</span>) }
-            {isexist === undefined  && (<span className={s.error_message}>ПОЧЕМУ АНДЕФАЙНД БЛЯТЬ</span>) }
+            {isexist === true  && (<span className={s.error_message}>Такой пользователь уже существует</span>) }
+            {isexist === undefined || isexist === ''  && (<span className={s.error_message}>Пожалуйста, откройте приложение в телеграме</span>) }
         </div>
-        <Link to={gender === '' || name === '' || lname === '' || isexist === false ? '/isp_reg' : '/isp1_reg'}>
+        <Link to={gender === '' || name === '' || lname === '' || isexist === true ? '/isp_reg' : '/isp1_reg'}>
             <button className={s.greetings_btn} onClick={() => {
                 changeFio()
                 validateFields()
