@@ -11,6 +11,7 @@ function Isp(props) {
     const [fname, setFname] = useState('')
     const [fio, setFio] = useState('')
     const [isexist, setIsexist] = useState('')
+    const [telegramId, setTelegramId] = useState('')
     const [rlink, setRlink] = useState('/zak1_reg')
     const [errorFields, setErrorFields] = useState({
         name: false,
@@ -74,7 +75,7 @@ function Isp(props) {
         const fetchQuestion = async () => {
             
           props.tg.getUser().then((user) => {
-            const telegramId = user.id
+            setTelegramId(user.id)
           })
           try {
             const url = `http://localhost/users/check/worker?telegram_id=${telegramId}`;
@@ -168,11 +169,11 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
             </div>
             <div>
                 <input type="radio" id="female" name="gender" value="female" checked={gender === 'female'} onChange={handleGenderChange} />
-                <label htmlFor="female" className={s.genderlabel}>Женский{isexist}</label>
+                <label htmlFor="female" className={s.genderlabel}>Женский</label>
             </div>
             {gender === '' && (errorFields.gender && <span className={s.error_message}>Выберите ваш пол</span>)}
             {isexist === false  && (<span className={s.error_message}>Такой пользователь уже существует</span>) }
-            {isexist === undefined  && (<span className={s.error_message}>Пожалуйста, откройте приложение в телеграме</span>) }
+            {isexist === undefined || isexist === ''  && (<span className={s.error_message}>Пожалуйста, откройте приложение в телеграме</span>) }
         </div>
         <Link to={gender === '' || name === '' || lname === '' || isexist === false || isexist === '' ? '/isp_reg' : '/isp1_reg'}>
             <button className={s.greetings_btn} onClick={() => {
