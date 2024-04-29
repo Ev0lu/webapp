@@ -71,8 +71,8 @@ function Isp(props) {
     };
 
 
-    useEffect(() => {
-       /* const fetchQuestion = async () => {
+    /*useEffect(() => {
+        const fetchQuestion = async () => {
             
           
            
@@ -96,15 +96,31 @@ function Isp(props) {
             console.error(`Error: ${error.message}`);
           }
         };
-        fetchQuestion();*/
+        fetchQuestion();
+
+
         //setTelegramId(props.tg.initDataUnsafe.user.id);
         fetch(`http://localhost/users/check/worker?telegram_id=${536036487}`)
         .then(response => response.json())
         .then(data =>{ setIsexist(JSON.stringify(data.exist))
         })
         .catch(console.error)
-      }, []);
+      }, []);*/
 
+
+      useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await fetch(`http://localhost/users/check/worker?telegram_id=${536036487}`);
+            const data = await response.json();
+            const exist = await data.exist;
+            setIsexist(JSON.stringify(exist));
+          } catch (error) {
+            console.error(error);
+          }
+        };
+        fetchData();
+      }, []);
    /* const postRequest = async () => {
         let answersStr = answers.toString()
         let answersTextStr = answersText.toString()
