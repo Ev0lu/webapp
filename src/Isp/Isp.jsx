@@ -91,7 +91,7 @@ function Isp(props) {
             }
             const data = await res.json();
             const e = data.exist
-            setIsexist(e);
+            setIsexist(data.exist);
           } catch (error) {
             console.error(`Error: ${error.message}`);
           }
