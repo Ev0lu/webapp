@@ -75,7 +75,7 @@ function Isp(props) {
         const fetchQuestion = async () => {
             
           
-            setTelegramId(props.tg.initDataUnsafe.user.id)
+            setTelegramId(props.tg.WebAppInitData.user.id)
 
           try {
             const url = `http://localhost/users/check/worker?telegram_id=${telegramId}`;
