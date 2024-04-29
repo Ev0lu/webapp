@@ -74,9 +74,9 @@ function Isp(props) {
     useEffect(() => {
         const fetchQuestion = async () => {
             
-          props.tg.getUser().then((user) => {
-            setTelegramId(user.id)
-          })
+          
+            setTelegramId(props.tg.initDataUnsafe.user.id)
+
           try {
             const url = `http://localhost/users/check/worker?telegram_id=${telegramId}`;
             console.log(`Sending request to: ${url}`);
@@ -176,6 +176,7 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
             {isexist === undefined  && (<span className={s.error_message}>Пожалуйста, откройте приложение в телеграме</span>) }
             {isexist === ''  && (<span className={s.error_message}>Empty</span>) }
         </div>
+            
         <Link to={gender === '' || name === '' || lname === '' || isexist === false || isexist === '' ? '/isp_reg' : '/isp1_reg'}>
             <button className={s.greetings_btn} onClick={() => {
                 changeFio()
