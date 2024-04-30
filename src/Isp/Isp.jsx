@@ -111,10 +111,11 @@ function Isp(props) {
       useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await fetch(`http://localhost/users/check/worker?telegram_id=${536036487}`);
+            //setTelegramId(props.tg.initDataUnsafe.user.id);
+            const response = await fetch(`http://45.153.69.208/docs/users/worker?telegram_id=${536036487}`);
             const data = await response.json();
             const exist = await data.exist;
-            setTimeout(setIsexist(JSON.stringify(exist)),5000)
+            setTimeout(setIsexist(JSON.stringify(exist)),1000)
           } catch (error) {
             console.error(error);
           }
