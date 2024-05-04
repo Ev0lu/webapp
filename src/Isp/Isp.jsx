@@ -109,6 +109,7 @@ function Isp(props) {
 
 
       useEffect(() => {
+        
         const fetchData = async () => {
           try {
             setTelegramId(props.tg.initDataUnsafe.user.id);
@@ -123,9 +124,9 @@ function Isp(props) {
         fetchData();
       }, []);
       useEffect(() => {
-        setLname(sessionStorage.getItem('lname') ? sessionStorage.getItem('lname') : '')
-        setFname(sessionStorage.getItem('fname') ? sessionStorage.getItem('fname') : '')
-        setName(sessionStorage.getItem('name') ? sessionStorage.getItem('name') : '')
+        setLname(sessionStorage.getItem('lname') !== null ? sessionStorage.getItem('lname') : '')
+        setFname(sessionStorage.getItem('fname') !== null ? sessionStorage.getItem('fname') : '')
+        setName(sessionStorage.getItem('name') !== null ? sessionStorage.getItem('name') : '')
       })
    /* const postRequest = async () => {
         let answersStr = answers.toString()
