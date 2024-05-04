@@ -111,8 +111,8 @@ function Isp(props) {
       useEffect(() => {
         const fetchData = async () => {
           try {
-            //setTelegramId(props.tg.initDataUnsafe.user.id);
-            const response = await fetch(`https://assista1.ru/users/check/worker?telegram_id=${536036487}`);
+            setTelegramId(props.tg.initDataUnsafe.user.id);
+            const response = await fetch(`https://assista1.ru/users/check/worker?telegram_id=${telegramId}`);
             const data = await response.json();
             const exist = await data.exist;
             setTimeout(setIsexist(JSON.stringify(exist)),1000)
@@ -122,6 +122,11 @@ function Isp(props) {
         };
         fetchData();
       }, []);
+      useEffect(() => {
+        setLname(sessionStorage.getItem('lname') ? sessionStorage.getItem('lname') : '')
+        setFname(sessionStorage.getItem('fname') ? sessionStorage.getItem('fname') : '')
+        setName(sessionStorage.getItem('name') ? sessionStorage.getItem('name') : '')
+      })
    /* const postRequest = async () => {
         let answersStr = answers.toString()
         let answersTextStr = answersText.toString()
@@ -200,12 +205,13 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
             </div>
             {gender === '' && (errorFields.gender && <span className={s.error_message}>Выберите ваш пол</span>)}
             {isexist === true  && (<span className={s.error_message}>Такой пользователь уже существует</span>) }
-            {isexist === undefined  && (<span className={s.error_message}>Пожалуйста, откройте приложение в телеграме</span>) }
-            {isexist === null  && (<span className={s.error_message}>Empty</span>) }
-        </div>
+            {isexist === undefined  && (<span className={s.error_message}>Пожалуйста, откройте приложение в телеграме</span>) }        </div>
             
         <Link to={gender === '' || name === '' || lname === '' || isexist === true || isexist === null ? '/isp_reg' : '/isp1_reg'}>
             <button className={s.greetings_btn} onClick={() => {
+                sessionStorage.setItem('name', name)
+                sessionStorage.setItem('lname', lname)
+                sessionStorage.setItem('fname', fname)
                 changeFio()
                 validateFields()
                 console.log(isexist)
