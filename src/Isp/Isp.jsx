@@ -112,7 +112,7 @@ function Isp(props) {
         const fetchData = async () => {
           try {
             //setTelegramId(props.tg.initDataUnsafe.user.id);
-            const response = await fetch(`https://assista1.ru/docs/users/check/worker?telegram_id=${536036487}`);
+            const response = await fetch(`https://assista1.ru/users/check/worker?telegram_id=${536036487}`);
             const data = await response.json();
             const exist = await data.exist;
             setTimeout(setIsexist(JSON.stringify(exist)),1000)
