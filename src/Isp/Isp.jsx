@@ -109,10 +109,10 @@ function Isp(props) {
 
 
       useEffect(() => {
-        
+        setTelegramId(props.tg.initDataUnsafe.user.id);
         const fetchData = async () => {
           try {
-            setTelegramId(props.tg.initDataUnsafe.user.id);
+            
             const response = await fetch(`https://assista1.ru/users/check/worker?telegram_id=${telegramId}`);
             const data = await response.json();
             const exist = await data.exist;
