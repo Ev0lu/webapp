@@ -3,31 +3,38 @@ import s from './Isp1.module.css';
 import arrowsvg from '../../assets/arrow.svg';
 import arrowsvg2 from '../../assets/angle-dark.svg';
 import blackarr from '../../assets/black.svg';
-import { Link } from 'react-router-dom';
-
 
 function Isp1(props) {
   const [countries, setCountries] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [offset, setOffset] = useState(0);
-  const limit = 25; // Количество элементов, которые необходимо загрузить при каждом запросе
-  const [searchQuery, setSearchQuery] = useState(''); // Input value for country search
-  const [isOpen, setIsOpen] = useState(false);
+  const [loadingCountries, setLoadingCountries] = useState(false);
+  const [offsetCountries, setOffsetCountries] = useState(0);
+  const limitCountries = 25;
+
+  const [searchQueryCountries, setSearchQueryCountries] = useState('');
+  const [isOpenCountries, setIsOpenCountries] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState('');
-  const dropdownRef = useRef(null);
-  const scrollContainerRef = useRef(null);
-  const scrollbarRef = useRef(null);
-  const [city, setCity] = useState('');
-  const [scrollbarHeight, setScrollbarHeight] = useState(0);
-  const [errorFields, setErrorFields] = useState({
-    city: false,
-    selectedCountry: false
-  });
+
+  const dropdownRefCountries = useRef(null);
+  const scrollContainerRefCountries = useRef(null);
+  const scrollbarRefCountries = useRef(null);
+
+  const [cities, setCities] = useState([]);
+  const [loadingCities, setLoadingCities] = useState(false);
+  const [offsetCities, setOffsetCities] = useState(0);
+  const limitCities = 25;
+
+  const [searchQueryCities, setSearchQueryCities] = useState('');
+  const [isOpenCities, setIsOpenCities] = useState(false);
+  const [selectedCity, setSelectedCity] = useState('');
+
+  const dropdownRefCities = useRef(null);
+  const scrollContainerRefCities = useRef(null);
+  const scrollbarRefCities = useRef(null);
 
   const validateFields = () => {
     const errors = {
-      city: city === '',
-      selectedCountry: selectedCountry === ''
+      city: selectedCity === '',
+      country: selectedCountry === '',
     };
     setErrorFields(errors);
     return !Object.values(errors).some(Boolean);
@@ -35,11 +42,13 @@ function Isp1(props) {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false);
+      if (dropdownRefCountries.current && !dropdownRefCountries.current.contains(event.target)) {
+        setIsOpenCountries(false);
+      }
+      if (dropdownRefCities.current && !dropdownRefCities.current.contains(event.target)) {
+        setIsOpenCities(false);
       }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
 
     return () => {
@@ -49,12 +58,11 @@ function Isp1(props) {
 
   useEffect(() => {
     const calculateScrollbarHeight = () => {
-      const scrollContainerHeight = scrollContainerRef.current.offsetHeight;
-      const contentHeight = scrollContainerRef.current.scrollHeight;
+      const scrollContainerHeight = scrollContainerRefCountries.current.offsetHeight;
+      const contentHeight = scrollContainerRefCountries.current.scrollHeight;
       const scrollbarHeightPercentage = (scrollContainerHeight / contentHeight) * 100;
-      setScrollbarHeight(scrollbarHeightPercentage);
+      setScrollbarHeightCountries(scrollbarHeightPercentage);
     };
-
     calculateScrollbarHeight();
 
     const handleResize = () => {
@@ -68,121 +76,197 @@ function Isp1(props) {
     };
   }, []);
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
+  useEffect(() => {
+    const calculateScrollbarHeight = () => {
+      const scrollContainerHeight = scrollContainerRefCities.current.offsetHeight;
+      const contentHeight = scrollContainerRefCities.current.scrollHeight;
+      const scrollbarHeightPercentage = (scrollContainerHeight / contentHeight) * 100;
+      setScrollbarHeightCities(scrollbarHeightPercentage);
+    };
+    calculateScrollbarHeight();
+
+    const handleResize = () => {
+      calculateScrollbarHeight();
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const toggleDropdownCountries = () => {
+    setIsOpenCountries(!isOpenCountries);
   };
 
- const selectCountry = (country) => {
+  const selectCountry = (country) => {
     setSelectedCountry(country);
-    setSearchQuery(country); // Update searchQuery with selected country label
-    setIsOpen(false);
+    setSearchQueryCountries(country); // Update searchQuery with selected country label
+    setIsOpenCountries(false);
   };
-
-
 
   const fetchCountries = async () => {
-
-
-
-    setLoading(true);
+    setLoadingCountries(true);
 
     try {
-      const response = await fetch(`https://assista1.ru/items/country?startswith=${searchQuery}&offset=${offset}&limit=${limit}`);
+      const response = await fetch(`https://assista1.ru/items/country?startswith=${searchQueryCountries}&offset=${offsetCountries}&limit=${limitCountries}`);
       const data = await response.json();
       const newCountries = data.items.map(([country, id]) => ({ label: country, value: id }));
 
       setCountries(prevCountries => [...prevCountries, ...newCountries]); // Добавляем загруженные страны к списку
-      setOffset(prevOffset => prevOffset + limit); // Увеличиваем offset для следующего запроса
+      setOffsetCountries(prevOffset => prevOffset + limitCountries); // Увеличиваем offset для следующего запроса
     } catch (error) {
       console.error('Error fetching countries:', error);
     }
 
-    setLoading(false);
+    setLoadingCountries(false);
   };
 
-useEffect(() => {
-  setOffset(0); // Reset offset to 0 when searchQuery changes
-  setCountries([]); // Reset countries list to empty when searchQuery changes
-}, [searchQuery]);
+  useEffect(() => {
+    setOffsetCountries(0); // Reset offset to 0 when searchQuery changes
+    setCountries([]); // Reset countries list to empty when searchQuery changes
+  }, [searchQueryCountries]);
 
-
-
-  const handleScroll = (e) => {
+  const handleScrollCountries = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
     const scrollbarHeightPercentage = (clientHeight / scrollHeight) * 100;
-    setScrollbarHeight(scrollbarHeightPercentage);
-    scrollbarRef.current.style.height = `${(scrollbarHeightPercentage)-13}%`;
-    scrollbarRef.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
-    if (
-      scrollTop + clientHeight >= scrollHeight-30
-    ) {
-      if (!loading) {
+    setScrollbarHeightCountries(scrollbarHeightPercentage);
+    scrollbarRefCountries.current.style.height = `${scrollbarHeightPercentage - 13}%`;
+    scrollbarRefCountries.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
+    if (scrollTop + clientHeight >= scrollHeight - 30) {
+      if (!loadingCountries) {
         fetchCountries(); // Загружаем следующую порцию стран при достижении конца прокрутки
       }
     }
   };
-  
-useEffect(() => {
-  fetchCountries(); // Call fetchCountries whenever searchQuery changes
-}, [searchQuery]);
 
-const handleInputChange = (e) => {
-  const newSearchQuery = e.target.value;
-  setSearchQuery(newSearchQuery);
-  setOffset(0); // Reset offset to 0 whenever searchQuery changes
-};
+  useEffect(() => {
+    fetchCountries(); // Call fetchCountries whenever searchQuery changes
+  }, [searchQueryCountries]);
+
+  const handleInputChangeCountries = (e) => {
+    const newSearchQuery = e.target.value;
+    setSearchQueryCountries(newSearchQuery);
+    setOffsetCountries(0); // Reset offset to 0 whenever searchQuery changes
+  };
+
+  const toggleDropdownCities = () => {
+    setIsOpenCities(!isOpenCities);
+  };
+
+  const selectCity = (city) => {
+    setSelectedCity(city);
+    setSearchQueryCities(city); // Update searchQuery with selected city label
+    setIsOpenCities(false);
+  };
+
+  const fetchCities = async () => {
+    setLoadingCities(true);
+
+    try {
+      const response = await fetch(`https://assista1.ru/items/city?startswith=${searchQueryCities}&offset=${offsetCities}&limit=${limitCities}`);
+      const data = await response.json();
+      const newCities = data.items.map(([city, id]) => ({ label: city, value: id }));
+
+      setCities(prevCities => [...prevCities, ...newCities]); // Добавляем загруженные города к списку
+      setOffsetCities(prevOffset => prevOffset + limitCities); // Увеличиваем offset для следующего запроса
+    } catch (error) {
+      console.error('Error fetching cities:', error);
+    }
+
+    setLoadingCities(false);
+  };
+
+  useEffect(() => {
+    setOffsetCities(0); // Reset offset to 0 when searchQuery changes
+    setCities([]); // Reset cities list to empty when searchQuery changes
+  }, [searchQueryCities]);
+
+  const handleScrollCities = (e) => {
+    const { scrollTop, scrollHeight, clientHeight } = e.target;
+    const scrollbarHeightPercentage = (clientHeight / scrollHeight) * 100;
+    setScrollbarHeightCities(scrollbarHeightPercentage);
+    scrollbarRefCities.current.style.height = `${scrollbarHeightPercentage - 13}%`;
+    scrollbarRefCities.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
+    if (scrollTop + clientHeight >= scrollHeight - 30) {
+      if (!loadingCities) {
+        fetchCities(); // Загружаем следующую порцию городов при достижении конца прокрутки
+      }
+    }
+  };
+
+  useEffect(() => {
+    fetchCities(); // Call fetchCities whenever searchQuery changes
+  }, [searchQueryCities]);
+
+  const handleInputChangeCities = (e) => {
+    const newSearchQuery = e.target.value;
+    setSearchQueryCities(newSearchQuery);
+    setOffsetCities(0); // Reset offset to 0 whenever searchQuery changes
+  };
+
   return (
-    <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>  
-         <div className={s.greetings_wrapper}>
-        <div className={s.reg}>
-        <Link to='/isp_reg'>
-            <img src={props.colorB === 'light' ? blackarr : arrowsvg} className={s.reg_arrow}></img>
-        </Link>
-            <h1 className={s.greetings_text} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Регистрация</h1>
-        </div>
-        <div className={s.dropdown_container} ref={dropdownRef}>
-      <input
-        type="text"
-        value={searchQuery}
-        placeholder="Страна"
-        onChange={(e) => {handleInputChange(e)}}
-        onClick={toggleDropdown}
-
-        className={`${s.password_field} ${props.colorB === 'light' ? s.light : s.dark}`}
-      />
-      <div className={`${s.dropdown_options} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen ? s.open : ''}`}>
-        <div className={s.scroll_container} ref={scrollContainerRef} onScroll={handleScroll}>
-          {countries.map((country, index) => (
-            <div key={index} className={`${s.dropdown_option} ${props.colorB === 'light' ? s.light : s.dark}`} onClick={() => selectCountry(country.label)}>
-              {country.label}
-            </div>
-          ))}
-        </div>
-        <div className={`${s.scrollbar_1} ${props.colorB === 'light' ? s.light : s.dark}`} style={{ height: `90%`}} />
-        <div className={`${s.scrollbar} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef} style={{ height: `${scrollbarHeight}%` }} />
-        
-      </div>
-      
-      {selectedCountry === '' && (errorFields.selectedCountry && <span className={s.error_message}>Выберите вашу страну</span>)}
-    </div>
-    
-      <div className={s.password_input}>
+    <div className={s.container}>
+      <div className={s.countryContainer}>
         <input
           type="text"
-          placeholder="Город"
-          value={city}
-          className={`${s.password_field} ${props.colorB === 'light' ? s.light : s.dark}`}
-          onChange={(e) => setCity(e.target.value)}
+          value={searchQueryCountries}
+          onChange={handleInputChangeCountries}
+          placeholder="Выберите страну"
+          className={s.input}
         />
-        {city === '' && (errorFields.city && <span className={s.error_message}>Выберите ваш город</span>)}
-
+        <div className={s.dropdown} ref={dropdownRefCountries}>
+          {isOpenCountries && (
+            <div className={s.dropdownContent}>
+              {countries.map((country) => (
+                <div
+                  key={country.value}
+                  onClick={() => selectCountry(country.label)}
+                  className={s.dropdownItem}
+                >
+                  {country.label}
+                </div>
+              ))}
+              {loadingCountries && (
+                <div className={s.loading}>Загрузка...</div>
+              )}
+            </div>
+          )}
+        </div>
+        <img src={arrowsvg} alt="arrow" className={s.arrow} onClick={toggleDropdownCountries} />
       </div>
-      <Link to={(city === '') || (selectedCountry == '') ? '/isp1_reg' : '/isp2_reg'}>
-        <button onClick={() => {
-          validateFields()
-        }}className={`${s.greetings_btn} ${props.colorB === 'light' ? s.light : s.dark}`}>Далее</button>
-      </Link>
+      <div className={s.cityContainer}>
+        <input
+          type="text"
+          value={searchQueryCities}
+          onChange={handleInputChangeCities}
+          placeholder="Выберите город"
+          className={s.input}
+        />
+        <div className={s.dropdown} ref={dropdownRefCities}>
+          {isOpenCities && (
+            <div className={s.dropdownContent}>
+              {cities.map((city) => (
+                <div
+                  key={city.value}
+                  onClick={() => selectCity(city.label)}
+                  className={s.dropdownItem}
+                >
+                  {city.label}
+                </div>
+              ))}
+              {loadingCities && (
+                <div className={s.loading}>Загрузка...</div>
+              )}
+            </div>
+          )}
+        </div>
+        <img src={arrowsvg} alt="arrow" className={s.arrow} onClick={toggleDropdownCities} />
       </div>
+      <button className={s.nextButton} disabled={!validateFields()} onClick={() => console.log('Next button clicked')}>
+        Далее
+      </button>
     </div>
   );
 }
