@@ -122,7 +122,12 @@ useEffect(() => {
 const handleInputChange = (e) => {
   const newSearchQuery = e.target.value;
   setSearchQuery(newSearchQuery);
-  fetchCountries(); // Fetch countries when the search query changes
+  setOffset(0); // Reset offset to 0 whenever searchQuery changes
+  if (newSearchQuery === '') {
+    fetchCountries(); // Call fetchCountries when searchQuery is empty
+  } else {
+    fetchCountries(); // Call fetchCountries when searchQuery changes
+  }// Fetch countries when the search query changes
 };
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>  
