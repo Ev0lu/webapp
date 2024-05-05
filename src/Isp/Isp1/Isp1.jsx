@@ -167,7 +167,3 @@ function Isp1(props) {
 }
 
 export default Isp1;
-  );
-}
-
-export default Isp1
