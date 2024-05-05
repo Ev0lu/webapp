@@ -175,7 +175,7 @@ function Isp1(props) {
     try {
       const response = await fetch(`https://assista1.ru/items/country/cities?country_id=${selectedCountry[1]}&startswith=${searchQuery2}&offset=${offset2}&limit=${limit2}`);
       const data = await response.json();
-      const newCities = data.items.map(([city, id]) => ({ label: city, value: id }));
+      const newCities = data.items.map(([citys, id]) => ({ label: citys, value: id }));
 
       setCities(prevCountries => [...prevCountries, ...newCities]); // Добавляем загруженные страны к списку
       setOffset2(prevOffset => prevOffset + limit2); // Увеличиваем offset для следующего запроса
@@ -244,7 +244,7 @@ const handleInputChange = (e) => {
 const handleInputChange2 = (e) => {
   const newSearchQuery2 = e.target.value;
   setSearchQuery2(newSearchQuery2);
-  setOffset(0);
+  setOffset2(0);
 };
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>  
