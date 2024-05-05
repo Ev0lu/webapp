@@ -88,7 +88,7 @@ function Isp1(props) {
       const data = await response.json();
       const newCountries = data.items.map(([country, id]) => ({ label: country, value: id }));
 
-      setCountries(prevCountries => [...newCountries]); // Добавляем загруженные страны к списку
+      setCountries(prevCountries => [...prevCountries, ...newCountries]); // Добавляем загруженные страны к списку
       setOffset(prevOffset => prevOffset + limit); // Увеличиваем offset для следующего запроса
     } catch (error) {
       console.error('Error fetching countries:', error);
@@ -98,6 +98,7 @@ function Isp1(props) {
   };
 
   useEffect(() => {
+    setCountries([])
     fetchCountries();
   }, [searchQuery]);
 
