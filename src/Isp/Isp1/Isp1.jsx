@@ -125,7 +125,7 @@ function Isp1(props) {
     setSelectedCountry(country);
     setSearchQuery(country[0]); // Update searchQuery with selected country label
     setIsOpen(false);
-    fetchCities(country[1])
+    fetchCities()
   };
  const selectCountry2 = (country) => {
     setSelectedCountry2(country);
@@ -155,14 +155,14 @@ function Isp1(props) {
 
     setLoading(false);
   };
-  const fetchCities = async (country_id) => {
+  const fetchCities = async () => {
 
 
 
     setLoading2(true);
 
     try {
-      const response = await fetch(`https://assista1.ru/items/country/cities?country_id=${country_id}&startswith=${searchQuery2}&offset=${offset2}&limit=${limit2}`);
+      const response = await fetch(`https://assista1.ru/items/country/cities?country_id=${selectedCountry[1]}&startswith=${searchQuery2}&offset=${offset2}&limit=${limit2}`);
       const data = await response.json();
       const newCities = data.items.map(([city, id]) => ({ label: city, value: id }));
 
