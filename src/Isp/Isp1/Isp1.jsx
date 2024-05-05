@@ -98,6 +98,7 @@ function Isp1(props) {
   };
 
   useEffect(() => {
+    setOffset(0)
     setCountries([])
     fetchCountries();
   }, [searchQuery]);
