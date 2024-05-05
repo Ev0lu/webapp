@@ -18,7 +18,36 @@ function Isp1(props) {
   const scrollContainerRef = useRef(null);
   const scrollbarRef = useRef(null);
   const [city, setCity] = useState('');
-  const [cities, setCities] = useState(['23', '2346', '546', '324']);
+  const [cities, setCities] = useState([
+    [
+      "Республика Конго",
+      "e11abd2a-f367-4f98-9911-40782b5bbbaf"
+    ],
+    [
+      "Республика Корея",
+      "6df01761-e6c2-4cc4-9047-c857044674f9"
+    ],
+    [
+      "Республика Южная Осетия",
+      "4d10fb6d-3edc-4918-87fb-fef636b2dd9f"
+    ],
+    [
+      "Реюньон",
+      "d96f675e-754f-4572-a23a-e6be936ab36e"
+    ],
+    [
+      "Россия",
+      "6b4233c4-fb0d-4168-87ca-5ab2b294fc79"
+    ],
+    [
+      "Руанда",
+      "9fcbfb32-dac0-4a9d-9165-8bff6a8842da"
+    ],
+    [
+      "Румыния",
+      "0ca152b6-0ed7-425d-add3-c5d994f91b14"
+    ]
+  ]);
   const [scrollbarHeight, setScrollbarHeight] = useState(0);
 
 
@@ -208,6 +237,7 @@ const handleInputChange = (e) => {
           value={city}
           className={`${s.password_field2} ${props.colorB === 'light' ? s.light : s.dark}`}
           onChange={(e) => setCity(e.target.value)}
+          onClick={toggleDropdown2}
         />
         <div className={`${s.dropdown_options2} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen2 ? s.open : ''}`}>
           <div className={s.scroll_container2} ref={scrollContainerRef2} onScroll={handleScroll2}>
