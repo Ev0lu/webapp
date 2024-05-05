@@ -126,7 +126,7 @@ function Isp(props) {
         setLname(sessionStorage.getItem('lname') !== null ? sessionStorage.getItem('lname') : '')
         setFname(sessionStorage.getItem('fname') !== null ? sessionStorage.getItem('fname') : '')
         setName(sessionStorage.getItem('name') !== null ? sessionStorage.getItem('name') : '')
-      })
+      }, [])
    /* const postRequest = async () => {
         let answersStr = answers.toString()
         let answersTextStr = answersText.toString()
