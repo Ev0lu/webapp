@@ -77,24 +77,18 @@ function Isp1(props) {
 
   
   const fetchCountries = async () => {
-    if (loading) return;
-    setLoading(true);
+      setLoading(true);
+
     try {
-      const response = await axios.get('/items/country', {
-        params: {
-          offset,
-          limit: 25,
-        },
-      });
-      const newCountries = response.data;
-      setCountries([...countries, ...newCountries]);
-      setHasMore(newCountries.length === 25);
-      setOffset(offset + 25);
+      const response = await fetch(`https://assista1.ru/items/country?startswith=*&offset=${offset}&limit=${limit}`);
+      const data = await response.json();
+      setCountries(prevCountries => [...prevCountries, ...data]); // Добавляем загруженные страны к списку
+      setOffset(prevOffset => prevOffset + limit); // Увеличиваем offset для следующего запроса
     } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
+      console.error('Error fetching countries:', error);
     }
+
+    setLoading(false);
   };
   useEffect(() => {
     fetchCountries();
