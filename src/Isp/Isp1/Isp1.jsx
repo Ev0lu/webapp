@@ -18,6 +18,7 @@ function Isp1(props) {
   const scrollContainerRef = useRef(null);
   const scrollbarRef = useRef(null);
   const [city, setCity] = useState('');
+  const [cities, setCities] = useState(['23', '2346', '546', '324']);
   const [scrollbarHeight, setScrollbarHeight] = useState(0);
 
 
@@ -210,8 +211,8 @@ const handleInputChange = (e) => {
         />
         <div className={`${s.dropdown_options2} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen2 ? s.open : ''}`}>
           <div className={s.scroll_container2} ref={scrollContainerRef2} onScroll={handleScroll2}>
-          {countries.map((country, index) => (
-            <div key={index} className={`${s.dropdown_option2} ${props.colorB === 'light' ? s.light : s.dark}`} onClick={() => selectCity([city.label, city.id])}>
+          {cities.map((country, index) => (
+            <div key={index} className={`${s.dropdown_option2} ${props.colorB === 'light' ? s.light : s.dark}`} onClick={() => selectCountry2([city.label, city.id])}>
               {city.label}
             </div>
           ))}
