@@ -98,13 +98,10 @@ function Isp1(props) {
   };
 
 useEffect(() => {
-  if (searchQuery === '') {
-    // Reset the list when the search query is cleared
-    setCountries([]);
-    setOffset(0);
-  }
-  fetchCountries();
+  setOffset(0); // Reset offset to 0 when searchQuery changes
+  setCountries([]); // Reset countries list to empty when searchQuery changes
 }, [searchQuery]);
+
 
 
   const handleScroll = (e) => {
@@ -122,14 +119,10 @@ useEffect(() => {
     }
   };
 
-  const handleInputChange = (e) => {
+const handleInputChange = (e) => {
   const newSearchQuery = e.target.value;
   setSearchQuery(newSearchQuery);
-  if (newSearchQuery === '') {
-    // Reset the list when the search query is cleared
-    setCountries([]);
-    setOffset(0);
-  }
+  fetchCountries(); // Fetch countries when the search query changes
 };
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>  
