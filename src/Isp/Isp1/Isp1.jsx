@@ -158,7 +158,7 @@ function Isp1(props) {
   const fetchCities = async () => {
 
 
-
+    console.log(selectedCountry[1])
     setLoading2(true);
 
     try {
