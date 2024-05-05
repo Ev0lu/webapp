@@ -80,7 +80,7 @@ function Isp1(props) {
       setLoading(true);
 
     try {
-      const response = await fetch(`https://assista1.ru/items/country?startswith=*&offset=${offset}&limit=${limit}`);
+      const response = await fetch(`https://assista1.ru/items/country?startswith=0&offset=${offset}&limit=${limit}`);
       const data = await response.json();
       setCountries(prevCountries => [...prevCountries, ...data]); // Добавляем загруженные страны к списку
       setOffset(prevOffset => prevOffset + limit); // Увеличиваем offset для следующего запроса
