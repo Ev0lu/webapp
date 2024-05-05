@@ -159,6 +159,7 @@ function Isp1(props) {
 
 
     console.log(selectedCountry[1])
+    console.log(selectedCountry)
     setLoading2(true);
 
     try {
