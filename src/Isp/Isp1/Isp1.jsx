@@ -17,6 +17,7 @@ function Isp1(props) {
   const dropdownRef = useRef(null);
   const scrollContainerRef = useRef(null);
   const scrollbarRef = useRef(null);
+  const [city, setCity] = useState('');
   const [scrollbarHeight, setScrollbarHeight] = useState(0);
   const [errorFields, setErrorFields] = useState({
     city: false,
