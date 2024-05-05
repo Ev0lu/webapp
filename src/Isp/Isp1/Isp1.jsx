@@ -103,6 +103,7 @@ useEffect(() => {
     setCountries([]);
     setOffset(0);
   }
+  fetchCountries();
 }, [searchQuery]);
 
 
