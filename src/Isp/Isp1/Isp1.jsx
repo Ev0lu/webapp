@@ -244,9 +244,9 @@ const handleInputChange = (e) => {
         />
         <div className={`${s.dropdown_options2} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen2 ? s.open : ''}`}>
           <div className={s.scroll_container2} ref={scrollContainerRef2} onScroll={handleScroll2}>
-          {cities.map((country, index) => (
-            <div key={index} className={`${s.dropdown_option2} ${props.colorB === 'light' ? s.light : s.dark}`} onClick={() => selectCountry2([city.label, city.id])}>
-              {city.label}
+          {cities.map((citymap, index) => (
+            <div key={index} className={`${s.dropdown_option2} ${props.colorB === 'light' ? s.light : s.dark}`} onClick={() => selectCountry2([citymap[0], citymap[1]])}>
+              {citymap[0]}
             </div>
           ))}
         </div>
