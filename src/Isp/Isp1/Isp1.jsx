@@ -125,6 +125,7 @@ function Isp1(props) {
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
+    fetchCities()
   };
   const toggleDropdown2 = () => {
     setIsOpen2(!isOpen2);
@@ -132,9 +133,9 @@ function Isp1(props) {
 
  const selectCountry = (country) => {
     setSelectedCountry(country);
+    fetchCities()
     setSearchQuery(country[0]); // Update searchQuery with selected country label
     setIsOpen(false);
-    fetchCities()
   };
  const selectCountry2 = (country) => {
     setSelectedCountry2(country);
@@ -167,9 +168,6 @@ function Isp1(props) {
   const fetchCities = async () => {
 
 
-    console.log(selectedCountry[1])
-    console.log(selectedCountry)
-    console.log(selectedCountry.value)
     setLoading2(true);
 
     try {
