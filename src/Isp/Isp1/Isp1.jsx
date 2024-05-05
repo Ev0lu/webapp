@@ -12,6 +12,7 @@ function Isp1(props) {
   const [offset, setOffset] = useState(0);
   const limit = 25; // Количество элементов, которые необходимо загрузить при каждом запросе
   const [searchQuery, setSearchQuery] = useState(''); // Input value for country search
+
   const [isOpen, setIsOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState('');
   const dropdownRef = useRef(null);
@@ -126,6 +127,8 @@ function Isp1(props) {
   };
  const selectCountry2 = (country) => {
     setSelectedCountry2(country);
+    setSearchQuery2(country); // Update searchQuery with selected country label
+
     setIsOpen2(false);
   };
 
@@ -191,6 +194,11 @@ const handleInputChange = (e) => {
   setSearchQuery(newSearchQuery);
   setOffset(0); // Reset offset to 0 whenever searchQuery changes
 };
+
+const handleInputChange2 = (e) => {
+  const newSearchQuery2 = e.target.value;
+  setSearchQuery2(newSearchQuery2);
+};
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>  
          <div className={s.greetings_wrapper}>
@@ -230,9 +238,9 @@ const handleInputChange = (e) => {
         <input
           type="text"
           placeholder="Город"
-          value={city}
+          value={searchQuery2}
           className={`${s.password_field2} ${props.colorB === 'light' ? s.light : s.dark}`}
-          onChange={(e) => setCity(e.target.value)}
+          onChange={(e) => {handleInputChange2(e)}}
           onClick={toggleDropdown2}
         />
         <div className={`${s.dropdown_options2} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen2 ? s.open : ''}`}>
