@@ -84,7 +84,7 @@ function Isp1(props) {
     setLoading(true);
 
     try {
-      const response = await fetch(`https://assista1.ru/items/country?startswith=${searchQuery ? searchQuery : ''}&offset=${offset}&limit=${limit}`);
+      const response = await fetch(`https://assista1.ru/items/country?startswith=${searchQuery}&offset=${offset}&limit=${limit}`);
       const data = await response.json();
       const newCountries = data.items.map(([country, id]) => ({ label: country, value: id }));
 
@@ -103,7 +103,6 @@ function Isp1(props) {
     fetchCountries();
   }, [searchQuery]);
 
-  const filteredCountries = countries.filter((country) => country.label.toLowerCase().includes(searchQuery.toLowerCase()));
 
   const handleScroll = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
