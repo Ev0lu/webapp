@@ -30,7 +30,10 @@ function Isp1(props) {
   const dropdownRefCities = useRef(null);
   const scrollContainerRefCities = useRef(null);
   const scrollbarRefCities = useRef(null);
-
+  const [errorFields, setErrorFields] = useState({
+    city: false,
+    selectedCountry: false
+  });
   const validateFields = () => {
     const errors = {
       city: selectedCity === '',
