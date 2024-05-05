@@ -77,19 +77,22 @@ function Isp1(props) {
 
   
   const fetchCountries = async () => {
-      setLoading(true);
-
+    setLoading(true);
     try {
       const response = await fetch(`https://assista1.ru/items/country?startswith=0&offset=${offset}&limit=${limit}`);
       const data = await response.json();
       setCountries(prevCountries => [...prevCountries, ...data]); // Добавляем загруженные страны к списку
       setOffset(prevOffset => prevOffset + limit); // Увеличиваем offset для следующего запроса
+      if (data.length < limit) {
+        setHasMore(false);
+      }
     } catch (error) {
       console.error('Error fetching countries:', error);
     }
-
     setLoading(false);
   };
+
+
   useEffect(() => {
     fetchCountries();
   }, []);
@@ -105,7 +108,7 @@ function Isp1(props) {
       scrollContainerRef.current.scrollTop + scrollContainerRef.current.clientHeight >=
       scrollContainerRef.current.scrollHeight
     ) {
-      if (!loading) {
+      if (!loading && hasMore) {
         fetchCountries(); // Загружаем следующую порцию стран при достижении конца прокрутки
       }
     }
