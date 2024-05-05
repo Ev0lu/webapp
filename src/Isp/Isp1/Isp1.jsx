@@ -19,7 +19,8 @@ function Isp1(props) {
   const scrollContainerRef = useRef(null);
   const scrollbarRef = useRef(null);
   const [city, setCity] = useState('');
-  const [cities, setCities] = useState([
+   const [cities, setCities] = useState([])
+  const [cities2, setCities2] = useState([
     [
       "Республика Конго",
       "e11abd2a-f367-4f98-9911-40782b5bbbaf"
@@ -124,6 +125,7 @@ function Isp1(props) {
     setSelectedCountry(country);
     setSearchQuery(country[0]); // Update searchQuery with selected country label
     setIsOpen(false);
+    fetchCities(country[1])
   };
  const selectCountry2 = (country) => {
     setSelectedCountry2(country);
@@ -153,11 +155,35 @@ function Isp1(props) {
 
     setLoading(false);
   };
+  const fetchCities = async (country_id) => {
+
+
+
+    setLoading2(true);
+
+    try {
+      const response = await fetch(`https://assista1.ru/items/country/cities?country_id=${country_id}&startswith=${searchQuery2}&offset=${offset2}&limit=${limit2}`);
+      const data = await response.json();
+      const newCities = data.items.map(([city, id]) => ({ label: city, value: id }));
+
+      setCities(prevCountries => [...prevCountries, ...newCountries]); // Добавляем загруженные страны к списку
+      setOffset2(prevOffset => prevOffset + limit2); // Увеличиваем offset для следующего запроса
+    } catch (error) {
+      console.error('Error fetching cities:', error);
+    }
+
+    setLoading2(false);
+  };
 
 useEffect(() => {
   setOffset(0); // Reset offset to 0 when searchQuery changes
   setCountries([]); // Reset countries list to empty when searchQuery changes
 }, [searchQuery]);
+useEffect(() => {
+  setOffset2(0); // Reset offset to 0 when searchQuery changes
+  setCities([]); // Reset countries list to empty when searchQuery changes
+}, [searchQuery2]);
+
 
 
 
@@ -182,12 +208,21 @@ useEffect(() => {
     setScrollbarHeight2(scrollbarHeightPercentage);
     scrollbarRef2.current.style.height = `${(scrollbarHeightPercentage)-13}%`;
     scrollbarRef2.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
-    
+    if (
+      scrollTop + clientHeight >= scrollHeight-30
+    ) {
+      if (!loading2) {
+        fetchCities(); // Загружаем следующую порцию стран при достижении конца прокрутки
+      }
+    }
   };
   
 useEffect(() => {
   fetchCountries(); // Call fetchCountries whenever searchQuery changes
 }, [searchQuery]);
+useEffect(() => {
+  fetchCities(); // Call fetchCountries whenever searchQuery changes
+}, [searchQuery2]);
 
 const handleInputChange = (e) => {
   const newSearchQuery = e.target.value;
@@ -198,6 +233,7 @@ const handleInputChange = (e) => {
 const handleInputChange2 = (e) => {
   const newSearchQuery2 = e.target.value;
   setSearchQuery2(newSearchQuery2);
+  setOffset(0);
 };
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>  
