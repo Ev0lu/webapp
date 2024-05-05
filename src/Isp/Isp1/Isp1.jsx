@@ -66,13 +66,13 @@ function Isp1(props) {
 
   
   const [errorFields, setErrorFields] = useState({
-    city: false,
+    selectedCountry2: false,
     selectedCountry: false
   });
 
   const validateFields = () => {
     const errors = {
-      city: city === '',
+      selectedCountry2: selectedCountry2 === '',
       selectedCountry: selectedCountry === ''
     };
     setErrorFields(errors);
@@ -302,10 +302,10 @@ const handleInputChange2 = (e) => {
         <div className={`${s.scrollbar2} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef2} style={{ height: `${scrollbarHeight2}%` }} />
         
       </div>
-        {city === '' && (errorFields.city && <span className={s.error_message}>Выберите ваш город</span>)}
+        {selectedCountry2 === '' && (errorFields.selectedCountry2 && <span className={s.error_message}>Выберите ваш город</span>)}
 
       </div>
-      <Link to={(city === '') || (selectedCountry == '') ? '/isp1_reg' : '/isp2_reg'}>
+      <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/isp1_reg' : '/isp2_reg'}>
         <button onClick={() => {
           validateFields()
         }}className={`${s.greetings_btn} ${props.colorB === 'light' ? s.light : s.dark}`}>Далее</button>
