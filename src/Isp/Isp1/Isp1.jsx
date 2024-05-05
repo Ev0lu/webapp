@@ -213,8 +213,8 @@ const handleInputChange = (e) => {
       <div className={`${s.dropdown_options} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen ? s.open : ''}`}>
         <div className={s.scroll_container} ref={scrollContainerRef} onScroll={handleScroll}>
           {countries.map((country, index) => (
-            <div key={index} className={`${s.dropdown_option} ${props.colorB === 'light' ? s.light : s.dark}`} onClick={() => selectCountry([country[0], country[1]])}>
-              {country[0]}
+            <div key={index} className={`${s.dropdown_option} ${props.colorB === 'light' ? s.light : s.dark}`} onClick={() => selectCountry([country.label, country.id])}>
+              {country.label}
             </div>
           ))}
         </div>
