@@ -81,6 +81,8 @@ function Isp1(props) {
 
 
   const fetchCountries = async () => {
+    console.log('fetchCountries called with searchQuery:', searchQuery);
+
     setLoading(true);
 
     try {
