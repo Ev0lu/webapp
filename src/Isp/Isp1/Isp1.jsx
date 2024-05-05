@@ -101,6 +101,7 @@ function Isp1(props) {
     fetchCountries();
   }, [searchQuery]);
 
+  const filteredCountries = countries.filter((country) => country.label.toLowerCase().includes(searchQuery.toLowerCase()));
 
   const handleScroll = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
@@ -136,7 +137,7 @@ function Isp1(props) {
       />
       <div className={`${s.dropdown_options} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen ? s.open : ''}`}>
         <div className={s.scroll_container} ref={scrollContainerRef} onScroll={handleScroll}>
-          {countries.map((country, index) => (
+          {filteredCountries.map((country, index) => (
             <div key={index} className={`${s.dropdown_option} ${props.colorB === 'light' ? s.light : s.dark}`} onClick={() => selectCountry(country.label)}>
               {country.label}
             </div>
