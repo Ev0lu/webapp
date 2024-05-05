@@ -116,7 +116,7 @@ function Isp1(props) {
     setIsOpen(!isOpen);
   };
   const toggleDropdown2 = () => {
-    setIsOpen(!isOpen);
+    setIsOpen2(!isOpen2);
   };
 
  const selectCountry = (country) => {
@@ -177,7 +177,7 @@ useEffect(() => {
     const handleScroll2 = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
     const scrollbarHeightPercentage = (clientHeight / scrollHeight) * 100;
-    setScrollbarHeight(scrollbarHeightPercentage);
+    setScrollbarHeight2(scrollbarHeightPercentage);
     scrollbarRef2.current.style.height = `${(scrollbarHeightPercentage)-13}%`;
     scrollbarRef2.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
     if (
