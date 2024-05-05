@@ -85,7 +85,9 @@ function Isp1(props) {
     try {
       const response = await fetch(`https://assista1.ru/items/country?startswith=${searchQuery}&offset=${offset}&limit=${limit}`);
       const data = await response.json();
-      setCountries(prevCountries => [...prevCountries, ...data]); // Добавляем загруженные страны к списку
+      const newCountries = data.items.map(([country, id]) => ({ label: country, value: id }));
+
+      setCountries(prevCountries => [...prevCountries, ...newCountries]); // Добавляем загруженные страны к списку
       setOffset(prevOffset => prevOffset + limit); // Увеличиваем offset для следующего запроса
     } catch (error) {
       console.error('Error fetching countries:', error);
