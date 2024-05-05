@@ -177,7 +177,7 @@ function Isp1(props) {
       const data = await response.json();
       const newCities = data.items.map(([city, id]) => ({ label: city, value: id }));
 
-      setCities(prevCountries => [...prevCountries, ...newCountries]); // Добавляем загруженные страны к списку
+      setCities(prevCountries => [...prevCountries, ...newCities]); // Добавляем загруженные страны к списку
       setOffset2(prevOffset => prevOffset + limit2); // Увеличиваем offset для следующего запроса
     } catch (error) {
       console.error('Error fetching cities:', error);
