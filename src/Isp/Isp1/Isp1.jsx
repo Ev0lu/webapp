@@ -169,7 +169,7 @@ function Isp1(props) {
 
     console.log(selectedCountry[1])
     console.log(selectedCountry)
-    console.log(selectedCountry.id)
+    console.log(selectedCountry.value)
     setLoading2(true);
 
     try {
@@ -268,7 +268,7 @@ const handleInputChange2 = (e) => {
       <div className={`${s.dropdown_options} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen ? s.open : ''}`}>
         <div className={s.scroll_container} ref={scrollContainerRef} onScroll={handleScroll}>
           {countries.map((country, index) => (
-            <div key={index} className={`${s.dropdown_option} ${props.colorB === 'light' ? s.light : s.dark}`} onClick={() => selectCountry([country.label, country.id])}>
+            <div key={index} className={`${s.dropdown_option} ${props.colorB === 'light' ? s.light : s.dark}`} onClick={() => selectCountry([country.label, country.value])}>
               {country.label}
             </div>
           ))}
@@ -293,7 +293,7 @@ const handleInputChange2 = (e) => {
         <div className={`${s.dropdown_options2} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen2 ? s.open : ''}`}>
           <div className={s.scroll_container2} ref={scrollContainerRef2} onScroll={handleScroll2}>
           {cities.map((citymap, index) => (
-            <div key={index} className={`${s.dropdown_option2} ${props.colorB === 'light' ? s.light : s.dark}`} onClick={() => selectCountry2([citymap.label, citymap.id])}>
+            <div key={index} className={`${s.dropdown_option2} ${props.colorB === 'light' ? s.light : s.dark}`} onClick={() => selectCountry2([citymap.label, citymap.value])}>
               {citymap.label}
             </div>
           ))}
