@@ -144,7 +144,7 @@ useEffect(() => {
         type="text"
         value={searchQuery}
         placeholder="Страна"
-        onChange={() => {handleInputChange(e)}}
+        onChange={(e) => {handleInputChange(e)}}
         onClick={toggleDropdown}
 
         className={`${s.password_field} ${props.colorB === 'light' ? s.light : s.dark}`}
