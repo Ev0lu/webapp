@@ -14,7 +14,7 @@ function Isp1(props) {
   const [searchQuery, setSearchQuery] = useState(''); // Input value for country search
 
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedCountry, setSelectedCountry] = useState('');
+  const [selectedCountry, setSelectedCountry] = useState([]);
   const dropdownRef = useRef(null);
   const scrollContainerRef = useRef(null);
   const scrollbarRef = useRef(null);
@@ -85,11 +85,20 @@ function Isp1(props) {
         setIsOpen(false);
       }
     };
+    const handleClickOutside2 = (event) => {
+      if (dropdownRef2.current && !dropdownRef2.current.contains(event.target)) {
+        setIsOpen2(false);
+      }
+    };
 
     document.addEventListener('mousedown', handleClickOutside);
 
+    document.addEventListener('mousedown', handleClickOutside2);
+
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside2);
+
     };
   }, []);
 
