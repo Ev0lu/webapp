@@ -97,11 +97,13 @@ function Isp1(props) {
     setLoading(false);
   };
 
-  useEffect(() => {
-    setOffset(0)
-    setCountries([])
-    fetchCountries();
-  }, [searchQuery]);
+useEffect(() => {
+  if (searchQuery === '') {
+    // Reset the list when the search query is cleared
+    setCountries([]);
+    setOffset(0);
+  }
+}, [searchQuery]);
 
 
   const handleScroll = (e) => {
@@ -118,6 +120,16 @@ function Isp1(props) {
       }
     }
   };
+
+  const handleInputChange = (e) => {
+  const newSearchQuery = e.target.value;
+  setSearchQuery(newSearchQuery);
+  if (newSearchQuery === '') {
+    // Reset the list when the search query is cleared
+    setCountries([]);
+    setOffset(0);
+  }
+};
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>  
          <div className={s.greetings_wrapper}>
@@ -132,8 +144,9 @@ function Isp1(props) {
         type="text"
         value={searchQuery}
         placeholder="Страна"
-        onChange={(e) => setSearchQuery(e.target.value)}
+        onChange={() => {handleInputChange(e)}}
         onClick={toggleDropdown}
+
         className={`${s.password_field} ${props.colorB === 'light' ? s.light : s.dark}`}
       />
       <div className={`${s.dropdown_options} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen ? s.open : ''}`}>
