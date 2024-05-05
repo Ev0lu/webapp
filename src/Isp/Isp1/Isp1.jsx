@@ -81,8 +81,7 @@ function Isp1(props) {
 
 
   const fetchCountries = async () => {
-    console.log('fetchCountries called with searchQuery:', searchQuery);
-    console.log('offset called with searchQuery:', offset);
+
 
 
     setLoading(true);
