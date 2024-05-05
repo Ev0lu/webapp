@@ -151,7 +151,7 @@ useEffect(() => {
       />
       <div className={`${s.dropdown_options} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen ? s.open : ''}`}>
         <div className={s.scroll_container} ref={scrollContainerRef} onScroll={handleScroll}>
-          {filteredCountries.map((country, index) => (
+          {countries.map((country, index) => (
             <div key={index} className={`${s.dropdown_option} ${props.colorB === 'light' ? s.light : s.dark}`} onClick={() => selectCountry(country.label)}>
               {country.label}
             </div>
