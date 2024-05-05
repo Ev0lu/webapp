@@ -126,7 +126,6 @@ function Isp1(props) {
   };
  const selectCountry2 = (country) => {
     setSelectedCountry2(country);
-    setSearchQuery2(country); // Update searchQuery with selected country label
     setIsOpen2(false);
   };
 
@@ -180,13 +179,7 @@ useEffect(() => {
     setScrollbarHeight2(scrollbarHeightPercentage);
     scrollbarRef2.current.style.height = `${(scrollbarHeightPercentage)-13}%`;
     scrollbarRef2.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
-    if (
-      scrollTop + clientHeight >= scrollHeight-30
-    ) {
-      if (!loading) {
-        fetchCountries(); // Загружаем следующую порцию стран при достижении конца прокрутки
-      }
-    }
+    
   };
   
 useEffect(() => {
