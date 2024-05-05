@@ -109,7 +109,7 @@ function Isp1(props) {
     scrollbarRef.current.style.height = `${(scrollbarHeightPercentage)-13}%`;
     scrollbarRef.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
     if (
-      scrollTop + clientHeight >= scrollHeight
+      scrollTop + clientHeight >= scrollHeight-30
     ) {
       if (!loading) {
         fetchCountries(); // Загружаем следующую порцию стран при достижении конца прокрутки
