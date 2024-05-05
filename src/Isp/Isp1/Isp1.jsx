@@ -83,7 +83,7 @@ function Isp1(props) {
     setLoading(true);
 
     try {
-      const response = await fetch(`https://assista1.ru/items/country?startswith=${searchQuery}&offset=${offset}&limit=${limit}`);
+      const response = await fetch(`https://assista1.ru/items/country?startswith=${searchQuery ? searchQuery : ''}&offset=${offset}&limit=${limit}`);
       const data = await response.json();
       const newCountries = data.items.map(([country, id]) => ({ label: country, value: id }));
 
