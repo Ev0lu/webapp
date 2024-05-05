@@ -115,6 +115,9 @@ function Isp1(props) {
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
+  const toggleDropdown2 = () => {
+    setIsOpen(!isOpen);
+  };
 
  const selectCountry = (country) => {
     setSelectedCountry(country);
