@@ -6,6 +6,7 @@ import blackarr from '../../assets/black.svg'
 import { Link } from 'react-router-dom';
 function Isp1(props) {
   const [countries, setCountries] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
   const [offset, setOffset] = useState(0);
   const limit = 25; // Количество элементов, которые необходимо загрузить при каждом запросе
@@ -74,40 +75,43 @@ function Isp1(props) {
     setIsOpen(false);
   };
 
+  
+  const fetchCountries = async () => {
+    if (loading) return;
+    setLoading(true);
+    try {
+      const response = await axios.get('/items/country', {
+        params: {
+          offset,
+          limit: 25,
+        },
+      });
+      const newCountries = response.data;
+      setCountries([...countries, ...newCountries]);
+      setHasMore(newCountries.length === 25);
+      setOffset(offset + 25);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    fetchCountries();
+  }, []);
+
+  
   const handleScroll = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
     const scrollbarHeightPercentage = (clientHeight / scrollHeight) * 100;
     setScrollbarHeight(scrollbarHeightPercentage);
     scrollbarRef.current.style.height = `${(scrollbarHeightPercentage)-13}%`;
     scrollbarRef.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
-    if (
-      scrollContainerRef.current.scrollTop + scrollContainerRef.current.clientHeight >=
-      scrollContainerRef.current.scrollHeight
-    ) {
-      if (!loading) {
-        fetchCountries(); // Загружаем следующую порцию стран при достижении конца прокрутки
-      }
+    if (scrollTop + clientHeight >= scrollHeight && hasMore) {
+      fetchCountries();
     }
   };
 
-
-  const fetchCountries = async () => {
-    setLoading(true);
-
-    try {
-      const response = await axios.get(`/items/country?startswith=*&offset=${offset}&limit=${limit}`);
-      setCountries(prevCountries => [...prevCountries, ...response.data]); // Добавляем загруженные страны к списку
-      setOffset(prevOffset => prevOffset + limit); // Увеличиваем offset для следующего запроса
-    } catch (error) {
-      console.error('Error fetching countries:', error);
-    }
-
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    fetchCountries();
-  }, []);
 
 
   return (
