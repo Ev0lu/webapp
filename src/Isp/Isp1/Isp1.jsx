@@ -121,13 +121,13 @@ function Isp1(props) {
   };
 
  const selectCountry = (country) => {
-    setSelectedCountry(country.label);
-    setSearchQuery(country); // Update searchQuery with selected country label
+    setSelectedCountry(country);
+    setSearchQuery(country.label); // Update searchQuery with selected country label
     setIsOpen(false);
   };
  const selectCountry2 = (country) => {
-    setSelectedCountry2(country[0]);
-    setSearchQuery2(country); // Update searchQuery with selected country label
+    setSelectedCountry2(country);
+    setSearchQuery2(country[0]); // Update searchQuery with selected country label
 
     setIsOpen2(false);
   };
