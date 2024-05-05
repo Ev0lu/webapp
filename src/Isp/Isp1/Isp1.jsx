@@ -2,16 +2,14 @@ import React, { useRef, useState, useEffect } from 'react';
 import s from './Isp1.module.css';
 import arrowsvg from '../../assets/arrow.svg';
 import arrowsvg2 from '../../assets/angle-dark.svg';
-import blackarr from '../../assets/black.svg'
-import { Link } from 'react-router-dom';
+import blackarr from '../../assets/black.svg';
+
 function Isp1(props) {
   const [countries, setCountries] = useState([]);
-  const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
   const [offset, setOffset] = useState(0);
   const limit = 25; // Количество элементов, которые необходимо загрузить при каждом запросе
-
-  const [city, setCity] = useState('');
+  const [searchQuery, setSearchQuery] = useState(''); // Input value for country search
   const [isOpen, setIsOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState('');
   const dropdownRef = useRef(null);
@@ -21,7 +19,7 @@ function Isp1(props) {
   const [errorFields, setErrorFields] = useState({
     city: false,
     selectedCountry: false
-});
+  });
 
   const validateFields = () => {
     const errors = {
@@ -30,7 +28,8 @@ function Isp1(props) {
     };
     setErrorFields(errors);
     return !Object.values(errors).some(Boolean);
-};
+  };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -75,29 +74,28 @@ function Isp1(props) {
     setIsOpen(false);
   };
 
-  
+
+
   const fetchCountries = async () => {
     setLoading(true);
+
     try {
-      const response = await fetch(`https://assista1.ru/items/country?startswith=0&offset=${offset}&limit=${limit}`);
+      const response = await fetch(`https://assista1.ru/items/country?startswith=${searchQuery}&offset=${offset}&limit=${limit}`);
       const data = await response.json();
       setCountries(prevCountries => [...prevCountries, ...data]); // Добавляем загруженные страны к списку
       setOffset(prevOffset => prevOffset + limit); // Увеличиваем offset для следующего запроса
-      if (data.length < limit) {
-        setHasMore(false);
-      }
     } catch (error) {
       console.error('Error fetching countries:', error);
     }
+
     setLoading(false);
   };
 
-
   useEffect(() => {
     fetchCountries();
-  }, []);
+  }, [searchQuery]);
 
-  
+
   const handleScroll = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
     const scrollbarHeightPercentage = (clientHeight / scrollHeight) * 100;
@@ -108,14 +106,11 @@ function Isp1(props) {
       scrollContainerRef.current.scrollTop + scrollContainerRef.current.clientHeight >=
       scrollContainerRef.current.scrollHeight
     ) {
-      if (!loading && hasMore) {
+      if (!loading) {
         fetchCountries(); // Загружаем следующую порцию стран при достижении конца прокрутки
       }
     }
   };
-
-
-
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>  
          <div className={s.greetings_wrapper}>
@@ -127,12 +122,12 @@ function Isp1(props) {
         </div>
         <div className={s.dropdown_container} ref={dropdownRef}>
       <input
-      className={`${s.password_field} ${props.colorB === 'light' ? s.light : s.dark}`}
         type="text"
-        value={selectedCountry}
+        value={searchQuery}
         placeholder="Страна"
+        onChange={(e) => setSearchQuery(e.target.value)}
         onClick={toggleDropdown}
-        readOnly
+        className={`${s.password_field} ${props.colorB === 'light' ? s.light : s.dark}`}
       />
       <div className={`${s.dropdown_options} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen ? s.open : ''}`}>
         <div className={s.scroll_container} ref={scrollContainerRef} onScroll={handleScroll}>
@@ -168,6 +163,10 @@ function Isp1(props) {
       </Link>
       </div>
     </div>
+  );
+}
+
+export default Isp1;
   );
 }
 
