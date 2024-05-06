@@ -69,7 +69,35 @@ function Isp2(props) {
 
       }, [])
 
+      useEffect(() => {
+        
+const postRequest = async () => {
+  let user = {
+    email: mail,
+  };
 
+  try {
+    const response = await fetch('https://assista1.ru/auth/code/send', {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    });
+
+    const responseData = await response.json();
+    console.log(responseData)
+    if (responseData.exists) {
+      console.log('Такая почта уже существует');
+    } else {
+      console.log('Такой почты не существует');
+    }
+  } catch (error) {
+    console.error('Ошибка:', error);
+  }
+}
+    
     return (
         <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>         
         <div className={s.greetings_wrapper}>
@@ -153,6 +181,7 @@ function Isp2(props) {
                 sessionStorage.setItem('tele', tele)
                 sessionStorage.setItem('mail', mail)
                 sessionStorage.setItem('pass', pass)
+                postRequest()
                 validateFields()
             }}>Далее</button>
         </Link>
