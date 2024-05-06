@@ -186,7 +186,7 @@ const fetchSkills = async () => {
             <div  className={s.scroll_container} ref={scrollContainerRef1} onScroll={handleScroll1}>
               {filteredSkills.map((country, index) => (
                 <div key={index} className={`${s.dropdown_option} ${props.colorB === 'light' ? s.light : s.dark}`} >
-                <label style={{ display: 'flex', alignItems: 'center', width:'300px', pointerEvents: 'none' }} onClick={() => selectCountry1([country.label, country.value])}>
+                <label style={{ display: 'flex', alignItems: 'center', width:'300px' }} onClick={() => selectCountry1([country.label, country.value])}>
                      <input
                      type="checkbox"
                      className={`${s.inputCheck} ${props.colorB === 'light' ? s.light : s.dark}`}
@@ -229,7 +229,7 @@ const fetchSkills = async () => {
             <div className={s.scroll_container__1} ref={scrollContainerRef2} onScroll={handleScroll2}>
               {filteredLang.map((country, index) => (
                 <div key={index} className={`${s.dropdown_option__1} ${props.colorB === 'light' ? s.light : s.dark}`} >
-                   <label style={{ display: 'flex', alignItems: 'center' }}>
+                   <label style={{ display: 'flex', alignItems: 'center', width:'300px' }}>
                    {props.colorB === 'light' ? <input
                      type="checkbox"
                      className={`${s.inputCheck} ${props.colorB === 'light' ? s.light : s.dark}`}
