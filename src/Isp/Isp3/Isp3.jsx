@@ -177,6 +177,8 @@ const fetchSkills = async () => {
             className={`${s.password_field} ${props.colorB === 'light' ? s.light : s.dark}`}
             type="text"
             value={searchQuery1}
+            checked={selectedCountries2.includes(country)}
+
             placeholder="Навыки"
             onClick={toggleDropdown1}
             onChange={(e) => setSearchQuery1(e.target.value)}
@@ -190,6 +192,7 @@ const fetchSkills = async () => {
                      <input
                      type="checkbox"
                      className={`${s.inputCheck} ${props.colorB === 'light' ? s.light : s.dark}`}
+                       
                      onChange={() => selectCountry1([country.label, country.value])}
                      style={{
                         width: 20,
@@ -247,7 +250,7 @@ const fetchSkills = async () => {
                     <input
                      type="checkbox"
                      className={`${s.inputCheck} ${props.colorB === 'light' ? s.light : s.dark}`}
-                     checked={selectedCountries2.includes(' ' + country)}
+                     checked={selectedCountries2.includes(country)}
                      onChange={() => selectCountry2(country)}
                      style={{
                       width: 20,
