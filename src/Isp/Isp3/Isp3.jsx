@@ -144,7 +144,7 @@ const fetchSkills = async () => {
       const data = await response.json();
       const newCountries = data.items.map(([country, id]) => ({ label: country, value: id }));
 
-      setCountries(prevCountries => [...newCountries]); // Добавляем загруженные страны к списку
+      setSkills(prevCountries => [...newCountries]); // Добавляем загруженные страны к списку
     } catch (error) {
       console.error('Error fetching skills:', error);
     }
