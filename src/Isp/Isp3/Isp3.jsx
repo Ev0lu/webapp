@@ -157,7 +157,9 @@ const fetchSkills = async () => {
   }, []);
 
   
-  const filteredSkills = skills.filter((skill) => skill[0].toLowerCase().includes(searchQuery1.toLowerCase()));
+  const filteredSkills = skills.filter((skill) =>{
+    console.log(skill)
+    skill.label.toLowerCase().includes(searchQuery1.toLowerCase())});
   const filteredLang = lang.filter((lang) => lang.toLowerCase().includes(searchQuery2.toLowerCase()));
 
   return (
