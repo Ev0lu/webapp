@@ -64,7 +64,13 @@ const Auth = (props) => {
     console.error('Ошибка:', error);
   }
 }
-
+useEffect(() => {
+  if (postRequest) {
+    postRequest().then(() => {
+      setResp(responseData.detail); // update resp state here
+    });
+  }
+}, [postRequest]);
     return (
         <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>
         <div className={s.greetings_wrapper}>
@@ -95,7 +101,7 @@ const Auth = (props) => {
                        
                 <img className={s.toggle_password} onClick={handleTogglePassword} src={props.colorB === 'dark' ? eyed : eyeLight}></img>
                 { password === '' && (errorFields.password && <span className={s.error_message}>Пожалуйста, введите пароль</span>)}
-                { resp === 'Incorrect login or password' (errorFields.resp && <span className={s.error_message}>Неверный логин или пароль</span>)}
+                { resp === 'Incorrect login or password' && (errorFields.resp && <span className={s.error_message}>Неверный логин или пароль</span>)}
 
         </div>
         <Link to={(password.length<8) || (password.length > 25) || (resp === 'Incorrect login or password') || (resp === '') ? '/authorization' : '/'}>
