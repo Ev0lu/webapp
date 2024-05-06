@@ -326,12 +326,12 @@
   
  .inputCheck{
     position: relative;
-    width: 20px;
-    height: 20px;
+    width: 20;
+    height: 20;
   
     border: none;
     cursor: pointer;
-    margin-right: 10px;
+    margin-right: 10;
   }
   
   .inputCheck.dark{
