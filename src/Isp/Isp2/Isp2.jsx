@@ -60,7 +60,14 @@ function Isp2(props) {
             setRlink('/zak1_reg')
         }
     }
+    useEffect(() => {
+        setLogin(sessionStorage.getItem('login') !== null ? sessionStorage.getItem('login') : '')
+        setTele(sessionStorage.getItem('tele') !== null ? sessionStorage.getItem('tele') : '')
+        setMail(sessionStorage.getItem('mail') !== null ? sessionStorage.getItem('mail') : '')
+        setPass(sessionStorage.getItem('pass') !== null ? sessionStorage.getItem('pass') : '')
+        setPass2(sessionStorage.getItem('pass') !== null ? sessionStorage.getItem('pass') : '')
 
+      }, [])
 
 
     return (
@@ -142,6 +149,10 @@ function Isp2(props) {
 
         <Link to={pass === pass2 && login !== '' && tele !== '' && mail !== '' ? '/isp_con' : '/isp2_reg'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
+                sessionStorage.setItem('login', login)
+                sessionStorage.setItem('tele', tele)
+                sessionStorage.setItem('mail', mail)
+                sessionStorage.setItem('pass', pass)
                 validateFields()
             }}>Далее</button>
         </Link>
