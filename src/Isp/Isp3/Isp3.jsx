@@ -26,6 +26,8 @@ function Isp3(props) {
   const scrollContainerRef2 = useRef(null);
   const scrollbarRef1 = useRef(null);
   const scrollbarRef2 = useRef(null);
+  const [offset, setOffset] = useState(0);
+  const limit = 25;
   const [scrollbarHeight1, setScrollbarHeight1] = useState(0);
   const [scrollbarHeight2, setScrollbarHeight2] = useState(0);
   const [exitSkills, setExitSkills] = useState([])
