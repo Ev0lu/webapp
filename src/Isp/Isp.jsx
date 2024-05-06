@@ -126,6 +126,8 @@ function Isp(props) {
         setLname(sessionStorage.getItem('lname') !== null ? sessionStorage.getItem('lname') : '')
         setFname(sessionStorage.getItem('fname') !== null ? sessionStorage.getItem('fname') : '')
         setName(sessionStorage.getItem('name') !== null ? sessionStorage.getItem('name') : '')
+        setGender(sessionStorage.getItem('gender') !== null ? sessionStorage.getItem('gender') : '')
+
       }, [])
    /* const postRequest = async () => {
         let answersStr = answers.toString()
@@ -212,6 +214,8 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
                 sessionStorage.setItem('name', name)
                 sessionStorage.setItem('lname', lname)
                 sessionStorage.setItem('fname', fname)
+                sessionStorage.setItem('gender', gender)
+
                 changeFio()
                 validateFields()
                 console.log(isexist)
