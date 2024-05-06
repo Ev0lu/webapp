@@ -69,7 +69,6 @@ function Isp2(props) {
 
       }, [])
 
-      useEffect(() => {
         
 const postRequest = async () => {
   console.log(mail)
@@ -192,5 +191,5 @@ const postRequest = async () => {
     )
   }
   
-  export default Isp2
+export default Isp2;
   
