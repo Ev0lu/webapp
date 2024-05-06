@@ -7,12 +7,13 @@ import darkgal from '../../assets/dark_gal.svg'
 import blackarr from '../../assets/black.svg'
 
 function Isp3(props) {
-  const skills = ['Россия', 'Казахстан', 'Армения', 'Азербайджан', 'Грузия', 'a', 'b', 'v'];
+  const [skills, setSkills] = useState([])
   const lang = ['Россия', 'Казахстан', 'Армения', 'Азербайджан', 'Грузия', 'a', 'b', 'v'];
   const [searchQuery1, setSearchQuery1] = useState('');
   const [searchQuery2, setSearchQuery2] = useState('');
   const [city1, setCity1] = useState('');
   const [city2, setCity2] = useState('');
+  const [loading, setLoading] = useState(false);
   const [isOpen1, setIsOpen1] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
   const [selectedCountry1, setSelectedCountry1] = useState('');
@@ -27,6 +28,7 @@ function Isp3(props) {
   const scrollbarRef2 = useRef(null);
   const [scrollbarHeight1, setScrollbarHeight1] = useState(0);
   const [scrollbarHeight2, setScrollbarHeight2] = useState(0);
+  const [exitSkills, setExitSkills] = useState([])
   const [errorFields, setErrorFields] = useState({
     selectedCountries1: false,
     selectedCountries2: false
@@ -94,11 +96,11 @@ function Isp3(props) {
   };
 
   const selectCountry1 = (country) => {
-    const isSelected = selectedCountries1.includes(' ' + country);
+    const isSelected = selectedCountries1.includes(' ' + country.label);
     if (isSelected) {
-      setSelectedCountries1(selectedCountries1.filter(c => c !== ' ' + country));
+      setSelectedCountries1(selectedCountries1.filter(c => c !== ' ' + country.label));
     } else {
-      setSelectedCountries1([...selectedCountries1, ' ' + country]);
+      setSelectedCountries1([...selectedCountries1, ' ' + country.label]);
     }
   };
 
@@ -129,6 +131,30 @@ function Isp3(props) {
     <img src={Vector}></img>
   );
 
+const fetchSkills = async () => {
+
+
+
+    setLoading(true);
+
+    try {
+      const response = await fetch(`https://assista1.ru/items/skills?offset=${offset}&limit=${limit}`);
+      const data = await response.json();
+      const newCountries = data.items.map(([country, id]) => ({ label: country, value: id }));
+
+      setCountries(prevCountries => [...newCountries]); // Добавляем загруженные страны к списку
+    } catch (error) {
+      console.error('Error fetching skills:', error);
+    }
+
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchSkills(); // Call fetchCountries whenever searchQuery changes
+  }, []);
+
+  
   const filteredSkills = skills.filter((skill) => skill.toLowerCase().includes(searchQuery1.toLowerCase()));
   const filteredLang = lang.filter((lang) => lang.toLowerCase().includes(searchQuery2.toLowerCase()));
 
@@ -158,8 +184,8 @@ function Isp3(props) {
                      <input
                      type="checkbox"
                      className={`${s.inputCheck} ${props.colorB === 'light' ? s.light : s.dark}`}
-                     checked={selectedCountries1.includes(country)}
-                     onChange={() => selectCountry1(country)}
+                     checked={selectedCountries1.includes(country.label)}
+                     onChange={() => selectCountry1([country.label, country.value])}
                      style={{
                          width: 20,
                          height: 20,
@@ -169,9 +195,9 @@ function Isp3(props) {
                          marginRight: 10,
                      }}
                      />
-                     {selectedCountries1.includes(' ' + country) && <img className={s.checkbox_icon__1}  src={props.colorB === 'light' ? Vector : Vector} alt="checkmark"></img>}
+                     {selectedCountries1.includes(' ' + country.label) && <img className={s.checkbox_icon__1}  src={props.colorB === 'light' ? Vector : Vector} alt="checkmark"></img>}
                     
-                      <span style={{ marginLeft: 10 }}>{country}</span>
+                      <span style={{ marginLeft: 10 }}>{country.label}</span>
                  </label>
              </div>
               ))}
