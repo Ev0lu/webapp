@@ -98,17 +98,21 @@ function Isp3(props) {
   };
 
   const selectCountry1 = (country) => {
-    const isSelected = selectedCountries1.includes(' ' + country.label);
+    const isSelected = selectedCountries1.includes(country.label);
     if (isSelected) {
-      setSelectedCountries1(selectedCountries1.filter(c => c !== ' ' + country.label));
+      console.log(country, selectedCountries1)
+      setSelectedCountries1(selectedCountries1.filter(c => c !== country.label));
     } else {
-      setSelectedCountries1([...selectedCountries1, ' ' + country.label]);
+      console.log(country, selectedCountries1)
+
+      setSelectedCountries1([...selectedCountries1, country.label]);
     }
   };
 
   const selectCountry2 = (country) => {
     const isSelected = selectedCountries2.includes(' ' + country);
     if (isSelected) {
+      
       setSelectedCountries2(selectedCountries2.filter(c => c !== ' ' + country));
     } else {
       setSelectedCountries2([...selectedCountries2, ' ' + country]);
@@ -158,7 +162,7 @@ const fetchSkills = async () => {
 
   
   const filteredSkills = skills.filter((skill) =>{
-    console.log(skill)
+
      return skill.label.toLowerCase().includes(searchQuery1.toLowerCase())});
   const filteredLang = lang.filter((lang) => lang.toLowerCase().includes(searchQuery2.toLowerCase()));
 
@@ -199,7 +203,7 @@ const fetchSkills = async () => {
                          marginRight: 10,
                      }}
                      />
-                     {selectedCountries1.includes(' ' + country.label) && <img className={s.checkbox_icon__1}  src={props.colorB === 'light' ? Vector : Vector} alt="checkmark"></img>}
+                     {selectedCountries1.includes(country.label) && <img className={s.checkbox_icon__1}  src={props.colorB === 'light' ? Vector : Vector} alt="checkmark"></img>}
                     
                       <span style={{ marginLeft: 10, width:200px; }}>{country.label}</span>
                  </label>
