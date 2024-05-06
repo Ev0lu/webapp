@@ -7,6 +7,7 @@ import eyeLight from '../assets/eye-closed.svg'
 
 const Auth = (props) => {
     const [showPassword, setShowPassword] = useState(false);
+    const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const [errorFields, setErrorFields] = useState({
         password: password
@@ -14,7 +15,8 @@ const Auth = (props) => {
     
       const validateFields = () => {
         const errors = {
-            password: password === ''
+            password: password === '',
+            login: login === ''
         };
         setErrorFields(errors);
         return !Object.values(errors).some(Boolean);
@@ -26,11 +28,60 @@ const Auth = (props) => {
     const handleChange = (event) => {
         setPassword(event.target.value);
     };
+    const handleChange2 = (event) => {
+        setLogin(event.target.value);
+    };
+
+
+
+    const postRequest = async () => {
+  
+  
+  let user = {
+    login: login,
+    password: password
+  };
+
+  try {
+    const response = await fetch('https://assista1.ru/auth/login', {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    });
+
+    const responseData = await response.json();
+    console.log(responseData)
+    if (responseData.exists) {
+      console.log('Такая почта уже существует');
+    } else {
+      console.log('Такой почты не существует');
+    }
+  } catch (error) {
+    console.error('Ошибка:', error);
+  }
+}
 
     return (
         <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>
         <div className={s.greetings_wrapper}>
         <h1 className={s.greetings_text} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Авторизация</h1>
+        <div className={s.password_input}>
+            <input
+                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
+                type={'text'}
+                placeholder="Логин"
+                className={s.password_field}
+                value={login}
+                onChange={handleChange2}
+            />
+                       
+                { login === '' && (errorFields.password && <span className={s.error_message}>Пожалуйста, введите логин</span>)}
+
+        </div>
+            
           <div className={s.password_input}>
             <input
                 style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
@@ -46,7 +97,9 @@ const Auth = (props) => {
 
         </div>
         <Link to={(password.length<8) || (password.length > 25) ? '/authorization' : '/'}>
-        <button onClick={() => {validateFields()}} className={`${s.greetings_btn2} ${props.colorB==="light" ? s.authPassword1 : s.authPassword1}` }>Далее</button>
+        <button onClick={() => {
+            postRequest()
+            validateFields()}} className={`${s.greetings_btn2} ${props.colorB==="light" ? s.authPassword1 : s.authPassword1}` }>Далее</button>
         </Link>
         </div>
       
