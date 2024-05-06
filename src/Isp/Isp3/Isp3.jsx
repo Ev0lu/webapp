@@ -184,7 +184,7 @@ const fetchSkills = async () => {
             <div  className={s.scroll_container} ref={scrollContainerRef1} onScroll={handleScroll1}>
               {filteredSkills.map((country, index) => (
                 <div key={index} className={`${s.dropdown_option} ${props.colorB === 'light' ? s.light : s.dark}`} >
-                <label style={{ display: 'flex', alignItems: 'center' }} onClick={() => selectCountry1([country.label, country.value])}>
+                <label style={{ display: 'flex', alignItems: 'center', width:300px; }} onClick={() => selectCountry1([country.label, country.value])}>
                      <input
                      type="checkbox"
                      className={`${s.inputCheck} ${props.colorB === 'light' ? s.light : s.dark}`}
@@ -201,7 +201,7 @@ const fetchSkills = async () => {
                      />
                      {selectedCountries1.includes(' ' + country.label) && <img className={s.checkbox_icon__1}  src={props.colorB === 'light' ? Vector : Vector} alt="checkmark"></img>}
                     
-                      <span style={{ marginLeft: 10 }}>{country.label}</span>
+                      <span style={{ marginLeft: 10, width:200px; }}>{country.label}</span>
                  </label>
              </div>
               ))}
