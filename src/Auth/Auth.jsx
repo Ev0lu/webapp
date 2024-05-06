@@ -95,7 +95,7 @@ const Auth = (props) => {
                        
                 <img className={s.toggle_password} onClick={handleTogglePassword} src={props.colorB === 'dark' ? eyed : eyeLight}></img>
                 { password === '' && (errorFields.password && <span className={s.error_message}>Пожалуйста, введите пароль</span>)}
-                { (errorFields.resp && <span className={s.error_message}>Неверный логин или пароль</span>)}
+                { resp === 'Incorrect login or password' (errorFields.resp && <span className={s.error_message}>Неверный логин или пароль</span>)}
 
         </div>
         <Link to={(password.length<8) || (password.length > 25) || (resp === 'Incorrect login or password') || (resp === '') ? '/authorization' : '/'}>
