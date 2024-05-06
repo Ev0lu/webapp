@@ -197,8 +197,7 @@ const fetchSkills = async () => {
                          height: 20,
                          border: 'none',
                          cursor: 'pointer',
-                         marginRight: 10,
-                         appearance: 'none'
+                         marginRight: 10
                      }}
                      />
                      {selectedCountries1.includes(country.label) && <img className={s.checkbox_icon__1}  src={props.colorB === 'light' ? Vector : Vector} alt="checkmark"></img>}
@@ -264,7 +263,7 @@ const fetchSkills = async () => {
                     }
                      {selectedCountries2.includes(' ' + country) && <img className={s.checkbox_icon__1}  src={props.colorB === 'light' ? Vector : Vector} alt="checkmark"></img>}
                        
-                         <span style={{ marginLeft: 10 }}>{country}</span>
+                         <span style={{ marginLeft: 10, width:'200px' }}>{country}</span>
                     </label>
                 </div>
               ))}
