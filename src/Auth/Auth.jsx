@@ -79,7 +79,7 @@ const Auth = (props) => {
                 onChange={handleChange2}
             />
                        
-                { login === '' && (errorFields.password && <span className={s.error_message}>Пожалуйста, введите логин</span>)}
+                { login === '' && (errorFields.login && <span className={s.error_message}>Пожалуйста, введите логин</span>)}
 
         </div>
             
@@ -95,10 +95,10 @@ const Auth = (props) => {
                        
                 <img className={s.toggle_password} onClick={handleTogglePassword} src={props.colorB === 'dark' ? eyed : eyeLight}></img>
                 { password === '' && (errorFields.password && <span className={s.error_message}>Пожалуйста, введите пароль</span>)}
-                { resp === 'Incorrect login or password' && (errorFields.resp && <span className={s.error_message}>Неверный логин или пароль</span>)}
+                { (errorFields.resp && <span className={s.error_message}>Неверный логин или пароль</span>)}
 
         </div>
-        <Link to={(password.length<8) || (password.length > 25) || (resp !== 'Incorrect login or password') ? '/authorization' : '/'}>
+        <Link to={(password.length<8) || (password.length > 25) || (resp === 'Incorrect login or password') || (resp === '') ? '/authorization' : '/'}>
         <button onClick={() => {
             postRequest()
             validateFields()}} className={`${s.greetings_btn2} ${props.colorB==="light" ? s.authPassword1 : s.authPassword1}` }>Далее</button>
