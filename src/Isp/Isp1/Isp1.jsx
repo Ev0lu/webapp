@@ -306,6 +306,8 @@ const handleInputChange2 = (e) => {
       <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/isp1_reg' : '/isp2_reg'}>
         <button onClick={() => {
           validateFields()
+          sessionStorage.setItem('selectedCountry2', selectedCountry2)
+          sessionStorage.setItem('selectedCountry', selectedCountry)
         }}className={`${s.greetings_btn} ${props.colorB === 'light' ? s.light : s.dark}`}>Далее</button>
       </Link>
       </div>
