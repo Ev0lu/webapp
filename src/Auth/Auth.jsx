@@ -9,14 +9,19 @@ const Auth = (props) => {
     const [showPassword, setShowPassword] = useState(false);
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
+    const [resp, setResp] = useState('')
     const [errorFields, setErrorFields] = useState({
-        password: password
+        password: password,
+        login: login,
+        resp: resp
     });
     
       const validateFields = () => {
         const errors = {
             password: password === '',
-            login: login === ''
+            login: login === '',
+            resp: resp === 'Incorrect login or password'
+            
         };
         setErrorFields(errors);
         return !Object.values(errors).some(Boolean);
@@ -54,11 +59,7 @@ const Auth = (props) => {
 
     const responseData = await response.json();
     console.log(responseData)
-    if (responseData.exists) {
-      console.log('Такая почта уже существует');
-    } else {
-      console.log('Такой почты не существует');
-    }
+    setResp(responseData.detail)
   } catch (error) {
     console.error('Ошибка:', error);
   }
@@ -94,9 +95,10 @@ const Auth = (props) => {
                        
                 <img className={s.toggle_password} onClick={handleTogglePassword} src={props.colorB === 'dark' ? eyed : eyeLight}></img>
                 { password === '' && (errorFields.password && <span className={s.error_message}>Пожалуйста, введите пароль</span>)}
+                { resp === 'Incorrect login or password' && (errorFields.resp && <span className={s.error_message}>Неверный логин или пароль</span>)}
 
         </div>
-        <Link to={(password.length<8) || (password.length > 25) ? '/authorization' : '/'}>
+        <Link to={(password.length<8) || (password.length > 25) || (resp !== 'Incorrect login or password') ? '/authorization' : '/'}>
         <button onClick={() => {
             postRequest()
             validateFields()}} className={`${s.greetings_btn2} ${props.colorB==="light" ? s.authPassword1 : s.authPassword1}` }>Далее</button>
