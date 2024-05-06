@@ -193,9 +193,8 @@ const fetchSkills = async () => {
                      checked={selectedCountries1.includes(country.label)}
                      onChange={() => selectCountry1([country.label, country.value])}
                      style={{
-                         width: '20px',
-                         height: '20px',
-                         flexShrink: 0,
+                         width: 20,
+                         height: 20,
                          border: 'none',
                          cursor: 'pointer',
                          marginRight: 10,
