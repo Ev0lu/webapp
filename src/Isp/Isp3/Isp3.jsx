@@ -103,7 +103,7 @@ function Isp3(props) {
       setSelectedCountries1(selectedCountries1.filter(c => c !== country[0]));
     } else {
 
-      setSelectedCountries1([...selectedCountries1, country[0]);
+      setSelectedCountries1([...selectedCountries1, country[0]]);
     }
   };
 
