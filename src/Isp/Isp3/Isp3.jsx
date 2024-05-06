@@ -8,7 +8,7 @@ import blackarr from '../../assets/black.svg'
 
 function Isp3(props) {
   const [skills, setSkills] = useState([])
-  const lang = ['Россия', 'Казахстан', 'Армения', 'Азербайджан', 'Грузия', 'a', 'b', 'v'];
+  const [lang, setLang] = useState([])
   const [searchQuery1, setSearchQuery1] = useState('');
   const [searchQuery2, setSearchQuery2] = useState('');
   const [city1, setCity1] = useState('');
@@ -27,7 +27,11 @@ function Isp3(props) {
   const scrollbarRef1 = useRef(null);
   const scrollbarRef2 = useRef(null);
   const [offset, setOffset] = useState(0);
+  const [offset2, setOffset2] = useState(0);
+
   const limit = 25;
+  const limit2 = 25;
+
   const [scrollbarHeight1, setScrollbarHeight1] = useState(0);
   const [scrollbarHeight2, setScrollbarHeight2] = useState(0);
   const [exitSkills, setExitSkills] = useState([])
@@ -108,13 +112,14 @@ function Isp3(props) {
   };
 
   const selectCountry2 = (country) => {
-    const isSelected = selectedCountries2.includes(' ' + country);
+    const isSelected = selectedCountries2.includes(country[1]);
     if (isSelected) {
       
-      setSelectedCountries2(selectedCountries2.filter(c => c !== ' ' + country));
+      setSelectedCountries2(selectedCountries2.filter(c => c !== country[1]));
     } else {
-      setSelectedCountries2([...selectedCountries2, ' ' + country]);
+      setSelectedCountries2([...selectedCountries2, country[1]]);
     }
+
   };
   const handleScroll1 = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
@@ -158,11 +163,39 @@ const fetchSkills = async () => {
     fetchSkills(); // Call fetchCountries whenever searchQuery changes
   }, []);
 
+
+  const fetchLang = async () => {
+
+
+
+    setLoading(true);
+
+    try {
+      const response = await fetch(`https://assista1.ru/items/language?startswith=${searchQuery}&offset=${offset}&limit=${limit}`);
+      const data = await response.json();
+      const newCountries = data.items.map(([country, id]) => ({ label: country, value: id }));
+
+      setLang(prevCountries => [...prevCountries, ...newCountries]); // Добавляем загруженные страны к списку
+      setOffset2(prevOffset => prevOffset + limit2); // Увеличиваем offset для следующего запроса
+
+    } catch (error) {
+      console.error('Error fetching skills:', error);
+    }
+
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchLang(); // Call fetchCountries whenever searchQuery changes
+  }, []);
+useEffect(() => {
+  setOffset2(0); // Reset offset to 0 when searchQuery changes
+  setLang([]); 
+}, [searchQuery2]);
   
   const filteredSkills = skills.filter((skill) =>{
 
      return skill.label.toLowerCase().includes(searchQuery1.toLowerCase())});
-  const filteredLang = lang.filter((lang) => lang.toLowerCase().includes(searchQuery2.toLowerCase()));
 
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>  
@@ -230,14 +263,14 @@ const fetchSkills = async () => {
           />
           <div className={`${s.dropdown_options__1} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen2 ? s.open : ''}`}>
             <div className={s.scroll_container__1} ref={scrollContainerRef2} onScroll={handleScroll2}>
-              {filteredLang.map((country, index) => (
+              {lang.map((lang, index) => (
                 <div key={index} className={`${s.dropdown_option__1} ${props.colorB === 'light' ? s.light : s.dark}`} >
                    <label style={{ display: 'flex', alignItems: 'center', width:'300px' }}>
                    {props.colorB === 'light' ? <input
                      type="checkbox"
                      className={`${s.inputCheck} ${props.colorB === 'light' ? s.light : s.dark}`}
-                     checked={selectedCountries2.includes(country)}
-                     onChange={() => selectCountry2(country)}
+                     checked={selectedCountries2.includes(' ' + lang.label)}
+                     onChange={() => selectCountry2(lang)}
                      style={{
                       width: 20,
                       height: 20,
@@ -250,7 +283,7 @@ const fetchSkills = async () => {
                     <input
                      type="checkbox"
                      className={`${s.inputCheck} ${props.colorB === 'light' ? s.light : s.dark}`}
-                     checked={selectedCountries2.includes(country)}
+                     checked={selectedCountries2.includes(' ' + lang.label)}
                      onChange={() => selectCountry2(country)}
                      style={{
                       width: 20,
@@ -264,9 +297,9 @@ const fetchSkills = async () => {
                      />
                     
                     }
-                     {selectedCountries2.includes(' ' + country) && <img className={s.checkbox_icon__1}  src={props.colorB === 'light' ? Vector : Vector} alt="checkmark"></img>}
+                     {selectedCountries2.includes(lang.value) && <img className={s.checkbox_icon__1}  src={props.colorB === 'light' ? Vector : Vector} alt="checkmark"></img>}
                        
-                         <span style={{ marginLeft: 10, width:'200px' }}>{country}</span>
+                         <span style={{ marginLeft: 10, width:'200px' }}>{lang.label}</span>
                     </label>
                 </div>
               ))}
