@@ -98,14 +98,12 @@ function Isp3(props) {
   };
 
   const selectCountry1 = (country) => {
-    const isSelected = selectedCountries1.includes(country.label);
+    const isSelected = selectedCountries1.includes(country[0]);
     if (isSelected) {
-      console.log(country, selectedCountries1)
-      setSelectedCountries1(selectedCountries1.filter(c => c !== country.label));
+      setSelectedCountries1(selectedCountries1.filter(c => c !== country[0]));
     } else {
-      console.log(country, selectedCountries1)
 
-      setSelectedCountries1([...selectedCountries1, country.label]);
+      setSelectedCountries1([...selectedCountries1, country[0]);
     }
   };
 
