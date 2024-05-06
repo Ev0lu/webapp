@@ -190,14 +190,14 @@ const fetchSkills = async () => {
                      <input
                      type="checkbox"
                      className={`${s.inputCheck} ${props.colorB === 'light' ? s.light : s.dark}`}
-                     checked={selectedCountries1.includes(country.label)}
                      onChange={() => selectCountry1([country.label, country.value])}
                      style={{
-                         width: 20,
-                         height: 20,
-                         border: 'none',
-                         cursor: 'pointer',
-                         marginRight: 10
+                        width: 20,
+                        height: 20,
+                        backgroundColor: 'white',
+                        border: 'none',
+                        cursor: 'pointer',
+                        marginRight: 10,
                      }}
                      />
                      {selectedCountries1.includes(country.label) && <img className={s.checkbox_icon__1}  src={props.colorB === 'light' ? Vector : Vector} alt="checkmark"></img>}
