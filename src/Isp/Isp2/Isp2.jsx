@@ -72,6 +72,8 @@ function Isp2(props) {
       useEffect(() => {
         
 const postRequest = async () => {
+  console.log(mail)
+  
   let user = {
     email: mail,
   };
