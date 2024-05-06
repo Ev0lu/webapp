@@ -184,7 +184,7 @@ const fetchSkills = async () => {
             <div  className={s.scroll_container} ref={scrollContainerRef1} onScroll={handleScroll1}>
               {filteredSkills.map((country, index) => (
                 <div key={index} className={`${s.dropdown_option} ${props.colorB === 'light' ? s.light : s.dark}`} >
-                <label style={{ display: 'flex', alignItems: 'center' }}>
+                <label style={{ display: 'flex', alignItems: 'center' }} onClick={() => selectCountry1([country.label, country.value])}>
                      <input
                      type="checkbox"
                      className={`${s.inputCheck} ${props.colorB === 'light' ? s.light : s.dark}`}
