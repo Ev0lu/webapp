@@ -330,10 +330,7 @@ useEffect(() => {
         <Link to={selectedCountries1.length !== 0 || selectedCountries2.length !== 0 ? '/isp_reg_photo' : '/isp3_reg'}>
           <button onClick={() => {
             validateFields()
-            console.log(selectedCountries2)
-            console.log(selectedCountries1)
-            console.log(selectedCountries2Id)
-            console.log(selectedCountries1Id)
+
             sessionStorage.setItem('selectedLang', selectedCountries2)
             sessionStorage.setItem('selectedSkills', selectedCountries1)
             sessionStorage.setItem('selectedLangId', selectedCountries2Id)
