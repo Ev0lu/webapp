@@ -1,3 +1,4 @@
+  const fileInputRef = React.createRef();
 import React, { useRef, useState, useEffect } from 'react';
 import s from './Isp3.module.css';
 import arrowsvg from '../../assets/arrow.svg';
@@ -171,7 +172,7 @@ const fetchSkills = async () => {
     setLoading(true);
 
     try {
-      const response = await fetch(`https://assista1.ru/items/language?startswith=${searchQuery}&offset=${offset}&limit=${limit}`);
+      const response = await fetch(`https://assista1.ru/items/language?startswith=${searchQuery2}&offset=${offset}&limit=${limit}`);
       const data = await response.json();
       const newCountries = data.items.map(([country, id]) => ({ label: country, value: id }));
 
