@@ -319,8 +319,8 @@ useEffect(() => {
             validateFields()
             console.log(selectedCountries2)
             console.log(selectedCountries1)
-            sessionStorage.setItem('selectedLang', selectedCountry2)
-            sessionStorage.setItem('selectedSkills', selectedCountry)
+            sessionStorage.setItem('selectedLang', selectedCountries2)
+            sessionStorage.setItem('selectedSkills', selectedCountries1)
 
             
           }} className={s.greetings_btn}>Далее</button>
