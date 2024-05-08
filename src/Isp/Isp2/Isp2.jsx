@@ -43,6 +43,13 @@ function Isp2(props) {
     };
     const handleChange3 = (event) => {
         setMail(event.target.value);
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const isValidEmail = emailRegex.test(event.target.value);
+        if (isValidEmail === true) {
+            setCheck('exist')
+        } else{
+            setCheck('')
+        }
     };
     const handleChange4 = (event) => {
         setPass(event.target.value);
@@ -165,7 +172,7 @@ const postRequest = async () => {
             />
         { pass === '' && (errorFields.pass2 && <span className={s.error_message}>Пожалуйста, подтвердите пароль</span>)}
         {pass!=pass2 && <span className={s.error_message}>Пароли должны совпадать</span>}
-        {errorFields.pass2 && <span className={s.error_message}>Почта не существует</span>}
+        {errorFields.check && <span className={s.error_message}>Почта не соответствует формату</span>}
 
 
 
