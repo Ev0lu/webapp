@@ -90,6 +90,7 @@ const postRequest = async () => {
     });
 
     const responseData = await response.json();
+    setCheck('exist')
     console.log(responseData)
     if (responseData.exists) {
       setCheck('exist')
@@ -97,9 +98,9 @@ const postRequest = async () => {
     } else {
       console.log('Такой почты не существует');
       console.log(responseData)
+      setCheck('')
     }
   } catch (error) {
-    console.error('Ошибка:', error);
     setCheck('exist')
   }
 }
