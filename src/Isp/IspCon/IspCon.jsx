@@ -84,6 +84,8 @@ const postRequest = async () => {
     if (response.ok) {
       const data = await response.json();
       setIsVerified(true);
+      sessionStorage.setItem('sessionToken', data.sessionToken)
+      console.log(data.sessionToken)
       
     } else {
       setError(true);
