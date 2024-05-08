@@ -155,8 +155,11 @@ const postRequest = async () => {
     <Link to={code1 == '' || code2 == '' || code3 == '' || code4 == '' || tries > 3 ? '/isp_con' : '/isp3_reg'}>
         <button className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`} onClick={() => {
       handleSubmit()
+      if (code1 == '' || code2 == '' || code3 == '' || code4 == '' || tries > 3) {
       setTries(tries + 1)
-      postRequest()}}>
+      postRequest()
+      }
+      }}>
           Подтвердить
         </button>
       </Link>
