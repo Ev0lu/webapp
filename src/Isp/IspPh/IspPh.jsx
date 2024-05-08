@@ -6,8 +6,10 @@ import { useState } from 'react';
 
 function IspPh(props) {
   const [avatar, setAvatar] = useState(null);
+  const [size, setSize] = useState(null);
   const [errorFields, setErrorFields] = useState({
-    avatar: false
+    avatar: false,
+    size: false
   });
 
 const handleAvatarChange = (event) => {
@@ -18,10 +20,10 @@ const handleAvatarChange = (event) => {
       const img = new Image();
       img.onload = () => {
         if (img.width > 200 || img.height > 200) {
-          setErrorFields({ avatar: true });
+          setErrorFields({ size: true });
           setAvatar(null);
         } else {
-          setErrorFields({ avatar: false });
+          setErrorFields({ size: false });
           setAvatar(reader.result);
         }
       };
@@ -33,7 +35,8 @@ const handleAvatarChange = (event) => {
 
   const validateFields = () => {
     const errors = {
-      avatar: avatar === null
+      avatar: avatar === null,
+      size: size === null
     };
     setErrorFields(errors);
     return !Object.values(errors).some(Boolean);
@@ -73,6 +76,7 @@ const handleAvatarChange = (event) => {
               className={s.avatar_input}
             />
             {avatar === null && (errorFields.avatar && <span className={s.error_message}>Пожалуйста, приложите изображение</span>)}
+            {size === null && (errorFields.size && <span className={s.error_message}>Изображение не должно быть размером больше чем 200x200</span>)}
           </div>
         </div>
         <Link to={avatar !== null ? '/create' : '/isp_reg_photo'}>
