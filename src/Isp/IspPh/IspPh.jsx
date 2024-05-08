@@ -10,16 +10,26 @@ function IspPh(props) {
     avatar: false
   });
 
-  const handleAvatarChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setAvatar(reader.result);
+const handleAvatarChange = (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const img = new Image();
+      img.onload = () => {
+        if (img.width > 200 || img.height > 200) {
+          setErrorFields({ avatar: true });
+          setAvatar(null);
+        } else {
+          setErrorFields({ avatar: false });
+          setAvatar(reader.result);
+        }
       };
-      reader.readAsDataURL(file);
-    }
-  };
+      img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+  }
+};
 
   const validateFields = () => {
     const errors = {
