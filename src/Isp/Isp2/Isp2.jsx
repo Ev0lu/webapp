@@ -179,13 +179,13 @@ const postRequest = async () => {
 
         </div>
 
-        <Link to={pass === pass2 && login !== '' && tele !== '' && mail !== '' ? '/isp_con' : '/isp2_reg'}>
+        <Link to={pass === pass2 && login !== '' && tele !== '' && mail !== '' && check !== '' ? '/isp_con' : '/isp2_reg'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
                 sessionStorage.setItem('login', login)
                 sessionStorage.setItem('tele', tele)
                 sessionStorage.setItem('mail', mail)
                 sessionStorage.setItem('pass', pass)
-                if (pass === pass2 && login !== '' && tele !== '' && mail !== '') {
+                if (pass === pass2 && login !== '' && tele !== '' && mail !== '' && check !== '') {
                     postRequest()
                 }
                 validateFields()
