@@ -10,6 +10,10 @@ const IspCon = (props) => {
   const [error, setError] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
   const [code, setCode] = useState('');
+  const [mail, setMail] = useState()
+  useEffect(() => {
+        setMail(sessionStorage.getItem('mail') !== null ? sessionStorage.getItem('mail') : '')
+      }, [])
   const handleCodeChange = (index, value) => {
     switch (index) {
       case 0:
@@ -53,6 +57,40 @@ const IspCon = (props) => {
       setIsVerified(true);
     }
   };
+
+
+const postRequest = async () => {  
+  let user = {
+    email_data: {
+      email: mail
+    },
+    code: `${code1}${code2}${code3}${code4}`
+    
+  };
+
+  try {
+    const response = await fetch('https://assista1.ru/auth/code/verify', {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data); // Выводим полученные данные
+    } else {
+      console.error('Ошибка:', response.status, response.statusText);
+    }
+
+  } catch (error) {
+
+  }
+}
+   
+  
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }> 
     <div className={s.greetings_wrapper}>
@@ -106,7 +144,9 @@ const IspCon = (props) => {
         </div>
         {error && <div className={s.error_message}>Неправильный код</div>}
     <Link to={code1 == '' || code2 == '' || code3 == '' || code4 == '' ? '/isp_con' : '/isp3_reg'}>
-        <button className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`} onClick={handleSubmit}>
+        <button className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`} onClick={() => {
+      handleSubmit()
+      postRequest()}}>
           Подтвердить
         </button>
       </Link>
