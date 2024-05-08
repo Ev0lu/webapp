@@ -10,6 +10,8 @@ const IspCon = (props) => {
   const [error, setError] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
   const [code, setCode] = useState('');
+  const [invalid, setInvalid] = useState(true)
+  const [tries, setTries] = useState(0)
   const [mail, setMail] = useState()
   useEffect(() => {
         setMail(sessionStorage.getItem('mail') !== null ? sessionStorage.getItem('mail') : '')
@@ -81,8 +83,10 @@ const postRequest = async () => {
 
     if (response.ok) {
       const data = await response.json();
-      console.log(data); // Выводим полученные данные
+      setIsVerified(true);
+      
     } else {
+      setError(true);
       console.error('Ошибка:', response.status, response.statusText);
       console.log(data);
     }
@@ -145,9 +149,11 @@ const postRequest = async () => {
           />
         </div>
         {error && <div className={s.error_message}>Неправильный код</div>}
-    <Link to={code1 == '' || code2 == '' || code3 == '' || code4 == '' ? '/isp_con' : '/isp3_reg'}>
+        {tries > 3  && <div className={s.error_message}>Вы исчерпали количество попыток, начните регистрацию заново</div>}
+    <Link to={code1 == '' || code2 == '' || code3 == '' || code4 == '' || tries > 3 ? '/isp_con' : '/isp3_reg'}>
         <button className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`} onClick={() => {
       handleSubmit()
+      setTries(tries + 1)
       postRequest()}}>
           Подтвердить
         </button>
