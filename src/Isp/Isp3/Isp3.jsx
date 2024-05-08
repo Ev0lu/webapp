@@ -298,7 +298,7 @@ useEffect(() => {
                      />
                     
                     }
-                     {selectedCountries2.includes(lang.value) && <img className={s.checkbox_icon__1}  src={props.colorB === 'light' ? Vector : Vector} alt="checkmark"></img>}
+                     {selectedCountries2.includes(lang.label) && <img className={s.checkbox_icon__1}  src={props.colorB === 'light' ? Vector : Vector} alt="checkmark"></img>}
                        
                          <span style={{ marginLeft: 10, width:'200px' }}>{lang.label}</span>
                     </label>
@@ -317,6 +317,12 @@ useEffect(() => {
         <Link to={selectedCountries1.length !== 0 || selectedCountries2.length !== 0 ? '/isp_reg_photo' : '/isp3_reg'}>
           <button onClick={() => {
             validateFields()
+            console.log(selectedCountries2)
+            console.log(selectedCountries1)
+            sessionStorage.setItem('selectedLang', selectedCountry2)
+            sessionStorage.setItem('selectedSkills', selectedCountry)
+
+            
           }} className={s.greetings_btn}>Далее</button>
         </Link>
       </div>
