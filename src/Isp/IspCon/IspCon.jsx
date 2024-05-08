@@ -156,8 +156,8 @@ const postRequest = async () => {
         <button className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`} onClick={() => {
       handleSubmit()
       if (code1 == '' || code2 == '' || code3 == '' || code4 == '' || tries > 3) {
-      setTries(tries + 1)
-      postRequest()
+        setTries(tries + 1)
+        postRequest()
       }
       }}>
           Подтвердить
