@@ -100,6 +100,7 @@ const postRequest = async () => {
     }
   } catch (error) {
     console.error('Ошибка:', error);
+    setCheck('exist')
   }
 }
     
