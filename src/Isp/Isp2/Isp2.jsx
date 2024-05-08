@@ -93,8 +93,10 @@ const postRequest = async () => {
     console.log(responseData)
     if (responseData.exists) {
       setCheck('exist')
+      console.log(responseData)
     } else {
       console.log('Такой почты не существует');
+      console.log(responseData)
     }
   } catch (error) {
     console.error('Ошибка:', error);
@@ -174,6 +176,8 @@ const postRequest = async () => {
             />
         { pass === '' && (errorFields.pass2 && <span className={s.error_message}>Пожалуйста, подтвердите пароль</span>)}
         {pass!=pass2 && <span className={s.error_message}>Пароли должны совпадать</span>}
+        {errorFields.pass2 && <span className={s.error_message}>Почта не существует</span>}
+
 
 
 
