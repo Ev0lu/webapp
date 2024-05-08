@@ -18,7 +18,7 @@ const IspCon = (props) => {
       }, [])
   useEffect(() => {
     handleSubmit()
-  }, [code1, code2, code3, code4]
+  }, [code4]
   const handleCodeChange = (index, value) => {
     switch (index) {
       case 0:
@@ -59,7 +59,11 @@ const IspCon = (props) => {
     if (code.length !== 4) {
       setError(true);
     } else {
-      setIsVerified(true);
+      setIsVerified(true)
+      postRequest()
+      setTries(tries + 1)
+
+      
     }
   };
 
@@ -92,6 +96,10 @@ const postRequest = async () => {
       
     } else {
       setError(true);
+      setCode1('')
+      setCode2('')
+      setCode3('')
+      setCode4('')
       console.error('Ошибка:', response.status, response.statusText);
       console.log(data);
     }
@@ -158,10 +166,6 @@ const postRequest = async () => {
     <Link to={code1 == '' || code2 == '' || code3 == '' || code4 == '' || tries > 3 || error === true ? '/isp_con' : '/isp3_reg'}>
         <button className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`} onClick={() => {
       handleSubmit()
-      if (code1 !== '' || code2 !== '' || code3 !== '' || code4 !== '' || tries =< 3) {
-        setTries(tries + 1)
-        postRequest()
-      }
       }}>
           Подтвердить
         </button>
