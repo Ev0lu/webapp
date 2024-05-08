@@ -106,7 +106,6 @@ const uploadPhoto = async () => {
         <Link to={avatar !== null ? '/create' : '/isp_reg_photo'}>
           <button onClick={() => {
           validateFields()
-          console.log(filepic)
           uploadPhoto()}} className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>Далее</button>
         </Link>
         <Link to={'/create'}>
