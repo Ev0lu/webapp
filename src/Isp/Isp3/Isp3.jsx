@@ -20,6 +20,8 @@ function Isp3(props) {
   const [selectedCountry2, setSelectedCountry2] = useState('');
   const [selectedCountries1, setSelectedCountries1] = useState([]);
   const [selectedCountries2, setSelectedCountries2] = useState([]);
+  const [selectedCountries1Id, setSelectedCountries1Id] = useState([]);
+  const [selectedCountries2Id, setSelectedCountries2Id] = useState([]);
   const dropdownRef1 = useRef(null);
   const dropdownRef2 = useRef(null);
   const scrollContainerRef1 = useRef(null);
@@ -103,21 +105,33 @@ function Isp3(props) {
 
   const selectCountry1 = (country) => {
     const isSelected = selectedCountries1.includes(country[0]);
+    const isSelected2 = selectedCountries1Id.includes(country[1]);
+
     if (isSelected) {
       setSelectedCountries1(selectedCountries1.filter(c => c !== country[0]));
+      setSelectedCountries1Id(selectedCountries1Id.filter(c => c !== country[1]));
+
     } else {
 
       setSelectedCountries1([...selectedCountries1, country[0]]);
+      setSelectedCountries1Id([...selectedCountries1Id, country[1]]);
+
     }
   };
 
   const selectCountry2 = (country) => {
     const isSelected = selectedCountries2.includes(country[0]);
+    const isSelected2 = selectedCountries2Id.includes(country[1]);
+
     if (isSelected) {
       
       setSelectedCountries2(selectedCountries2.filter(c => c !== country[0]));
-    } else {
+
+      setSelectedCountries2Id(selectedCountries2Id.filter(c => c !== country[1]));
+} else {
       setSelectedCountries2([...selectedCountries2, country[0]]);
+      setSelectedCountries2Id([...selectedCountries2Id, country[1]]);
+
     }
 
   };
@@ -318,8 +332,12 @@ useEffect(() => {
             validateFields()
             console.log(selectedCountries2)
             console.log(selectedCountries1)
+            console.log(selectedCountries2Id)
+            console.log(selectedCountries1Id)
             sessionStorage.setItem('selectedLang', selectedCountries2)
             sessionStorage.setItem('selectedSkills', selectedCountries1)
+            sessionStorage.setItem('selectedLangId', selectedCountries2Id)
+            sessionStorage.setItem('selectedSkillsId', selectedCountries1Id)
 
             
           }} className={s.greetings_btn}>Далее</button>
