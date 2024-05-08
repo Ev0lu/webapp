@@ -95,7 +95,8 @@ function IspPh(props) {
           <div className={s.avatar_flex}>
             <input
               id={s.avatar_input}
-
+              type="file"
+              accept="image/*"
               onChange={handleAvatarChange}
               ref={fileInputRef}
               className={s.avatar_input}
