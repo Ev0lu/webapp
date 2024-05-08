@@ -1,4 +1,3 @@
-  const fileInputRef = React.createRef();
 import React, { useRef, useState, useEffect } from 'react';
 import s from './Isp3.module.css';
 import arrowsvg from '../../assets/arrow.svg';
