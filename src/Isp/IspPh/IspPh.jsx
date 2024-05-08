@@ -7,6 +7,7 @@ import { useState } from 'react';
 function IspPh(props) {
   const [avatar, setAvatar] = useState(null);
   const [size, setSize] = useState(false);
+  const [filepic, setFilepic] = useState(null);
   const [errorFields, setErrorFields] = useState({
     avatar: false,
     size: false
@@ -25,6 +26,7 @@ const handleAvatarChange = (event) => {
         } else {
           setErrorFields({ size: false });
           setAvatar(reader.result);
+          setFilepic(file)
         }
       };
       img.src = reader.result;
@@ -41,6 +43,28 @@ const handleAvatarChange = (event) => {
     setErrorFields(errors);
     return !Object.values(errors).some(Boolean);
   };
+
+const uploadPhoto = async () => {
+  const formData = new FormData();
+  formData.append('photo', filepic);
+
+  try {
+    const response = await fetch('https://assista1.ru/users/uploadPhoto', {
+      method: 'PATCH',
+      body: formData
+    });
+    if (response.ok) {
+      const responseData = await response.json();
+      console.log(responseData);
+      // Handle response data if needed
+    } else {
+      console.error('Failed to upload photo');
+    }
+  } catch (error) {
+    console.error('Error uploading photo:', error);
+  }
+};
+
 
   return (
     <div className={s.greetings} style={props.colorB === "light" ? {backgroundColor: "white"} : {backgroundColor: "#232323"} }>
@@ -80,9 +104,12 @@ const handleAvatarChange = (event) => {
           </div>
         </div>
         <Link to={avatar !== null ? '/create' : '/isp_reg_photo'}>
-          <button onClick={validateFields} className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>Далее</button>
+          <button onClick={() => {
+          validateFields()
+          console.log(filepic)
+          uploadPhoto()}} className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>Далее</button>
         </Link>
-        <Link to={'/'}>
+        <Link to={'/create'}>
           <button className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>пропустить</button>
         </Link>
       </div>
