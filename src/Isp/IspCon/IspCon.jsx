@@ -16,6 +16,9 @@ const IspCon = (props) => {
   useEffect(() => {
         setMail(sessionStorage.getItem('mail') !== null ? sessionStorage.getItem('mail') : '')
       }, [])
+  useEffect(() => {
+    handleSubmit()
+  }, [code1, code2, code3, code4]
   const handleCodeChange = (index, value) => {
     switch (index) {
       case 0:
@@ -152,10 +155,10 @@ const postRequest = async () => {
         </div>
         {error && <div className={s.error_message}>Неправильный код</div>}
         {tries > 3  && <div className={s.error_message}>Вы исчерпали количество попыток, начните регистрацию заново</div>}
-    <Link to={code1 == '' || code2 == '' || code3 == '' || code4 == '' || tries > 3 ? '/isp_con' : '/isp3_reg'}>
+    <Link to={code1 == '' || code2 == '' || code3 == '' || code4 == '' || tries > 3 || error === true ? '/isp_con' : '/isp3_reg'}>
         <button className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`} onClick={() => {
       handleSubmit()
-      if (code1 == '' || code2 == '' || code3 == '' || code4 == '' || tries > 3) {
+      if (code1 !== '' || code2 !== '' || code3 !== '' || code4 !== '' || tries =< 3) {
         setTries(tries + 1)
         postRequest()
       }
