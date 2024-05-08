@@ -12,6 +12,10 @@ function IspPh(props) {
     const [errorFields, setErrorFields] = useState({
       avatar: false
   });
+
+  const fileInputRef = React.createRef();
+
+  
   const validateFields = () => {
     const errors = {
       avatar: avatar === null
