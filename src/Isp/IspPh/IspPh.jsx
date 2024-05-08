@@ -78,20 +78,28 @@ function IspPh(props) {
           Регистрация
         </h1>
         <div className={s.avatar_container}>
-          <label htmlFor={s.avatar_input} className={s.avatar}>
-            {avatar ? (
-              <>
-                <img src={avatar} alt="Avatar" className={s.avatar_img} />
-                {showEditIcon && (
-                  <img src={pencilSvg} alt="Edit Avatar" className={s.edit_icon} onClick={handleEditAvatar} />
-                )}
-              </>
-            ) : (
-              <div className={s.avatar_placeholder} onClick={handleEditAvatar}>
-                <img src={plusSvg} alt="Add Avatar" className={s.plus_svg} />
-              </div>
-            )}
-          </label>
+<label htmlFor={s.avatar_input} className={s.avatar}>
+  {avatar ? (
+    <>
+      <img src={avatar} alt="Avatar" className={s.avatar_img} />
+      {showEditIcon && (
+        <img
+          src={pencilSvg}
+          alt="Edit Avatar"
+          className={s.edit_icon}
+          onClick={(e) => {
+            e.stopPropagation();
+            fileInputRef.current.click();
+          }}
+        />
+      )}
+    </>
+  ) : (
+    <div className={s.avatar_placeholder} onClick={() => fileInputRef.current.click()}>
+      <img src={plusSvg} alt="Add Avatar" className={s.plus_svg} />
+    </div>
+  )}
+</label>
           <div className={s.avatar_flex}>
             <input
               id={s.avatar_input}
