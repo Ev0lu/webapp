@@ -18,7 +18,7 @@ const IspCon = (props) => {
       }, [])
   useEffect(() => {
     handleSubmit()
-  }, [code4]
+  }, [code4])
   const handleCodeChange = (index, value) => {
     switch (index) {
       case 0:
