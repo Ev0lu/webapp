@@ -33,13 +33,8 @@ function IspPh(props) {
     };
   
     const handleEditAvatar = () => {
-      const input = document.createElement('input');
-      input.type = 'file';
-      input.accept = 'image/*';
-      input.onchange = (event) => {
-        handleAvatarChange(event);
-      };
-      input.click();
+      fileInputRef.current.click();
+
     };
     return (
       <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }> 
@@ -76,6 +71,7 @@ function IspPh(props) {
           type="file"
           accept="image/*"
           onChange={handleAvatarChange}
+          ref={fileInputRef}
           className={s.avatar_input}
         />
         { avatar === null && (errorFields.avatar && <span className={s.error_message}>Пожалуйста, приложите изображение</span>)}
