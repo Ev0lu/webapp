@@ -113,12 +113,12 @@ function Isp3(props) {
   };
 
   const selectCountry2 = (country) => {
-    const isSelected = selectedCountries2.includes(country[1]);
+    const isSelected = selectedCountries2.includes(country[0]);
     if (isSelected) {
       
-      setSelectedCountries2(selectedCountries2.filter(c => c !== country[1]));
+      setSelectedCountries2(selectedCountries2.filter(c => c !== country[0]));
     } else {
-      setSelectedCountries2([...selectedCountries2, country[1]]);
+      setSelectedCountries2([...selectedCountries2, country[0]]);
     }
 
   };
@@ -271,7 +271,7 @@ useEffect(() => {
                      type="checkbox"
                      className={`${s.inputCheck} ${props.colorB === 'light' ? s.light : s.dark}`}
                      checked={selectedCountries2.includes(' ' + lang.label)}
-                     onChange={() => selectCountry2(lang)}
+                     onChange={() => selectCountry2([lang.label, lang.value])}
                      style={{
                       width: 20,
                       height: 20,
@@ -285,7 +285,7 @@ useEffect(() => {
                      type="checkbox"
                      className={`${s.inputCheck} ${props.colorB === 'light' ? s.light : s.dark}`}
                      checked={selectedCountries2.includes(' ' + lang.label)}
-                     onChange={() => selectCountry2(country)}
+                     onChange={() => selectCountry2([lang.label, lang.value])}
                      style={{
                       width: 20,
                       height: 20,
