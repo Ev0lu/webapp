@@ -10,14 +10,15 @@ function Isp2(props) {
     const [mail, setMail] = useState('');
     const [pass, setPass] = useState('')
     const [pass2, setPass2] = useState('')
-
+    const [check,setCheck] = useState('')
     const [rlink, setRlink] = useState('/zak1_reg')
     const [errorFields, setErrorFields] = useState({
         login: false,
         tele: false,
         mail: false,
         pass: false,
-        pass2: false
+        pass2: false,
+        check: false
     });
 
     const validateFields = () => {
@@ -26,7 +27,8 @@ function Isp2(props) {
             tele: tele === '',
             mail: mail === '',
             pass: pass === '',
-            pass2: pass2 === ''
+            pass2: pass2 === '',
+            check: check === ''
         };
         setErrorFields(errors);
         return !Object.values(errors).some(Boolean);
@@ -90,7 +92,7 @@ const postRequest = async () => {
     const responseData = await response.json();
     console.log(responseData)
     if (responseData.exists) {
-      console.log('Такая почта уже существует');
+      setCheck('exist')
     } else {
       console.log('Такой почты не существует');
     }
@@ -174,9 +176,10 @@ const postRequest = async () => {
         {pass!=pass2 && <span className={s.error_message}>Пароли должны совпадать</span>}
 
 
+
         </div>
 
-        <Link to={pass === pass2 && login !== '' && tele !== '' && mail !== '' ? '/isp_con' : '/isp2_reg'}>
+        <Link to={pass === pass2 && login !== '' && tele !== '' && mail !== '' && check !== '' ? '/isp_con' : '/isp2_reg'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
                 sessionStorage.setItem('login', login)
                 sessionStorage.setItem('tele', tele)
