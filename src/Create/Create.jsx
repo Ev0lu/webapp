@@ -260,6 +260,8 @@ const handleInputChange2 = (e) => {
     const handleChange2 = (event) => {
         setTele(event.target.value);
     };
+
+   const [place, setPlace] = useState('online')
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>  
          <div className={s.greetings_wrapper}>
@@ -296,6 +298,24 @@ const handleInputChange2 = (e) => {
         {tele === '' && (errorFields.tele && <span className={s.error_message}>Пожалуйста, введите телефон</span>)}
 
         </div>
+
+
+
+        <div className={`${s.radio_gender}`} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>
+            <div>
+                <input type="radio" id="online" name="place" value="online" checked={place === 'online'} onChange={handleGenderChange} />
+                <label htmlFor="online" className={s.genderlabel}>Онлайн</label>
+            </div>
+            <div>
+                <input type="radio" id="offline" name="place" value="offline" checked={place === 'offline'} onChange={handleGenderChange} />
+                <label htmlFor="offline" className={s.genderlabel}>Оффлайн</label>
+            </div>
+            {place === '' && (errorFields.place && <span className={s.error_message}>Выберите тип заказа</span>)}
+
+
+          {place === 'offline' &&
+
+          
         <div className={s.dropdown_container} ref={dropdownRef}>
       <input
         type="text"
@@ -346,6 +366,7 @@ const handleInputChange2 = (e) => {
         {selectedCountry2 === '' && (errorFields.selectedCountry2 && <span className={s.error_message}>Выберите ваш город</span>)}
 
       </div>
+           }
       <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/isp1_reg' : '/isp3_reg'}>
         <button onClick={() => {
           validateFields()
