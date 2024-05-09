@@ -327,7 +327,7 @@ useEffect(() => {
         </div>
 
 
-        <Link to={selectedCountries1.length !== 0 || selectedCountries2.length !== 0 ? '/isp_reg_photo' : '/isp3_reg'}>
+        <Link to={selectedCountries1.length !== 0 || selectedCountries2.length !== 0 ? '/isp2_reg' : '/isp3_reg'}>
           <button onClick={() => {
             validateFields()
 
