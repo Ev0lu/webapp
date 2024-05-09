@@ -315,7 +315,7 @@ const handleInputChange2 = (e) => {
                 <label htmlFor="offline" className={s.genderlabel}>Оффлайн</label>
             </div>
 
-          {place === 'offline' && (<div className={s.dropdown_container} ref={dropdownRef}>
+          <div className={s.dropdown_container} ref={dropdownRef}>
                         <input
                           type="text"
                           value={searchQuery}
@@ -364,8 +364,7 @@ const handleInputChange2 = (e) => {
                         </div>
                           {selectedCountry2 === '' && (errorFields.selectedCountry2 && <span className={s.error_message}>Выберите ваш город</span>)}
                   
-                        </div>)
-           }
+                        </div>
       <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/isp1_reg' : '/isp3_reg'}>
         <button onClick={() => {
           validateFields()
