@@ -10,14 +10,15 @@ function Zak2(props) {
     const [mail, setMail] = useState('');
     const [pass, setPass] = useState('')
     const [pass2, setPass2] = useState('')
-
+    const [check,setCheck] = useState('')
     const [rlink, setRlink] = useState('/zak1_reg')
     const [errorFields, setErrorFields] = useState({
         login: false,
         tele: false,
         mail: false,
         pass: false,
-        pass2: false
+        pass2: false,
+        check: false
     });
 
     const validateFields = () => {
@@ -26,7 +27,8 @@ function Zak2(props) {
             tele: tele === '',
             mail: mail === '',
             pass: pass === '',
-            pass2: pass2 === ''
+            pass2: pass2 === '',
+            check: check === ''
         };
         setErrorFields(errors);
         return !Object.values(errors).some(Boolean);
@@ -41,6 +43,13 @@ function Zak2(props) {
     };
     const handleChange3 = (event) => {
         setMail(event.target.value);
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const isValidEmail = emailRegex.test(event.target.value);
+        if (isValidEmail === true) {
+            setCheck('exist')
+        } else{
+            setCheck('')
+        }
     };
     const handleChange4 = (event) => {
         setPass(event.target.value);
@@ -60,9 +69,36 @@ function Zak2(props) {
             setRlink('/zak1_reg')
         }
     }
+    useEffect(() => {
+        setLogin(sessionStorage.getItem('login') !== null ? sessionStorage.getItem('login') : '')
+        setTele(sessionStorage.getItem('tele') !== null ? sessionStorage.getItem('tele') : '')
+        setMail(sessionStorage.getItem('mail') !== null ? sessionStorage.getItem('mail') : '')
+        setPass(sessionStorage.getItem('pass') !== null ? sessionStorage.getItem('pass') : '')
+        setPass2(sessionStorage.getItem('pass') !== null ? sessionStorage.getItem('pass') : '')
 
+      }, [])
 
+        
+const postRequest = async () => {  
+  let user = {
+    email: mail,
+  };
 
+  try {
+    const response = await fetch('https://assista1.ru/auth/code/send', {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    });
+
+  } catch (error) {
+    setCheck('exist')
+  }
+}
+    
     return (
         <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>         
         <div className={s.greetings_wrapper}>
@@ -136,14 +172,23 @@ function Zak2(props) {
             />
         { pass === '' && (errorFields.pass2 && <span className={s.error_message}>Пожалуйста, подтвердите пароль</span>)}
         {pass!=pass2 && <span className={s.error_message}>Пароли должны совпадать</span>}
+        {errorFields.check && <span className={s.error_message}>Почта не соответствует формату</span>}
+
+
 
 
         </div>
 
-        <Link to={pass === pass2 && login !== '' && tele !== '' && mail !== '' ? '/zak_con' : '/zak2_reg'}>
+        <Link to={pass === pass2 && login !== '' && tele !== '' && mail !== '' && check !== '' ? '/zak_con' : '/zak2_reg'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
+                sessionStorage.setItem('login', login)
+                sessionStorage.setItem('tele', tele)
+                sessionStorage.setItem('mail', mail)
+                sessionStorage.setItem('pass', pass)
+                if (pass === pass2 && login !== '' && tele !== '' && mail !== '' && check !== '') {
+                    postRequest()
+                }
                 validateFields()
-                localStorage.setItem('login', JSON.stringify(login));
             }}>Далее</button>
         </Link>
         </div>
@@ -151,5 +196,5 @@ function Zak2(props) {
     )
   }
   
-  export default Zak2
+export default Zak2;
   
