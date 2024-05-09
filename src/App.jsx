@@ -59,8 +59,8 @@ function App() {
           <Route path="/isp2_reg" element={<Isp2 colorB={colorB} />} />
           <Route path="/isp3_reg" element={<Isp3 colorB={colorB} />} />
           <Route path="/isp_reg_photo" element={<IspPh colorB={colorB} />} />
-          <Route path="/isp_con" element={<IspCon colorB={colorB} />} />
-          <Route path="/zak_con" element={<ZakCon colorB={colorB} />} />
+          <Route path="/isp_con" element={<IspCon tg={tg} colorB={colorB} />} />
+          <Route path="/zak_con" element={<ZakCon tg={tg} colorB={colorB} />} />
 
           
           
