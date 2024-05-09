@@ -327,7 +327,7 @@ const handleInputChange2 = (e) => {
           type="text"
           placeholder="Город"
           value={searchQuery2}
-          className={`${s.password_field2} ${props.colorB === 'light' ? s.light : s.dark}`}
+          className={`${s.password_field} ${props.colorB === 'light' ? s.light : s.dark}`}
           onChange={(e) => {handleInputChange2(e)}}
           onClick={toggleDropdown2}
         />
