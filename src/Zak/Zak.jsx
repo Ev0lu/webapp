@@ -112,7 +112,7 @@ function Zak(props) {
         
         const fetchData = async () => {
           try {
-            const response = await fetch(`https://assista1.ru/users/check/worker?telegram_id=${telegramId}`);
+            const response = await fetch(`https://assista1.ru/users/check/client?telegram_id=${telegramId}`);
             const data = await response.json();
             const exist = await data.exist;
             setTimeout(setIsexist(JSON.stringify(exist)),1000)
