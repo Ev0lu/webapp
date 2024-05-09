@@ -379,9 +379,10 @@ const handleInputChange2 = (e) => {
                 }
 
             <div className={s.password_input3}>
-              <h3>Срок</h3>
-
-            <input
+              <>
+                <h3>Срок</h3>
+              </>
+            <>            <input
                 type={'text'}
                 placeholder=""
                 className={`${s.password_field3} ${errorFields.login && s.error}`}
@@ -390,6 +391,8 @@ const handleInputChange2 = (e) => {
                 style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#373737', color:'#C7C7C7'} }
 
             />
+              </>
+
             {price === '' && (errorFields.login && <span className={s.error_message}>Пожалуйста, введите логин</span>)}
 
         </div>
