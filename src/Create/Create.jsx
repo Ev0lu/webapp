@@ -284,7 +284,7 @@ const handleInputChange2 = (e) => {
 
         </div>
         <div className={s.password_input2}>
-            <input
+            <textarea rows="10" cols="40" maxlength="200"
                 type={'text'}
                 placeholder="Техническое задание"
                 className={`${s.password_field2} ${errorFields.tele && s.error}`}
