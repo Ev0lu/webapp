@@ -10,6 +10,15 @@ const ZakCon = (props) => {
   const [error, setError] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
   const [code, setCode] = useState('');
+  const [invalid, setInvalid] = useState(true)
+  const [tries, setTries] = useState(0)
+  const [mail, setMail] = useState()
+  useEffect(() => {
+        setMail(sessionStorage.getItem('mail') !== null ? sessionStorage.getItem('mail') : '')
+      }, [])
+  useEffect(() => {
+    handleSubmit()
+  }, [code4])
   const handleCodeChange = (index, value) => {
     switch (index) {
       case 0:
@@ -48,11 +57,57 @@ const ZakCon = (props) => {
     const code = `${code1}${code2}${code3}${code4}`;
 
     if (code.length !== 4) {
-      setError(true);
     } else {
-      setIsVerified(true);
+      setIsVerified(true)
+      postRequest()
+      setTries(tries + 1)
+
+      
     }
   };
+
+
+const postRequest = async () => {  
+  let user = {
+    email_data: {
+      email: mail
+    },
+    code: `${code1}${code2}${code3}${code4}`
+    
+  };
+  console.log(user)
+
+  try {
+    const response = await fetch('https://assista1.ru/auth/code/verify', {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      setIsVerified(true);
+      sessionStorage.setItem('sessionToken', data.sessionToken)
+      console.log(data.sessionToken)
+      
+    } else {
+      setCode1('')
+      setCode2('')
+      setCode3('')
+      setCode4('')
+      console.error('Ошибка:', response.status, response.statusText);
+      console.log(data);
+    }
+
+  } catch (error) {
+
+  }
+}
+   
+  
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }> 
     <div className={s.greetings_wrapper}>
@@ -105,8 +160,11 @@ const ZakCon = (props) => {
           />
         </div>
         {error && <div className={s.error_message}>Неправильный код</div>}
-    <Link to={code1 == '' || code2 == '' || code3 == '' || code4 == '' ? '/zak_con' : '/zak_reg_photo'}>
-        <button className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`} onClick={handleSubmit}>
+        {tries > 3  && <div className={s.error_message}>Вы исчерпали количество попыток, начните регистрацию заново</div>}
+    <Link to={code1 == '' || code2 == '' || code3 == '' || code4 == '' || tries > 3 || isVerified === false ? '/zak_con' : '/zak_reg_photo'}>
+        <button className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`} onClick={() => {
+      handleSubmit()
+      }}>
           Подтвердить
         </button>
       </Link>
