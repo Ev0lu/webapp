@@ -69,6 +69,45 @@ const IspCon = (props) => {
 
 const postRequest = async () => {  
   let user = {
+    profile: {
+      telegram_id: mail,
+      login:,
+      email:,
+      full_name:,
+      phone:,
+      gender:,
+      password:,
+    },
+    client:{
+      birth_date:
+    
+  };
+  console.log(user)
+
+  try {
+    const response = await fetch('https://assista1.ru/auth/code/verify', {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      //тут реквест выполнять
+    } else {
+
+    }
+
+  } catch (error) {
+
+  }
+}
+  
+const postRequest = async () => {  
+  let user = {
     email_data: {
       email: mail
     },
@@ -106,6 +145,8 @@ const postRequest = async () => {
 
   }
 }
+
+
    
   
   return (
