@@ -316,7 +316,7 @@ const handleInputChange2 = (e) => {
             </div>
           </div>
            {place === 'offline' &&
-           <>
+           
               <div className={s.dropdown_container} ref={dropdownRef}>
                         <input
                           type="text"
@@ -342,7 +342,10 @@ const handleInputChange2 = (e) => {
                         
                         {selectedCountry === '' && (errorFields.selectedCountry && <span className={s.error_message}>Выберите вашу страну</span>)}
                       </div>
-                            
+                            }
+
+                {place === 'offline' &&
+
                         <div className={s.dropdown_container2} ref={dropdownRef2}>
                           <input
                             type="text"
@@ -367,8 +370,8 @@ const handleInputChange2 = (e) => {
                           {selectedCountry2 === '' && (errorFields.selectedCountry2 && <span className={s.error_message}>Выберите ваш город</span>)}
                   
                         </div>
-                        </>
-      }
+                        
+                }
       <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/isp1_reg' : '/isp3_reg'}>
         <button onClick={() => {
           validateFields()
