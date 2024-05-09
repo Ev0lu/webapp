@@ -249,6 +249,17 @@ const handleInputChange2 = (e) => {
   setSearchQuery2(newSearchQuery2);
   setOffset2(0);
 };
+
+
+
+
+
+    const handleChange = (event) => {
+        setLogin(event.target.value);
+    };
+    const handleChange2 = (event) => {
+        setTele(event.target.value);
+    };
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>  
          <div className={s.greetings_wrapper}>
