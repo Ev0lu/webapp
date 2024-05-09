@@ -515,17 +515,17 @@ border: 2px solid white;
   font-size: 12px;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
 }
-.password_input2{
+.password_input3{
   display: flex;
   flex-direction: column;
   min-height: 160px;
   gap: 5px;
 }
   
-.password_input2{
+.password_input3{
     width: 315px;
 }
-.password_field2{
+.password_field3{
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     font-size: 14px;
     padding: 10px 15px 11px 15px;
@@ -545,11 +545,11 @@ border: 2px solid white;
   
 }
 
-  .password_field2.light{
+  .password_field3.light{
     color: black;
     background-color: white;
 }
-.password_field2.dark{
+.password_field3.dark{
   color: white;
   background-color: #373737;
   border: 1px solid #ccc;
