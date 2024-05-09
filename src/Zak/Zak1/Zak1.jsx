@@ -20,12 +20,27 @@ function Zak1(props) {
       const [selectedDate, setSelectedDate] = useState(null);
       const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
       const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+      const [nowYear, setNowYear] = useState(new Date().getFullYear());
+      const [err, setErr] = useState(null);
+
+     useEffect(() => {
+         setNowYear(nowYear-17)
+     },[])
+       useEffect(() => {
+         if (selectedYear > nowYear) {
+              setErr(false)
+         } else {
+             setErr(true)
+         }
+     },[selectedYear])
       const [errorFields, setErrorFields] = useState({
-        selectedDate: false
+        selectedDate: false,
+        err: false
     });
       const validateFields = () => {
         const errors = {
-          selectedDate: selectedDate === null
+          selectedDate: selectedDate === null,
+          err: err === ''
         };
         setErrorFields(errors);
         return !Object.values(errors).some(Boolean);
@@ -74,6 +89,8 @@ function Zak1(props) {
         readOnly
       />
       {selectedDate === null && (errorFields.selectedDate && <span className={s.error_message}>Пожалуйста, введите имя</span>)}
+      {errorFields.err && <span className={s.error_message}>Вы должны быть старше 18 лет</span>}
+
       </div>
       <div className={`${s.icon} ${errorFields.selectedDate && s.open}`} onClick={toggleCalendar}>
         {showCalendar ? <img src={props.colorB === 'light' ? lightplus : plus}></img>: <img src={props.colorB === 'dark' ? minus : lightminus}></img>}
@@ -110,8 +127,14 @@ function Zak1(props) {
         </div>
       )}
     </div>
-    <Link to={selectedDate !== null ? "/zak2_reg" : "/zak1_reg"}>
-        <button onClick={validateFields} className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>Далее</button>
+    <Link to={selectedDate !== null || err !== false ? "/zak2_reg" : "/zak1_reg"}>
+        <button onClick={() => {
+          validateFields()
+          if (selectedDate !== null || err !== false){
+              sessionStorage.setItem('birth_date', `${selectedYear}-${selectedMonth}-${selectedDate}`)
+          }
+
+      }} className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>Далее</button>
     </Link>
         </div>
       </div>
