@@ -70,16 +70,20 @@ const IspCon = (props) => {
 const postRequest = async () => {  
   let user = {
     profile: {
-      telegram_id: mail,
-      login: 's',
-      email:'s',
-      full_name:'s',
-      phone:'s',
-      gender:'s',
-      password:'s',
+      telegram_id: props.tg.initDataUnsafe.user.id,
+      login: sessionStorage.getItem('login') ,
+      email: sessionStorage.getItem('mail'),
+      full_name: sessionStorage.getItem('name') + ' ' + sessionStorage.getItem('lname') + ' ' + sessionStorage.getItem('fname'),
+      phone: sessionStorage.getItem('tele'),
+      gender: sessionStorage.getItem('gender'),
+      password: sessionStorage.getItem('pass'),
     },
-    client:{
-      birth_date:'s'
+    worker:{
+      location: {
+        city_id: sessionStorage.getItem('selectedCountry2')[1]
+      },
+      languages: [
+    }
     
   };
   console.log(user)
