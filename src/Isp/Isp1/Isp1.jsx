@@ -306,7 +306,7 @@ const handleInputChange2 = (e) => {
         {selectedCountry2 === '' && (errorFields.selectedCountry2 && <span className={s.error_message}>Выберите ваш город</span>)}
 
       </div>
-      <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/isp1_reg' : '/isp2_reg'}>
+      <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/isp1_reg' : '/isp3_reg'}>
         <button onClick={() => {
           validateFields()
           sessionStorage.setItem('selectedCountry2', selectedCountry2)
