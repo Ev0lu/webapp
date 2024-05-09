@@ -256,6 +256,33 @@ const handleInputChange2 = (e) => {
         </Link>
             <h1 className={s.greetings_text} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Регистрация</h1>
         </div>
+
+          <div className={s.password_input}>
+            <input
+                type={'text'}
+                placeholder="Название"
+                className={`${s.password_field} ${errorFields.login && s.error}`}
+                value={login}
+                onChange={handleChange}
+                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
+
+            />
+            {login === '' && (errorFields.login && <span className={s.error_message}>Пожалуйста, введите логин</span>)}
+
+        </div>
+        <div className={s.password_input2}>
+            <input
+                type={'text'}
+                placeholder="Техническое задание"
+                className={`${s.password_field2} ${errorFields.tele && s.error}`}
+                value={tele}
+                onChange={handleChange2}
+                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
+
+            />
+        {tele === '' && (errorFields.tele && <span className={s.error_message}>Пожалуйста, введите телефон</span>)}
+
+        </div>
         <div className={s.dropdown_container} ref={dropdownRef}>
       <input
         type="text"
