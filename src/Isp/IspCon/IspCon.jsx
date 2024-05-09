@@ -71,15 +71,15 @@ const postRequest = async () => {
   let user = {
     profile: {
       telegram_id: mail,
-      login:,
-      email:,
-      full_name:,
-      phone:,
-      gender:,
-      password:,
+      login: 's',
+      email:'s',
+      full_name:'s',
+      phone:'s',
+      gender:'s',
+      password:'s',
     },
     client:{
-      birth_date:
+      birth_date:'s'
     
   };
   console.log(user)
