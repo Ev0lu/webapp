@@ -92,7 +92,7 @@ const postRequest = async () => {
       setIsVerified(true);
       sessionStorage.setItem('sessionToken', data.sessionToken)
       console.log(data.sessionToken)
-      
+      //тут реквест выполнять
     } else {
       setCode1('')
       setCode2('')
