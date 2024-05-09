@@ -288,7 +288,7 @@ const handleInputChange2 = (e) => {
                 className={`${s.password_field} ${errorFields.login && s.error}`}
                 value={login}
                 onChange={handleChange}
-                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
+                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#373737', color:'#C7C7C7'} }
 
             />
             {login === '' && (errorFields.login && <span className={s.error_message}>Пожалуйста, введите логин</span>)}
@@ -301,7 +301,7 @@ const handleInputChange2 = (e) => {
                 className={`${s.password_field2} ${errorFields.tele && s.error}`}
                 value={tele}
                 onChange={handleChange2}
-                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
+                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#373737', color:'#C7C7C7'} }
 
             />
         {tele === '' && (errorFields.tele && <span className={s.error_message}>Пожалуйста, введите телефон</span>)}
@@ -387,7 +387,7 @@ const handleInputChange2 = (e) => {
                 className={`${s.password_field3} ${errorFields.login && s.error}`}
                 value={price}
                 onChange={handleChange3}
-                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
+                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#373737', color:'#C7C7C7'} }
 
             />
             {price === '' && (errorFields.login && <span className={s.error_message}>Пожалуйста, введите логин</span>)}
@@ -401,7 +401,7 @@ const handleInputChange2 = (e) => {
                 className={`${s.password_field3} ${errorFields.login && s.error}`}
                 value={term}
                 onChange={handleChange4}
-                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
+                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#373737', color:'#C7C7C7'} }
 
             />
             {term === '' && (errorFields.login && <span className={s.error_message}>Пожалуйста, введите логин</span>)}
