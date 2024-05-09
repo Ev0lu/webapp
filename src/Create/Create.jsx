@@ -261,7 +261,7 @@ const handleInputChange2 = (e) => {
         setTele(event.target.value);
     };
 
-   const [place, setPlace] = useState('online')
+   const [place, setPlace] = useState('offline')
 
     const handleGenderChange = (event) => {
       setPlace(event.target.value);
