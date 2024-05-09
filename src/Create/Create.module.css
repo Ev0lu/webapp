@@ -523,9 +523,7 @@ border: 2px solid white;
   gap: 5px;
 }
   
-.password_input3{
-    width: 315px;
-}
+
 .password_field3{
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     font-size: 14px;
@@ -555,6 +553,7 @@ border: 2px solid white;
   background-color: #373737;
   border: 1px solid #ccc;
 }
-
+h3{
+  display:flex;
 
 
