@@ -209,7 +209,7 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
             {isexist === true  && (<span className={s.error_message}>Такой пользователь уже существует</span>) }
             {isexist === undefined  && (<span className={s.error_message}>Пожалуйста, откройте приложение в телеграме</span>) }        </div>
             
-        <Link to={gender === '' || name === '' || lname === '' || isexist === true || isexist === null ? '/isp_reg' : '/isp1_reg'}>
+        <Link to={gender === '' || name === '' || lname === '' || isexist === true || isexist === null ? '/zak_reg' : '/zak1_reg'}>
             <button className={s.greetings_btn} onClick={() => {
                 sessionStorage.setItem('name', name)
                 sessionStorage.setItem('lname', lname)
