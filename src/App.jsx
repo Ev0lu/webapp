@@ -5,6 +5,8 @@ import Header from './Header/Header'
 import Reg from './Registration/Reg'
 import Auth from './Auth/Auth'
 import Greetings from './Greetings/Greetings';
+import Create from './Create/Create';
+
 import Isp from './Isp/Isp'
 import Zak from './Zak/Zak'
 import Zak1 from './Zak/Zak1/Zak1';
@@ -47,7 +49,7 @@ function App() {
  
 
         <Routes>
-          <Route path="/" element={<Greetings colorB={colorB}/>} />
+          <Route path="/" element={<Create colorB={colorB}/>} />
           <Route path="/registration" element={<Reg colorB={colorB} />} />
           <Route path="/authorization" element={<Auth colorB={colorB} />} />
           <Route path="/isp_reg" element={<Isp tg={tg} colorB={colorB}/>} />
