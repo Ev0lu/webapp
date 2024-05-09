@@ -82,7 +82,7 @@ const postRequest = async (token) => {
       location: {
         city_id: sessionStorage.getItem('selectedCountry2')[1]
       },
-      languages: [
+      languages: []
     }
     
   };
