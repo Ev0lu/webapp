@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+  import React, { useRef, useState, useEffect } from 'react';
 import s from './Create.module.css';
 import arrowsvg from '../assets/arrow.svg';
 import arrowsvg2 from '../assets/angle-dark.svg';
@@ -313,60 +313,59 @@ const handleInputChange2 = (e) => {
             {place === '' && (errorFields.place && <span className={s.error_message}>Выберите тип заказа</span>)}
 
 
-          {place === 'offline' &&
-
+          {place === 'offline' ? <div className={s.dropdown_container} ref={dropdownRef}>
+                <input
+                  type="text"
+                  value={searchQuery}
+                  placeholder="Страна"
+                  onChange={(e) => {handleInputChange(e)}}
+                  onClick={toggleDropdown}
           
-        <div className={s.dropdown_container} ref={dropdownRef}>
-      <input
-        type="text"
-        value={searchQuery}
-        placeholder="Страна"
-        onChange={(e) => {handleInputChange(e)}}
-        onClick={toggleDropdown}
-
-        className={`${s.password_field} ${props.colorB === 'light' ? s.light : s.dark}`}
-      />
-      <div className={`${s.dropdown_options} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen ? s.open : ''}`}>
-        <div className={s.scroll_container} ref={scrollContainerRef} onScroll={handleScroll}>
-          {countries.map((country, index) => (
-            <div key={index} className={`${s.dropdown_option} ${props.colorB === 'light' ? s.light : s.dark}`} onClick={() => selectCountry([country.label, country.value])}>
-              {country.label}
-            </div>
-          ))}
-        </div>
-        <div className={`${s.scrollbar_1} ${props.colorB === 'light' ? s.light : s.dark}`} style={{ height: `90%`}} />
-        <div className={`${s.scrollbar} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef} style={{ height: `${scrollbarHeight}%` }} />
-        
-      </div>
-      
-      {selectedCountry === '' && (errorFields.selectedCountry && <span className={s.error_message}>Выберите вашу страну</span>)}
-    </div>
-          }
-      <div className={s.dropdown_container2} ref={dropdownRef2}>
-        <input
-          type="text"
-          placeholder="Город"
-          value={searchQuery2}
-          className={`${s.password_field} ${props.colorB === 'light' ? s.light : s.dark}`}
-          onChange={(e) => {handleInputChange2(e)}}
-          onClick={toggleDropdown2}
-        />
-        <div className={`${s.dropdown_options2} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen2 ? s.open : ''}`}>
-          <div className={s.scroll_container2} ref={scrollContainerRef2} onScroll={handleScroll2}>
-          {cities.map((citymap, index) => (
-            <div key={index} className={`${s.dropdown_option2} ${props.colorB === 'light' ? s.light : s.dark}`} onClick={() => selectCountry2([citymap.label, citymap.value])}>
-              {citymap.label}
-            </div>
-          ))}
-        </div>
-        <div className={`${s.scrollbar_12} ${props.colorB === 'light' ? s.light : s.dark}`} style={{ height: `90%`}} />
-        <div className={`${s.scrollbar2} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef2} style={{ height: `${scrollbarHeight2}%` }} />
-        
-      </div>
-        {selectedCountry2 === '' && (errorFields.selectedCountry2 && <span className={s.error_message}>Выберите ваш город</span>)}
-
-      </div>
-           
+                  className={`${s.password_field} ${props.colorB === 'light' ? s.light : s.dark}`}
+                />
+                <div className={`${s.dropdown_options} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen ? s.open : ''}`}>
+                  <div className={s.scroll_container} ref={scrollContainerRef} onScroll={handleScroll}>
+                    {countries.map((country, index) => (
+                      <div key={index} className={`${s.dropdown_option} ${props.colorB === 'light' ? s.light : s.dark}`} onClick={() => selectCountry([country.label, country.value])}>
+                        {country.label}
+                      </div>
+                    ))}
+                  </div>
+                  <div className={`${s.scrollbar_1} ${props.colorB === 'light' ? s.light : s.dark}`} style={{ height: `90%`}} />
+                  <div className={`${s.scrollbar} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef} style={{ height: `${scrollbarHeight}%` }} />
+                  
+                </div>
+                
+                {selectedCountry === '' && (errorFields.selectedCountry && <span className={s.error_message}>Выберите вашу страну</span>)}
+              </div>
+                    
+                <div className={s.dropdown_container2} ref={dropdownRef2}>
+                  <input
+                    type="text"
+                    placeholder="Город"
+                    value={searchQuery2}
+                    className={`${s.password_field} ${props.colorB === 'light' ? s.light : s.dark}`}
+                    onChange={(e) => {handleInputChange2(e)}}
+                    onClick={toggleDropdown2}
+                  />
+                  <div className={`${s.dropdown_options2} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen2 ? s.open : ''}`}>
+                    <div className={s.scroll_container2} ref={scrollContainerRef2} onScroll={handleScroll2}>
+                    {cities.map((citymap, index) => (
+                      <div key={index} className={`${s.dropdown_option2} ${props.colorB === 'light' ? s.light : s.dark}`} onClick={() => selectCountry2([citymap.label, citymap.value])}>
+                        {citymap.label}
+                      </div>
+                    ))}
+                  </div>
+                  <div className={`${s.scrollbar_12} ${props.colorB === 'light' ? s.light : s.dark}`} style={{ height: `90%`}} />
+                  <div className={`${s.scrollbar2} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef2} style={{ height: `${scrollbarHeight2}%` }} />
+                  
+                </div>
+                  {selectedCountry2 === '' && (errorFields.selectedCountry2 && <span className={s.error_message}>Выберите ваш город</span>)}
+          
+                </div>
+           :
+           <></>
+           }
       <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/isp1_reg' : '/isp3_reg'}>
         <button onClick={() => {
           validateFields()
