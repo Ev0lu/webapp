@@ -1,4 +1,4 @@
-  import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import s from './Create.module.css';
 import arrowsvg from '../assets/arrow.svg';
 import arrowsvg2 from '../assets/angle-dark.svg';
@@ -314,8 +314,9 @@ const handleInputChange2 = (e) => {
                 <input type="radio" id="offline" name="place" value="offline" checked={place === 'offline'} onChange={handleGenderChange} />
                 <label htmlFor="offline" className={s.genderlabel}>Оффлайн</label>
             </div>
-
-          <div className={s.dropdown_container} ref={dropdownRef}>
+          </div>
+           {place === 'offline' &&
+              <div className={s.dropdown_container} ref={dropdownRef}>
                         <input
                           type="text"
                           value={searchQuery}
@@ -365,6 +366,7 @@ const handleInputChange2 = (e) => {
                           {selectedCountry2 === '' && (errorFields.selectedCountry2 && <span className={s.error_message}>Выберите ваш город</span>)}
                   
                         </div>
+      }
       <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/isp1_reg' : '/isp3_reg'}>
         <button onClick={() => {
           validateFields()
