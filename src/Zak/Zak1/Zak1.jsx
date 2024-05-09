@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import s from './Zak1.module.css'
 import plus from '../../assets/plus.svg'
 import minus from '../../assets/minus.svg'
