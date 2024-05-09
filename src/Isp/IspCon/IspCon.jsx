@@ -67,7 +67,7 @@ const IspCon = (props) => {
   };
 
 
-const postRequest = async (token) => {  
+const reg = async (token) => {  
   let user = {
     profile: {
       telegram_id: props.tg.initDataUnsafe.user.id,
