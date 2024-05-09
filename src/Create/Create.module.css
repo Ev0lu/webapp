@@ -1,4 +1,62 @@
+.gender_title{
+color: white;
+}
+.gender{
+margin-right: 10px;
+}
+.radio_gender {
+display: flex;
+flex-direction: column;
+gap: 15px;
+width: 315px; /* Ширина контейнера */
+margin: 0 auto; /* Центрирование контейнера */
 
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+font-weight: 400;
+color: white;
+}
+
+label {
+font-size: 14px; /* Размер текста надписи */
+}
+
+input[type="radio"] {
+margin-right: 10px;
+vertical-align: middle; 
+width: 20px;
+height: 20px; 
+border-radius: 50%; 
+background-color: #ccc; 
+filter: grayscale(1);
+}
+
+input[type='radio']:after {
+width: 10px;
+height: 10px;
+border-radius: 15px;
+top: 4px;
+left: 4px;
+position: relative;
+background-color: white;
+content: '';
+display: inline-block;
+visibility: visible;
+border: 2px solid white;
+}
+
+input[type='radio']:checked:after {
+width: 10px;
+height: 10px;
+border-radius: 15px;
+top: 3.6px; 
+left: 3.5px;
+position: relative;
+background-color: #141413;
+content: '';
+display: inline-block;
+visibility: visible;
+border: 2px solid white;
+}
   
 .greetings{
     height: 100%;
