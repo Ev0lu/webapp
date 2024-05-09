@@ -252,6 +252,8 @@ const handleInputChange2 = (e) => {
 
 
 
+   const [price, setPrice] = useState('')
+   const [term, setTerm] = useState('')
 
 
     const handleChange = (event) => {
@@ -259,6 +261,12 @@ const handleInputChange2 = (e) => {
     };
     const handleChange2 = (event) => {
         setTele(event.target.value);
+    };
+    const handleChange3 = (event) => {
+        setPrice(event.target.value);
+    };
+    const handleChange4 = (event) => {
+        setTerm(event.target.value);
     };
 
    const [place, setPlace] = useState('offline')
@@ -369,6 +377,36 @@ const handleInputChange2 = (e) => {
                         </div>
                         
                 }
+
+            <div className={s.password_input3}>
+              <h3>Срок</h3>
+
+            <input
+                type={'text'}
+                placeholder=""
+                className={`${s.password_field3} ${errorFields.login && s.error}`}
+                value={price}
+                onChange={handleChange3}
+                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
+
+            />
+            {price === '' && (errorFields.login && <span className={s.error_message}>Пожалуйста, введите логин</span>)}
+
+        </div>
+            <div className={s.password_input3}>
+            <h3>Срок</h3>
+            <input
+                type={'text'}
+                placeholder=""
+                className={`${s.password_field3} ${errorFields.login && s.error}`}
+                value={term}
+                onChange={handleChange4}
+                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
+
+            />
+            {term === '' && (errorFields.login && <span className={s.error_message}>Пожалуйста, введите логин</span>)}
+
+        </div>
       <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/isp1_reg' : '/isp3_reg'}>
         <button onClick={() => {
           validateFields()
