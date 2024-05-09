@@ -67,48 +67,7 @@ const IspCon = (props) => {
   };
 
 
-const reg = async (token) => {  
-  let user = {
-    profile: {
-      telegram_id: props.tg.initDataUnsafe.user.id,
-      login: sessionStorage.getItem('login') ,
-      email: sessionStorage.getItem('mail'),
-      full_name: sessionStorage.getItem('name') + ' ' + sessionStorage.getItem('lname') + ' ' + sessionStorage.getItem('fname'),
-      phone: sessionStorage.getItem('tele'),
-      gender: sessionStorage.getItem('gender'),
-      password: sessionStorage.getItem('pass'),
-    },
-    worker:{
-      location: {
-        city_id: sessionStorage.getItem('selectedCountry2')[1]
-      },
-      languages: []
-    }
-    
-  };
-  console.log(user)
 
-  try {
-    const response = await fetch('https://assista1.ru/auth/code/verify', {
-      method: 'POST',
-      headers: {
-        'accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(user)
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      //тут реквест выполнять
-    } else {
-
-    }
-
-  } catch (error) {
-
-  }
-}
   
 const postRequest = async () => {  
   let user = {
