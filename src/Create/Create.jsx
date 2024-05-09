@@ -262,6 +262,10 @@ const handleInputChange2 = (e) => {
     };
 
    const [place, setPlace] = useState('online')
+
+    const handleGenderChange = (event) => {
+      setPlace(event.target.value);
+    };
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>  
          <div className={s.greetings_wrapper}>
