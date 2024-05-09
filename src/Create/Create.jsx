@@ -19,7 +19,9 @@ function Create(props) {
   const scrollContainerRef = useRef(null);
   const scrollbarRef = useRef(null);
   const [city, setCity] = useState('');
-   const [cities, setCities] = useState([])
+  const [login, setLogin] = useState('');
+  const [tele, setTele] = useState('');
+  const [cities, setCities] = useState([])
   const [cities2, setCities2] = useState([
     [
       "Республика Конго",
