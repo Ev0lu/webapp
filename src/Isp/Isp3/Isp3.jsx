@@ -229,7 +229,7 @@ const reg = async () => {
     },
     worker:{
       location: {
-        city_id: sessionStorage.getItem('selectedCountry2')[1]
+        city_id: sessionStorage.getItem('selectedCountry2').split(',')[1]
       },
       languages: [...selectedCountries2Id],
       skills: [...selectedCountries1Id]
