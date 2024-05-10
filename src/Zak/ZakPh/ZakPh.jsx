@@ -67,6 +67,7 @@ const uploadPhoto = async () => {
     });
     console.log(body)
     console.log(access)
+    console.log(`access ${access}`)
     if (response.ok) {
       const responseData = await response.json();
       console.log(responseData);
