@@ -138,7 +138,7 @@ function Create(props) {
     setLoading(true);
 
     try {
-      const response = await fetch(`https://assista1.ru/items/country?startswith=${searchQuery}&offset=${offset}&limit=${limit}`);
+      const response = await fetch(`https://assista1.ru/api/v1/items/country?startswith=${searchQuery}&offset=${offset}&limit=${limit}`);
       const data = await response.json();
       const newCountries = data.items.map(([country, id]) => ({ label: country, value: id }));
 
@@ -156,7 +156,7 @@ function Create(props) {
     setLoading2(true);
 
     try {
-      const response = await fetch(`https://assista1.ru/items/country/cities?country_id=${selectedCountry[1]}&startswith=${searchQuery2}&offset=${offset2}&limit=${limit2}`);
+      const response = await fetch(`https://assista1.ru/api/v1/items/country/cities?country_id=${selectedCountry[1]}&startswith=${searchQuery2}&offset=${offset2}&limit=${limit2}`);
       const data = await response.json();
       const newCities = data.items.map(([citys, id]) => ({ label: citys, value: id }));
 
@@ -286,7 +286,7 @@ const handleInputChange2 = (e) => {
     
 
     try {
-      const response = await fetch(`https://assista1.ru/order/?order_id=${order_id}`);
+      const response = await fetch(`https://assista1.ru/api/v1/order/?order_id=${order_id}`);
       const data = await response.json();
       setLogin(`${data.title}`)
       setTele(`${data.task}`)
@@ -327,7 +327,7 @@ const handleInputChange2 = (e) => {
     };
   
     try {
-      const response = await fetch('https://assista1.ru/order/one', {
+      const response = await fetch('https://assista1.ru/api/v1/order/one', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
