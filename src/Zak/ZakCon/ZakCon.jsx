@@ -22,10 +22,7 @@ const ZakCon = (props) => {
 
 
   const [token, setToken] = useState('')
-  useEffect(() => {
-    setToken(sessionStorage.getItem('sessionToken'))
-    console.log(token)
-  }, [])
+
   const handleCodeChange = (index, value) => {
     switch (index) {
       case 0:
@@ -96,7 +93,7 @@ const postRequest = async () => {
     if (response.ok) {
       const data = await response.json();
       setIsVerified(true);
-      sessionStorage.setItem('sessionToken', data.session_token)
+      setToken(`${data.session_token}`)
       
     } else {
       setCode1('')
