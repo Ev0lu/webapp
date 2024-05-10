@@ -77,7 +77,7 @@ const postRequest = async () => {
   };
 
   try {
-    const response = await fetch('https://assista1.ru/auth/code/verify', {
+    const response = await fetch('https://assista1.ru/api/v1/auth/code/verify', {
       method: 'POST',
       headers: {
         'accept': 'application/json',
