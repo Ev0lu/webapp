@@ -24,36 +24,7 @@ function Edit(props) {
   const [login, setLogin] = useState('');
   const [tele, setTele] = useState('');
   const [cities, setCities] = useState([])
-  const [cities2, setCities2] = useState([
-    [
-      "Республика Конго",
-      "e11abd2a-f367-4f98-9911-40782b5bbbaf"
-    ],
-    [
-      "Республика Корея",
-      "6df01761-e6c2-4cc4-9047-c857044674f9"
-    ],
-    [
-      "Республика Южная Осетия",
-      "4d10fb6d-3edc-4918-87fb-fef636b2dd9f"
-    ],
-    [
-      "Реюньон",
-      "d96f675e-754f-4572-a23a-e6be936ab36e"
-    ],
-    [
-      "Россия",
-      "6b4233c4-fb0d-4168-87ca-5ab2b294fc79"
-    ],
-    [
-      "Руанда",
-      "9fcbfb32-dac0-4a9d-9165-8bff6a8842da"
-    ],
-    [
-      "Румыния",
-      "0ca152b6-0ed7-425d-add3-c5d994f91b14"
-    ]
-  ]);
+
   const [scrollbarHeight, setScrollbarHeight] = useState(0);
 
 
