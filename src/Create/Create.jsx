@@ -17,7 +17,7 @@ function Create(props) {
   const { order_id } = useParams();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const [accessToken, setAccessToken] = useState(searchParams.get('access_token'););
+  const [accessToken, setAccessToken] = useState(searchParams.get('access_token'));
   const [refreshToken, setRefreshToken] = useState(searchParams.get('refresh_token'));
   // Получение значений параметров access_token и refresh_token из URL
 
