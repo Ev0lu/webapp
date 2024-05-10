@@ -19,6 +19,13 @@ const ZakCon = (props) => {
   useEffect(() => {
     handleSubmit()
   }, [code4])
+
+
+  const [token, setToken] = useState('')
+  useEffect(() => {
+    setToken(sessionStorage.getItem('sessionToken'))
+    console.log(token)
+  }, [])
   const handleCodeChange = (index, value) => {
     switch (index) {
       case 0:
