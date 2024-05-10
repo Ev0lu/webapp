@@ -4,7 +4,7 @@ import arrowsvg from '../assets/arrow.svg';
 import arrowsvg2 from '../assets/angle-dark.svg';
 import blackarr from '../assets/black.svg';
 import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 
 
 
@@ -15,8 +15,18 @@ function Edit(props) {
   const limit = 25; // Количество элементов, которые необходимо загрузить при каждом запросе
   const [searchQuery, setSearchQuery] = useState(''); // Input value for country search
   const { order_id } = useParams();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const [accessToken, setAccessToken] = useState(searchParams.get('access_token'););
+  const [refreshToken, setRefreshToken] = useState(searchParams.get('refresh_token'));
+  // Получение значений параметров access_token и refresh_token из URL
+
+
+  
   const [isOpen, setIsOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState([]);
+  const [skills, setSkills] = useState([]);
+
   const dropdownRef = useRef(null);
   const scrollContainerRef = useRef(null);
   const scrollbarRef = useRef(null);
@@ -38,7 +48,7 @@ function Edit(props) {
   const scrollContainerRef2 = useRef(null);
   const scrollbarRef2 = useRef(null);
   const [scrollbarHeight2, setScrollbarHeight2] = useState(0);
-
+  
   
   const [errorFields, setErrorFields] = useState({
     selectedCountry2: false,
@@ -276,7 +286,7 @@ const handleInputChange2 = (e) => {
     
 
     try {
-      const response = await fetch(`https://assista1.ru/order/one?order_id=${order_id}`);
+      const response = await fetch(`https://assista1.ru/order/?order_id=${order_id}`);
       const data = await response.json();
       setLogin(`${data.title}`)
       setTele(`${data.task}`)
@@ -287,8 +297,8 @@ const handleInputChange2 = (e) => {
       }
       setPrice(`${data.price}`)
       setTerm(`${data.duration}`)
-
-      setCity(`${data.location.city_title}`)
+      setSkills([...data.skills])
+      setCity(`${[data.location.city_title, data.location.city_id]}`)
       setSelectedCountry(`${data.location.country_title}`);
       setSearchQuery(`${data.location.country_title}`)
       setSearchQuery2(`${data.location.city_title}`)
@@ -297,6 +307,44 @@ const handleInputChange2 = (e) => {
     }
 
   };
+  useEffect(() => {
+    fetchOrders()
+  },[])
+
+  const patchOrder = async () => {
+    const requestBody = {
+        "title": `${login}`,
+        "skills": [...skills],
+        "task": tele,
+        "is_online": `${place === 'offline' ? 'offline' : 'online'}`,
+        "price": price,
+        "duration": 30,
+        "location": {
+          "city_id": ${selectedCountry[0]},
+          "city_title": "string",
+          "country_title": `${selectedCountry[0]}`
+        }
+    };
+  
+    try {
+      const response = await fetch('https://assista1.ru/order/one', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        // Обработка полученных данных
+      } else {
+        console.error('Failed to fetch orders:', response.status);
+      }
+    } catch (error) {
+      console.error('Error fetching order:', error);
+    }
+};
   
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>  
