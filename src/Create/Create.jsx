@@ -380,7 +380,7 @@ const handleInputChange2 = (e) => {
 
             <div className={s.password_input3}>
               <div style={{display:'flex'}}>
-                <h3>Срок</h3>
+                <h3 style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Срок</h3>
               </div>
             <div style={{display:'flex'}}>            <input
                 type={'text'}
@@ -398,7 +398,8 @@ const handleInputChange2 = (e) => {
         </div>
             <div className={s.password_input3}>
               
-                <h3>Срок</h3>
+                <h3                 style={props.colorB==='light' ? {color:'black'} : {color:'white'} }
+>Срок</h3>
   
             <input
                 type={'text'}
