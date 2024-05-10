@@ -254,6 +254,7 @@ const handleInputChange2 = (e) => {
 
    const [price, setPrice] = useState('')
    const [term, setTerm] = useState('')
+   const [termScale, setTermScale] = useState(50)
 
 
     const handleChange = (event) => {
@@ -274,6 +275,26 @@ const handleInputChange2 = (e) => {
     const handleGenderChange = (event) => {
       setPlace(event.target.value);
     };
+
+
+
+      useEffect(()=>{
+        if(termScale == 0){
+            setTerm('0дн')
+        }else if(termScale == 25){
+            setTerm('1нед')
+        }else if(termScale == 50){
+            setTerm('1мес')
+        }else if(termScale == 75){
+            setTerm('2мес')
+        }
+        else if(termScale == 100){
+            setTerm('3мес')
+
+        }
+    },[termScale])
+
+  
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>  
          <div className={s.greetings_wrapper}>
@@ -413,6 +434,17 @@ const handleInputChange2 = (e) => {
             {term === '' && (errorFields.login && <span className={s.error_message}>Пожалуйста, введите логин</span>)}
 
         </div>
+
+
+          <div className="likert_scale">
+            <input className={'heigh'} type="range" min="0" max="100" step="25" value={termScale} onChange={(e)=> {
+            setTermScale(e.target.value)
+             />
+
+        </div>
+
+
+           
       <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/isp1_reg' : '/isp3_reg'}>
         <button onClick={() => {
           validateFields()
