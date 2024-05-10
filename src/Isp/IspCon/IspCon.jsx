@@ -92,8 +92,7 @@ const postRequest = async () => {
     if (response.ok) {
       const data = await response.json();
       setIsVerified(true);
-      sessionStorage.setItem('sessionToken', data.sessionToken)
-      console.log(data)
+      sessionStorage.setItem('sessionToken', data.session_token)
       //тут реквест выполнять
     } else {
       setCode1('')
@@ -101,7 +100,6 @@ const postRequest = async () => {
       setCode3('')
       setCode4('')
       console.error('Ошибка:', response.status, response.statusText);
-      console.log(data);
     }
 
   } catch (error) {
