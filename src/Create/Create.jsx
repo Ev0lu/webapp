@@ -436,8 +436,8 @@ const handleInputChange2 = (e) => {
         </div>
 
 
-          <div className="likert_scale">
-            <input className={'heigh'} type="range" min="0" max="100" step="25" value={termScale} onChange={(e)=> {
+          <div className={s.likert_scale}>
+            <input className={s.heigh} type="range" min="0" max="100" step="25" value={termScale} onChange={(e)=> {
             setTermScale(e.target.value)
              />
 
