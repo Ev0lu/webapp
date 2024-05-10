@@ -567,3 +567,8 @@ h3{
     width: 315px;
 }
 
+.password_input3 h3{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 400;
+}
+
