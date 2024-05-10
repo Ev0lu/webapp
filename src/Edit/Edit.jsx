@@ -4,6 +4,8 @@ import arrowsvg from '../assets/arrow.svg';
 import arrowsvg2 from '../assets/angle-dark.svg';
 import blackarr from '../assets/black.svg';
 import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+
 
 
 function Edit(props) {
@@ -12,7 +14,7 @@ function Edit(props) {
   const [offset, setOffset] = useState(0);
   const limit = 25; // Количество элементов, которые необходимо загрузить при каждом запросе
   const [searchQuery, setSearchQuery] = useState(''); // Input value for country search
-
+  const { order_id } = useParams();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState([]);
   const dropdownRef = useRef(null);
