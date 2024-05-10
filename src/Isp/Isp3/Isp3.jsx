@@ -33,7 +33,6 @@ function Isp3(props) {
   const [token, setToken] = useState('')
   useEffect(() => {
     setToken(sessionStorage.getItem('sessionToken'))
-    console.log(sessionStorage.getItem('sessionToken'))
     console.log(token)
   }, [])
   const limit = 25;
