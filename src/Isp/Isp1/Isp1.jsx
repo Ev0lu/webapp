@@ -153,7 +153,7 @@ function Isp1(props) {
     setLoading(true);
 
     try {
-      const response = await fetch(`https://assista1.ru/items/country?startswith=${searchQuery}&offset=${offset}&limit=${limit}`);
+      const response = await fetch(`https://assista1.ru/api/v1/items/country?startswith=${searchQuery}&offset=${offset}&limit=${limit}`);
       const data = await response.json();
       const newCountries = data.items.map(([country, id]) => ({ label: country, value: id }));
 
@@ -171,7 +171,7 @@ function Isp1(props) {
     setLoading2(true);
 
     try {
-      const response = await fetch(`https://assista1.ru/items/country/cities?country_id=${selectedCountry[1]}&startswith=${searchQuery2}&offset=${offset2}&limit=${limit2}`);
+      const response = await fetch(`https://assista1.ru/api/v1/items/country/cities?country_id=${selectedCountry[1]}&startswith=${searchQuery2}&offset=${offset2}&limit=${limit2}`);
       const data = await response.json();
       const newCities = data.items.map(([citys, id]) => ({ label: citys, value: id }));
 
