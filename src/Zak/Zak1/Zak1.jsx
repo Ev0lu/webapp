@@ -85,10 +85,15 @@ function Zak1(props) {
         className={`${s.password_field} ${errorFields.selectedDate && s.error}`}
         style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
 
-        value={selectedDate ? selectedDate.toLocaleDateString('ru-RU') : ''}
+        value={selectedDate ?
+        selectedDate.toLocaleDateString('ru-RU') 
+
+            
+        :
+        ''}
         readOnly
       />
-      {selectedDate === null && (errorFields.selectedDate && <span className={s.error_message}>Пожалуйста, введите имя</span>)}
+      {selectedDate === null && (errorFields.selectedDate && <span className={s.error_message}>Пожалуйста, введите дату</span>)}
       {errorFields.err && <span className={s.error_message}>Вы должны быть старше 18 лет</span>}
 
       </div>
@@ -131,7 +136,7 @@ function Zak1(props) {
         <button onClick={() => {
           validateFields()
           if (selectedDate !== null || err !== false){
-              sessionStorage.setItem('birth_date', `${selectedYear}-${selectedMonth}-${selectedDate}`)
+              sessionStorage.setItem('birth_date', `${selectedYear}-${selectedMonth+1}-${selectedDate}`)
           }
 
       }} className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>Далее</button>
