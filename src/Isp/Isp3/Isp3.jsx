@@ -244,10 +244,11 @@ const reg = async () => {
   console.log(user)
 
   try {
-    const response = await fetch(`https://assista1.ru/auth/registration/worker?X-SESSION-TOKEN=${token}`, {
+    const response = await fetch(`https://assista1.ru/auth/registration/worker`, {
       method: 'POST',
       headers: {
         'accept': 'application/json',
+        'X-SESSION-TOKEN': `${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(user)
