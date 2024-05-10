@@ -51,6 +51,11 @@ const uploadPhoto = async () => {
   try {
     const response = await fetch('https://assista1.ru/users/uploadPhoto', {
       method: 'PATCH',
+      headers: {
+        'accept': 'application/json',
+        'Authorization': `${sessionStorage.getItem('access')}`,
+        'Content-Type': 'application/json'
+      },
       body: formData
     });
     if (response.ok) {
