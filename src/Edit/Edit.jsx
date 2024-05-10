@@ -1,12 +1,12 @@
 import React, { useRef, useState, useEffect } from 'react';
-import s from './Create.module.css';
+import s from './Edit.module.css';
 import arrowsvg from '../assets/arrow.svg';
 import arrowsvg2 from '../assets/angle-dark.svg';
 import blackarr from '../assets/black.svg';
 import { Link } from 'react-router-dom';
 
 
-function Create(props) {
+function Edit(props) {
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(false);
   const [offset, setOffset] = useState(0);
@@ -456,4 +456,4 @@ const handleInputChange2 = (e) => {
   );
 }
 
-export default Create;
+export default Edit;
