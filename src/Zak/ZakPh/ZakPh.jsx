@@ -13,7 +13,7 @@ function ZakPh(props) {
     size: false
   });
   const [access, setAccess] = useState('');
-  const formData = new FormData();
+
 
   useEffect(() => {
     setAccess(sessionStorage.getItem('access_token'))
@@ -33,7 +33,6 @@ const handleAvatarChange = (event) => {
           setErrorFields({ size: false });
           setAvatar(reader.result);
           
-          formData.append('photo', file);
           setFilepic(file)
           
         }
@@ -54,6 +53,9 @@ const handleAvatarChange = (event) => {
   };
 
 const uploadPhoto = async () => {
+  const formData = new FormData();
+  formData.append('photo', filepic);
+  console.log(formData)
 
   try {
     const response = await fetch('https://assista1.ru/api/v1/users/uploadPhoto', {
@@ -78,7 +80,6 @@ const uploadPhoto = async () => {
     console.error('Error uploading photo:', error);
   }
 };
-
 
   return (
     <div className={s.greetings} style={props.colorB === "light" ? {backgroundColor: "white"} : {backgroundColor: "#232323"} }>
