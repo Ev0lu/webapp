@@ -255,11 +255,10 @@ const reg = async () => {
 
     if (response.ok) {
       const data = await response.json();
-      console.log(data)
-      console.log(token)
+      sessionStorage.setItem('access', data.access_token)
+
     } else {
-       const data = await response.json();
-       console.log(data)
+
     }
 
   } catch (error) {
