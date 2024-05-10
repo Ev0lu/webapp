@@ -61,8 +61,8 @@ const uploadPhoto = async () => {
         'Content-Type': 'multipart/form-data'
       },
       body: formData
-      console.log(body)
     });
+    console.log(body)
     if (response.ok) {
       const responseData = await response.json();
       console.log(responseData);
