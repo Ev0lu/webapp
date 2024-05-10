@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Route, Routes, Link, Router, Redirect } from 'react-router-dom';
+import { Route, Routes, Link, Router, Navigate } from 'react-router-dom';
 import './App.css'
 import Header from './Header/Header'
 import Reg from './Registration/Reg'
@@ -70,7 +70,7 @@ function App() {
           <Route path="/isp_con" element={<IspCon tg={tg} colorB={colorB} />} />
           <Route path="/zak_con" element={<ZakCon tg={tg} colorB={colorB} />} />
           <Route exact path="/payment">
-            <Redirect to="/payment" />
+            <Navigate to="/payment" />
           </Route>
           <Route path="/payment" element={<Payment tg={tg} colorB={colorB}  />}  />    
           
