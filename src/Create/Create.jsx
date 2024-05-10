@@ -381,7 +381,7 @@ const handleInputChange2 = (e) => {
             <div className={s.password_input3}>
               <div style={{display:'flex'}}>
                 <h3>Срок</h3>
-              </>
+              </div>
             <div style={{display:'flex'}}>            <input
                 type={'text'}
                 placeholder=""
@@ -391,7 +391,7 @@ const handleInputChange2 = (e) => {
                 style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#373737', color:'#C7C7C7'} }
 
             />
-              </>
+              </div>
 
             {price === '' && (errorFields.login && <span className={s.error_message}>Пожалуйста, введите логин</span>)}
 
