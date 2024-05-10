@@ -5,6 +5,9 @@ import Header from './Header/Header'
 import Reg from './Registration/Reg'
 import Auth from './Auth/Auth'
 import Greetings from './Greetings/Greetings';
+import Payment from './Payment/Payment';
+import Edit from './Edit/Edit';
+
 import Create from './Create/Create';
 
 import Isp from './Isp/Isp'
@@ -49,7 +52,9 @@ function App() {
  
 
         <Routes>
-          <Route path="/" element={<Create colorB={colorB}/>} />
+          <Route path="/" element={<Greetings colorB={colorB}/>} />
+          <Route path="/create" element={<Create colorB={colorB}/>} />
+          <Route path="/edit" element={<Edit colorB={colorB}/>} />
           <Route path="/registration" element={<Reg colorB={colorB} />} />
           <Route path="/authorization" element={<Auth colorB={colorB} />} />
           <Route path="/isp_reg" element={<Isp tg={tg} colorB={colorB}/>} />
@@ -63,6 +68,8 @@ function App() {
           <Route path="/isp_reg_photo" element={<IspPh colorB={colorB} />} />
           <Route path="/isp_con" element={<IspCon tg={tg} colorB={colorB} />} />
           <Route path="/zak_con" element={<ZakCon tg={tg} colorB={colorB} />} />
+          <Route path="/payment" element={<Payment tg={tg} colorB={colorB} />} />
+
 
           
           
