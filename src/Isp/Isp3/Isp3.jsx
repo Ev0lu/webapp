@@ -165,7 +165,7 @@ const fetchSkills = async () => {
     setLoading(true);
 
     try {
-      const response = await fetch(`https://assista1.ru/items/skills?offset=${offset}&limit=${limit}`);
+      const response = await fetch(`https://assista1.ru/api/v1/items/skills?offset=${offset}&limit=${limit}`);
       const data = await response.json();
       const newCountries = data.items.map(([country, id]) => ({ label: country, value: id }));
 
@@ -189,7 +189,7 @@ const fetchSkills = async () => {
     setLoading(true);
 
     try {
-      const response = await fetch(`https://assista1.ru/items/language?startswith=${searchQuery2}&offset=${offset}&limit=${limit}`);
+      const response = await fetch(`https://assista1.ru/api/v1/items/language?startswith=${searchQuery2}&offset=${offset}&limit=${limit}`);
       const data = await response.json();
       const newCountries = data.items.map(([country, id]) => ({ label: country, value: id }));
 
@@ -243,7 +243,7 @@ const reg = async () => {
   console.log(user)
 
   try {
-    const response = await fetch(`https://assista1.ru/auth/registration/worker`, {
+    const response = await fetch(`https://assista1.ru/api/v1/auth/registration/worker`, {
       method: 'POST',
       headers: {
         'accept': 'application/json',
