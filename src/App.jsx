@@ -34,8 +34,6 @@ function App() {
     }
   }
   useEffect( () => {
-    
-    console.log(location)
 
     updateColor()
   }, [])
