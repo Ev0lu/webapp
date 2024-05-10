@@ -17,6 +17,7 @@ function ZakPh(props) {
 
   useEffect(() => {
     setAccess(sessionStorage.getItem('access'))
+    console.log(access)
   },[])
 const handleAvatarChange = (event) => {
   const file = event.target.files[0];
