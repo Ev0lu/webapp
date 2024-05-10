@@ -30,7 +30,7 @@ function Isp3(props) {
   const scrollbarRef2 = useRef(null);
   const [offset, setOffset] = useState(0);
   const [offset2, setOffset2] = useState(0);
-  const [token, setToken] = ('')
+  const [token, setToken] = useState('')
   useEffect(() => {
     setToken(sessionStorage.getItem('sessionToken'))
     console.log(sessionStorage.getItem('sessionToken'))
