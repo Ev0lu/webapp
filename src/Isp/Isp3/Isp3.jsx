@@ -256,6 +256,7 @@ const reg = async () => {
     if (response.ok) {
       const data = await response.json();
       console.log(data)
+      console.log(token)
     } else {
        const data = await response.json();
        console.log(data)
