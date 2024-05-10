@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import s from './ZakPh.module.css';
 import plusSvg from '../../assets/plus2.svg';
 import pencilSvg from '../../assets/pencil.svg';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function ZakPh(props) {
   const [avatar, setAvatar] = useState(null);
