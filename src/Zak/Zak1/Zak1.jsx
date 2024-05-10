@@ -136,7 +136,7 @@ function Zak1(props) {
         <button onClick={() => {
           validateFields()
           if (selectedDate !== null || err !== false){
-              sessionStorage.setItem('birth_date', `${selectedYear}-${selectedMonth+1}-${selectedDate.getDate()}`)
+              sessionStorage.setItem('birth_date', `${selectedYear}-${selectedMonth+1 < 10 ? '0' + `${selectedMonth+1}` : selectedMonth+1 }-${selectedDate.getDate() < 10 ? '0' + `${selectedDate.getDate()}` : selectedDate.getDate()  }`)
           }
 
       }} className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>Далее</button>
