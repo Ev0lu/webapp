@@ -330,7 +330,8 @@ const handleInputChange2 = (e) => {
       const response = await fetch('https://assista1.ru/order/one', {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
         },
         body: JSON.stringify(requestBody)
       });
