@@ -102,8 +102,51 @@ const postRequest = async () => {
 
   }
 }
-   
-  
+
+  const reg = async () => {  
+     let user = {
+        profile: {
+          telegram_id: props.tg.initDataUnsafe.user.id,
+          login: sessionStorage.getItem('login'),
+          email: sessionStorage.getItem('mail'),
+          full_name: sessionStorage.getItem('name') + ' ' + sessionStorage.getItem('lname') + ' ' + sessionStorage.getItem('fname'),
+          phone: sessionStorage.getItem('tele'),
+          gender: sessionStorage.getItem('gender'),
+          password: sessionStorage.getItem('pass'),
+        },
+        client:{
+         
+          birth_date: sessionStorage.getItem('birth_date')
+    
+          
+        }
+    
+  };
+
+
+  try {
+    const response = await fetch(`https://assista1.ru/api/v1/auth/registration/client`, {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'X-SESSION-TOKEN': `${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      sessionStorage.setItem('access', data.access_token)
+
+    } else {
+
+    }
+
+  } catch (error) {
+
+  }
+}
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }> 
     <div className={s.greetings_wrapper}>
