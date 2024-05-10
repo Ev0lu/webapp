@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { Route, Routes, Link, Router, useLocation, Redirect } from 'react-router-dom';
+import { Route, Routes, Link, Router, useLocation } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import './App.css'
 import Header from './Header/Header'
 import Reg from './Registration/Reg'
