@@ -52,9 +52,7 @@ function App() {
     <div className="app">
       <Header />
  
-      {location.pathname !== '/payment'
-        ?
-
+     
         <Routes>
           <Route path="/" element={<Greetings colorB={colorB}/>} />
           <Route path="/create" element={<Create colorB={colorB}/>} />
@@ -83,9 +81,7 @@ function App() {
           
       </Routes> 
 
-      : 
-        <Payment tg={tg} colorB={colorB}></Payment>
-      }
+
 
         
         </div>
