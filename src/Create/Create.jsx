@@ -379,10 +379,10 @@ const handleInputChange2 = (e) => {
                 }
 
             <div className={s.password_input3}>
-              <>
+              <div style={{display:'flex'}}>
                 <h3>Срок</h3>
               </>
-            <>            <input
+            <div style={{display:'flex'}}>            <input
                 type={'text'}
                 placeholder=""
                 className={`${s.password_field3} ${errorFields.login && s.error}`}
@@ -397,7 +397,9 @@ const handleInputChange2 = (e) => {
 
         </div>
             <div className={s.password_input3}>
-            <h3>Срок</h3>
+              
+                <h3>Срок</h3>
+  
             <input
                 type={'text'}
                 placeholder=""
