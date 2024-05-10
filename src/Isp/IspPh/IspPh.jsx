@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import s from './IspPh.module.css';
 import plusSvg from '../../assets/plus2.svg';
 import pencilSvg from '../../assets/pencil.svg';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function IspPh(props) {
   const [avatar, setAvatar] = useState(null);
@@ -12,7 +12,12 @@ function IspPh(props) {
     avatar: false,
     size: false
   });
+  const [access, setAccess] = useState('');
 
+
+useEffect(() => {
+  setAccess(sessionStorage.getItem('access'))
+},[])
 const handleAvatarChange = (event) => {
   const file = event.target.files[0];
   if (file) {
@@ -53,7 +58,7 @@ const uploadPhoto = async () => {
       method: 'PATCH',
       headers: {
         'accept': 'application/json',
-        'Authorization': `${sessionStorage.getItem('access')}`,
+        'Authorization': `${access}`,
         'Content-Type': 'application/json'
       },
       body: formData
