@@ -72,7 +72,7 @@ function App() {
           <Route exact path="/payment">
             <Redirect to="/payment" />
           </Route>
-          <Route path="/payment" component={Payment} />    
+          <Route path="/payment" element={<Payment tg={tg} colorB={colorB}  />}  />    
           
           
           
