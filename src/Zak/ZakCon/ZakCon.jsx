@@ -137,7 +137,7 @@ const postRequest = async () => {
 
     if (response.ok) {
       const data = await response.json();
-      sessionStorage.setItem('access', data.access_token)
+      sessionStorage.setItem('access_token', data.access_token)
 
     } else {
 
