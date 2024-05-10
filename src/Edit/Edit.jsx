@@ -267,6 +267,36 @@ const handleInputChange2 = (e) => {
         }
     },[termScale])
 
+
+  
+ const fetchOrders = async () => {
+
+
+
+    
+
+    try {
+      const response = await fetch(`https://assista1.ru/order/one?order_id=${order_id}`);
+      const data = await response.json();
+      setLogin(`${data.title}`)
+      setTele(`${data.task}`)
+      if (data.is_online === true) {
+        setPlace('online')
+      } else {
+        setPlace('offline')
+      }
+      setPrice(`${data.price}`)
+      setTerm(`${data.duration}`)
+
+      setCity(`${data.location.city_title}`)
+      setSelectedCountry(`${data.location.country_title}`);
+      setSearchQuery(`${data.location.country_title}`)
+      setSearchQuery2(`${data.location.city_title}`)
+    } catch (error) {
+      console.error('Error fetching order:', error);
+    }
+
+  };
   
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>  
