@@ -77,7 +77,6 @@ const postRequest = async () => {
     code: `${code1}${code2}${code3}${code4}`
     
   };
-  console.log(user)
 
   try {
     const response = await fetch('https://assista1.ru/auth/code/verify', {
@@ -93,14 +92,12 @@ const postRequest = async () => {
       const data = await response.json();
       setIsVerified(true);
       sessionStorage.setItem('sessionToken', data.session_token)
-      console.log(data.session_token)
       //тут реквест выполнять
     } else {
       setCode1('')
       setCode2('')
       setCode3('')
       setCode4('')
-      console.error('Ошибка:', response.status, response.statusText);
     }
 
   } catch (error) {
