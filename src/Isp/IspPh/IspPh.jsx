@@ -58,7 +58,7 @@ const uploadPhoto = async () => {
       method: 'PATCH',
       headers: {
         'accept': 'multipart/form-data',
-        'Authorization': `${access}`,
+        'Authorization': `Bearer ${access}`,
         'Content-Type': 'multipart/form-data'
       },
       body: formData
