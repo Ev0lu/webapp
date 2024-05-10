@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Route, Routes, Link, Router, useLocation } from 'react-router-dom';
+import { Route, Routes, Link, Router, useLocation, Redirect } from 'react-router-dom';
 import './App.css'
 import Header from './Header/Header'
 import Reg from './Registration/Reg'
@@ -73,9 +73,7 @@ function App() {
           <Route exact path="/payment">
             <Redirect to="/payment" />
           </Route>
-          <Route path="/payment" component={Payment} />
-          <Route path="/about" component={About} />
-    
+          <Route path="/payment" component={Payment} />    
           
           
           
