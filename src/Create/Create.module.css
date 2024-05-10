@@ -126,7 +126,8 @@ border: 2px solid white;
   .reg{
     display: flex;
     width: 315px;
-    
+    justify-content:center;
+    align-items:center;
     
     }
     .reg_arrow{
@@ -572,4 +573,6 @@ h3{
   font-weight: 400;
   font-size: 16px;
 }
+
+
 
