@@ -110,7 +110,7 @@ const uploadPhoto = async () => {
             {size === true && (errorFields.size && <span className={s.error_message}>Изображение не должно быть размером больше чем 200x200</span>)}
           </div>
         </div>
-        <Link to={avatar !== null ? '/create' : '/zak_reg_photo'}>
+        <Link to={avatar !== null ? '/' : '/zak_reg_photo'}>
           <button onClick={() => {
           validateFields()
           uploadPhoto()}} className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>Далее</button>
