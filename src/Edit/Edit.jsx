@@ -320,7 +320,7 @@ const handleInputChange2 = (e) => {
         "price": price,
         "duration": 30,
         "location": {
-          "city_id": ${selectedCountry[0]},
+          "city_id": `${selectedCountry[0]}`,
           "city_title": "string",
           "country_title": `${selectedCountry[0]}`
         }
