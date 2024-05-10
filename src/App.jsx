@@ -52,7 +52,7 @@ function App() {
     <div className="app">
       <Header />
  
-      {location.pathname !== '/payload'
+      {location.pathname !== '/payment'
         ?
 
         <Routes>
