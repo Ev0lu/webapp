@@ -81,6 +81,9 @@ function App() {
 
       : 
         <Payment tg={tg} colorB={colorB}></Payment>
+      }
+
+        
         </div>
 
   )
