@@ -52,7 +52,8 @@ function App() {
     <div className="app">
       <Header />
  
-      
+      {location.pathname !== '/payload'
+        ?
 
         <Routes>
           <Route path="/" element={<Greetings colorB={colorB}/>} />
@@ -73,11 +74,14 @@ function App() {
           <Route path="/zak_con" element={<ZakCon tg={tg} colorB={colorB} />} />
           <Route path="/payment" element={<Payment tg={tg} colorB={colorB} />} />
 
-
+    
           
           
           
       </Routes> 
+
+      : 
+        <Payment tg={tg} colorB={colorB}></Payment>
         </div>
 
   )
