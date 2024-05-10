@@ -138,13 +138,15 @@ const postRequest = async () => {
     if (response.ok) {
       const data = await response.json();
       sessionStorage.setItem('access_token', data.access_token)
+      console.log(data)
 
     } else {
-
+      const data = await response.json();
+        console.log(data)
     }
 
   } catch (error) {
-
+      console.log(error)
   }
 }
   return (
@@ -202,7 +204,7 @@ const postRequest = async () => {
         {tries > 3  && <div className={s.error_message}>Вы исчерпали количество попыток, начните регистрацию заново</div>}
     <Link to={code1 == '' || code2 == '' || code3 == '' || code4 == '' || tries > 3 || isVerified === false ? '/zak_con' : '/zak_reg_photo'}>
         <button className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`} onClick={() => {
-          if(sessionStorage.getItem('login') !== null)
+          if(isVerified === true)
         reg()
       }}>
           Подтвердить
