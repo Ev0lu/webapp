@@ -289,6 +289,7 @@
     top: calc(100% + 5px);
     left: 0;
     width: 315px;
+    min-height:150px;
     max-height: 224px;
     overflow: hidden;
     border: 1px solid #ccc;
