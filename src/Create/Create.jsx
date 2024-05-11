@@ -297,11 +297,10 @@ const handleInputChange2 = (e) => {
     };
   
     try {
-      const response = await fetch('https://assista1.ru/api/v1/order/one', {
-        method: 'GET',
+      const response = await fetch(`https://assista1.ru/api/v1/order/{order_id}`, {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}`
         },
         body: JSON.stringify(requestBody)
       });
@@ -474,6 +473,7 @@ const handleInputChange2 = (e) => {
       <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/isp1_reg' : '/isp3_reg'}>
         <button onClick={() => {
           validateFields()
+          patchOrder()
         }}className={`${s.greetings_btn} ${props.colorB === 'light' ? s.light : s.dark}`}>Создать заказ</button>
       </Link>
       </div>
