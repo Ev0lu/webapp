@@ -18,7 +18,7 @@ function ZakPh(props) {
   useEffect(() => {
 
       setAccessToken(sessionStorage.getItem('access_token'));
-      console.log(accessToken)
+
 
   }, [filepic]);
 
