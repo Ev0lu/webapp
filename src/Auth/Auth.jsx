@@ -18,6 +18,15 @@ const Auth = (props) => {
     useEffect(() => {
         setTimeout(() => { setShowPassword(false)}, 1000)
     },[])
+    useEffect(() => {
+        if (password == '') {
+        setTimeout(() => { setShowPassword(true)}, 1000)
+        } else {
+            setTimeout(() => { setShowPassword(false)}, 1000)
+
+        }
+            
+    },[password])
       const validateFields = () => {
         const errors = {
             password: password === '',
