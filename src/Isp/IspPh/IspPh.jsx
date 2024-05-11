@@ -12,12 +12,14 @@ function IspPh(props) {
     avatar: false,
     size: false
   });
-  const [access, setAccess] = useState('');
+  const [accessToken, setAccessToken] = useState('');
 
 
-useEffect(() => {
-  setAccess(sessionStorage.getItem('access'))
-},[])
+  useEffect(() => {
+    setAccessToken(sessionStorage.getItem('access_token'))
+    console.log(sessionStorage.getItem('access_token'))
+    console.log(accessToken)
+  },[])
 const handleAvatarChange = (event) => {
   const file = event.target.files[0];
   if (file) {
@@ -31,7 +33,9 @@ const handleAvatarChange = (event) => {
         } else {
           setErrorFields({ size: false });
           setAvatar(reader.result);
+          
           setFilepic(file)
+          
         }
       };
       img.src = reader.result;
@@ -50,32 +54,35 @@ const handleAvatarChange = (event) => {
   };
 
 const uploadPhoto = async () => {
-  const formData = new FormData();
-  formData.append('photo', filepic);
+    const formData = new FormData();
+
+    if (!filepic) {
+      console.error('File is not selected');
+      return;
+    }
+
+    formData.append('photo', filepic);
 
   try {
     const response = await fetch('https://assista1.ru/api/v1/users/uploadPhoto', {
       method: 'PATCH',
       headers: {
-        'Authorization': `Bearer ${access}`,
-        'Content-Type': 'multipart/form-data'
+        'Authorization': `Bearer ${accessToken}`,
       },
       body: formData
     });
+
     if (response.ok) {
       const responseData = await response.json();
-      console.log(responseData);
       // Handle response data if needed
     } else {
       console.error('Failed to upload photo');
       const responseData = await response.json();
-      console.log(responseData)
     }
   } catch (error) {
     console.error('Error uploading photo:', error);
   }
 };
-
 
   return (
     <div className={s.greetings} style={props.colorB === "light" ? {backgroundColor: "white"} : {backgroundColor: "#232323"} }>
@@ -114,7 +121,7 @@ const uploadPhoto = async () => {
             {size === true && (errorFields.size && <span className={s.error_message}>Изображение не должно быть размером больше чем 200x200</span>)}
           </div>
         </div>
-        <Link to={avatar !== null ? '/create' : '/isp_reg_photo'}>
+        <Link to={avatar !== null ? '/zak_reg_photo' : '/zak_reg_photo'}>
           <button onClick={() => {
           validateFields()
           uploadPhoto()}} className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>Далее</button>
@@ -128,4 +135,3 @@ const uploadPhoto = async () => {
 }
 
 export default IspPh;
-
