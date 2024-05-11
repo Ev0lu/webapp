@@ -74,6 +74,7 @@ const uploadPhoto = async () => {
     if (response.ok) {
       const responseData = await response.json();
       // Handle response data if needed
+      console.log(response)
     } else {
       console.error('Failed to upload photo');
       const responseData = await response.json();
