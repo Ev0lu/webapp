@@ -54,7 +54,6 @@ const handleAvatarChange = (event) => {
 
 const uploadPhoto = async () => {
   
-  console.log(formData)
 
   try {
     const response = await fetch('https://assista1.ru/api/v1/users/me', {
