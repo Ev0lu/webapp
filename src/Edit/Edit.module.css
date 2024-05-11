@@ -34,8 +34,8 @@ input[type='radio']:after {
 width: 10px;
 height: 10px;
 border-radius: 15px;
-top: 4px;
-left: 4px;
+top: 15%;
+left: 15%;
 position: relative;
 background-color: white;
 content: '';
@@ -48,8 +48,8 @@ input[type='radio']:checked:after {
 width: 10px;
 height: 10px;
 border-radius: 15px;
-top: 3.6px; 
-left: 3.5px;
+top: 15%; 
+left: 15%;
 position: relative;
 background-color: #141413;
 content: '';
