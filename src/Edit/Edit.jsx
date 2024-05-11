@@ -19,6 +19,7 @@ function Edit(props) {
   const searchParams = new URLSearchParams(location.search);
   const [accessToken, setAccessToken] = useState(searchParams.get('access_token'));
   const [refreshToken, setRefreshToken] = useState(searchParams.get('refresh_token'));
+  const [today, setToday] = useState(new Date())
   // Получение значений параметров access_token и refresh_token из URL
 
 
@@ -235,7 +236,7 @@ const handleInputChange2 = (e) => {
 
 
 
-   const [price, setPrice] = useState('')
+   const [price, setPrice] = useState(0)
    const [term, setTerm] = useState('')
    const [termScale, setTermScale] = useState(50)
 
@@ -254,6 +255,7 @@ const handleInputChange2 = (e) => {
     };
 
    const [place, setPlace] = useState('offline')
+    const [termH, setTermH] = useState(0)
 
     const handleGenderChange = (event) => {
       setPlace(event.target.value);
@@ -264,22 +266,26 @@ const handleInputChange2 = (e) => {
       useEffect(()=>{
         if(termScale == 0){
             setTerm('0дн')
+            setTermH(0)
         }else if(termScale == 25){
             setTerm('1нед')
+            setTermH(7)
         }else if(termScale == 50){
             setTerm('1мес')
+            setTermH(30)
         }else if(termScale == 75){
             setTerm('2мес')
+            setTermH(60)
         }
         else if(termScale == 100){
             setTerm('3мес')
+            setTermH(90)
 
         }
     },[termScale])
 
 
-  
- const fetchOrders = async () => {
+   const fetchOrders = async () => {
 
 
 
@@ -311,35 +317,47 @@ const handleInputChange2 = (e) => {
     fetchOrders()
   },[])
 
+
+
   const patchOrder = async () => {
     const requestBody = {
+
         "title": `${login}`,
-        "skills": [...skills],
-        "task": tele,
-        "is_online": `${place === 'offline' ? 'offline' : 'online'}`,
-        "price": price,
-        "duration": 30,
+        "skills": [
+          "000a1660-da24-4d91-af08-9e2195415ac0"
+        ],
+        "task": `${tele}`,
+        "is_online": place === 'offline' ? false : true,
+        "price": Number(price),
+        "duration": Number(termH),
         "location": {
-          "city_id": `${selectedCountry[0]}`,
-          "city_title": "string",
-          "country_title": `${selectedCountry[0]}`
-        }
+          "city_id": `${place === 'offline' ? selectedCountry2[1] : 'string'}`,
+          "city_title": `${place === 'offline' ? selectedCountry2[0] : 'string'}`,
+          "country_title": `${place === 'offline' ? selectedCountry2[0] : 'string'}`
+        },
+        "creation_date":  `${today.toISOString().split('T')[0]}`
+
     };
-  
+    
     try {
-      const response = await fetch('https://assista1.ru/api/v1/order/one', {
-        method: 'GET',
+      console.log(requestBody)
+      console.log(accessToken)
+      const response = await fetch(`https://assista1.ru/api/v1/order/${order_id}`, {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}`
+
         },
         body: JSON.stringify(requestBody)
       });
   
       if (response.ok) {
         const data = await response.json();
+        console.log(data)
         // Обработка полученных данных
       } else {
+        const data = await response.json();
+        console.log(data)
         console.error('Failed to fetch orders:', response.status);
       }
     } catch (error) {
@@ -483,7 +501,7 @@ const handleInputChange2 = (e) => {
                 style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#373737', color:'#C7C7C7'} }
 
             />
-            {term === '' && (errorFields.login && <span className={s.error_message}>Пожалуйста, введите логин</span>)}
+            {term === '' && (errorFields.term && <span className={s.error_message}>Пожалуйста, укажите срок</span>)}
 
         </div>
 
@@ -498,9 +516,12 @@ const handleInputChange2 = (e) => {
 
 
            
-      <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/isp1_reg' : '/isp3_reg'}>
+      <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/' : '/'}>
         <button onClick={() => {
           validateFields()
+          if (title !== '') {
+            patchOrder()
+          }
         }}className={`${s.greetings_btn} ${props.colorB === 'light' ? s.light : s.dark}`}>Создать заказ</button>
       </Link>
       </div>
