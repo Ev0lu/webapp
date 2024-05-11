@@ -18,7 +18,7 @@ function ZakPh(props) {
   useEffect(() => {
     setAccessToken(sessionStorage.getItem('access_token'))
     console.log(sessionStorage.getItem('access_token'))
-    console.log(access)
+    console.log(accessToken)
   },[])
 const handleAvatarChange = (event) => {
   const file = event.target.files[0];
@@ -60,12 +60,12 @@ const uploadPhoto = async () => {
     const response = await fetch('https://assista1.ru/api/v1/users/me', {
       method: 'GET',
       headers: {
-        'Authorization': `Bearer ${access}`,
+        'Authorization': `Bearer ${accessToken}`,
       },
 
     });
-    console.log(access)
-    console.log(`access ${access}`)
+    console.log(accessToken)
+    console.log(`access ${accessToken}`)
     if (response.ok) {
       const responseData = await response.json();
       console.log(responseData);
