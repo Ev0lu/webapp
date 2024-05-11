@@ -12,11 +12,11 @@ function ZakPh(props) {
     avatar: false,
     size: false
   });
-  const [access, setAccess] = useState('');
+  const [accessToken, setAccessToken] = useState('');
 
 
   useEffect(() => {
-    setAccess(sessionStorage.getItem('access_token'))
+    setAccessToken(sessionStorage.getItem('access_token'))
     console.log(access)
   },[])
 const handleAvatarChange = (event) => {
