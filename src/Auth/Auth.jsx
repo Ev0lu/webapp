@@ -20,7 +20,7 @@ const Auth = (props) => {
     },[])
     useEffect(() => {
         if (password == '') {
-        setTimeout(() => { setShowPassword(true)}, 1000)
+            setShowPassword(true)
         } else {
             setShowPassword(false)
 
