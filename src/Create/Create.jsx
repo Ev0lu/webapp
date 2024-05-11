@@ -295,7 +295,8 @@ const handleInputChange2 = (e) => {
           "city_id": `${selectedCountry[0]}`,
           "city_title": "string",
           "country_title": `${selectedCountry[0]}`
-        }
+        },
+        "creation_date": "2024-05-10"
     };
     
     try {
