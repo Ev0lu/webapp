@@ -235,7 +235,7 @@ const handleInputChange2 = (e) => {
 
 
 
-   const [price, setPrice] = useState('')
+   const [price, setPrice] = useState(0)
    const [term, setTerm] = useState('')
    const [termScale, setTermScale] = useState(50)
 
@@ -289,7 +289,7 @@ const handleInputChange2 = (e) => {
         ],
         "task": tele,
         "is_online": place === 'offline' ? false : true,
-        "price": price,
+        "price": Number(price),
         "duration": 30,
         "location": {
           "city_id": `${selectedCountry[0]}`,
