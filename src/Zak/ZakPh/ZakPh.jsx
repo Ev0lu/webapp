@@ -53,17 +53,16 @@ const handleAvatarChange = (event) => {
   };
 
 const uploadPhoto = async () => {
-  const formData = new FormData();
   
   console.log(formData)
 
   try {
-    const response = await fetch('https://assista1.ru/api/v1/users/uploadPhoto', {
-      method: 'PATCH',
+    const response = await fetch('https://assista1.ru/api/v1/users/me', {
+      method: 'GET',
       headers: {
         'Authorization': `Bearer ${access}`,
       },
-      body: formData
+
     });
     console.log(body)
     console.log(access)
