@@ -54,7 +54,14 @@ const handleAvatarChange = (event) => {
   };
 
 const uploadPhoto = async () => {
-  
+    const formData = new FormData();
+
+    if (!filepic) {
+      console.error('File is not selected');
+      return;
+    }
+
+    formData.append('photo', filepic);
 
   try {
     const response = await fetch('https://assista1.ru/api/v1/users/me', {
@@ -62,10 +69,10 @@ const uploadPhoto = async () => {
       headers: {
         'Authorization': `Bearer ${accessToken}`,
       },
-
+      body: formData
     });
     console.log(accessToken)
-    console.log(`access ${accessToken}`)
+
     if (response.ok) {
       const responseData = await response.json();
       console.log(responseData);
