@@ -63,7 +63,6 @@ const uploadPhoto = async () => {
       },
 
     });
-    console.log(body)
     console.log(access)
     console.log(`access ${access}`)
     if (response.ok) {
