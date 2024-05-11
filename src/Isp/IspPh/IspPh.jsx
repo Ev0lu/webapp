@@ -12,13 +12,16 @@ function IspPh(props) {
     avatar: false,
     size: false
   });
-  const [accessToken, setAccessToken] = useState('');
+  const [accessToken, setAccessToken] = useState(null);
 
 
   useEffect(() => {
-    setAccessToken(sessionStorage.getItem('access_token'))
-    console.log(sessionStorage.getItem('access_token'))
-  },[])
+
+      setAccessToken(sessionStorage.getItem('access_token'));
+
+
+  }, [filepic]);
+
 const handleAvatarChange = (event) => {
   const file = event.target.files[0];
   if (file) {
@@ -74,10 +77,11 @@ const uploadPhoto = async () => {
     if (response.ok) {
       const responseData = await response.json();
       // Handle response data if needed
-      console.log(response)
+      console.log(responseData)
     } else {
       console.error('Failed to upload photo');
       const responseData = await response.json();
+      console.log(responseData)
     }
   } catch (error) {
     console.error('Error uploading photo:', error);
