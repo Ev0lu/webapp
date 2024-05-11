@@ -129,6 +129,7 @@
   }
   .dropdown_option:last-child {
     padding-bottom: 15px;
+    border-bottom: none;
     
   }
   .scroll_container {
