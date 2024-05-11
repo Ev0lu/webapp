@@ -286,7 +286,7 @@ const handleInputChange2 = (e) => {
         "title": `${login}`,
         "skills": [...skills],
         "task": tele,
-        "is_online": `${place === 'offline' ? 'offline' : 'online'}`,
+        "is_online": `${place === 'offline' ? false : true}`,
         "price": price,
         "duration": 30,
         "location": {
