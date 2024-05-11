@@ -283,20 +283,20 @@ const handleInputChange2 = (e) => {
 
   const patchOrder = async () => {
     const requestBody = {
-        "title": `${login}`,
-        "skills": [
-          "000a1660-da24-4d91-af08-9e2195415ac0"
-        ],
-        "task": tele,
-        "is_online": place === 'offline' ? false : true,
-        "price": Number(price),
-        "duration": 30,
-        "location": {
-          "city_id": `${selectedCountry2[1]}`,
-          "city_title": `${selectedCountry2[0]}`,
-          "country_title": `${selectedCountry[0]}`
-        },
-        "creation_date": "2024-05-10"
+          "title": "string",
+          "skills": [
+            "000a1660-da24-4d91-af08-9e2195415ac0"
+          ],
+          "task": "string",
+          "is_online": true,
+          "price": 0,
+          "duration": 30,
+          "location": {
+            "city_id": "000a1660-da24-4d91-af08-9e2195415ac0",
+            "city_title": "string",
+            "country_title": "string"
+          },
+          "creation_date": "2024-05-10"
     };
     
     try {
