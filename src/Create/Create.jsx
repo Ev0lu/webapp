@@ -19,6 +19,7 @@ function Create(props) {
   const searchParams = new URLSearchParams(location.search);
   const [accessToken, setAccessToken] = useState(searchParams.get('access_token'));
   const [refreshToken, setRefreshToken] = useState(searchParams.get('refresh_token'));
+  const [today, setToday] = useState(new Date())
   // Получение значений параметров access_token и refresh_token из URL
 
 
@@ -297,7 +298,7 @@ const handleInputChange2 = (e) => {
           "city_title": `${selectedCountry2[0]}`,
           "country_title": `${selectedCountry[0]}`
         },
-        "creation_date": "2024-05-10"
+        "creation_date":  `${today.toISOString().split('T')[0]}`
 
     };
     
