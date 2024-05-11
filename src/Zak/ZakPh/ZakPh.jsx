@@ -18,7 +18,6 @@ function ZakPh(props) {
   useEffect(() => {
     setAccessToken(sessionStorage.getItem('access_token'))
     console.log(sessionStorage.getItem('access_token'))
-    console.log(accessToken)
   },[])
 const handleAvatarChange = (event) => {
   const file = event.target.files[0];
@@ -71,11 +70,9 @@ const uploadPhoto = async () => {
       },
       body: formData
     });
-    console.log(accessToken)
 
     if (response.ok) {
       const responseData = await response.json();
-      console.log(responseData);
       // Handle response data if needed
     } else {
       console.error('Failed to upload photo');
