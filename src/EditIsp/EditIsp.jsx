@@ -49,7 +49,47 @@ function EditIsp(props) {
   const scrollContainerRef2 = useRef(null);
   const scrollbarRef2 = useRef(null);
   const [scrollbarHeight2, setScrollbarHeight2] = useState(0);
-  
+      const [name, setName] = useState('');
+    const [lname, setLname] = useState('');
+    const [fname, setFname] = useState('')
+    const [fio, setFio] = useState('')
+    const [isexist, setIsexist] = useState(null)
+    const [telegramId, setTelegramId] = useState(props.tg.initDataUnsafe.user.id)
+    const [rlink, setRlink] = useState('/zak1_reg')
+    const [errorFields, setErrorFields] = useState({
+        name: false,
+        lname: false,
+        gender: false
+    });
+
+
+
+
+    const handleChange11 = (event) => {
+        setName(event.target.value);
+    };
+    const handleChange22 = (event) => {
+        setLname(event.target.value);
+    };
+    const handleChange33 = (event) => {
+        setFname(event.target.value);
+    };
+
+
+    const [gender, setGender] = useState('');
+
+
+    const handleGenderChange = (event) => {
+      setGender(event.target.value);
+    };
+    const changeFio = () => {
+        setFio(name + ' ' + lname + ' ' + fname)
+    }
+
+    useEffect(() => {
+        changeFio()
+    }, [name, lname, fname])
+
   
   const [errorFields, setErrorFields] = useState({
     selectedCountry2: false,
