@@ -488,7 +488,7 @@ const handleInputChange2 = (e) => {
       <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/' : '/'}>
         <button onClick={() => {
           validateFields()
-          if (title !== '') {
+          if (login !== '') {
             patchOrder()
           }
         }}className={`${s.greetings_btn} ${props.colorB === 'light' ? s.light : s.dark}`}>Создать заказ</button>
