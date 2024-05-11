@@ -15,8 +15,10 @@ function ZakPh(props) {
   const [accessToken, setAccessToken] = useState(null);
 
 useEffect(() => {
-  const token = sessionStorage.getItem('access_token');
-  setAccessToken(token);
+  setTimeout(() => {
+    setAccessToken(sessionStorage.getItem('access_token'));
+    console.log(accessToken)
+  }, 2000);
 }, []);
 
 const handleAvatarChange = (event) => {
