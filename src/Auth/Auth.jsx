@@ -22,7 +22,7 @@ const Auth = (props) => {
         if (password == '') {
         setTimeout(() => { setShowPassword(true)}, 1000)
         } else {
-            setTimeout(() => { setShowPassword(false)}, 1000)
+            setShowPassword(false)
 
         }
             
