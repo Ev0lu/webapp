@@ -7,6 +7,8 @@ import Auth from './Auth/Auth'
 import Greetings from './Greetings/Greetings';
 import Payment from './Payment/Payment';
 import Edit from './Edit/Edit';
+import EditIsp from './EditIsp/EditIsp';
+import EditZak from './EditZak/EditZak';
 
 import Create from './Create/Create';
 
@@ -68,6 +70,8 @@ function App() {
           <Route path="/isp_con" element={<IspCon tg={tg} colorB={colorB} />} />
           <Route path="/zak_con" element={<ZakCon tg={tg} colorB={colorB} />} />
           <Route path="/payment" element={<Payment tg={tg} colorB={colorB} />} />
+          <Route path="/edit_isp" element={<EditIsp tg={tg} colorB={colorB} />} />
+          <Route path="/edit_zak" element={<EditZak tg={tg} colorB={colorB} />} />
 
           
           
