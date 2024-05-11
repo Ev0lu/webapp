@@ -14,12 +14,18 @@ function ZakPh(props) {
   });
   const [accessToken, setAccessToken] = useState(null);
 
-useEffect(() => {
-  setTimeout(() => {
-    setAccessToken(sessionStorage.getItem('access_token'));
-    console.log(accessToken)
-  }, 2000);
-}, []);
+  useEffect(() => {
+    setTimeout(() => {
+      setAccessToken(sessionStorage.getItem('access_token'));
+      console.log(accessToken)
+    }, 2000);
+  }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      setAccessToken(sessionStorage.getItem('access_token'));
+      console.log(accessToken)
+    }, 2000);
+  }, [filepic]);
 
 const handleAvatarChange = (event) => {
   const file = event.target.files[0];
