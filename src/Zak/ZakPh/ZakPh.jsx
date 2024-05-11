@@ -12,9 +12,12 @@ function ZakPh(props) {
     avatar: false,
     size: false
   });
-  const [accessToken, setAccessToken] = useState(sessionStorage.getItem('access_token'));
+  const [accessToken, setAccessToken] = useState(null);
 
-
+useEffect(() => {
+  const token = sessionStorage.getItem('access_token');
+  setAccessToken(token);
+}, []);
 
 const handleAvatarChange = (event) => {
   const file = event.target.files[0];
