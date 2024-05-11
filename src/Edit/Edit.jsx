@@ -333,7 +333,7 @@ const handleInputChange2 = (e) => {
         "location": {
           "city_id": `${place === 'offline' ? selectedCountry2[1] : 'string'}`,
           "city_title": `${place === 'offline' ? selectedCountry2[0] : 'string'}`,
-          "country_title": `${place === 'offline' ? selectedCountry2[0] : 'string'}`
+          "country_title": `${place === 'offline' ? selectedCountry[0] : 'string'}`
         },
         "creation_date":  `${today.toISOString().split('T')[0]}`
 
