@@ -292,8 +292,8 @@ const handleInputChange2 = (e) => {
         "price": Number(price),
         "duration": 30,
         "location": {
-          "city_id": `${selectedCountry[0]}`,
-          "city_title": "string",
+          "city_id": `${selectedCountry2[1]}`,
+          "city_title": `${selectedCountry2[0]}`,
           "country_title": `${selectedCountry[0]}`
         },
         "creation_date": "2024-05-10"
