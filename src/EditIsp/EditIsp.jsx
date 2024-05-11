@@ -56,22 +56,17 @@ function EditIsp(props) {
     const [isexist, setIsexist] = useState(null)
     const [telegramId, setTelegramId] = useState(props.tg.initDataUnsafe.user.id)
     const [rlink, setRlink] = useState('/zak1_reg')
-    const [errorFields, setErrorFields] = useState({
-        name: false,
-        lname: false,
-        gender: false
-    });
 
 
 
 
-    const handleChange11 = (event) => {
+    const handleChange1 = (event) => {
         setName(event.target.value);
     };
-    const handleChange22 = (event) => {
+    const handleChange2 = (event) => {
         setLname(event.target.value);
     };
-    const handleChange33 = (event) => {
+    const handleChange3 = (event) => {
         setFname(event.target.value);
     };
 
@@ -93,7 +88,10 @@ function EditIsp(props) {
   
   const [errorFields, setErrorFields] = useState({
     selectedCountry2: false,
-    selectedCountry: false
+    selectedCountry: false,
+    name: false,
+    lname: false,
+    gender: false
   });
 
   const validateFields = () => {
@@ -276,134 +274,12 @@ const handleInputChange2 = (e) => {
 
 
 
-   const [price, setPrice] = useState(0)
-   const [term, setTerm] = useState('')
-   const [termScale, setTermScale] = useState(50)
 
-
-    const handleChange = (event) => {
-        setLogin(event.target.value);
-    };
-    const handleChange2 = (event) => {
-        setTele(event.target.value);
-    };
-    const handleChange3 = (event) => {
-        setPrice(event.target.value);
-    };
-    const handleChange4 = (event) => {
-        setTerm(event.target.value);
-    };
-
-   const [place, setPlace] = useState('offline')
-    const [termH, setTermH] = useState(0)
-
-    const handleGenderChange = (event) => {
-      setPlace(event.target.value);
-    };
-
-
-
-      useEffect(()=>{
-        if(termScale == 0){
-            setTerm('0дн')
-            setTermH(0)
-        }else if(termScale == 25){
-            setTerm('1нед')
-            setTermH(7)
-        }else if(termScale == 50){
-            setTerm('1мес')
-            setTermH(30)
-        }else if(termScale == 75){
-            setTerm('2мес')
-            setTermH(60)
-        }
-        else if(termScale == 100){
-            setTerm('3мес')
-            setTermH(90)
-
-        }
-    },[termScale])
-
-
-   const fetchOrders = async () => {
-
-
-
-    
-
-    try {
-      const response = await fetch(`https://assista1.ru/api/v1/order/?order_id=${order_id}`);
-      const data = await response.json();
-      setLogin(`${data.title}`)
-      setTele(`${data.task}`)
-      if (data.is_online === true) {
-        setPlace('online')
-      } else {
-        setPlace('offline')
-      }
-      setPrice(`${data.price}`)
-      setTerm(`${data.duration}`)
-      setSkills([...data.skills])
-      setCity(`${[data.location.city_title, data.location.city_id]}`)
-      setSelectedCountry(`${data.location.country_title}`);
-      setSearchQuery(`${data.location.country_title}`)
-      setSearchQuery2(`${data.location.city_title}`)
-    } catch (error) {
-      console.error('Error fetching order:', error);
-    }
-
-  };
-  useEffect(() => {
-    fetchOrders()
-  },[])
-
-
-
-  const patchOrder = async () => {
-    const requestBody = {
-
-        "title": `${login}`,
-        "skills": [
-          "000a1660-da24-4d91-af08-9e2195415ac0"
-        ],
-        "task": `${tele}`,
-        "is_online": place === 'offline' ? false : true,
-        "price": Number(price),
-        "duration": Number(termH),
-        "location": {
-          "city_id": `${place === 'offline' ? selectedCountry2[1] : 'string'}`,
-          "city_title": `${place === 'offline' ? selectedCountry2[0] : 'string'}`,
-          "country_title": `${place === 'offline' ? selectedCountry[0] : 'string'}`
-        },
-        "creation_date":  `${today.toISOString().split('T')[0]}`
-
-    };
-    
-    try {
-      console.log(requestBody)
-      console.log(accessToken)
-      const response = await fetch(`https://assista1.ru/api/v1/order/${order_id}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-
-        },
-        body: JSON.stringify(requestBody)
-      });
   
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data)
-        // Обработка полученных данных
-      } else {
-        const data = await response.json();
-        console.log(data)
-        console.error('Failed to fetch orders:', response.status);
-      }
-    } catch (error) {
-      console.error('Error fetching order:', error);
-    }
-};
+  
+
+
+
   
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>  
@@ -455,6 +331,7 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
                 <input type="radio" id="female" name="gender" value="female" checked={gender === 'female'} onChange={handleGenderChange} />
                 <label htmlFor="female" className={s.genderlabel}>Женский</label>
             </div>
+        </div>
 
 
 
