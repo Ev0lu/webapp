@@ -225,7 +225,7 @@ const reg = async () => {
       telegram_id: props.tg.initDataUnsafe.user.id,
       login: sessionStorage.getItem('login'),
       email: sessionStorage.getItem('mail'),
-      full_name: sessionStorage.getItem('name') + ' ' + sessionStorage.getItem('lname') + ' ' + sessionStorage.getItem('fname'),
+      full_name: sessionStorage.getItem('name') + ' ' + sessionStorage.getItem('lname') + `${sessionStorage.getItem('fname') !== null ? ' ' + sessionStorage.getItem('fname') : ''},
       phone: sessionStorage.getItem('tele'),
       gender: sessionStorage.getItem('gender'),
       password: sessionStorage.getItem('pass'),
