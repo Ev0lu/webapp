@@ -284,7 +284,9 @@ const handleInputChange2 = (e) => {
   const patchOrder = async () => {
     const requestBody = {
         "title": `${login}`,
-        "skills": [...skills],
+        "skills": [
+          "000a1660-da24-4d91-af08-9e2195415ac0"
+        ],
         "task": tele,
         "is_online": place === 'offline' ? false : true,
         "price": price,
