@@ -54,7 +54,7 @@ const handleAvatarChange = (event) => {
 
 const uploadPhoto = async () => {
   const formData = new FormData();
-  formData.append('photo', filepic);
+  
   console.log(formData)
 
   try {
