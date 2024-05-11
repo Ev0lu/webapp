@@ -300,9 +300,9 @@ const handleInputChange2 = (e) => {
         "price": Number(price),
         "duration": Number(termH),
         "location": {
-          "city_id": `${selectedCountry2[1]}`,
-          "city_title": `${selectedCountry2[0]}`,
-          "country_title": `${selectedCountry[0]}`
+          "city_id": `${place === 'offline' ? selectedCountry2[1] : 'string'}`,
+          "city_title": `${place === 'offline' ? selectedCountry2[0] : 'string'}`,
+          "country_title": `${place === 'offline' ? selectedCountry2[0] : 'string'}`
         },
         "creation_date":  `${today.toISOString().split('T')[0]}`
 
@@ -470,7 +470,7 @@ const handleInputChange2 = (e) => {
                 style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#373737', color:'#C7C7C7'} }
 
             />
-            {term === '' && (errorFields.login && <span className={s.error_message}>Пожалуйста, введите логин</span>)}
+            {term === '' && (errorFields.term && <span className={s.error_message}>Пожалуйста, укажите срок</span>)}
 
         </div>
 
@@ -485,10 +485,12 @@ const handleInputChange2 = (e) => {
 
 
            
-      <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/isp1_reg' : '/isp3_reg'}>
+      <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/' : '/'}>
         <button onClick={() => {
           validateFields()
-          patchOrder()
+          if (title !== '') {
+            patchOrder()
+          }
         }}className={`${s.greetings_btn} ${props.colorB === 'light' ? s.light : s.dark}`}>Создать заказ</button>
       </Link>
       </div>
