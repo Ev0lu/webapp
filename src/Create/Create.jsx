@@ -308,7 +308,7 @@ const handleInputChange2 = (e) => {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${accessToken}`,
         },
-        body: requestBody
+        body: JSON.stringify(requestBody)
       });
   
       if (response.ok) {
