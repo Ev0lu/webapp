@@ -18,7 +18,6 @@ function IspPh(props) {
   useEffect(() => {
     setAccessToken(sessionStorage.getItem('access_token'))
     console.log(sessionStorage.getItem('access_token'))
-    console.log(accessToken)
   },[])
 const handleAvatarChange = (event) => {
   const file = event.target.files[0];
