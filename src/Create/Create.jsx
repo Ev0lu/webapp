@@ -295,8 +295,9 @@ const handleInputChange2 = (e) => {
           "country_title": `${selectedCountry[0]}`
         }
     };
-  
+    
     try {
+      console.log(requestBody)
       console.log(accessToken)
       const response = await fetch(`https://assista1.ru/api/v1/order/${order_id}`, {
         method: 'POST',
