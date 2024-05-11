@@ -297,6 +297,7 @@ const handleInputChange2 = (e) => {
     };
   
     try {
+      console.log(accessToken)
       const response = await fetch(`https://assista1.ru/api/v1/order/{order_id}`, {
         method: 'POST',
         headers: {
