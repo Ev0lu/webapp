@@ -338,8 +338,11 @@ const handleInputChange2 = (e) => {
   
       if (response.ok) {
         const data = await response.json();
+        console.log(data)
         // Обработка полученных данных
       } else {
+        const data = await response.json();
+        console.log(data)
         console.error('Failed to fetch orders:', response.status);
       }
     } catch (error) {
