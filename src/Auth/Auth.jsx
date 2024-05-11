@@ -18,9 +18,6 @@ const Auth = (props) => {
     useEffect(() => {
         setTimeout(() => { setShowPassword(false)}, 1000)
     },[])
-    useEffect(() => {
-      setShowPassword(false)
-    },[password])
       const validateFields = () => {
         const errors = {
             password: password === '',
