@@ -6,7 +6,7 @@ import eyeLight from '../assets/eye-closed.svg'
 
 
 const Auth = (props) => {
-    const [showPassword, setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(true);
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const [resp, setResp] = useState('')
@@ -15,7 +15,9 @@ const Auth = (props) => {
         login: login,
         resp: resp
     });
-    
+    useEffect(() => {
+        setTimeout(() => { setShowPassword(false)}, 1000)
+    },[])
       const validateFields = () => {
         const errors = {
             password: password === '',
