@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import s from './Edit.module.css';
+import s from './EditIsp.module.css';
 import arrowsvg from '../assets/arrow.svg';
 import arrowsvg2 from '../assets/angle-dark.svg';
 import blackarr from '../assets/black.svg';
@@ -8,7 +8,7 @@ import { useParams, useLocation } from 'react-router-dom';
 
 
 
-function Edit(props) {
+function EditIsp(props) {
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(false);
   const [offset, setOffset] = useState(0);
@@ -529,4 +529,4 @@ const handleInputChange2 = (e) => {
   );
 }
 
-export default Edit;
+export default EditIsp;
