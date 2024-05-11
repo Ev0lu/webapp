@@ -372,46 +372,53 @@ const handleInputChange2 = (e) => {
             <h1 className={s.greetings_text} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Создание заказа</h1>
         </div>
 
-          <div className={s.password_input}>
+        <div className={`${s.password_input}`}>
             <input
+                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
+
                 type={'text'}
-                placeholder="Название"
-                className={`${s.password_field} ${errorFields.login && s.error}`}
-                value={login}
+                placeholder="Имя*"
+                className={`${s.password_field} ${errorFields.name && s.error}`}
+                value={name}
                 onChange={handleChange}
-                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#373737', color:'#C7C7C7'} }
-
             />
-            {login === '' && (errorFields.login && <span className={s.error_message}>Пожалуйста, введите логин</span>)}
+            { name === '' && (errorFields.name && <span className={s.error_message}>Пожалуйста, введите дату рождения</span>)}
 
         </div>
-        <div className={s.password_input2}>
-            <textarea rows="10" cols="40" maxlength="350"
-                type={'text'}
-                placeholder="Техническое задание"
-                className={`${s.password_field2} ${errorFields.tele && s.error}`}
-                value={tele}
+        <div className={`${s.password_input}`}>
+            <input
+            style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }                type={'text'}
+                placeholder="Фамилия*"
+                className={`${s.password_field} ${errorFields.lname && s.error}`}
+                value={lname}
                 onChange={handleChange2}
-                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#373737', color:'#C7C7C7'} }
-
             />
-        {tele === '' && (errorFields.tele && <span className={s.error_message}>Пожалуйста, введите телефон</span>)}
+            { lname === '' && (errorFields.lname && <span className={s.error_message}>Пожалуйста, введите фамилию</span>)}
+        </div>
+        <div className={s.password_input3}>
+            <input
+style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }                type={'text'}
+                placeholder="Отчество"
+                className={s.password_field}
+                value={fname}
+                onChange={handleChange3}
+            />
 
         </div>
-
-
-
         <div className={`${s.radio_gender}`} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>
+            <label htmlFor="gender" style={{ fontSize: '14px' }}>Ваш пол:</label>
             <div>
-                <input type="radio" id="online" name="place" value="online" checked={place === 'online'} onChange={handleGenderChange} />
-                <label htmlFor="online" className={s.genderlabel}>Онлайн</label>
+                <input type="radio" id="male" name="gender" value="male" checked={gender === 'male'} onChange={handleGenderChange} />
+                <label htmlFor="male" className={s.genderlabel}>Мужской</label>
             </div>
             <div>
-                <input type="radio" id="offline" name="place" value="offline" checked={place === 'offline'} onChange={handleGenderChange} />
-                <label htmlFor="offline" className={s.genderlabel}>Оффлайн</label>
+                <input type="radio" id="female" name="gender" value="female" checked={gender === 'female'} onChange={handleGenderChange} />
+                <label htmlFor="female" className={s.genderlabel}>Женский</label>
             </div>
-          </div>
-           {place === 'offline' &&
+
+
+
+    
            
               <div className={s.dropdown_container} ref={dropdownRef}>
                         <input
@@ -438,9 +445,9 @@ const handleInputChange2 = (e) => {
                         
                         {selectedCountry === '' && (errorFields.selectedCountry && <span className={s.error_message}>Выберите вашу страну</span>)}
                       </div>
-                            }
+                            
 
-                {place === 'offline' &&
+          
 
                         <div className={s.dropdown_container2} ref={dropdownRef2}>
                           <input
@@ -467,52 +474,11 @@ const handleInputChange2 = (e) => {
                   
                         </div>
                         
-                }
-
-            <div className={s.password_input3}>
-              <div style={{display:'flex'}}>
-                <h3 style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Цена</h3>
-              </div>
-            <div style={{display:'flex'}}>            <input
-                type={'text'}
-                placeholder=""
-                className={`${s.password_field3} ${errorFields.login && s.error}`}
-                value={price}
-                onChange={handleChange3}
-                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#373737', color:'#C7C7C7'} }
-
-            />
-              </div>
-
-            {price === '' && (errorFields.login && <span className={s.error_message}>Пожалуйста, введите логин</span>)}
-
-        </div>
-            <div className={s.password_input3}>
-              
-                <h3                 style={props.colorB==='light' ? {color:'black'} : {color:'white'} }
->Срок</h3>
-  
-            <input
-                type={'text'}
-                placeholder=""
-                className={`${s.password_field3} ${errorFields.login && s.error}`}
-                value={term}
-                onChange={handleChange4}
-                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#373737', color:'#C7C7C7'} }
-
-            />
-            {term === '' && (errorFields.term && <span className={s.error_message}>Пожалуйста, укажите срок</span>)}
-
-        </div>
+                
 
 
-          <div className={s.likert_scale}>
-            <input className={s.heigh} type="range" min="0" max="100" step="25" value={termScale} onChange={(e)=> {
-            setTermScale(e.target.value) 
-              }}
-             />
 
-        </div>
+    
 
 
            
