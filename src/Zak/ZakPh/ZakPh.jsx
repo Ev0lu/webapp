@@ -64,8 +64,8 @@ const uploadPhoto = async () => {
     formData.append('photo', filepic);
 
   try {
-    const response = await fetch('https://assista1.ru/api/v1/users/me', {
-      method: 'GET',
+    const response = await fetch('https://assista1.ru/api/v1/users/uploadPhoto', {
+      method: 'PATCH',
       headers: {
         'Authorization': `Bearer ${accessToken}`,
       },
