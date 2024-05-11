@@ -255,6 +255,7 @@ const handleInputChange2 = (e) => {
     };
 
    const [place, setPlace] = useState('offline')
+    const [termH, setTermH] = useState(0)
 
     const handleGenderChange = (event) => {
       setPlace(event.target.value);
@@ -265,15 +266,20 @@ const handleInputChange2 = (e) => {
       useEffect(()=>{
         if(termScale == 0){
             setTerm('0дн')
+            setTermH(0)
         }else if(termScale == 25){
             setTerm('1нед')
+            setTermH(7)
         }else if(termScale == 50){
             setTerm('1мес')
+            setTermH(30)
         }else if(termScale == 75){
             setTerm('2мес')
+            setTermH(60)
         }
         else if(termScale == 100){
             setTerm('3мес')
+            setTermH(90)
 
         }
     },[termScale])
@@ -292,7 +298,7 @@ const handleInputChange2 = (e) => {
         "task": `${tele}`,
         "is_online": place === 'offline' ? false : true,
         "price": Number(price),
-        "duration": 30,
+        "duration": Number(termH),
         "location": {
           "city_id": `${selectedCountry2[1]}`,
           "city_title": `${selectedCountry2[0]}`,
