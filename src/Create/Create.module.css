@@ -724,7 +724,16 @@ h3{
   }
   
 
-
+ .inputCheck__1{
+    position: relative;
+    width: 20;
+    height: 20;
+  
+    border: none;
+    cursor: pointer;
+    margin-right: 10;
+  }
+  
   
 
 
