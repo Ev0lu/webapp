@@ -89,7 +89,11 @@ border: 2px solid white;
     width: 320px;
     border-radius: 25px;
     transition: background-color 0.2s ease;
+    
+  }
+  .greetings_btn:last-child{
     margin-bottom:40px;
+    
   }
 
 
@@ -125,7 +129,6 @@ border: 2px solid white;
   }
   .reg{
     display: flex;
-    width: 315px;
     justify-content:center;
     align-items:center;
     
