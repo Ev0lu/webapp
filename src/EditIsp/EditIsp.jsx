@@ -14,7 +14,7 @@ function EditIsp(props) {
   const [offset, setOffset] = useState(0);
   const limit = 25; // Количество элементов, которые необходимо загрузить при каждом запросе
   const [searchQuery, setSearchQuery] = useState(''); // Input value for country search
-  const { order_id } = useParams();
+  const { profile_id } = useParams();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const [accessToken, setAccessToken] = useState(searchParams.get('access_token'));
