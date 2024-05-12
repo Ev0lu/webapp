@@ -54,7 +54,7 @@ function EditIsp(props) {
     const [fname, setFname] = useState('')
     const [fio, setFio] = useState('')
     const [isexist, setIsexist] = useState(null)
-    const [telegramId, setTelegramId] = useState(props.tg.initDataUnsafe.user.id)
+    const [telegramId, setTelegramId] = useState('')
     const [rlink, setRlink] = useState('/zak1_reg')
 
 
