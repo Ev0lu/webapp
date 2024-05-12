@@ -209,7 +209,9 @@ function EditIsp(props) {
     setLoading(false);
   };
   const fetchCities = async () => {
-
+    if (selectedCountry[1] === '' || selectedCountry[1] === undefined)) {
+      return;
+    }
 
     setLoading2(true);
 
@@ -560,8 +562,7 @@ const patchProfile = async () => {
           "phone": `${phone}`
         }
     };
-    console.log(requestBody)
-    console.log(selectedCountry2, selectedCountry2[1])
+
     try {
 
       const response = await fetch(`https://assista1.ru/api/v1/users/update/worker`, {
@@ -572,11 +573,11 @@ const patchProfile = async () => {
         },
         body: JSON.stringify(requestBody)
       });
-      console.log(requestBody)
+
       if (response.ok) {
         const data = await response.json();
         
-        console.log(data)
+
         // Обработка полученных данных
       } else {
         const data = await response.json();
