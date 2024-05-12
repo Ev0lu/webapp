@@ -393,7 +393,7 @@ const reg = async () => {
             if ((selectedCountries1.length !== 0) || (selectedCountries2.length !== 0) || (sessionStorage.getItem('login') !== null) || (sessionStorage.getItem('pass') !== null) || (sessionStorage.getItem('gender') !== null)  || (sessionStorage.getItem('tele') !== null)   || (sessionStorage.getItem('name') !== null)) {
               reg()
             }
-            
+
           }} className={s.greetings_btn}>Далее</button>
         </Link>
       </div>
