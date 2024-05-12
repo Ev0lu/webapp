@@ -405,9 +405,7 @@ const fetchSkills = async () => {
     const requestBody = {
 
         "title": `${login}`,
-        "skills": [
-          "000a1660-da24-4d91-af08-9e2195415ac0"
-        ],
+        "skills": [...selectedCountries1Id__1],
         "task": `${tele}`,
         "is_online": place === 'offline' ? false : true,
         "price": Number(price),
