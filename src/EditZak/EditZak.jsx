@@ -197,7 +197,7 @@ const patchProfile = async () => {
     }
 
     try {
-      const response = await fetch(`https://assista1.ru/api/v1/users/update/worker`, {
+      const response = await fetch(`https://assista1.ru/api/v1/users/update/client`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
