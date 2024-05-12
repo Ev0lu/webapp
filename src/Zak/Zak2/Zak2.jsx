@@ -11,6 +11,7 @@ function Zak2(props) {
     const [pass, setPass] = useState('')
     const [pass2, setPass2] = useState('')
     const [check,setCheck] = useState('')
+    const [checkPh,setCheckPh] = useState('')
     const [rlink, setRlink] = useState('/zak1_reg')
     const [errorFields, setErrorFields] = useState({
         login: false,
@@ -18,7 +19,8 @@ function Zak2(props) {
         mail: false,
         pass: false,
         pass2: false,
-        check: false
+        check: false,
+        checkPh: false
     });
 
     const validateFields = () => {
@@ -28,7 +30,8 @@ function Zak2(props) {
             mail: mail === '',
             pass: pass === '',
             pass2: pass2 === '',
-            check: check === ''
+            check: check === '',
+            checkPh: checkPh === ''
         };
         setErrorFields(errors);
         return !Object.values(errors).some(Boolean);
@@ -40,6 +43,12 @@ function Zak2(props) {
         setLogin(event.target.value.replace(/[^A-Za-z]/g, ''));
     };
     const handleChange2 = (event) => {
+        const isValidPhone = /^\+/.test(event.target.value)
+        if (isValidEmail === true) {
+            setCheckPh('exist')
+        } else{
+            setCheckPh('')
+        }
         setTele(event.target.value);
     };
     const handleChange3 = (event) => {
@@ -132,6 +141,7 @@ const postRequest = async () => {
 
             />
         {tele === '' && (errorFields.tele && <span className={s.error_message}>Пожалуйста, введите телефон</span>)}
+        {errorFields.checkPh && <span className={s.error_message}>Номер должен начинаться с кода страны(+...)</span>}
 
         </div>
         <div className={s.password_input}>
@@ -145,7 +155,7 @@ const postRequest = async () => {
 
             />
             {mail === '' && (errorFields.mail && <span className={s.error_message}>Пожалуйста, введите почту</span>)}
-
+            {errorFields.check && <span className={s.error_message}>Почта не соответствует формату</span>}
              </div>
         <div className={s.password_input}>
             <input
@@ -172,7 +182,7 @@ const postRequest = async () => {
             />
         { pass === '' && (errorFields.pass2 && <span className={s.error_message}>Пожалуйста, подтвердите пароль</span>)}
         {pass!=pass2 && <span className={s.error_message}>Пароли должны совпадать</span>}
-        {errorFields.check && <span className={s.error_message}>Почта не соответствует формату</span>}
+        
         { (pass.length<10) || (pass.length > 24) && <span className={s.error_message}>Размер пароля должен составлять от 10 до 25 символов</span>}
 
 
@@ -180,13 +190,13 @@ const postRequest = async () => {
 
         </div>
 
-        <Link to={pass === pass2 && login !== '' && tele !== '' && mail !== '' && check !== '' && (pass.length>9) && (pass.length < 25) ? '/zak_con' : '/zak2_reg'}>
+        <Link to={pass === pass2 && login !== '' && tele !== '' && mail !== '' && check !== '' && checkPh !== '' && (pass.length>9) && (pass.length < 25) ? '/zak_con' : '/zak2_reg'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
                 sessionStorage.setItem('login', login)
                 sessionStorage.setItem('tele', tele)
                 sessionStorage.setItem('mail', mail)
                 sessionStorage.setItem('pass', pass)
-                if (pass === pass2 && login !== '' && tele !== '' && mail !== '' && check !== '') {
+                if (pass === pass2 && login !== '' && tele !== '' && mail !== '' && check !== '' && checkPh !== '') {
                     postRequest()
                 }
                 validateFields()
