@@ -532,7 +532,7 @@ useEffect(() => {
       setSelectedCountries1Id__2(data.worker.skills.map(lang => lang[1]))
       selectCountry([data.worker.location.country_title, ''])
       selectCountry2([data.worker.location.city_title, data.worker.location.city_id])
-
+      console.log([data.worker.location.city_title, data.worker.location.city_id])
 
 
       
@@ -609,6 +609,7 @@ const patchProfile = async () => {
             { name === '' && (errorFields.name && <span className={s.error_message}>Пожалуйста, введите дату рождения</span>)}
 
         </div>
+           
         <div className={`${s.password_input}`}>
             <input
             style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }                type={'text'}
