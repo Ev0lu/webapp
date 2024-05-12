@@ -539,7 +539,9 @@ useEffect(() => {
 
   };
 
-  
+  useEffect(() => {
+    fetchInfo()
+  },[])
 const patchProfile = async () => {
     const requestBody = {
 
