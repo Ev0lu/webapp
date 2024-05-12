@@ -134,7 +134,7 @@ const postRequest = async () => {
             <input
                 type={'text'}
                 placeholder="Номер телефона"
-                className={`${s.password_field} ${errorFields.tele && s.error}`}
+                className={`${s.password_field} ${(errorFields.tele || errorFields.checkPh) && s.error}`}
                 value={tele}
                 onChange={handleChange2}
                 style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
