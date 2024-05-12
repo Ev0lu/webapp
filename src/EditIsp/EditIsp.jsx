@@ -275,7 +275,214 @@ const handleInputChange2 = (e) => {
 
 
 
+
+
+
+
+
+
+  const [skills, setSkills] = useState([])
+  const [lang, setLang] = useState([])
+  const [searchQuery1__2, setSearchQuery1__2] = useState('');
+  const [searchQuery2__2, setSearchQuery2__2] = useState('');
+  const [city1__2, setCity1__2] = useState('');
+  const [city2__2, setCity2__2] = useState('');
+  const [loading__2, setLoading__2] = useState(false);
+  const [isOpen1__2, setIsOpen1__2] = useState(false);
+  const [isOpen2__2, setIsOpen2__2] = useState(false);
+  const [selectedCountry1__2, setSelectedCountry1__2] = useState('');
+  const [selectedCountry2__2, setSelectedCountry2__2] = useState('');
+  const [selectedCountries1__2, setSelectedCountries1__2] = useState([]);
+  const [selectedCountries2__2, setSelectedCountries2__2] = useState([]);
+  const [selectedCountries1Id__2, setSelectedCountries1Id__2] = useState([]);
+  const [selectedCountries2Id__2, setSelectedCountries2Id__2] = useState([]);
+  const dropdownRef1__2 = useRef(null);
+  const dropdownRef2__2 = useRef(null);
+  const scrollContainerRef1__2 = useRef(null);
+  const scrollContainerRef2__2 = useRef(null);
+  const scrollbarRef1__2 = useRef(null);
+  const scrollbarRef2__2 = useRef(null);
+  const [offset__2, setOffset__2] = useState(0);
+  const [offset2__2, setOffset2__2] = useState(0);
+
+  const limit__2 = 25;
+  const limit2__2 = 25;
+
+  const [scrollbarHeight1__2, setScrollbarHeight1__2] = useState(0);
+  const [scrollbarHeight2__2, setScrollbarHeight2__2] = useState(0);
+  const [exitSkills, setExitSkills] = useState([])
+  const [errorFields__2, setErrorFields__2] = useState({
+    selectedCountries1__2: false,
+    selectedCountries2__2: false
+});
+  const validateFields__2 = () => {
+    const errors = {
+      selectedCountries1: selectedCountries1__2.length === 0,
+      selectedCountries2: selectedCountries2__2.length === 0
+    };
+    setErrorFields__2(errors);
+    return !Object.values(errors).some(Boolean);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if ((dropdownRef1.current && !dropdownRef1.current.contains(event.target)) && (dropdownRef2.current && !dropdownRef2.current.contains(event.target))) {
+        setIsOpen1(false);
+        setIsOpen2(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    const calculateScrollbarHeight1__2 = () => {
+      const scrollContainerHeight1 = scrollContainerRef1.current.offsetHeight;
+      const contentHeight1 = scrollContainerRef1.current.scrollHeight;
+      const scrollbarHeightPercentage1 = (scrollContainerHeight1 / contentHeight1) * 100;
+      setScrollbarHeight1(scrollbarHeightPercentage1);
+    };
+
+    const calculateScrollbarHeight2__2 = () => {
+      const scrollContainerHeight2 = scrollContainerRef2.current.offsetHeight;
+      const contentHeight2 = scrollContainerRef2.current.scrollHeight;
+      const scrollbarHeightPercentage2 = (scrollContainerHeight2 / contentHeight2) * 100;
+      setScrollbarHeight2(scrollbarHeightPercentage2);
+    };
+
+    calculateScrollbarHeight1();
+    calculateScrollbarHeight2();
+
+    const handleResize__2 = () => {
+      calculateScrollbarHeight1();
+      calculateScrollbarHeight2();
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const toggleDropdown1__2 = () => {
+    setIsOpen1(!isOpen1);
+  };
+
+  const toggleDropdown2__2 = () => {
+    setIsOpen2(!isOpen2);
+  };
+
+  const selectCountry1__2 = (country) => {
+    const isSelected = selectedCountries1.includes(country[0]);
+    const isSelected2 = selectedCountries1Id.includes(country[1]);
+
+    if (isSelected) {
+      setSelectedCountries1__2(selectedCountries1.filter(c => c !== country[0]));
+      setSelectedCountries1Id__2(selectedCountries1Id.filter(c => c !== country[1]));
+
+    } else {
+
+      setSelectedCountries1__2([...selectedCountries1, country[0]]);
+      setSelectedCountries1Id__2([...selectedCountries1Id, country[1]]);
+
+    }
+  };
+
+  const selectCountry2__2 = (country) => {
+    const isSelected = selectedCountries2.includes(country[0]);
+    const isSelected2 = selectedCountries2Id.includes(country[1]);
+
+    if (isSelected) {
+      
+      setSelectedCountries2__2(selectedCountries2__2.filter(c => c !== country[0]));
+
+      setSelectedCountries2Id__2(selectedCountries2Id__2.filter(c => c !== country[1]));
+} else {
+      setSelectedCountries2__2([...selectedCountries2__2, country[0]]);
+      setSelectedCountries2Id__2([...selectedCountries2Id__2, country[1]]);
+
+    }
+
+  };
+  const handleScroll1__2 = (e) => {
+    const { scrollTop, scrollHeight, clientHeight } = e.target;
+    const scrollbarHeightPercentage1 = (clientHeight / scrollHeight) * 100;
+    setScrollbarHeight1(scrollbarHeightPercentage1);
+    scrollbarRef1.current.style.height = `${(scrollbarHeightPercentage1) - 13}%`;
+    scrollbarRef1.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
+  };
+
+  const handleScroll2__2 = (e) => {
+    const { scrollTop, scrollHeight, clientHeight } = e.target;
+    const scrollbarHeightPercentage2 = (clientHeight / scrollHeight) * 100;
+    setScrollbarHeight2(scrollbarHeightPercentage2);
+    scrollbarRef2.current.style.height = `${(scrollbarHeightPercentage2) - 13}%`;
+    scrollbarRef2.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
+  };
+
+
+const fetchSkills = async () => {
+
+
+
+    setLoading(true);
+
+    try {
+      const response = await fetch(`https://assista1.ru/api/v1/items/skills?offset=${offset}&limit=${limit}`);
+      const data = await response.json();
+      const newCountries = data.items.map(([country, id]) => ({ label: country, value: id }));
+
+      setSkills(prevCountries => [...newCountries]); // Добавляем загруженные страны к списку
+    } catch (error) {
+      console.error('Error fetching skills:', error);
+    }
+
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchSkills(); // Call fetchCountries whenever searchQuery changes
+  }, []);
+
+
+  const fetchLang = async () => {
+
+
+
+    setLoading(true);
+
+    try {
+      const response = await fetch(`https://assista1.ru/api/v1/items/language?startswith=${searchQuery2}&offset=${offset}&limit=${limit}`);
+      const data = await response.json();
+      const newCountries = data.items.map(([country, id]) => ({ label: country, value: id }));
+
+      setLang(prevCountries => [...prevCountries, ...newCountries]); // Добавляем загруженные страны к списку
+      setOffset2__2(prevOffset => prevOffset + limit2__2); // Увеличиваем offset для следующего запроса
+
+    } catch (error) {
+      console.error('Error fetching skills:', error);
+    }
+
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchLang(); // Call fetchCountries whenever searchQuery changes
+  }, []);
+useEffect(() => {
+  setOffset2__2(0); // Reset offset to 0 when searchQuery changes
+  setLang([]); 
+}, [searchQuery2]);
   
+  const filteredSkills = skills.filter((skill) =>{
+
+     return skill.label.toLowerCase().includes(searchQuery1.toLowerCase())});
+
   
 
 
@@ -392,6 +599,112 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
                         </div>
                         
                 
+        <div className={s.dropdown_container__2} ref={dropdownRef1__2}>
+          <input
+            className={`${s.password_field__2} ${props.colorB === 'light' ? s.light : s.dark}`}
+            type="text"
+            value={searchQuery1__2}
+
+            placeholder="Навыки"
+            onClick={toggleDropdown1__2}
+            onChange={(e) => setSearchQuery1__2(e.target.value)}
+            
+          />
+          <div  className={`${s.dropdown_options__2} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen1__2 ? s.open : ''}`}>
+            <div  className={s.scroll_container__2} ref={scrollContainerRef1__2} onScroll={handleScroll1__2}>
+              {filteredSkills.map((country, index) => (
+                <div key={index} className={`${s.dropdown_option__2} ${props.colorB === 'light' ? s.light : s.dark}`} >
+                <label style={{ display: 'flex', alignItems: 'center', width:'300px' }} onClick={() => selectCountry1__2([country.label, country.value])}>
+                     <input
+                     type="checkbox"
+                     className={`${s.inputCheck__2} ${props.colorB === 'light' ? s.light : s.dark}`}
+                     checked={selectedCountries2__2.includes(' ' + country.label)}
+
+                     onChange={() => selectCountry1__2([country.label, country.value])}
+                     style={{
+                        width: 20,
+                        height: 20,
+                        backgroundColor: 'white',
+                        border: 'none',
+                        cursor: 'pointer',
+                        marginRight: 10,
+                     }}
+                     />
+                     {selectedCountries1__2.includes(country.label) && <img className={s.checkbox_icon__1}  src={props.colorB === 'light' ? Vector : Vector} alt="checkmark"></img>}
+                    
+                      <span style={{ marginLeft: 10, width:'200px' }}>{country.label}</span>
+                 </label>
+             </div>
+              ))}
+            </div>
+            <div className={`${s.scrollbar_1__2} ${props.colorB === 'light' ? s.light : s.dark}`}  />
+            <div className={`${s.scrollbar__2} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef1__2} style={{ height: `${scrollbarHeight1__2}%` }} />
+          </div>
+          { selectedCountries1__2.length === 0 && (errorFields.selectedCountries1__2 && <span className={s.error_message}>Пожалуйста, выберите навыки</span>)}
+
+        </div>
+
+        <div className={s.dropdown_container__1__2} ref={dropdownRef2}>
+          <input
+            className={`${s.password_field__1__2} ${props.colorB === 'light' ? s.light : s.dark}`}
+            type="text"
+            value={searchQuery2__2}
+            placeholder="Языки"
+            onClick={toggleDropdown2__2}
+            onChange={(e) => setSearchQuery2__2(e.target.value)}
+
+            
+          />
+          <div className={`${s.dropdown_options__1__2} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen2__2 ? s.open : ''}`}>
+            <div className={s.scroll_container__1__2} ref={scrollContainerRef2__2} onScroll={handleScroll2__2}>
+              {lang.map((lang, index) => (
+                <div key={index} className={`${s.dropdown_option__1__2} ${props.colorB === 'light' ? s.light : s.dark}`} >
+                   <label style={{ display: 'flex', alignItems: 'center', width:'300px' }}>
+                   {props.colorB === 'light' ? <input
+                     type="checkbox"
+                     className={`${s.inputCheck__2} ${props.colorB === 'light' ? s.light : s.dark}`}
+                     checked={selectedCountries2__2.includes(' ' + lang.label)}
+                     onChange={() => selectCountry2__2([lang.label, lang.value])}
+                     style={{
+                      width: 20,
+                      height: 20,
+                      backgroundColor: 'white',
+                      border: 'none',
+                      cursor: 'pointer',
+                      marginRight: 10,
+                    }}/>
+                    :
+                    <input
+                     type="checkbox"
+                     className={`${s.inputCheck__2} ${props.colorB === 'light' ? s.light : s.dark}`}
+                     checked={selectedCountries2__2.includes(' ' + lang.label)}
+                     onChange={() => selectCountry2__2([lang.label, lang.value])}
+                     style={{
+                      width: 20,
+                      height: 20,
+                      backgroundColor: '#232323',
+                      border: 'none',
+                      cursor: 'pointer',
+                      marginRight: 10,
+                    }}
+      
+                     />
+                    
+                    }
+                     {selectedCountries2__2.includes(lang.label) && <img className={s.checkbox_icon__1}  src={props.colorB === 'light' ? Vector : Vector} alt="checkmark"></img>}
+                       
+                         <span style={{ marginLeft: 10, width:'200px' }}>{lang.label}</span>
+                    </label>
+                </div>
+              ))}
+            </div>
+            
+            <div className={`${s.scrollbar_1__1__2} ${props.colorB === 'light' ? s.light : s.dark}`} />
+            <div className={`${s.scrollbar__1__2} ${props.colorB === 'light' ? s.light : s.dark}`}  ref={scrollbarRef2__2} style={{ height: `${scrollbarHeight2__2}%` }} />
+          </div>
+          { selectedCountries2__2.length === 0 && (errorFields.selectedCountries2__2 && <span className={s.error_message}>Пожалуйста, выберите языки</span>)}
+
+        </div>
 
 
 
