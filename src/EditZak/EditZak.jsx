@@ -166,7 +166,7 @@ function EditZak(props) {
       setPhone(`${data.phone}`)
       setSelectedYear(`${data.birth_date.split('-')[0]}`)
       setSelectedMonth(`${data.birth_date.split('-')[1]-1}`)
-      setSelectedDay(new Date(`${data.birth_date}T00:00:00`)
+      setSelectedDay(new Date(`${data.birth_date}T00:00:00`))
       
       
 
