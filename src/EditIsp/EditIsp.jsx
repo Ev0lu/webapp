@@ -519,11 +519,12 @@ useEffect(() => {
       });
       const data = await response.json();
       console.log(data)
+      сonsole.log(data.worker.languages.map(lang => lang[0]), data.worker.skills.map(lang => lang[1]))
+
       setName(`${data.full_name.split(' ')[0]}`)
       setLname(`${data.full_name.split(' ')[1]}`)
       setFname(`${data.full_name.split(' ')[2]}`)
       setGender(`${data.gender}`)
-      сonsole.log(data.worker.languages.map(lang => lang[0]), data.worker.skills.map(lang => lang[1]))
       setSelectedCountries2Id__2(data.worker.languages.map(lang => lang[0]))
       setSelectedCountries2__2(data.worker.languages.map(lang => lang[1]))
       setSelectedCountries1__2(data.worker.skills.map(lang => lang[0]))
