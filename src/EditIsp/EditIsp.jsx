@@ -550,8 +550,8 @@ const patchProfile = async () => {
         "location": {
           "city_id": `${selectedCountry[1]}`
         },
-        "languages": [...setSelectedCountries2Id__2],
-        "skills": [...setSelectedCountries1Id__2],
+        "languages": [...selectedCountries2Id__2],
+        "skills": [...selectedCountries1Id__2],
         "profile": {
           "full_name": name + ' ' + lname + `${fname !== '' ? ' ' + fname : ''}`,
           "gender": gender,
