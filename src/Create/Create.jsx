@@ -239,7 +239,7 @@ const handleInputChange2 = (e) => {
 
    const [price, setPrice] = useState(0)
    const [term, setTerm] = useState('')
-   const [termScale, setTermScale] = useState(50)
+   const [termScale, setTermScale] = useState(40)
 
 
     const handleChange = (event) => {
