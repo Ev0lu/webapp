@@ -302,7 +302,7 @@ const handleInputChange2 = (e) => {
 
   useEffect(() => {
     const handleClickOutside__1 = (event) => {
-      if ((dropdownRef1__1.current && !dropdownRef1__1.current.contains(event.target)) && (dropdownRef2__1.current && !dropdownRef2__1.current.contains(event.target))) {
+      if ((dropdownRef1__1.current && !dropdownRef1__1.current.contains(event.target)) ) {
         setIsOpen1__1(false);
 
       }
@@ -349,8 +349,8 @@ useEffect(() => {
   };
   
   const selectCountry1__1 = (country) => {
-    const isSelected = selectedCountries1.includes(country[0]);
-    const isSelected2 = selectedCountries1Id.includes(country[1]);
+    const isSelected = selectedCountries1__1.includes(country[0]);
+    const isSelected2 = selectedCountries1Id__1.includes(country[1]);
 
     if (isSelected) {
       setSelectedCountries1__1(selectedCountries1__1.filter(c => c !== country[0]));
