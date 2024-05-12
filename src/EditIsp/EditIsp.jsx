@@ -538,6 +538,7 @@ useEffect(() => {
       
     } catch (error) {
       console.error('Error fetching:', error);
+      //...selectedCountries2Id__2
     }
 
   };
@@ -550,8 +551,9 @@ const patchProfile = async () => {
 
         "location": {
           "city_id": `${selectedCountry[1]}`
-        },
-        "languages": [...selectedCountries2Id__2],
+        },    
+        "languages": ["007aa8c7-18aa-4d44-b802-8acd6814094d",
+    "01e06c25-315d-4a3e-b3e3-54c315f248a0"],
         "skills": [...selectedCountries1Id__2],
         "profile": {
           "full_name": name + ' ' + lname + `${fname !== '' ? ' ' + fname : ''}`,
