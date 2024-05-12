@@ -284,11 +284,7 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
         style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
 
         value={selectedDate !== '' ?
-        selectedDate.toLocaleDateString('ru-RU') : dr
-
-            
-        :
-        ''}
+        selectedDate.toLocaleDateString('ru-RU') : dr}
         readOnly
       />
       {selectedDate === null && (errorFields.selectedDate && <span className={s.error_message}>Пожалуйста, введите дату</span>)}
