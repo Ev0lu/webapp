@@ -3,6 +3,7 @@ import s from './Edit.module.css';
 import arrowsvg from '../assets/arrow.svg';
 import arrowsvg2 from '../assets/angle-dark.svg';
 import blackarr from '../assets/black.svg';
+import Vector from '../assets/Vector.svg'
 import { Link } from 'react-router-dom';
 import { useParams, useLocation } from 'react-router-dom';
 
@@ -14,7 +15,7 @@ function Edit(props) {
   const [offset, setOffset] = useState(0);
   const limit = 25; // Количество элементов, которые необходимо загрузить при каждом запросе
   const [searchQuery, setSearchQuery] = useState(''); // Input value for country search
-  const { order_id } = useParams();
+
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const [accessToken, setAccessToken] = useState(searchParams.get('access_token'));
@@ -53,13 +54,15 @@ function Edit(props) {
   
   const [errorFields, setErrorFields] = useState({
     selectedCountry2: false,
-    selectedCountry: false
+    selectedCountry: false,
+    selectedCountries1__1: false
   });
 
   const validateFields = () => {
     const errors = {
       selectedCountry2: selectedCountry2 === '',
-      selectedCountry: selectedCountry === ''
+      selectedCountry: selectedCountry === '',
+      selectedCountries1__1: selectedCountries1__1.length === 0
     };
     setErrorFields(errors);
     return !Object.values(errors).some(Boolean);
@@ -267,87 +270,161 @@ const handleInputChange2 = (e) => {
         if(termScale == 0){
             setTerm('0дн')
             setTermH(0)
-        }else if(termScale == 25){
+        }else if(termScale == 20){
             setTerm('1нед')
             setTermH(7)
-        }else if(termScale == 50){
+        }else if(termScale == 40){
             setTerm('1мес')
             setTermH(30)
-        }else if(termScale == 75){
+        }else if(termScale == 60){
             setTerm('2мес')
             setTermH(60)
         }
-        else if(termScale == 100){
+        else if(termScale == 80){
             setTerm('3мес')
             setTermH(90)
 
         }
+        else if(termScale == 100){
+            setTerm('>3мес')
+            setTermH(100)
+        }
     },[termScale])
+  const [scrollbarHeight1__1, setScrollbarHeight1__1] = useState(0);
+    const [isOpen1__1, setIsOpen1__1] = useState(false);
+    const [searchQuery1__1, setSearchQuery1__1] = useState('');
+  const [selectedCountries1__1, setSelectedCountries1__1] = useState([]);
+  const [selectedCountries1Id__1, setSelectedCountries1Id__1] = useState([]);
+ const limit__1 = 25;
+  const [offset__1, setOffset__1] = useState(0);
 
 
-   const fetchOrders = async () => {
+    const dropdownRef1__1 = useRef(null);
+
+  const scrollContainerRef1__1 = useRef(null);
+
+  const scrollbarRef1__1 = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside__1 = (event) => {
+      if ((dropdownRef1__1.current && !dropdownRef1__1.current.contains(event.target)) ) {
+        setIsOpen1__1(false);
+
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside__1);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside__1);
+    };
+  }, []);
 
 
 
-    
+  
+useEffect(() => {
+    const calculateScrollbarHeight1__1 = () => {
+      const scrollContainerHeight1 = scrollContainerRef1__1.current.offsetHeight;
+      const contentHeight1 = scrollContainerRef1__1.current.scrollHeight;
+      const scrollbarHeightPercentage1 = (scrollContainerHeight1 / contentHeight1) * 100;
+      setScrollbarHeight1__1(scrollbarHeightPercentage1);
+    };
+
+
+
+    calculateScrollbarHeight1__1();
+
+
+    const handleResize__1 = () => {
+      calculateScrollbarHeight1__1();
+
+    };
+
+    window.addEventListener('resize', handleResize__1);
+
+    return () => {
+      window.removeEventListener('resize', handleResize__1);
+    };
+  }, []);
+  
+  
+  const toggleDropdown1__1 = () => {
+    setIsOpen1__1(!isOpen1__1);
+  };
+  
+  const selectCountry1__1 = (country) => {
+    const isSelected = selectedCountries1__1.includes(country[0]);
+    const isSelected2 = selectedCountries1Id__1.includes(country[1]);
+
+    if (isSelected) {
+      setSelectedCountries1__1(selectedCountries1__1.filter(c => c !== country[0]));
+      setSelectedCountries1Id__1(selectedCountries1Id__1.filter(c => c !== country[1]));
+
+    } else {
+
+      setSelectedCountries1__1([...selectedCountries1__1, country[0]]);
+      setSelectedCountries1Id__1([...selectedCountries1Id__1, country[1]]);
+
+    }
+  };
+
+  
+  const handleScroll1__1 = (e) => {
+    const { scrollTop, scrollHeight, clientHeight } = e.target;
+    const scrollbarHeightPercentage1 = (clientHeight / scrollHeight) * 100;
+    setScrollbarHeight1__1(scrollbarHeightPercentage1);
+    scrollbarRef1__1.current.style.height = `${(scrollbarHeightPercentage1) - 13}%`;
+    scrollbarRef1__1.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
+  };
+
+
+  
+const fetchSkills = async () => {
+
+
+
+    setLoading(true);
 
     try {
-      const response = await fetch(`https://assista1.ru/api/v1/order/?order_id=${order_id}`);
+      const response = await fetch(`https://assista1.ru/api/v1/items/skills?offset=${offset__1}&limit=${limit__1}`);
       const data = await response.json();
-      setLogin(`${data.title}`)
-      setTele(`${data.task}`)
-      if (data.is_online === true) {
-        setPlace('online')
-      } else {
-        setPlace('offline')
-      }
-      setPrice(`${data.price}`)
-      setTerm(`${data.duration}`)
-      setSkills([...data.skills])
-      setCity(`${[data.location.city_title, data.location.city_id]}`)
-      setSelectedCountry(`${data.location.country_title}`);
-      setSearchQuery(`${data.location.country_title}`)
-      setSearchQuery2(`${data.location.city_title}`)
+      const newCountries = data.items.map(([country, id]) => ({ label: country, value: id }));
+
+      setSkills(prevCountries => [...newCountries]); // Добавляем загруженные страны к списку
     } catch (error) {
-      console.error('Error fetching order:', error);
+      console.error('Error fetching skills:', error);
     }
 
+    setLoading(false);
   };
-  useEffect(() => {
-    fetchOrders()
-  },[])
 
+  useEffect(() => {
+    fetchSkills(); // Call fetchCountries whenever searchQuery changes
+  }, []);
+  
 
 
   const patchOrder = async () => {
     const requestBody = {
 
         "title": `${login}`,
-        "skills": [
-          "000a1660-da24-4d91-af08-9e2195415ac0"
-        ],
+        "skills": [...selectedCountries1Id__1],
         "task": `${tele}`,
         "is_online": place === 'offline' ? false : true,
         "price": Number(price),
-        "duration": Number(termH),
-        "location": {
-          "city_id": `${place === 'offline' ? selectedCountry2[1] : 'string'}`,
-          "city_title": `${place === 'offline' ? selectedCountry2[0] : 'string'}`,
-          "country_title": `${place === 'offline' ? selectedCountry[0] : 'string'}`
-        },
-        "creation_date":  `${today.toISOString().split('T')[0]}`
+        "duration": `${termH}`,
+        "location": place === 'offline' ? { "city_id":  `${selectedCountry2[1]}` } : null
 
     };
     
     try {
-      console.log(requestBody)
-      console.log(accessToken)
-      const response = await fetch(`https://assista1.ru/api/v1/order/${order_id}`, {
+
+      const response = await fetch(`https://assista1.ru/api/v1/order/create`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${accessToken}`
-
         },
         body: JSON.stringify(requestBody)
       });
@@ -365,6 +442,49 @@ const handleInputChange2 = (e) => {
       console.error('Error fetching order:', error);
     }
 };
+
+
+
+  const filteredSkills = skills.filter((skill) =>{
+
+     return skill.label.toLowerCase().includes(searchQuery1__1.toLowerCase())});
+
+
+   const fetchOrders = async () => {
+
+
+
+    
+
+        try {
+          const response = await fetch(`https://assista1.ru/api/v1/order/?order_id=${order_id}`);
+          const data = await response.json();
+          setLogin(`${data.title}`)
+          setTele(`${data.task}`)
+          if (data.is_online === true) {
+            setPlace('online')
+          } else {
+            setPlace('offline')
+          }
+          setPrice(`${data.price}`)
+          setTerm(`${data.duration}`)
+          setSelectedCountries1Id__1([...data.skills])
+          setCity(`${[data.location.city_title, data.location.city_id]}`)
+          setSelectedCountry(`${data.location.country_title}`);
+          setSearchQuery(`${data.location.country_title}`)
+          setSearchQuery2(`${data.location.city_title}`)
+          
+        } catch (error) {
+          console.error('Error fetching order:', error);
+        }
+
+  };
+  useEffect(() => {
+    fetchOrders()
+  },[])
+
+
+
   
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>  
@@ -470,6 +590,57 @@ const handleInputChange2 = (e) => {
                         
                 }
 
+
+
+          <div className={s.dropdown_container__1} ref={dropdownRef1__1}>
+          <input
+            className={`${s.password_field__1} ${props.colorB === 'light' ? s.light : s.dark}`}
+            type="text"
+            value={searchQuery1__1}
+
+            placeholder="Навыки"
+            onClick={toggleDropdown1__1}
+            onChange={(e) => setSearchQuery1__1(e.target.value)}
+            
+          />
+          <div  className={`${s.dropdown_options__1} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen1__1 ? s.open : ''}`}>
+            <div  className={s.scroll_container__1} ref={scrollContainerRef1__1} onScroll={handleScroll1__1}>
+              {filteredSkills.map((country, index) => (
+                <div key={index} className={`${s.dropdown_option__1} ${props.colorB === 'light' ? s.light : s.dark}`} >
+                <label style={{ display: 'flex', alignItems: 'center', width:'300px' }} onClick={() => selectCountry1__1([country.label, country.value])}>
+                     <input
+                     type="checkbox"
+                     className={`${s.inputCheck__1} ${props.colorB === 'light' ? s.light : s.dark}`}
+                     checked={selectedCountries1__1.includes(' ' + country.label)}
+
+                     onChange={() => selectCountry1__1([country.label, country.value])}
+                     style={{
+                        width: 20,
+                        height: 20,
+                        backgroundColor: 'white',
+                        border: 'none',
+                        cursor: 'pointer',
+                        marginRight: 10,
+                     }}
+                     />
+                     {selectedCountries1__1.includes(country.label) && <img className={s.checkbox_icon__1__1}  src={props.colorB === 'light' ? Vector : Vector} alt="checkmark"></img>}
+                    
+                      <span style={{ marginLeft: 10, width:'200px' }}>{country.label}</span>
+                 </label>
+             </div>
+              ))}
+            </div>
+            <div className={`${s.scrollbar_1__1} ${props.colorB === 'light' ? s.light : s.dark}`}  />
+            <div className={`${s.scrollbar__1} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef1__1} style={{ height: `${scrollbarHeight1__1}%` }} />
+          </div>
+          { selectedCountries1__1.length === 0 && (errorFields.selectedCountries1__1 && <span className={s.error_message}>Пожалуйста, выберите навыки</span>)}
+
+        </div>
+
+
+
+
+           
             <div className={s.password_input3}>
               <div style={{display:'flex'}}>
                 <h3 style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Цена</h3>
@@ -500,6 +671,7 @@ const handleInputChange2 = (e) => {
                 value={term}
                 onChange={handleChange4}
                 style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#373737', color:'#C7C7C7'} }
+                readOnly
 
             />
             {term === '' && (errorFields.term && <span className={s.error_message}>Пожалуйста, укажите срок</span>)}
@@ -517,12 +689,14 @@ const handleInputChange2 = (e) => {
 
 
            
-      <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/' : '/'}>
+      <Link to={(selectedCountry2 === '') || (selectedCountry == '') || selectedCountries1Id__1.length !== 0 || term !== '' ? '/create' : '/create'}>
         <button onClick={() => {
           validateFields()
-          if (login !== '') {
+          if (login !== ''  && selectedCountries1Id__1.length !== 0 && term !== ''  && price !== '') {
             patchOrder()
+            props.tg.close()
           }
+          
         }}className={`${s.greetings_btn} ${props.colorB === 'light' ? s.light : s.dark}`}>Создать заказ</button>
       </Link>
       </div>
