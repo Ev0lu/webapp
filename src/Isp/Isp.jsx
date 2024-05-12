@@ -115,7 +115,7 @@ function Isp(props) {
             const response = await fetch(`https://assista1.ru/api/v1/users/check/worker?telegram_id=${telegramId}`);
             const data = await response.json();
             const exist = await data.exist;
-            setTimeout(setIsexist(JSON.stringify(exist)),1000)
+            setIsexist(JSON.stringify(exist))
           } catch (error) {
             console.error(error);
           }
@@ -218,7 +218,6 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
 
                 changeFio()
                 validateFields()
-                console.log(isexist)
             }}>Далее</button>
         </Link>
         </div>
