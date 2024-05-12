@@ -5,7 +5,10 @@ import arrowsvg2 from '../assets/angle-dark.svg';
 import blackarr from '../assets/black.svg';
 import { Link } from 'react-router-dom';
 import { useParams, useLocation } from 'react-router-dom';
-
+import plus from '../assets/plus.svg'
+import minus from '../assets/minus.svg'
+import lightplus from '../assets/lightplus.svg'
+import lightminus from '../assets/lightminus.svg'
 
 
 function EditZak(props) {
@@ -89,7 +92,65 @@ function EditZak(props) {
         setPhone(event.target.value);
     };
 
+    const months = [
+        "январь", "февраль", "март", "апрель",
+        "май", "июнь", "июль", "август",
+        "сентябрь", "октябрь", "ноябрь", "декабрь"
+      ];
 
+      const years = Array.from({ length: 100 }, (_, index) => 2024 - index);
+      const [showCalendar, setShowCalendar] = useState(false);
+      const [selectedDate, setSelectedDate] = useState(null);
+      const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
+      const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+      const [nowYear, setNowYear] = useState(new Date().getFullYear());
+      const [err, setErr] = useState(null);
+
+     useEffect(() => {
+         setNowYear(nowYear-17)
+     },[])
+       useEffect(() => {
+         if (selectedYear > nowYear) {
+              setErr(false)
+         } else {
+             setErr(true)
+         }
+     },[selectedYear])
+      const [errorFields, setErrorFields] = useState({
+        selectedDate: false,
+        err: false
+    });
+      const validateFields = () => {
+        const errors = {
+          selectedDate: selectedDate === null,
+          err: err === ''
+        };
+        setErrorFields(errors);
+        return !Object.values(errors).some(Boolean);
+    };
+      const toggleCalendar = () => {
+        setShowCalendar(!showCalendar);
+      };
+    
+      const handleMonthChange = (delta) => {
+        setSelectedMonth((prevMonth) => {
+          let newMonth = prevMonth + delta;
+          if (newMonth < 0) newMonth = 11;
+          if (newMonth > 11) newMonth = 0;
+          return newMonth;
+        });
+      };
+    
+      const handleYearChange = (delta) => {
+        setSelectedYear((prevYear) => prevYear + delta);
+      };
+    
+      const handleDateClick = (day) => {
+        setSelectedDate(new Date(selectedYear, selectedMonth, day));
+        //setShowCalendar(!showCalendar);
+      };      
+
+      const daysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate();
   
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>  
@@ -155,7 +216,60 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
             </div>
         </div>
 
+ <div className={s.date_picker}>
+      <div className={s.date_flex}>
+      <input
+        type="text"
+        className={`${s.password_field} ${errorFields.selectedDate && s.error}`}
+        style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
 
+        value={selectedDate ?
+        selectedDate.toLocaleDateString('ru-RU') 
+
+            
+        :
+        ''}
+        readOnly
+      />
+      {selectedDate === null && (errorFields.selectedDate && <span className={s.error_message}>Пожалуйста, введите дату</span>)}
+      {errorFields.err && <span className={s.error_message}>Вы должны быть старше 18 лет</span>}
+
+      </div>
+      <div className={`${s.icon} ${errorFields.selectedDate && s.open}`} onClick={toggleCalendar}>
+        {showCalendar ? <img src={props.colorB === 'light' ? lightplus : plus}></img>: <img src={props.colorB === 'dark' ? minus : lightminus}></img>}
+      </div>
+      {showCalendar && (
+        <div className={`${s.calendar} ${props.colorB === 'light' ? s.light : s.dark}`}>
+          <div className={s.nav}>
+            <div className={`${s.arrow} ${props.colorB === 'light' ? s.light : s.dark}`} onClick={() => handleMonthChange(-1)}>
+              {'<'}
+            </div>
+            <div>{months[selectedMonth]}</div>
+            <div className={`${s.arrow} ${props.colorB === 'light' ? s.light : s.dark}`} onClick={() => handleMonthChange(1)}>
+              {'>'}
+            </div>
+            <div className={`${s.arrow} ${props.colorB === 'light' ? s.light : s.dark}`} onClick={() => handleYearChange(-1)}>
+              {'<'}
+            </div>
+            <div>{selectedYear}</div>
+            <div className={`${s.arrow} ${props.colorB === 'light' ? s.light : s.dark}`} onClick={() => handleYearChange(1)}>
+              {'>'}
+            </div>
+          </div>
+          <div className={`${s.days} ${props.colorB === 'light' ? s.light : s.dark}`}>
+          {Array.from({ length: daysInMonth }, (_, index) => index + 1).map((day) => (
+              <div
+                key={day}
+                className={selectedDate && selectedDate.getDate() === day ? s.selected : {}}
+                onClick={() => handleDateClick(day)}
+              >
+                {day}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
            
       <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/' : '/'}>
         <button onClick={() => {
