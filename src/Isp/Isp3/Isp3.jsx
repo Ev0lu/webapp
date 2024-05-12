@@ -256,6 +256,8 @@ const reg = async () => {
     if (response.ok) {
       const data = await response.json();
       sessionStorage.setItem('access', data.access_token)
+      sessionStorage.setItem('refresh', data.refresh_token)
+
 
     } else {
 
