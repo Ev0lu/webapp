@@ -15,6 +15,7 @@ function Edit(props) {
   const [offset, setOffset] = useState(0);
   const limit = 25; // Количество элементов, которые необходимо загрузить при каждом запросе
   const [searchQuery, setSearchQuery] = useState(''); // Input value for country search
+  const { order_id } = useParams();
 
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -22,7 +23,6 @@ function Edit(props) {
   const [refreshToken, setRefreshToken] = useState(searchParams.get('refresh_token'));
   const [today, setToday] = useState(new Date())
   // Получение значений параметров access_token и refresh_token из URL
-  const { order_id } = useParams();
 
   
   const [isOpen, setIsOpen] = useState(false);
