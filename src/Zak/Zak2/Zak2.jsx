@@ -172,7 +172,7 @@ const postRequest = async () => {
         { pass === '' && (errorFields.pass2 && <span className={s.error_message}>Пожалуйста, подтвердите пароль</span>)}
         {pass!=pass2 && <span className={s.error_message}>Пароли должны совпадать</span>}
         {errorFields.check && <span className={s.error_message}>Почта не соответствует формату</span>}
-        { pass === '' && <span className={s.error_message}>Размер пароля должен составлять от 10 до 25 символов</span>}
+        { (pass.length<10) || (pass.length > 24) && <span className={s.error_message}>Размер пароля должен составлять от 10 до 25 символов</span>}
 
 
 
