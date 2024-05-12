@@ -490,7 +490,44 @@ useEffect(() => {
 
   
 
+   const fetchInfo = async () => {
 
+
+
+    
+
+    try {
+      const response = await fetch(`https://assista1.ru/api/v1/users/me`,{
+        method: 'GET',
+        headers: {
+           'Authorization': `Bearer ${accessToken}`,
+        }
+      });
+      const data = await response.json();
+
+      setName(`${data.full_name.split(' ')[0]}`)
+      setLname(`${data.full_name.split(' ')[1]}`)
+      setFname(`${data.full_name.split(' ')[2]}`)
+      setGender(`${data.gender}`)
+      setPhone(`${data.phone}`)
+      setSelectedCountries2Id__2([worker.languages.map(lang => lang[0])])
+      setSelectedCountries2__2([worker.languages.map(lang => lang[1])])
+      setSelectedCountries1__2([worker.skills.map(lang => lang[0])])
+      setSelectedCountries1Id__2([worker.skills.map(lang => lang[1])])
+
+
+
+      
+    } catch (error) {
+      console.error('Error fetching:', error);
+    }
+
+  };
+
+
+  useEffect(() => {
+    fetchInfo()
+  },[])
 
   
   return (
