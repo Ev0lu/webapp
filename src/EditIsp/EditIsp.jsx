@@ -494,7 +494,7 @@ useEffect(() => {
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>  
          <div className={s.greetings_wrapper}>
         <div className={s.reg}>
-            <h1 className={s.greetings_text} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Создание заказа</h1>
+            <h1 className={s.greetings_text} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Редактирование профиля</h1>
         </div>
 
         <div className={`${s.password_input}`}>
@@ -720,7 +720,12 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
           if (login !== '') {
             patchOrder()
           }
-        }}className={`${s.greetings_btn} ${props.colorB === 'light' ? s.light : s.dark}`}>Создать заказ</button>
+        }}className={`${s.greetings_btn} ${props.colorB === 'light' ? s.light : s.dark}`}>Применить</button>
+      </Link>
+      <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/' : '/'}>
+        <button onClick={() => {
+            props.tg.close()
+        }}className={`${s.greetings_btn} ${props.colorB === 'light' ? s.light : s.dark}`}>Отменить</button>
       </Link>
       </div>
     </div>
