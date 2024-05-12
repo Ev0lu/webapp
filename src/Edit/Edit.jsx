@@ -457,7 +457,7 @@ const fetchSkills = async () => {
     
 
         try {
-          const response = await fetch(`https://assista1.ru/api/v1/order/?order_id=${order_id}`);
+          const response = await fetch(`https://assista1.ru/api/v1/order/${order_id}`);
           const data = await response.json();
           setLogin(`${data.title}`)
           setTele(`${data.task}`)
