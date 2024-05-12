@@ -459,6 +459,7 @@ const fetchSkills = async () => {
         try {
           const response = await fetch(`https://assista1.ru/api/v1/order/${order_id}`);
           const data = await response.json();
+          console.log(data)
           setLogin(`${data.order.title}`)
           setTele(`${data.order.task}`)
           if (data.order.is_online === true) {
