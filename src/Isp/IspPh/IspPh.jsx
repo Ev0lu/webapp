@@ -34,7 +34,7 @@ const handleAvatarChange = (event) => {
     reader.onload = () => {
       const img = new Image();
       img.onload = () => {
-        if (img.width > 500 || img.height > 500) {
+        if (img.width > 800 || img.height > 800) {
           setErrorFields({ size: true });
           setAvatar(null);
         } else {
@@ -127,7 +127,7 @@ const uploadPhoto = async () => {
               className={s.avatar_input}
             />
             {avatar === null && (errorFields.avatar && <span className={s.error_message}>Пожалуйста, приложите изображение</span>)}
-            {size === true && (errorFields.size && <span className={s.error_message}>Изображение должно быть меньше 500x500 и 50Кб</span>)}
+            {size === true && (errorFields.size && <span className={s.error_message}>Изображение должно быть меньше 800x800 и 50Кб</span>)}
           </div>
         </div>
         <Link to={avatar !== null ? '/success_r' : '/zak_reg_photo'}>
