@@ -6,6 +6,10 @@ import Reg from './Registration/Reg'
 import Auth from './Auth/Auth'
 import Greetings from './Greetings/Greetings';
 import Payment from './Payment/Payment';
+import SuccessAuth from './SuccessAuth/SuccessAuth';
+import SuccessReg from './SuccessReg/SuccessReg';
+
+
 import Edit from './Edit/Edit';
 import EditIsp from './EditIsp/EditIsp';
 import EditZak from './EditZak/EditZak';
@@ -72,6 +76,9 @@ function App() {
           <Route path="/payment" element={<Payment tg={tg} colorB={colorB} />} />
           <Route path="/edit_isp" element={<EditIsp tg={tg} colorB={colorB} />} />
           <Route path="/edit_zak" element={<EditZak tg={tg} colorB={colorB} />} />
+          <Route path="/success_a" element={<SuccessAuth tg={tg} colorB={colorB} />} />
+          <Route path="/success_r" element={<SuccessReg tg={tg} colorB={colorB} />} />
+
 
           
           
