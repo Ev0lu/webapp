@@ -167,6 +167,9 @@ function EditZak(props) {
       setFname(`${data.full_name.split(' ')[2]}`)
       setGender(`${data.gender}`)
       setPhone(`${data.phone}`)
+      setSelectedYear(`${data.birth_date.split('-')[0]}`)
+      setSelectedMonth(`${data.birth_date.split('-')[1]-1}`)
+      setSelectedDay(`${data.birth_date.split('-')[2]}`)
       
       
 
