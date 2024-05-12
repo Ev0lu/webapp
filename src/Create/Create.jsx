@@ -596,7 +596,7 @@ const fetchSkills = async () => {
               ))}
             </div>
             <div className={`${s.scrollbar_1__1} ${props.colorB === 'light' ? s.light : s.dark}`}  />
-            <div className={`${s.scrollbar__1} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef1__1} style={{ height: `${scrollbarHeight1}%` }} />
+            <div className={`${s.scrollbar__1} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef1__1} style={{ height: `${scrollbarHeight1__1}%` }} />
           </div>
           { selectedCountries1__1.length === 0 && (errorFields.selectedCountries1__1 && <span className={s.error_message}>Пожалуйста, выберите навыки</span>)}
 
