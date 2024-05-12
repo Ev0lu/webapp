@@ -354,12 +354,12 @@ const handleInputChange2 = (e) => {
       setScrollbarHeight2__2(scrollbarHeightPercentage2);
     };
 
-    calculateScrollbarHeight1();
-    calculateScrollbarHeight2();
+    calculateScrollbarHeight1__2();
+    calculateScrollbarHeight2__2();
 
     const handleResize__2 = () => {
-      calculateScrollbarHeight1();
-      calculateScrollbarHeight2();
+      calculateScrollbarHeight1__2();
+      calculateScrollbarHeight2__2();
     };
 
     window.addEventListener('resize', handleResize__2);
