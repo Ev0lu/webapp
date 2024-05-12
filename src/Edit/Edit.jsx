@@ -469,7 +469,8 @@ const fetchSkills = async () => {
           }
           setPrice(`${data.order.price}`)
           setTerm(`${data.order.duration}`)
-          setSelectedCountries1Id__1([data.order.skills])
+          setSelectedCountries1Id__1([data.order.skills.map(lang => lang[1])])
+          setSelectedCountries1__1([data.order.skills.map(lang => lang[0])])
           setCity(`${[data.order.location.city_title, data.order.location.city_id]}`)
           setSelectedCountry(`${data.order.location.country_title}`);
           setSearchQuery(`${data.order.location.country_title}`)
