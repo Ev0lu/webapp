@@ -109,7 +109,7 @@ border: 2px solid white;
   .dropdown_container {
     position: relative;
 
-    z-index: 2;
+    z-index: 10;
     width: 315px;
     
   }
@@ -146,7 +146,7 @@ border: 2px solid white;
     border-top: none;
     border-radius: 0 0 4px 4px;
     background-color: #373737;
-    z-index: 1;
+    z-index: 10;
     border: 1px solid gray;
     border-radius: 5px;
    
@@ -318,7 +318,7 @@ border: 2px solid white;
  .dropdown_container2 {
     position: relative;
 
-    z-index: 1;
+    z-index: 9;
     width: 315px;
     
   }
@@ -354,7 +354,7 @@ border: 2px solid white;
     border-top: none;
     border-radius: 0 0 4px 4px;
     background-color: #373737;
-    z-index: 1;
+    z-index: 9;
     border: 1px solid gray;
     border-radius: 5px;
    
@@ -607,7 +607,7 @@ h3{
     border-top: none;
     border-radius: 0 0 4px 4px;
     background-color: #373737;
-    z-index: 1;
+    z-index: 5;
     border: 1px solid gray;
     border-radius: 5px;
    
