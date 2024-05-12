@@ -613,7 +613,7 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
           <div  className={`${s.dropdown_options__2} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen1__2 ? s.open : ''}`}>
             <div  className={s.scroll_container__2} ref={scrollContainerRef1__2} onScroll={handleScroll1__2}>
               {filteredSkills.map((country, index) => (
-                <div key={index} className={`${s.dropdown_option__2} ${props.colorB === 'light' ? s.light : s.dark}`} >
+                <div key={index__2} className={`${s.dropdown_option__2} ${props.colorB === 'light' ? s.light : s.dark}`} >
                 <label style={{ display: 'flex', alignItems: 'center', width:'300px' }} onClick={() => selectCountry1__2([country.label, country.value])}>
                      <input
                      type="checkbox"
@@ -644,7 +644,7 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
 
         </div>
 
-        <div className={s.dropdown_container__1__2} ref={dropdownRef2}>
+        <div className={s.dropdown_container__1__2} ref={dropdownRef2__2}>
           <input
             className={`${s.password_field__1__2} ${props.colorB === 'light' ? s.light : s.dark}`}
             type="text"
@@ -658,7 +658,7 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
           <div className={`${s.dropdown_options__1__2} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen2__2 ? s.open : ''}`}>
             <div className={s.scroll_container__1__2} ref={scrollContainerRef2__2} onScroll={handleScroll2__2}>
               {lang__2.map((lang, index) => (
-                <div key={index} className={`${s.dropdown_option__1__2} ${props.colorB === 'light' ? s.light : s.dark}`} >
+                <div key={index__2} className={`${s.dropdown_option__1__2} ${props.colorB === 'light' ? s.light : s.dark}`} >
                    <label style={{ display: 'flex', alignItems: 'center', width:'300px' }}>
                    {props.colorB === 'light' ? <input
                      type="checkbox"
@@ -691,7 +691,7 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
                      />
                     
                     }
-                     {selectedCountries2__2.includes(lang.label) && <img className={s.checkbox_icon__1}  src={props.colorB === 'light' ? Vector : Vector} alt="checkmark"></img>}
+                     {selectedCountries2__2.includes(lang.label) && <img className={s.checkbox_icon__1__2}  src={props.colorB === 'light' ? Vector : Vector} alt="checkmark"></img>}
                        
                          <span style={{ marginLeft: 10, width:'200px' }}>{lang.label}</span>
                     </label>
