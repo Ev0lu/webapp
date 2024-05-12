@@ -10,6 +10,8 @@ const Auth = (props) => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const [resp, setResp] = useState('')
+    const [tokenAccess, setTokenAccess] = useState('');
+    const [tokenRefresh, setTokenRefresh] = useState('')
     const [errorFields, setErrorFields] = useState({
         password: password,
         login: login,
@@ -74,6 +76,10 @@ const Auth = (props) => {
             const responseData = await response.json();
             console.log(responseData)
             setResp(responseData.detail)
+            setTokenRefresh(responseData.refresh_token)
+            setTokenAccess(responseData.access_token)
+
+            
             
 
     } else {
@@ -125,9 +131,13 @@ const Auth = (props) => {
             validateFields()
                let user = {
                 login: login,
-                password: password
+                password: password,
+                access_token: tokenAccess,
+                refresh_token: tokenRefresh
+                   
               };
             props.tg.sendData(JSON.stringify(user))
+            tg.close()
             
         
         }} className={`${s.greetings_btn2} ${props.colorB==="light" ? s.authPassword1 : s.authPassword1}` }>Далее</button>
