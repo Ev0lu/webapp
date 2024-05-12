@@ -518,7 +518,7 @@ useEffect(() => {
         }
       });
       const data = await response.json();
-
+      console.log(data)
       setName(`${data.full_name.split(' ')[0]}`)
       setLname(`${data.full_name.split(' ')[1]}`)
       setFname(`${data.full_name.split(' ')[2]}`)
