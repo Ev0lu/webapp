@@ -115,7 +115,7 @@ useEffect(() => {
                 { resp === 'Incorrect login or password' && (errorFields.resp && <span className={s.error_message}>Неверный логин или пароль</span>)}
 
         </div>
-        <Link to={(password.length<10) || (password.length > 25) || (resp === 'Incorrect login or password') || (resp === '') ? '/authorization' : '/'}>
+        <Link to={(password.length<10) || (password.length > 25) || (resp === 'Incorrect login or password') || (resp === '') ? '/authorization' : '/success_a'}>
         <button onClick={() => {
             postRequest()
             validateFields()}} className={`${s.greetings_btn2} ${props.colorB==="light" ? s.authPassword1 : s.authPassword1}` }>Далее</button>
