@@ -74,6 +74,7 @@ const Auth = (props) => {
             const responseData = await response.json();
             console.log(responseData)
             setResp(responseData.detail)
+            
 
     } else {
            const responseData = await response.json();
