@@ -36,8 +36,8 @@ function Zak2(props) {
 
 
     const handleChange = (event) => {
-        input.replace(/[A-Za-z]/g, '')
-        setLogin(event.target.value);
+        
+        setLogin(event.target.value.replace(/[^A-Za-z]/g, ''));
     };
     const handleChange2 = (event) => {
         setTele(event.target.value);
