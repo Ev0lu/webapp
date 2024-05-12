@@ -525,6 +525,7 @@ useEffect(() => {
       setLname(`${data.full_name.split(' ')[1]}`)
       setFname(`${data.full_name.split(' ')[2]}`)
       setGender(`${data.gender}`)
+      setPhone(`${data.phone}`)
       setSelectedCountries2Id__2(data.worker.languages.map(lang => lang[0]))
       setSelectedCountries2__2(data.worker.languages.map(lang => lang[1]))
       setSelectedCountries1__2(data.worker.skills.map(lang => lang[0]))
@@ -554,8 +555,8 @@ const patchProfile = async () => {
         "skills": [...selectedCountries1Id__2],
         "profile": {
           "full_name": name + ' ' + lname + `${fname !== '' ? ' ' + fname : ''}`,
-          "gender": gender,
-          "phone": "+78005553536"
+          "gender": `${gender}`,
+          "phone": `${phone}`
         }
     };
     console.log(requestBody)
