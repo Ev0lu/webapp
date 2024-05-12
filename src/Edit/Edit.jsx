@@ -468,7 +468,7 @@ const fetchSkills = async () => {
           }
           setPrice(`${data.price}`)
           setTerm(`${data.duration}`)
-          setSelectedCountries1Id__1([...data.skills])
+          setSelectedCountries1Id__1([data.skills])
           setCity(`${[data.location.city_title, data.location.city_id]}`)
           setSelectedCountry(`${data.location.country_title}`);
           setSearchQuery(`${data.location.country_title}`)
