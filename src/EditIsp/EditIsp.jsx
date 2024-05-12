@@ -523,7 +523,6 @@ useEffect(() => {
       setLname(`${data.full_name.split(' ')[1]}`)
       setFname(`${data.full_name.split(' ')[2]}`)
       setGender(`${data.gender}`)
-      setPhone(`${data.phone}`)
       setSelectedCountries2Id__2([data.worker.languages.map(lang => lang[0])])
       setSelectedCountries2__2([data.worker.languages.map(lang => lang[1])])
       setSelectedCountries1__2([data.worker.skills.map(lang => lang[0])])
@@ -587,17 +586,7 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
 
         </div>
 
-           <div className={s.password_input}>
-            <input
-                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }                type={'text'}
-                placeholder="Телефон"
-                className={s.password_field}
-                value={phone}
-                onChange={handleChange4}
-            />
-            {phone === '' && (errorFields.phone && <span className={s.error_message}>Пожалуйста, введите телефон</span>)}
-            {errorFields.checkPh && <span className={s.error_message}>Номер должен начинаться с кода страны(+...)</span>}
-        </div>
+          
         <div className={`${s.radio_gender}`} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>
             <label htmlFor="gender" style={{ fontSize: '14px' }}>Ваш пол:</label>
             <div>
