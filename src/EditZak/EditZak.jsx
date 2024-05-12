@@ -46,8 +46,6 @@ function EditZak(props) {
   const [phone, setPhone] = useState('')
   
   const [errorFields, setErrorFields] = useState({
-    selectedCountry2: false,
-    selectedCountry: false,
     name: false,
     lname: false,
     gender: false,
@@ -57,8 +55,7 @@ function EditZak(props) {
 
   const validateFields = () => {
     const errors = {
-      selectedCountry2: selectedCountry2 === '',
-      selectedCountry: selectedCountry === '',
+
       selectedDate: selectedDate === null,
       err: err === ''
     };
