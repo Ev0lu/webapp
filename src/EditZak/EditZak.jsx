@@ -185,19 +185,18 @@ function EditZak(props) {
   },[])
 const patchProfile = async () => {
     const requestBody = {
-      
-       {
-        "birth_date": "2024-04-18",
-        "profile": {
-          "full_name": "Ivanov Ivan Ivanovich",
-          "gender": "male",
-          "phone": "+78005553535"
+    
+       
+      "birth_date": `${selectedYear}-${selectedMonth+1 < 10 ? '0' + `${selectedMonth+1}` : selectedMonth+1 }-${selectedDate.getDate() < 10 ? '0' + `${selectedDate.getDate()}` : selectedDate.getDate()  }`,
+      "profile": {
+          "full_name": name + ' ' + lname + `${fname !== '' ? ' ' + fname : ''}`,
+          "gender": `${gender}`,
+          "phone": `${phone}`
         }
-      }
-    };
+      
+    }
 
     try {
-
       const response = await fetch(`https://assista1.ru/api/v1/users/update/worker`, {
         method: 'PATCH',
         headers: {
@@ -206,6 +205,7 @@ const patchProfile = async () => {
         },
         body: JSON.stringify(requestBody)
       });
+
 
       if (response.ok) {
         const data = await response.json();
