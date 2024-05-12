@@ -24,6 +24,11 @@ function IspPh(props) {
 
 const handleAvatarChange = (event) => {
   const file = event.target.files[0];
+  if (file.size > 50 * 1024) { // размер в байтах
+      setErrorFields({ size: true });
+      setAvatar(null);
+      return; // прерываем выполнение функции
+    }
   if (file) {
     const reader = new FileReader();
     reader.onload = () => {
@@ -122,7 +127,7 @@ const uploadPhoto = async () => {
               className={s.avatar_input}
             />
             {avatar === null && (errorFields.avatar && <span className={s.error_message}>Пожалуйста, приложите изображение</span>)}
-            {size === true && (errorFields.size && <span className={s.error_message}>Изображение не должно быть размером больше чем 200x200</span>)}
+            {size === true && (errorFields.size && <span className={s.error_message}>Изображение должно быть меньше 500x500 и 50Кб</span>)}
           </div>
         </div>
         <Link to={avatar !== null ? '/success_r' : '/zak_reg_photo'}>
