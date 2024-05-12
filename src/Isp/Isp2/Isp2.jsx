@@ -39,7 +39,7 @@ function Isp2(props) {
 
 
     const handleChange = (event) => {
-        setLogin(event.target.value.replace(/[^A-Za-z]/g, ''));
+        setLogin(event.target.value.replace(/[^A-Za-z0-9]/g, ''));
     };
     const handleChange2 = (event) => {
         const isValidPhone = /^\+/.test(event.target.value)
