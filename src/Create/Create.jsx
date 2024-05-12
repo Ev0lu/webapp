@@ -270,20 +270,24 @@ const handleInputChange2 = (e) => {
         if(termScale == 0){
             setTerm('0дн')
             setTermH(0)
-        }else if(termScale == 25){
+        }else if(termScale == 20){
             setTerm('1нед')
             setTermH(7)
-        }else if(termScale == 50){
+        }else if(termScale == 40){
             setTerm('1мес')
             setTermH(30)
-        }else if(termScale == 75){
+        }else if(termScale == 60){
             setTerm('2мес')
             setTermH(60)
         }
-        else if(termScale == 100){
+        else if(termScale == 80){
             setTerm('3мес')
             setTermH(90)
 
+        }
+        else if(termScale == 100){
+            setTerm('>3мес')
+            setTermH(100)
         }
     },[termScale])
   const [scrollbarHeight1__1, setScrollbarHeight1__1] = useState(0);
