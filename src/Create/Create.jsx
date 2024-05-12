@@ -576,7 +576,7 @@ const fetchSkills = async () => {
                      <input
                      type="checkbox"
                      className={`${s.inputCheck__1} ${props.colorB === 'light' ? s.light : s.dark}`}
-                     checked={selectedCountries2__1.includes(' ' + country.label)}
+                     checked={selectedCountries1__1.includes(' ' + country.label)}
 
                      onChange={() => selectCountry1__1([country.label, country.value])}
                      style={{
