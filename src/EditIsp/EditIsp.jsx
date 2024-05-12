@@ -281,8 +281,8 @@ const handleInputChange2 = (e) => {
 
 
 
-  const [skills, setSkills] = useState([])
-  const [lang, setLang] = useState([])
+  const [skills__2, setSkills__2] = useState([])
+  const [lang__2, setLang__2] = useState([])
   const [searchQuery1__2, setSearchQuery1__2] = useState('');
   const [searchQuery2__2, setSearchQuery2__2] = useState('');
   const [city1__2, setCity1__2] = useState('');
@@ -433,11 +433,11 @@ const fetchSkills = async () => {
     setLoading(true);
 
     try {
-      const response = await fetch(`https://assista1.ru/api/v1/items/skills?offset=${offset}&limit=${limit}`);
+      const response = await fetch(`https://assista1.ru/api/v1/items/skills?offset=${offset__2}&limit=${limit__2}`);
       const data = await response.json();
       const newCountries = data.items.map(([country, id]) => ({ label: country, value: id }));
 
-      setSkills(prevCountries => [...newCountries]); // Добавляем загруженные страны к списку
+      setSkills__2(prevCountries => [...newCountries]); // Добавляем загруженные страны к списку
     } catch (error) {
       console.error('Error fetching skills:', error);
     }
@@ -457,11 +457,11 @@ const fetchSkills = async () => {
     setLoading(true);
 
     try {
-      const response = await fetch(`https://assista1.ru/api/v1/items/language?startswith=${searchQuery2}&offset=${offset}&limit=${limit}`);
+      const response = await fetch(`https://assista1.ru/api/v1/items/language?startswith=${searchQuery2__2}&offset=${offset__2}&limit=${limit__2}`);
       const data = await response.json();
       const newCountries = data.items.map(([country, id]) => ({ label: country, value: id }));
 
-      setLang(prevCountries => [...prevCountries, ...newCountries]); // Добавляем загруженные страны к списку
+      setLang__2(prevCountries => [...prevCountries, ...newCountries]); // Добавляем загруженные страны к списку
       setOffset2__2(prevOffset => prevOffset + limit2__2); // Увеличиваем offset для следующего запроса
 
     } catch (error) {
@@ -476,10 +476,10 @@ const fetchSkills = async () => {
   }, []);
 useEffect(() => {
   setOffset2__2(0); // Reset offset to 0 when searchQuery changes
-  setLang([]); 
+  setLang__2([]); 
 }, [searchQuery2]);
   
-  const filteredSkills = skills.filter((skill) =>{
+  const filteredSkills = skills__2.filter((skill) =>{
 
      return skill.label.toLowerCase().includes(searchQuery1.toLowerCase())});
 
@@ -657,7 +657,7 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
           />
           <div className={`${s.dropdown_options__1__2} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen2__2 ? s.open : ''}`}>
             <div className={s.scroll_container__1__2} ref={scrollContainerRef2__2} onScroll={handleScroll2__2}>
-              {lang.map((lang, index) => (
+              {lang__2.map((lang, index) => (
                 <div key={index} className={`${s.dropdown_option__1__2} ${props.colorB === 'light' ? s.light : s.dark}`} >
                    <label style={{ display: 'flex', alignItems: 'center', width:'300px' }}>
                    {props.colorB === 'light' ? <input
