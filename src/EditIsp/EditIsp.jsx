@@ -481,7 +481,7 @@ useEffect(() => {
   
   const filteredSkills = skills__2.filter((skill) =>{
 
-     return skill.label.toLowerCase().includes(searchQuery1.toLowerCase())});
+     return skill.label.toLowerCase().includes(searchQuery1__2.toLowerCase())});
 
   
 
