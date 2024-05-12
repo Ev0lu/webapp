@@ -341,8 +341,8 @@ const handleInputChange2 = (e) => {
 
   useEffect(() => {
     const calculateScrollbarHeight1__2 = () => {
-      const scrollContainerHeight1 = scrollContainerRef1.current.offsetHeight;
-      const contentHeight1 = scrollContainerRef1.current.scrollHeight;
+      const scrollContainerHeight1 = scrollContainerRef1__2.current.offsetHeight;
+      const contentHeight1 = scrollContainerRef1__2.current.scrollHeight;
       const scrollbarHeightPercentage1 = (scrollContainerHeight1 / contentHeight1) * 100;
       setScrollbarHeight1__2(scrollbarHeightPercentage1);
     };
