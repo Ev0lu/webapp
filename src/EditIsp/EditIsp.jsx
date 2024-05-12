@@ -370,11 +370,11 @@ const handleInputChange2 = (e) => {
   }, []);
 
   const toggleDropdown1__2 = () => {
-    setIsOpen1(!isOpen1__2);
+    setIsOpen1__2(!isOpen1__2);
   };
 
   const toggleDropdown2__2 = () => {
-    setIsOpen2(!isOpen2__2);
+    setIsOpen2__2(!isOpen2__2);
   };
 
   const selectCountry1__2 = (country) => {
