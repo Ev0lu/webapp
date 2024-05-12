@@ -50,13 +50,17 @@ function EditZak(props) {
     selectedCountry: false,
     name: false,
     lname: false,
-    gender: false
+    gender: false,
+    selectedDate: false,
+    err: false
   });
 
   const validateFields = () => {
     const errors = {
       selectedCountry2: selectedCountry2 === '',
-      selectedCountry: selectedCountry === ''
+      selectedCountry: selectedCountry === '',
+      selectedDate: selectedDate === null,
+      err: err === ''
     };
     setErrorFields(errors);
     return !Object.values(errors).some(Boolean);
@@ -116,18 +120,8 @@ function EditZak(props) {
              setErr(true)
          }
      },[selectedYear])
-      const [errorFields, setErrorFields] = useState({
-        selectedDate: false,
-        err: false
-    });
-      const validateFields = () => {
-        const errors = {
-          selectedDate: selectedDate === null,
-          err: err === ''
-        };
-        setErrorFields(errors);
-        return !Object.values(errors).some(Boolean);
-    };
+
+
       const toggleCalendar = () => {
         setShowCalendar(!showCalendar);
       };
