@@ -44,6 +44,7 @@ function EditZak(props) {
   const [fname, setFname] = useState('')
   const [fio, setFio] = useState('')
   const [phone, setPhone] = useState('')
+  const [dr, setDr] = useState('')
   
   const [errorFields, setErrorFields] = useState({
     name: false,
@@ -164,9 +165,8 @@ function EditZak(props) {
       setFname(`${data.full_name.split(' ')[2]}`)
       setGender(`${data.gender}`)
       setPhone(`${data.phone}`)
-      setSelectedYear(`${data.birth_date.split('-')[0]}`)
-      setSelectedMonth(`${data.birth_date.split('-')[1]-1}`)
-      setSelectedDay(`${data.birth_date.split('-')[2]}`)
+      setDr(`${data.birth_date}`)
+
       
       
 
@@ -187,7 +187,7 @@ const patchProfile = async () => {
     const requestBody = {
     
        
-      "birth_date": `${selectedYear}-${selectedMonth+1 < 10 ? '0' + `${selectedMonth+1}` : selectedMonth+1 }-${selectedDate.getDate() < 10 ? '0' + `${selectedDate.getDate()}` : selectedDate.getDate()  }`,
+      "birth_date": dr === `${selectedYear}-${selectedMonth+1 < 10 ? '0' + `${selectedMonth+1}` : selectedMonth+1 }-${selectedDate.getDate() < 10 ? '0' + `${selectedDate.getDate()}` : selectedDate.getDate()  }` ? dr :  `${selectedYear}-${selectedMonth+1 < 10 ? '0' + `${selectedMonth+1}` : selectedMonth+1 }-${selectedDate.getDate() < 10 ? '0' + `${selectedDate.getDate()}`,
       "profile": {
           "full_name": name + ' ' + lname + `${fname !== '' ? ' ' + fname : ''}`,
           "gender": `${gender}`,
