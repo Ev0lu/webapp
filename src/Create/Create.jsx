@@ -467,6 +467,7 @@ const handleInputChange2 = (e) => {
                 value={term}
                 onChange={handleChange4}
                 style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#373737', color:'#C7C7C7'} }
+                readOnly
 
             />
             {term === '' && (errorFields.term && <span className={s.error_message}>Пожалуйста, укажите срок</span>)}
