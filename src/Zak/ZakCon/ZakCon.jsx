@@ -142,15 +142,14 @@ const postRequest = async () => {
     if (response.ok) {
       const data = await response.json();
       sessionStorage.setItem('access_token', data.access_token)
-      console.log(data)
+      sessionStorage.setItem('profile_id', data.profile_id)
+      sessionStorage.setItem('refresh_token', data.refresh_token)
 
     } else {
       const data = await response.json();
-        console.log(data)
     }
 
   } catch (error) {
-      console.log(error)
   }
 }
   return (
