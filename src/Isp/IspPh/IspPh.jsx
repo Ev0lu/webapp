@@ -130,7 +130,9 @@ const uploadPhoto = async () => {
           validateFields()
           uploadPhoto()
                   let user = {
-
+                          access_token: sessionStorage.getItem('access_token'),
+                          refresh_token: sessionStorage.getItem('refresh_token'),
+                          profile_id: sessionStorage.getItem('profile_id')
                       };
             props.tg.sendData(JSON.stringify(user))
             props.tg.close()
@@ -141,7 +143,9 @@ const uploadPhoto = async () => {
         <Link to={'/success_r'}>
           <button onClick={() => {
                         let user = {
-                         
+                          access_token: sessionStorage.getItem('access_token'),
+                          refresh_token: sessionStorage.getItem('refresh_token'),
+                          profile_id: sessionStorage.getItem('profile_id')
                       };
             props.tg.sendData(JSON.stringify(user))
             props.tg.close()
