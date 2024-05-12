@@ -187,7 +187,7 @@ const patchProfile = async () => {
     const requestBody = {
     
        
-      "birth_date": dr === `${selectedYear}-${selectedMonth+1 < 10 ? '0' + `${selectedMonth+1}` : selectedMonth+1 }-${selectedDate.getDate() < 10 ? '0' + `${selectedDate.getDate()}` : selectedDate.getDate()  }` ? dr : `${selectedYear}-${selectedMonth+1 < 10 ? '0' + `${selectedMonth+1}` : selectedMonth+1 }-${selectedDate.getDate() < 10 ? '0' + `${selectedDate.getDate()}` : selectedDate.getDate()  }`,
+      "birth_date":  selectedDate === null ? dr : `${selectedYear}-${selectedMonth+1 < 10 ? '0' + `${selectedMonth+1}` : selectedMonth+1 }-${selectedDate.getDate() < 10 ? '0' + `${selectedDate.getDate()}` : selectedDate.getDate()  }`,
       "profile": {
           "full_name": name + ' ' + lname + `${fname !== '' ? ' ' + fname : ''}`,
           "gender": `${gender}`,
