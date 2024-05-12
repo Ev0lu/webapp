@@ -60,6 +60,7 @@ function EditIsp(props) {
     const [telegramId, setTelegramId] = useState('')
     const [rlink, setRlink] = useState('/zak1_reg')
 
+    const [checkPh,setCheckPh] = useState('')
 
 
 
@@ -73,6 +74,12 @@ function EditIsp(props) {
         setFname(event.target.value);
     };
     const handleChange4 = (event) => {
+        const isValidPhone = /^\+/.test(event.target.value)
+        if (isValidPhone === true) {
+            setCheckPh('exist')
+        } else{
+            setCheckPh('')
+        }
         setPhone(event.target.value);
     };
 
@@ -96,13 +103,20 @@ function EditIsp(props) {
     selectedCountry: false,
     name: false,
     lname: false,
-    gender: false
+    gender: false,
+    checkPh: false,
+    phone: false
   });
 
   const validateFields = () => {
     const errors = {
-      selectedCountry2: selectedCountry2 === '',
-      selectedCountry: selectedCountry === ''
+            selectedCountry2: selectedCountry2 === '',
+            selectedCountry: selectedCountry === '',
+            phone: phone === '',
+            checkPh: checkPh === '',
+            name: name === '',
+            lname: name === '',
+            
     };
     setErrorFields(errors);
     return !Object.values(errors).some(Boolean);
@@ -579,7 +593,8 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
                 value={phone}
                 onChange={handleChange4}
             />
-
+            {phone === '' && (errorFields.phone && <span className={s.error_message}>Пожалуйста, введите телефон</span>)}
+            {errorFields.checkPh && <span className={s.error_message}>Номер должен начинаться с кода страны(+...)</span>}
         </div>
         <div className={`${s.radio_gender}`} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>
             <label htmlFor="gender" style={{ fontSize: '14px' }}>Ваш пол:</label>
