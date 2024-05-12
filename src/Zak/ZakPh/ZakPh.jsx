@@ -159,21 +159,7 @@ const uploadPhoto = async () => {
         <Link to={'/success_r'}>
           <button onClick={() => {
            let user = {
-                      profile: {
-                        telegram_id: props.tg.initDataUnsafe.user.id,
-                        login: sessionStorage.getItem('login'),
-                        email: sessionStorage.getItem('mail'),
-                        full_name: sessionStorage.getItem('name') + ' ' + sessionStorage.getItem('lname') + `${sessionStorage.getItem('fname') !== null ? ' ' + sessionStorage.getItem('fname') : ''}`,
-                        phone: sessionStorage.getItem('tele'),
-                        gender: sessionStorage.getItem('gender'),
-                        password: sessionStorage.getItem('pass'),
-                      },
-                      client:{
-                       
-                        birth_date: sessionStorage.getItem('birth_date')
-                  
-                        
-                      },
+
                     access_token: sessionStorage.getItem('access_token'),
                     refresh_token: sessionStorage.getItem('refresh_token'),
                     profile_id: sessionStorage.getItem('profile_id')
