@@ -563,7 +563,7 @@ const fetchSkills = async () => {
             onChange={(e) => setSearchQuery1__1(e.target.value)}
             
           />
-          <div  className={`${s.dropdown_options__1} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen1 ? s.open : ''}`}>
+          <div  className={`${s.dropdown_options__1} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen1__1 ? s.open : ''}`}>
             <div  className={s.scroll_container__1} ref={scrollContainerRef1__1} onScroll={handleScroll1__1}>
               {filteredSkills.map((country, index) => (
                 <div key={index} className={`${s.dropdown_option__1} ${props.colorB === 'light' ? s.light : s.dark}`} >
