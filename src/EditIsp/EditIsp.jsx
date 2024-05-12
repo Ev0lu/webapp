@@ -613,7 +613,7 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
           <div  className={`${s.dropdown_options__2} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen1__2 ? s.open : ''}`}>
             <div  className={s.scroll_container__2} ref={scrollContainerRef1__2} onScroll={handleScroll1__2}>
               {filteredSkills.map((country, index) => (
-                <div key={index__2} className={`${s.dropdown_option__2} ${props.colorB === 'light' ? s.light : s.dark}`} >
+                <div key={index} className={`${s.dropdown_option__2} ${props.colorB === 'light' ? s.light : s.dark}`} >
                 <label style={{ display: 'flex', alignItems: 'center', width:'300px' }} onClick={() => selectCountry1__2([country.label, country.value])}>
                      <input
                      type="checkbox"
@@ -658,7 +658,7 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
           <div className={`${s.dropdown_options__1__2} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen2__2 ? s.open : ''}`}>
             <div className={s.scroll_container__1__2} ref={scrollContainerRef2__2} onScroll={handleScroll2__2}>
               {lang__2.map((lang, index) => (
-                <div key={index__2} className={`${s.dropdown_option__1__2} ${props.colorB === 'light' ? s.light : s.dark}`} >
+                <div key={index} className={`${s.dropdown_option__1__2} ${props.colorB === 'light' ? s.light : s.dark}`} >
                    <label style={{ display: 'flex', alignItems: 'center', width:'300px' }}>
                    {props.colorB === 'light' ? <input
                      type="checkbox"
