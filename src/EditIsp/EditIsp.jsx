@@ -519,7 +519,7 @@ useEffect(() => {
       });
       const data = await response.json();
       console.log(data)
-      сonsole.log(data.worker.languages.map(lang => lang[0]), data.worker.skills.map(lang => lang[1]))
+      console.log(data.worker.languages.map(lang => lang[0]), data.worker.skills.map(lang => lang[1]))
 
       setName(`${data.full_name.split(' ')[0]}`)
       setLname(`${data.full_name.split(' ')[1]}`)
