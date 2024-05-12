@@ -36,6 +36,8 @@ function EditIsp(props) {
   const [city, setCity] = useState('');
   const [login, setLogin] = useState('');
   const [tele, setTele] = useState('');
+  const [phone, setPhone] = useState('');
+
   const [cities, setCities] = useState([])
 
   const [scrollbarHeight, setScrollbarHeight] = useState(0);
@@ -71,7 +73,9 @@ function EditIsp(props) {
     const handleChange3 = (event) => {
         setFname(event.target.value);
     };
-
+    const handleChange4 = (event) => {
+        setPhone(event.target.value);
+    };
 
     const [gender, setGender] = useState('');
 
@@ -527,6 +531,17 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
                 className={s.password_field}
                 value={fname}
                 onChange={handleChange3}
+            />
+
+        </div>
+
+           <div className={s.password_input}>
+            <input
+                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }                type={'text'}
+                placeholder="Телефон"
+                className={s.password_field}
+                value={phone}
+                onChange={handleChange4}
             />
 
         </div>
