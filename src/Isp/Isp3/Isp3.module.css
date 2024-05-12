@@ -345,9 +345,11 @@
 
   .checkbox_icon{
     position: absolute;
+    pointer-events: none;
   }
   .checkbox_icon__1{
     position: absolute;
+    pointer-events: none;
   }
 
 
