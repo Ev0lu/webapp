@@ -44,7 +44,7 @@ function Zak2(props) {
     };
     const handleChange2 = (event) => {
         const isValidPhone = /^\+/.test(event.target.value)
-        if (isValidEmail === true) {
+        if (isValidPhone === true) {
             setCheckPh('exist')
         } else{
             setCheckPh('')
