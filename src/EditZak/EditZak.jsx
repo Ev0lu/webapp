@@ -40,6 +40,7 @@ function EditZak(props) {
   const [lname, setLname] = useState('');
   const [fname, setFname] = useState('')
   const [fio, setFio] = useState('')
+  const [phone, setPhone] = useState('')
   
   const [errorFields, setErrorFields] = useState({
     selectedCountry2: false,
@@ -84,6 +85,9 @@ function EditZak(props) {
     const handleChange3 = (event) => {
         setFname(event.target.value);
     };
+      const handleChange4 = (event) => {
+        setPhone(event.target.value);
+    };
 
 
   
@@ -124,6 +128,18 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
                 className={s.password_field}
                 value={fname}
                 onChange={handleChange3}
+            />
+
+        </div>
+
+
+           <div className={s.password_input}>
+            <input
+                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }                type={'text'}
+                placeholder="Телефон"
+                className={s.password_field}
+                value={phone}
+                onChange={handleChange4}
             />
 
         </div>
