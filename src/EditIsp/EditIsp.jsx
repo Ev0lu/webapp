@@ -479,7 +479,7 @@ const fetchSkills = async () => {
 useEffect(() => {
   setOffset2__2(0); // Reset offset to 0 when searchQuery changes
   setLang__2([]); 
-}, [searchQuery2]);
+}, [searchQuery2__2]);
   
   const filteredSkills = skills__2.filter((skill) =>{
 
