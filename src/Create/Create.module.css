@@ -169,7 +169,7 @@ border: 2px solid white;
     color: #C7C7C7;
     background-color: #373737;
     outline: none;
-    
+    z-index:2;
     box-sizing: border-box;
 }
   .dropdown_option {
@@ -632,7 +632,7 @@ h3{
     color: #C7C7C7;
     background-color: #373737;
     outline: none;
-    z-index:0;
+    z-index:1;
     
     box-sizing: border-box;
 }
