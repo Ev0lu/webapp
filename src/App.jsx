@@ -74,7 +74,8 @@ function App() {
           <Route path="/isp_con" element={<IspCon tg={tg} colorB={colorB} />} />
           <Route path="/zak_con" element={<ZakCon tg={tg} colorB={colorB} />} />
           <Route path="/payment" element={<Payment tg={tg} colorB={colorB} />} />
-          <Route path="/editPr/:profile_id" element={<EditIsp tg={tg} colorB={colorB} />} />
+          <Route path="/update/worker" element={<EditIsp tg={tg} colorB={colorB} />} />
+          <Route path="/update/client" element={<EditZak tg={tg} colorB={colorB} />} />
 
           <Route path="/success_a" element={<SuccessAuth tg={tg} colorB={colorB} />} />
           <Route path="/success_r" element={<SuccessReg tg={tg} colorB={colorB} />} />
