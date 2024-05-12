@@ -691,7 +691,7 @@ const fetchSkills = async () => {
 
 
            
-      <Link to={(selectedCountry2 === '') || (selectedCountry == '') || selectedCountries1Id__1.length !== 0 || term !== '' ? '/create' : '/create'}>
+      <Link to={(selectedCountry2 === '') || (selectedCountry == '') || selectedCountries1Id__1.length !== 0 || term !== '' ? '/edit' : '/edit'}>
         <button onClick={() => {
           validateFields()
           if (login !== ''  && selectedCountries1Id__1.length !== 0 && term !== ''  && price !== '') {
