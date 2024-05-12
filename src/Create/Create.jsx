@@ -444,7 +444,7 @@ const fetchSkills = async () => {
 
   const filteredSkills = skills.filter((skill) =>{
 
-     return skill.label.toLowerCase().includes(searchQuery1.toLowerCase())});
+     return skill.label.toLowerCase().includes(searchQuery1__1.toLowerCase())});
 
 
 
