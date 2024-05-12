@@ -740,7 +740,7 @@ h3{
 
   .checkbox_icon__1__1{
     position: absolute;
-    z-index:0;
+    pointer-events: none;
   }
 
 
