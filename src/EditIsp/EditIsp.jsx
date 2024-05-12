@@ -550,10 +550,9 @@ const patchProfile = async () => {
     const requestBody = {
 
         "location": {
-          "city_id": `${selectedCountry[1]}`
+          "city_id": `000a11e2-78da-4c5a-b447-cb9233331e11`
         },    
-        "languages": ["007aa8c7-18aa-4d44-b802-8acd6814094d",
-    "01e06c25-315d-4a3e-b3e3-54c315f248a0"],
+        "languages": [...selectedCountries2Id__2],
         "skills": [...selectedCountries1Id__2],
         "profile": {
           "full_name": name + ' ' + lname + `${fname !== '' ? ' ' + fname : ''}`,
