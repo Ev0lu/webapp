@@ -179,7 +179,7 @@ const postRequest = async () => {
 
         </div>
 
-        <Link to={pass === pass2 && login !== '' && tele !== '' && mail !== '' && check !== '' && (password.length>9) && (password.length < 25) ? '/zak_con' : '/zak2_reg'}>
+        <Link to={pass === pass2 && login !== '' && tele !== '' && mail !== '' && check !== '' && (pass.length>9) && (pass.length < 25) ? '/zak_con' : '/zak2_reg'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
                 sessionStorage.setItem('login', login)
                 sessionStorage.setItem('tele', tele)
