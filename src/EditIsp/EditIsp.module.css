@@ -91,10 +91,7 @@ border: 2px solid white;
     transition: background-color 0.2s ease;
     
   }
-  .greetings_btn:last-child{
-    margin-bottom:40px;
-    
-  }
+
 
 
   .greetings_btn:active{
