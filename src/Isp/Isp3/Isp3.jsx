@@ -255,9 +255,9 @@ const reg = async () => {
 
     if (response.ok) {
       const data = await response.json();
-      sessionStorage.setItem('access', data.access_token)
-      sessionStorage.setItem('refresh', data.refresh_token)
-
+      sessionStorage.setItem('access_token', data.access_token)
+      sessionStorage.setItem('profile_id', data.profile_id)
+      sessionStorage.setItem('refresh_token', data.refresh_token)
 
     } else {
 
