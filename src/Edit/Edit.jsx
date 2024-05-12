@@ -680,7 +680,7 @@ const fetchSkills = async () => {
 
 
           <div className={s.likert_scale}>
-            <input className={s.heigh} type="range" min="0" max="100" step="25" value={termScale} onChange={(e)=> {
+            <input className={s.heigh} type="range" min="0" max="100" step="20" value={termScale} onChange={(e)=> {
             setTermScale(e.target.value) 
               }}
              />
