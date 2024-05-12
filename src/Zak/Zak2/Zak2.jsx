@@ -119,7 +119,7 @@ const postRequest = async () => {
 
             />
             {login === '' && (errorFields.login && <span className={s.error_message}>Пожалуйста, введите логин</span>)}
-            {/^[A-Za-z]+$/.test(login) === false && <span className={s.error_message}>Логин должен содержать только буквы латинского алфавита</span>)}
+            {/^[A-Za-z]+$/.test(login) === false && <span className={s.error_message}>Логин должен содержать только буквы латинского алфавита</span>}
         </div>
         <div className={s.password_input}>
             <input
