@@ -160,12 +160,14 @@ function EditZak(props) {
         }
       });
       const data = await response.json();
-
+      console.log(data)
 
       setName(`${data.full_name.split(' ')[0]}`)
       setLname(`${data.full_name.split(' ')[1]}`)
       setFname(`${data.full_name.split(' ')[2]}`)
       setGender(`${data.gender}`)
+      setPhone(`${data.phone}`)
+      
       
 
 
@@ -183,17 +185,15 @@ function EditZak(props) {
   },[])
 const patchProfile = async () => {
     const requestBody = {
-
-        "location": {
-          "city_id": `${selectedCountry2[1]}`
-        },    
-        "languages": [...selectedCountries2Id__2],
-        "skills": [...selectedCountries1Id__2],
+      
+       {
+        "birth_date": "2024-04-18",
         "profile": {
-          "full_name": name + ' ' + lname + `${fname !== '' ? ' ' + fname : ''}`,
-          "gender": `${gender}`,
-          "phone": `${phone}`
+          "full_name": "Ivanov Ivan Ivanovich",
+          "gender": "male",
+          "phone": "+78005553535"
         }
+      }
     };
 
     try {
@@ -209,12 +209,12 @@ const patchProfile = async () => {
 
       if (response.ok) {
         const data = await response.json();
-        
+        console.log(data)
 
         // Обработка полученных данных
       } else {
         const data = await response.json();
-
+        console.log(data)
       }
     } catch (error) {
 
