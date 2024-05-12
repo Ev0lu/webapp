@@ -115,7 +115,7 @@ function Zak(props) {
             const response = await fetch(`https://assista1.ru/api/v1/users/check/client?telegram_id=${telegramId}`);
             const data = await response.json();
             const exist = await data.exist;
-            setTimeout(setIsexist(JSON.stringify(exist)),1000)
+            setIsexist(JSON.stringify(exist))
           } catch (error) {
             console.error(error);
           }
