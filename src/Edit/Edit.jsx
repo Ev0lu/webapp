@@ -459,20 +459,20 @@ const fetchSkills = async () => {
         try {
           const response = await fetch(`https://assista1.ru/api/v1/order/${order_id}`);
           const data = await response.json();
-          setLogin(`${data.title}`)
-          setTele(`${data.task}`)
-          if (data.is_online === true) {
+          setLogin(`${data.order.title}`)
+          setTele(`${data.order.task}`)
+          if (data.order.is_online === true) {
             setPlace('online')
           } else {
             setPlace('offline')
           }
-          setPrice(`${data.price}`)
-          setTerm(`${data.duration}`)
-          setSelectedCountries1Id__1([data.skills])
-          setCity(`${[data.location.city_title, data.location.city_id]}`)
-          setSelectedCountry(`${data.location.country_title}`);
-          setSearchQuery(`${data.location.country_title}`)
-          setSearchQuery2(`${data.location.city_title}`)
+          setPrice(`${data.order.price}`)
+          setTerm(`${data.order.duration}`)
+          setSelectedCountries1Id__1([data.order.skills])
+          setCity(`${[data.order.location.city_title, data.order.location.city_id]}`)
+          setSelectedCountry(`${data.order.location.country_title}`);
+          setSearchQuery(`${data.order.location.country_title}`)
+          setSearchQuery2(`${data.order.location.city_title}`)
           
         } catch (error) {
           console.error('Error fetching order:', error);
