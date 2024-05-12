@@ -59,7 +59,7 @@ const Auth = (props) => {
   };
 
   try {
-    const response = await fetch('https://assista1.ru/auth/login', {
+    const response = await fetch('https://assista1.ru/api/v1/auth/login', {
       method: 'POST',
       headers: {
         'accept': 'application/json',
