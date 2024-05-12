@@ -145,6 +145,82 @@ function EditZak(props) {
       };      
 
       const daysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate();
+
+       const fetchInfo = async () => {
+
+
+
+    
+
+    try {
+      const response = await fetch(`https://assista1.ru/api/v1/users/me`,{
+        method: 'GET',
+        headers: {
+           'Authorization': `Bearer ${accessToken}`,
+        }
+      });
+      const data = await response.json();
+
+
+      setName(`${data.full_name.split(' ')[0]}`)
+      setLname(`${data.full_name.split(' ')[1]}`)
+      setFname(`${data.full_name.split(' ')[2]}`)
+      setGender(`${data.gender}`)
+      
+
+
+
+
+      
+    } catch (error) {
+
+    }
+
+  };
+
+  useEffect(() => {
+    fetchInfo()
+  },[])
+const patchProfile = async () => {
+    const requestBody = {
+
+        "location": {
+          "city_id": `${selectedCountry2[1]}`
+        },    
+        "languages": [...selectedCountries2Id__2],
+        "skills": [...selectedCountries1Id__2],
+        "profile": {
+          "full_name": name + ' ' + lname + `${fname !== '' ? ' ' + fname : ''}`,
+          "gender": `${gender}`,
+          "phone": `${phone}`
+        }
+    };
+
+    try {
+
+      const response = await fetch(`https://assista1.ru/api/v1/users/update/worker`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
+        },
+        body: JSON.stringify(requestBody)
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        
+
+        // Обработка полученных данных
+      } else {
+        const data = await response.json();
+
+      }
+    } catch (error) {
+
+    }
+};
+
   
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>  
@@ -188,16 +264,6 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
         </div>
 
 
-           <div className={s.password_input}>
-            <input
-                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }                type={'text'}
-                placeholder="Телефон"
-                className={s.password_field}
-                value={phone}
-                onChange={handleChange4}
-            />
-
-        </div>
         <div className={`${s.radio_gender}`} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>
             <label htmlFor="gender" style={{ fontSize: '14px' }}>Ваш пол:</label>
             <div>
@@ -268,9 +334,9 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
       <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/' : '/'}>
         <button onClick={() => {
           validateFields()
-          if (login !== '') {
-            patchOrder()
-          }
+         
+          patchProfile()
+          
         }}className={`${s.greetings_btn} ${props.colorB === 'light' ? s.light : s.dark}`}>Создать заказ</button>
       </Link>
       </div>
