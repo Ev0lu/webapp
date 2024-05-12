@@ -13,7 +13,14 @@ function ZakPh(props) {
     size: false
   });
   const [accessToken, setAccessToken] = useState(null);
-
+  const validateFields = () => {
+    const errors = {
+      avatar: avatar === null,
+      size: size === true
+    };
+    setErrorFields(errors);
+    return !Object.values(errors).some(Boolean);
+  };
 
   useEffect(() => {
 
@@ -51,14 +58,7 @@ const handleAvatarChange = (event) => {
   }
 };
 
-  const validateFields = () => {
-    const errors = {
-      avatar: avatar === null,
-      size: size === false
-    };
-    setErrorFields(errors);
-    return !Object.values(errors).some(Boolean);
-  };
+
 
 const uploadPhoto = async () => {
     const formData = new FormData();
