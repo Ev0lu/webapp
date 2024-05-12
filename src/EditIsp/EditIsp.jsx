@@ -203,7 +203,6 @@ function EditIsp(props) {
       setCountries(prevCountries => [...prevCountries, ...newCountries]); // Добавляем загруженные страны к списку
       setOffset(prevOffset => prevOffset + limit); // Увеличиваем offset для следующего запроса
     } catch (error) {
-      console.error('Error fetching countries:', error);
     }
 
     setLoading(false);
@@ -223,7 +222,6 @@ function EditIsp(props) {
       setCities(prevCountries => [...prevCountries, ...newCities]); // Добавляем загруженные страны к списку
       setOffset2(prevOffset => prevOffset + limit2); // Увеличиваем offset для следующего запроса
     } catch (error) {
-      console.error('Error fetching cities:', error);
     }
 
     setLoading2(false);
@@ -460,7 +458,6 @@ const fetchSkills = async () => {
 
       setSkills__2(prevCountries => [...newCountries]); // Добавляем загруженные страны к списку
     } catch (error) {
-      console.error('Error fetching skills:', error);
     }
 
     setLoading(false);
@@ -486,7 +483,6 @@ const fetchSkills = async () => {
       setOffset2__2(prevOffset => prevOffset + limit2__2); // Увеличиваем offset для следующего запроса
 
     } catch (error) {
-      console.error('Error fetching skills:', error);
     }
 
     setLoading(false);
@@ -520,8 +516,7 @@ useEffect(() => {
         }
       });
       const data = await response.json();
-      console.log(data)
-      console.log(data.worker.languages.map(lang => lang[0]), data.worker.skills.map(lang => lang[1]))
+
 
       setName(`${data.full_name.split(' ')[0]}`)
       setLname(`${data.full_name.split(' ')[1]}`)
@@ -534,13 +529,12 @@ useEffect(() => {
       setSelectedCountries1Id__2(data.worker.skills.map(lang => lang[1]))
       selectCountry(['', ''])
       selectCountry2(['', data.worker.location.city_id])
-      console.log(['', data.worker.location.city_id])
+
 
 
       
     } catch (error) {
-      console.error('Error fetching:', error);
-      //...selectedCountries2Id__2
+
     }
 
   };
@@ -581,11 +575,10 @@ const patchProfile = async () => {
         // Обработка полученных данных
       } else {
         const data = await response.json();
-        console.log(data)
-        console.error('Failed to fetch orders:', response.status);
+
       }
     } catch (error) {
-      console.error('Error fetching order:', error);
+
     }
 };
 
