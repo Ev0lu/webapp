@@ -556,7 +556,7 @@ const patchProfile = async () => {
           "phone": "+78005553535"
         }
     };
-    
+    console.log(requestBody)
     try {
 
       const response = await fetch(`https://assista1.ru/api/v1/users/update/worker`, {
@@ -567,9 +567,10 @@ const patchProfile = async () => {
         },
         body: JSON.stringify(requestBody)
       });
-  
+      console.log(requestBody)
       if (response.ok) {
         const data = await response.json();
+        
         console.log(data)
         // Обработка полученных данных
       } else {
