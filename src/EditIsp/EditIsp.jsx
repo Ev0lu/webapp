@@ -209,7 +209,7 @@ function EditIsp(props) {
     setLoading(false);
   };
   const fetchCities = async () => {
-    if (selectedCountry[1] === '' || selectedCountry[1] === undefined)) {
+    if (selectedCountry[1] === '' || selectedCountry[1] === undefined) {
       return;
     }
 
