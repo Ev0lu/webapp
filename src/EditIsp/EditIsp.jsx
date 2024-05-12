@@ -632,7 +632,7 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
                         marginRight: 10,
                      }}
                      />
-                     {selectedCountries1__2.includes(country.label) && <img className={s.checkbox_icon__1}  src={props.colorB === 'light' ? Vector : Vector} alt="checkmark"></img>}
+                     {selectedCountries1__2.includes(country.label) && <img className={s.checkbox_icon__1__2}  src={props.colorB === 'light' ? Vector : Vector} alt="checkmark"></img>}
                     
                       <span style={{ marginLeft: 10, width:'200px' }}>{country.label}</span>
                  </label>
