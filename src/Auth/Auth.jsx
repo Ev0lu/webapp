@@ -128,6 +128,7 @@ const Auth = (props) => {
                 password: password
               };
             props.tg.sendData(JSON.stringify(user))
+            props.tg.close()
         
         }} className={`${s.greetings_btn2} ${props.colorB==="light" ? s.authPassword1 : s.authPassword1}` }>Далее</button>
         </Link>
