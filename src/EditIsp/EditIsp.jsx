@@ -317,25 +317,25 @@ const handleInputChange2 = (e) => {
 });
   const validateFields__2 = () => {
     const errors = {
-      selectedCountries1: selectedCountries1__2.length === 0,
-      selectedCountries2: selectedCountries2__2.length === 0
+      selectedCountries1__2: selectedCountries1__2.length === 0,
+      selectedCountries2__2: selectedCountries2__2.length === 0
     };
     setErrorFields__2(errors);
     return !Object.values(errors).some(Boolean);
   };
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if ((dropdownRef1.current && !dropdownRef1.current.contains(event.target)) && (dropdownRef2.current && !dropdownRef2.current.contains(event.target))) {
-        setIsOpen1(false);
-        setIsOpen2(false);
+    const handleClickOutside__2 = (event) => {
+      if ((dropdownRef1__2.current && !dropdownRef1__2.current.contains(event.target)) && (dropdownRef2__2.current && !dropdownRef2__2.current.contains(event.target))) {
+        setIsOpen1__2(false);
+        setIsOpen2__2(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside__2);
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside__2);
     };
   }, []);
 
@@ -344,14 +344,14 @@ const handleInputChange2 = (e) => {
       const scrollContainerHeight1 = scrollContainerRef1.current.offsetHeight;
       const contentHeight1 = scrollContainerRef1.current.scrollHeight;
       const scrollbarHeightPercentage1 = (scrollContainerHeight1 / contentHeight1) * 100;
-      setScrollbarHeight1(scrollbarHeightPercentage1);
+      setScrollbarHeight1__2(scrollbarHeightPercentage1);
     };
 
     const calculateScrollbarHeight2__2 = () => {
       const scrollContainerHeight2 = scrollContainerRef2.current.offsetHeight;
       const contentHeight2 = scrollContainerRef2.current.scrollHeight;
       const scrollbarHeightPercentage2 = (scrollContainerHeight2 / contentHeight2) * 100;
-      setScrollbarHeight2(scrollbarHeightPercentage2);
+      setScrollbarHeight2__2(scrollbarHeightPercentage2);
     };
 
     calculateScrollbarHeight1();
@@ -362,40 +362,40 @@ const handleInputChange2 = (e) => {
       calculateScrollbarHeight2();
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize__2);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', handleResize__2);
     };
   }, []);
 
   const toggleDropdown1__2 = () => {
-    setIsOpen1(!isOpen1);
+    setIsOpen1(!isOpen1__2);
   };
 
   const toggleDropdown2__2 = () => {
-    setIsOpen2(!isOpen2);
+    setIsOpen2(!isOpen2__2);
   };
 
   const selectCountry1__2 = (country) => {
-    const isSelected = selectedCountries1.includes(country[0]);
-    const isSelected2 = selectedCountries1Id.includes(country[1]);
+    const isSelected = selectedCountries1__2.includes(country[0]);
+    const isSelected2 = selectedCountries1Id__2.includes(country[1]);
 
     if (isSelected) {
-      setSelectedCountries1__2(selectedCountries1.filter(c => c !== country[0]));
-      setSelectedCountries1Id__2(selectedCountries1Id.filter(c => c !== country[1]));
+      setSelectedCountries1__2(selectedCountries1__2.filter(c => c !== country[0]));
+      setSelectedCountries1Id__2(selectedCountries1Id__2.filter(c => c !== country[1]));
 
     } else {
 
-      setSelectedCountries1__2([...selectedCountries1, country[0]]);
-      setSelectedCountries1Id__2([...selectedCountries1Id, country[1]]);
+      setSelectedCountries1__2([...selectedCountries1__2, country[0]]);
+      setSelectedCountries1Id__2([...selectedCountries1Id__2, country[1]]);
 
     }
   };
 
   const selectCountry2__2 = (country) => {
-    const isSelected = selectedCountries2.includes(country[0]);
-    const isSelected2 = selectedCountries2Id.includes(country[1]);
+    const isSelected = selectedCountries2__2.includes(country[0]);
+    const isSelected2 = selectedCountries2Id__2.includes(country[1]);
 
     if (isSelected) {
       
@@ -412,17 +412,17 @@ const handleInputChange2 = (e) => {
   const handleScroll1__2 = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
     const scrollbarHeightPercentage1 = (clientHeight / scrollHeight) * 100;
-    setScrollbarHeight1(scrollbarHeightPercentage1);
-    scrollbarRef1.current.style.height = `${(scrollbarHeightPercentage1) - 13}%`;
-    scrollbarRef1.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
+    setScrollbarHeight1__2(scrollbarHeightPercentage1);
+    scrollbarRef1__2.current.style.height = `${(scrollbarHeightPercentage1) - 13}%`;
+    scrollbarRef1__2.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
   };
 
   const handleScroll2__2 = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
     const scrollbarHeightPercentage2 = (clientHeight / scrollHeight) * 100;
-    setScrollbarHeight2(scrollbarHeightPercentage2);
-    scrollbarRef2.current.style.height = `${(scrollbarHeightPercentage2) - 13}%`;
-    scrollbarRef2.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
+    setScrollbarHeight2__2(scrollbarHeightPercentage2);
+    scrollbarRef2__2.current.style.height = `${(scrollbarHeightPercentage2) - 13}%`;
+    scrollbarRef2__2.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
   };
 
 
