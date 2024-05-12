@@ -657,12 +657,14 @@ const fetchSkills = async () => {
 
 
            
-      <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/' : '/'}>
+      <Link to={(selectedCountry2 === '') || (selectedCountry == '') || selectedCountries1Id__1.length !== 0 || term !== '' ? '/create' : '/create'}>
         <button onClick={() => {
           validateFields()
-          if (login !== '') {
+          if (login !== ''  && selectedCountries1Id__1.length !== 0 && term !== ''  && price !== '') {
             patchOrder()
+            props.tg.close()
           }
+          
         }}className={`${s.greetings_btn} ${props.colorB === 'light' ? s.light : s.dark}`}>Создать заказ</button>
       </Link>
       </div>
