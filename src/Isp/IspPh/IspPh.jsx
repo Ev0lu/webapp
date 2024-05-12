@@ -154,7 +154,7 @@ const uploadPhoto = async () => {
     }} className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>Далее</button>
         </Link>
         <Link to={'/success_r'}>
-          <button onClick{() => {
+          <button onClick={() => {
                         let user = {
                           profile: {
                             telegram_id: props.tg.initDataUnsafe.user.id,
