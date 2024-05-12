@@ -60,7 +60,7 @@ function EditIsp(props) {
 
 
 
-    const handleChange1 = (event) => {
+    const handleChange = (event) => {
         setName(event.target.value);
     };
     const handleChange2 = (event) => {
