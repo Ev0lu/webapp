@@ -868,9 +868,11 @@ h3{
 
   .checkbox_icon__2{
     position: absolute;
+    pointer-events: none;
   }
   .checkbox_icon__1__2{
     position: absolute;
+    pointer-events: none;
   }
 
 
