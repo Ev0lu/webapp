@@ -118,7 +118,14 @@ useEffect(() => {
         <Link to={(password.length<10) || (password.length > 25) || (resp === 'Incorrect login or password') || (resp === '') ? '/authorization' : '/success_a'}>
         <button onClick={() => {
             postRequest()
-            validateFields()}} className={`${s.greetings_btn2} ${props.colorB==="light" ? s.authPassword1 : s.authPassword1}` }>Далее</button>
+            validateFields()
+               let user = {
+                login: login,
+                password: password
+              };
+            props.tg.sendData(JSON.stringify(user))
+        
+        }} className={`${s.greetings_btn2} ${props.colorB==="light" ? s.authPassword1 : s.authPassword1}` }>Далее</button>
         </Link>
         </div>
       
