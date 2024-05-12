@@ -504,7 +504,7 @@ useEffect(() => {
 
   
 
-   const fetchInfo = async () => {
+     const fetchInfo = async () => {
 
 
 
@@ -539,10 +539,47 @@ useEffect(() => {
 
   };
 
+  
+const patchProfile = async () => {
+    const requestBody = {
 
-  useEffect(() => {
-    fetchInfo()
-  },[])
+        "location": {
+          "city_id": `${selectedCountry[1]}`
+        },
+        "languages": [...setSelectedCountries2Id__2],
+        "skills": [...setSelectedCountries1Id__2],
+        "profile": {
+          "full_name": name + ' ' + lname + `${fname !== '' ? ' ' + fname : ''}`,
+          "gender": gender,
+          "phone": "+78005553535"
+        }
+    };
+    
+    try {
+
+      const response = await fetch(`https://assista1.ru/api/v1/users/update/worker`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
+        },
+        body: JSON.stringify(requestBody)
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data)
+        // Обработка полученных данных
+      } else {
+        const data = await response.json();
+        console.log(data)
+        console.error('Failed to fetch orders:', response.status);
+      }
+    } catch (error) {
+      console.error('Error fetching order:', error);
+    }
+};
+
 
   
   return (
@@ -774,6 +811,7 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
       <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/' : '/'}>
         <button onClick={() => {
           validateFields()
+          patchProfile()
 
         }}className={`${s.greetings_btn} ${props.colorB === 'light' ? s.light : s.dark}`}>Применить</button>
       </Link>
