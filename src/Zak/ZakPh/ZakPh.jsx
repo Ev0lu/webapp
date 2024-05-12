@@ -128,10 +128,60 @@ const uploadPhoto = async () => {
         <Link to={avatar !== null ? '/success_r' : '/zak_reg_photo'}>
           <button onClick={() => {
           validateFields()
-          uploadPhoto()}} className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>Далее</button>
+          uploadPhoto()
+           let user = {
+                      profile: {
+                        telegram_id: props.tg.initDataUnsafe.user.id,
+                        login: sessionStorage.getItem('login'),
+                        email: sessionStorage.getItem('mail'),
+                        full_name: sessionStorage.getItem('name') + ' ' + sessionStorage.getItem('lname') + `${sessionStorage.getItem('fname') !== null ? ' ' + sessionStorage.getItem('fname') : ''}`,
+                        phone: sessionStorage.getItem('tele'),
+                        gender: sessionStorage.getItem('gender'),
+                        password: sessionStorage.getItem('pass'),
+                      },
+                      client:{
+                       
+                        birth_date: sessionStorage.getItem('birth_date')
+                  
+                        
+                      },
+                    access_token: sessionStorage.getItem('access_token'),
+                    refresh_token: sessionStorage.getItem('refresh_token'),
+                    profile_id: sessionStorage.getItem('profile_id')
+                       
+                  };
+                props.tg.sendData(JSON.stringify(user))
+                tg.close()
+    
+    
+    }} className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>Далее</button>
         </Link>
         <Link to={'/success_r'}>
-          <button className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>Пропустить</button>
+          <button onClick={() => {
+           let user = {
+                      profile: {
+                        telegram_id: props.tg.initDataUnsafe.user.id,
+                        login: sessionStorage.getItem('login'),
+                        email: sessionStorage.getItem('mail'),
+                        full_name: sessionStorage.getItem('name') + ' ' + sessionStorage.getItem('lname') + `${sessionStorage.getItem('fname') !== null ? ' ' + sessionStorage.getItem('fname') : ''}`,
+                        phone: sessionStorage.getItem('tele'),
+                        gender: sessionStorage.getItem('gender'),
+                        password: sessionStorage.getItem('pass'),
+                      },
+                      client:{
+                       
+                        birth_date: sessionStorage.getItem('birth_date')
+                  
+                        
+                      },
+                    access_token: sessionStorage.getItem('access_token'),
+                    refresh_token: sessionStorage.getItem('refresh_token'),
+                    profile_id: sessionStorage.getItem('profile_id')
+                       
+                  };
+                props.tg.sendData(JSON.stringify(user))
+                tg.close()
+          }} className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>Пропустить</button>
         </Link>
       </div>
     </div>
