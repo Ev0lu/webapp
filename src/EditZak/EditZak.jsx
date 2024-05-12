@@ -283,7 +283,7 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
         className={`${s.password_field} ${errorFields.selectedDate && s.error}`}
         style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
 
-        value={selectedDate !== '' ?
+        value={selectedDate !== null ?
         selectedDate.toLocaleDateString('ru-RU') : dr}
         readOnly
       />
