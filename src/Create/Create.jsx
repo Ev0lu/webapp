@@ -297,11 +297,9 @@ const handleInputChange2 = (e) => {
         ],
         "task": `${tele}`,
         "is_online": place === 'offline' ? false : true,
-        "price": Number(`${price}`),
+        "price": Number(price),
         "duration": `${termH}`,
-        "location": {
-          "city_id": place === 'offline' ? `${selectedCountry2[1]}` : null,
-        }
+        "location": place === 'offline' ? { "city_id":  `${selectedCountry2[1]}` } : null
 
     };
     
