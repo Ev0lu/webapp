@@ -173,13 +173,14 @@ const postRequest = async () => {
         { pass === '' && (errorFields.pass2 && <span className={s.error_message}>Пожалуйста, подтвердите пароль</span>)}
         {pass!=pass2 && <span className={s.error_message}>Пароли должны совпадать</span>}
         {errorFields.check && <span className={s.error_message}>Почта не соответствует формату</span>}
+        { pass === '' && && <span className={s.error_message}>Размер пароля должен составлять от 10 до 25 символов</span>}
 
 
 
 
         </div>
 
-        <Link to={pass === pass2 && login !== '' && tele !== '' && mail !== '' && check !== '' ? '/isp_con' : '/isp2_reg'}>
+        <Link to={pass === pass2 && login !== '' && tele !== '' && mail !== '' && check !== '' && (password.length>9) && (password.length < 25) ? '/isp_con' : '/isp2_reg'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
                 sessionStorage.setItem('login', login)
                 sessionStorage.setItem('tele', tele)
