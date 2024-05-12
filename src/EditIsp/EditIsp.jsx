@@ -555,7 +555,7 @@ const patchProfile = async () => {
         "profile": {
           "full_name": name + ' ' + lname + `${fname !== '' ? ' ' + fname : ''}`,
           "gender": gender,
-          "phone": "+78005553535"
+          "phone": "+78005553536"
         }
     };
     console.log(requestBody)
