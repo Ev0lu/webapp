@@ -550,7 +550,7 @@ const patchProfile = async () => {
     const requestBody = {
 
         "location": {
-          "city_id": `000a11e2-78da-4c5a-b447-cb9233331e11`
+          "city_id": `${selectedCountry2[1]}`
         },    
         "languages": [...selectedCountries2Id__2],
         "skills": [...selectedCountries1Id__2],
@@ -561,6 +561,7 @@ const patchProfile = async () => {
         }
     };
     console.log(requestBody)
+    console.log(selectedCountry2, selectedCountry2[1])
     try {
 
       const response = await fetch(`https://assista1.ru/api/v1/users/update/worker`, {
