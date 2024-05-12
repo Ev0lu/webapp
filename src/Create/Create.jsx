@@ -283,8 +283,105 @@ const handleInputChange2 = (e) => {
 
         }
     },[termScale])
+  const [scrollbarHeight1__1, setScrollbarHeight1__1] = useState(0);
+
+  useEffect(() => {
+    const handleClickOutside__1 = (event) => {
+      if ((dropdownRef1__1.current && !dropdownRef1__1.current.contains(event.target)) && (dropdownRef2__1.current && !dropdownRef2__1.current.contains(event.target))) {
+        setIsOpen1__1(false);
+
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside__1);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside__1);
+    };
+  }, []);
 
 
+
+  
+useEffect(() => {
+    const calculateScrollbarHeight1__1 = () => {
+      const scrollContainerHeight1 = scrollContainerRef1.current.offsetHeight;
+      const contentHeight1 = scrollContainerRef1.current.scrollHeight;
+      const scrollbarHeightPercentage1 = (scrollContainerHeight1 / contentHeight1) * 100;
+      setScrollbarHeight1__1(scrollbarHeightPercentage1);
+    };
+
+
+
+    calculateScrollbarHeight1__1();
+
+
+    const handleResize__1 = () => {
+      calculateScrollbarHeight1__1();
+
+    };
+
+    window.addEventListener('resize', handleResize__1);
+
+    return () => {
+      window.removeEventListener('resize', handleResize__1);
+    };
+  }, []);
+  
+  
+  const toggleDropdown1__1 = () => {
+    setIsOpen1__1(!isOpen1__1);
+  };
+  
+  const selectCountry1__1 = (country) => {
+    const isSelected = selectedCountries1.includes(country[0]);
+    const isSelected2 = selectedCountries1Id.includes(country[1]);
+
+    if (isSelected) {
+      setSelectedCountries1__1(selectedCountries1__1.filter(c => c !== country[0]));
+      setSelectedCountries1Id__1(selectedCountries1Id__1.filter(c => c !== country[1]));
+
+    } else {
+
+      setSelectedCountries1__1([...selectedCountries1__1, country[0]]);
+      setSelectedCountries1Id__1([...selectedCountries1Id__1, country[1]]);
+
+    }
+  };
+
+  
+  const handleScroll1__1 = (e) => {
+    const { scrollTop, scrollHeight, clientHeight } = e.target;
+    const scrollbarHeightPercentage1 = (clientHeight / scrollHeight) * 100;
+    setScrollbarHeight1__1(scrollbarHeightPercentage1);
+    scrollbarRef1__1.current.style.height = `${(scrollbarHeightPercentage1) - 13}%`;
+    scrollbarRef1__1.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
+  };
+
+
+  
+const fetchSkills = async () => {
+
+
+
+    setLoading(true);
+
+    try {
+      const response = await fetch(`https://assista1.ru/api/v1/items/skills?offset=${offset__1}&limit=${limit__1}`);
+      const data = await response.json();
+      const newCountries = data.items.map(([country, id]) => ({ label: country, value: id }));
+
+      setSkills(prevCountries => [...newCountries]); // Добавляем загруженные страны к списку
+    } catch (error) {
+      console.error('Error fetching skills:', error);
+    }
+
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchSkills(); // Call fetchCountries whenever searchQuery changes
+  }, []);
   
 
 
@@ -327,6 +424,14 @@ const handleInputChange2 = (e) => {
       console.error('Error fetching order:', error);
     }
 };
+
+
+
+
+
+
+
+
   
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>  
@@ -432,6 +537,57 @@ const handleInputChange2 = (e) => {
                         
                 }
 
+
+
+          <div className={s.dropdown_container__1} ref={dropdownRef1__1}>
+          <input
+            className={`${s.password_field__1} ${props.colorB === 'light' ? s.light : s.dark}`}
+            type="text"
+            value={searchQuery1__1}
+
+            placeholder="Навыки"
+            onClick={toggleDropdown1__1}
+            onChange={(e) => setSearchQuery1__1(e.target.value)}
+            
+          />
+          <div  className={`${s.dropdown_options__1} ${props.colorB === 'light' ? s.light : s.dark} ${isOpen1 ? s.open : ''}`}>
+            <div  className={s.scroll_container__1} ref={scrollContainerRef1__1} onScroll={handleScroll1__1}>
+              {filteredSkills.map((country, index) => (
+                <div key={index} className={`${s.dropdown_option__1} ${props.colorB === 'light' ? s.light : s.dark}`} >
+                <label style={{ display: 'flex', alignItems: 'center', width:'300px' }} onClick={() => selectCountry1__1([country.label, country.value])}>
+                     <input
+                     type="checkbox"
+                     className={`${s.inputCheck__1} ${props.colorB === 'light' ? s.light : s.dark}`}
+                     checked={selectedCountries2__1.includes(' ' + country.label)}
+
+                     onChange={() => selectCountry1__1([country.label, country.value])}
+                     style={{
+                        width: 20,
+                        height: 20,
+                        backgroundColor: 'white',
+                        border: 'none',
+                        cursor: 'pointer',
+                        marginRight: 10,
+                     }}
+                     />
+                     {selectedCountries1__1.includes(country.label) && <img className={s.checkbox_icon__1__1}  src={props.colorB === 'light' ? Vector : Vector} alt="checkmark"></img>}
+                    
+                      <span style={{ marginLeft: 10, width:'200px' }}>{country.label}</span>
+                 </label>
+             </div>
+              ))}
+            </div>
+            <div className={`${s.scrollbar_1} ${props.colorB === 'light' ? s.light : s.dark}`}  />
+            <div className={`${s.scrollbar} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef1} style={{ height: `${scrollbarHeight1}%` }} />
+          </div>
+          { selectedCountries1.length === 0 && (errorFields.selectedCountries1 && <span className={s.error_message}>Пожалуйста, выберите навыки</span>)}
+
+        </div>
+
+
+
+
+           
             <div className={s.password_input3}>
               <div style={{display:'flex'}}>
                 <h3 style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Цена</h3>
