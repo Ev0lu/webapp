@@ -131,7 +131,7 @@ const uploadPhoto = async () => {
           uploadPhoto()}} className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>Далее</button>
         </Link>
         <Link to={'/success_r'}>
-          <button className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>пропустить</button>
+          <button className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>Пропустить</button>
         </Link>
       </div>
     </div>
