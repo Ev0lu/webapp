@@ -86,7 +86,9 @@ const Auth = (props) => {
 }
 useEffect(() => {
   if (postRequest) {
+      
     postRequest().then(() => {
+      const responseData = await response.json();
       setResp(responseData.detail); // update resp state here
     });
   }
