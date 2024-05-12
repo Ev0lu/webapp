@@ -530,9 +530,9 @@ useEffect(() => {
       setSelectedCountries2__2(data.worker.languages.map(lang => lang[1]))
       setSelectedCountries1__2(data.worker.skills.map(lang => lang[0]))
       setSelectedCountries1Id__2(data.worker.skills.map(lang => lang[1]))
-      selectCountry([data.worker.location.country_title, ''])
-      selectCountry2([data.worker.location.city_title, data.worker.location.city_id])
-      console.log([data.worker.location.city_title, data.worker.location.city_id])
+      selectCountry(['', ''])
+      selectCountry2(['', data.worker.location.city_id])
+      console.log(['', data.worker.location.city_id])
 
 
       
