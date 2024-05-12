@@ -16,11 +16,10 @@ function EditIsp(props) {
   const [offset, setOffset] = useState(0);
   const limit = 25; // Количество элементов, которые необходимо загрузить при каждом запросе
   const [searchQuery, setSearchQuery] = useState(''); // Input value for country search
-  const { profile_id } = useParams();
-  const location = useLocation();
+ const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const [accessToken, setAccessToken] = useState(searchParams.get('access_token'));
-  const [refreshToken, setRefreshToken] = useState(searchParams.get('refresh_token'));
+  const [telegram_id, setTelegram_id] = useState(searchParams.get('telegram_id'));
   const [today, setToday] = useState(new Date())
   // Получение значений параметров access_token и refresh_token из URL
 
@@ -732,9 +731,7 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
       <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/' : '/'}>
         <button onClick={() => {
           validateFields()
-          if (login !== '') {
-            patchOrder()
-          }
+
         }}className={`${s.greetings_btn} ${props.colorB === 'light' ? s.light : s.dark}`}>Применить</button>
       </Link>
       <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/' : '/'}>
