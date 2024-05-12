@@ -130,25 +130,10 @@ const uploadPhoto = async () => {
           validateFields()
           uploadPhoto()
                   let user = {
-                          profile: {
-                            telegram_id: props.tg.initDataUnsafe.user.id,
-                            login: sessionStorage.getItem('login'),
-                            email: sessionStorage.getItem('mail'),
-                            full_name: sessionStorage.getItem('name') + ' ' + sessionStorage.getItem('lname') + `${sessionStorage.getItem('fname') !== null ? ' ' + sessionStorage.getItem('fname') : ''}`,
-                            phone: sessionStorage.getItem('tele'),
-                            gender: sessionStorage.getItem('gender'),
-                            password: sessionStorage.getItem('pass'),
-                          },
-                          worker:{
-                            location: {
-                              city_id: sessionStorage.getItem('selectedCountry2').split(',')[1]
-                            },
-                            languages: [...sessionStorage.getItem('selectedLangId')],
-                            skills: [...sessionStorage.getItem('selectedSkillsId')]
-                            
-                          }
+
                       };
             props.tg.sendData(JSON.stringify(user))
+            props.tg.close()
     
     
     }} className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>Далее</button>
@@ -156,25 +141,10 @@ const uploadPhoto = async () => {
         <Link to={'/success_r'}>
           <button onClick={() => {
                         let user = {
-                          profile: {
-                            telegram_id: props.tg.initDataUnsafe.user.id,
-                            login: sessionStorage.getItem('login'),
-                            email: sessionStorage.getItem('mail'),
-                            full_name: sessionStorage.getItem('name') + ' ' + sessionStorage.getItem('lname') + `${sessionStorage.getItem('fname') !== null ? ' ' + sessionStorage.getItem('fname') : ''}`,
-                            phone: sessionStorage.getItem('tele'),
-                            gender: sessionStorage.getItem('gender'),
-                            password: sessionStorage.getItem('pass'),
-                          },
-                          worker:{
-                            location: {
-                              city_id: sessionStorage.getItem('selectedCountry2').split(',')[1]
-                            },
-                            languages: [...sessionStorage.getItem('selectedLangId')],
-                            skills: [...sessionStorage.getItem('selectedSkillsId')]
-                            
-                          }
+                         
                       };
             props.tg.sendData(JSON.stringify(user))
+            props.tg.close()
           }} className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>Пропустить</button>
         </Link>
       </div>
