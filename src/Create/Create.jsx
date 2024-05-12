@@ -284,6 +284,19 @@ const handleInputChange2 = (e) => {
         }
     },[termScale])
   const [scrollbarHeight1__1, setScrollbarHeight1__1] = useState(0);
+    const [isOpen1__1, setIsOpen1__1] = useState(false);
+    const [searchQuery1__1, setSearchQuery1__1] = useState('');
+  const [selectedCountries1__1, setSelectedCountries1__1] = useState([]);
+  const [selectedCountries1Id__1, setSelectedCountries1Id__1] = useState([]);
+ const limit__1 = 25;
+  const [offset__1, setOffset__1] = useState(0);
+
+
+    const dropdownRef1__1 = useRef(null);
+
+  const scrollContainerRef1__1 = useRef(null);
+
+  const scrollbarRef1__1 = useRef(null);
 
   useEffect(() => {
     const handleClickOutside__1 = (event) => {
