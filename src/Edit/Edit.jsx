@@ -22,7 +22,7 @@ function Edit(props) {
   const [refreshToken, setRefreshToken] = useState(searchParams.get('refresh_token'));
   const [today, setToday] = useState(new Date())
   // Получение значений параметров access_token и refresh_token из URL
-
+   let { order_id } = useParams();
 
   
   const [isOpen, setIsOpen] = useState(false);
