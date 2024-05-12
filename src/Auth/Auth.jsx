@@ -68,9 +68,18 @@ const Auth = (props) => {
       body: JSON.stringify(user)
     });
 
-    const responseData = await response.json();
-    console.log(responseData)
-    setResp(responseData.detail)
+
+
+    if (response.ok) {
+            const responseData = await response.json();
+            console.log(responseData)
+            setResp(responseData.detail)
+
+    } else {
+           const responseData = await response.json();
+            console.log(responseData)
+            setResp(responseData.detail)
+    }
   } catch (error) {
     console.error('Ошибка:', error);
   }
