@@ -5,6 +5,8 @@ import arrowsvg2 from '../assets/angle-dark.svg';
 import blackarr from '../assets/black.svg';
 import { Link } from 'react-router-dom';
 import { useParams, useLocation } from 'react-router-dom';
+import Vector from '../assets/Vector.svg'
+import darkgal from '../assets/dark_gal.svg' 
 
 
 
