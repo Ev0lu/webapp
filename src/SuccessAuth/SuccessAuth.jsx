@@ -1,7 +1,7 @@
 import { useState } from "react";
-import s from "./Payment.module.css"
+import s from "./SuccessAuth.module.css"
 import { Route, Routes, Link, Router } from 'react-router-dom';
-function Payment(props) {
+function SuccessAuth(props) {
     const [isRegistered, setIsRegistered] = useState(false);
     const [isRegistered2, setIsRegistered2] = useState(false);
     return (
@@ -14,5 +14,5 @@ function Payment(props) {
     )
   }
   
-  export default Payment
+  export default SuccessAuth
   
