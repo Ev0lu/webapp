@@ -37,8 +37,6 @@ function Isp2(props) {
         return !Object.values(errors).some(Boolean);
     };
 
-      const location = useLocation();
-      const searchParams = new URLSearchParams(location.search);
       const [exist, setExist] = useState(`${sessionStorage.getItem('exist')}`);
       const [accessToken, setAccessToken] = useState(sessionStorage.getItem('accessToken'));
     const handleChange = (event) => {
