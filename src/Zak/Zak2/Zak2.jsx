@@ -61,7 +61,7 @@ function Zak2(props) {
 
 
     const checking = () => {
-        if ((pass !== pass2) || (login === '') || (tele === '') || (mail === '')) {
+        if ((login === '') || (tele === '') || (mail === '')) {
             setRlink('/zak_reg')
         } else {
             setRlink('/zak1_reg')
