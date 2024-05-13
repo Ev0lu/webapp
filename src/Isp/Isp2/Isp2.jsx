@@ -48,7 +48,7 @@ function Isp2(props) {
     const handleChange2 = (event) => {
         const isValidPhone = /^\+/.test(event.target.value)
         if (isValidPhone === true) {
-            setCheckPh('exist')
+            setCheckPh('ex')
         } else{
             setCheckPh('')
         }
@@ -59,7 +59,7 @@ function Isp2(props) {
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         const isValidEmail = emailRegex.test(event.target.value);
         if (isValidEmail === true) {
-            setCheck('exist')
+            setCheck('ex')
         } else{
             setCheck('')
         }
@@ -112,7 +112,7 @@ const postRequest = async () => {
       console.log(responseData)
     }
   } catch (error) {
-    setCheck('exist')
+     console.log(error)
   }
 }
 
@@ -138,8 +138,8 @@ const checkUniqueF = async () => {
       // Handle response data if needed
       console.log(responseData)
       setCheckUnique('true')
-        setTeleerr('')
-        setLoginerr('')
+      setTeleerr('')
+      setLoginerr('')
     } else {
      const responseData = await response.json();
       // Handle response data if needed
@@ -162,7 +162,9 @@ const checkUniqueF = async () => {
       console.log(responseData)
   }
 }
-  const handleInputBlur = () => {
+ 
+    
+    const handleInputBlur = () => {
     // Здесь можно выполнить проверку ввода, когда инпут теряет фокус
            
                         if (exist === true) {
@@ -176,6 +178,8 @@ const checkUniqueF = async () => {
             
           };
 
+
+    
  const fetchInfo = async () => {
 
 
@@ -275,7 +279,7 @@ const checkUniqueF = async () => {
              </div>
 
 
-        <Link to={login !== '' && tele.split('').length > 6 && tele !== '' && mail !== '' && check !== '' && checkPh !== '' (exist === false ? checkUnique !== '' : true)  ? linka : '/isp2_reg'}>
+        <Link to={(login !== '' && tele.split('').length > 6 && tele !== '' && mail !== '' && check !== '' && checkPh !== '' (exist === false ? checkUnique !== '' : true))  ? linka : '/isp2_reg'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
                 sessionStorage.setItem('login', login)
                 sessionStorage.setItem('tele', tele)
