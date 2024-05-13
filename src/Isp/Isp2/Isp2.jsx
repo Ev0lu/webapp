@@ -100,9 +100,9 @@ const postRequest = async () => {
       const responseData = await response.json();
       // Handle response data if needed
       console.log(responseData)
-      if (responseData !== undefined){
-          setLinka('isp_pass')
-      }
+     if (responseData.sessionToken) {
+                setLinka('isp_pass');
+        }
     } else {
      const responseData = await response.json();
       // Handle response data if needed
