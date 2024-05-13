@@ -22,6 +22,7 @@ function Zak2(props) {
         checkPh: false,
         checkUnique: false
     });
+    const [linka,setLinka] = useState('zak_con')
 
   const [exist, setExist] = useState(sessionStorage.getItem('exist') === 'true');
   const [accessToken, setAccessToken] = useState(sessionStorage.getItem('accessToken'));
@@ -96,7 +97,18 @@ const postRequest = async () => {
       },
       body: JSON.stringify(user)
     });
-
+    if (response.ok) {
+      const responseData = await response.json();
+      // Handle response data if needed
+      console.log(responseData)
+      if (responseData !== undefined){
+          setLinka('zak_pass')
+      }
+    } else {
+     const responseData = await response.json();
+      // Handle response data if needed
+      console.log(responseData)
+    }
   } catch (error) {
     setCheck('exist')
   }
@@ -248,7 +260,7 @@ const checkUniqueF = async () => {
              </div>
       
 
-        <Link to={login !== '' && tele.split('').length > 6 && tele !== '' && mail !== '' && check !== '' && checkPh !== '' && (exist === false ? checkUnique !== '' : '') ? '/zak_con' : '/zak2_reg'}>
+        <Link to={login !== '' && tele.split('').length > 6 && tele !== '' && mail !== '' && check !== '' && checkPh !== '' && (exist === false ? checkUnique !== '' : '') ? linka : '/zak2_reg'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
                 sessionStorage.setItem('login', login)
                 sessionStorage.setItem('tele', tele)
