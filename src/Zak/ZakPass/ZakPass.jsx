@@ -58,34 +58,6 @@ function ZakPass(props) {
 
 
         
-const postRequest2 = async () => {  
-  let user = {
-    email: mail,
-    new_password: pass
-  };
-
-  try {
-    const response = await fetch('https://assista1.ru/api/v1/users/forgotPassword/reset', {
-      method: 'POST',
-      headers: {
-        'accept': 'application/json',
-        'X-SESSION-TOKEN': `${token}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(user)
-    });
-    if (response.ok) {
-      const data = await response.json();
-
-
-    } else {
-      const data = await response.json();
-
-    }
-  } catch (error) {
-    setCheck('')
-  }
-}
 
 
 
@@ -132,12 +104,12 @@ const postRequest2 = async () => {
 
         </div>
 
-        <Link to={pass === pass2 && (pass.length>9) && (pass.length < 25) ? '/authorization' : '/authorization_pass'}>
+        <Link to={pass === pass2 && (pass.length>9) && (pass.length < 25) ? '/zak_reg_photo' : '/zak_pass'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
 
 
                 if (pass === pass2  && (pass.length>9) && (pass.length < 25)) {
-                    postRequest2()
+                     sessionStorage.setItem('pass', pass)
                 }
                 validateFields()
             }}>Далее</button>
