@@ -109,7 +109,7 @@ function IspPass(props) {
                 
 
                 if (pass === pass2  && (pass.length>9) && (pass.length < 25)) {
-                    sessionStorage('pass', pass)
+                    sessionStorage.setItem('pass', pass)
                 }
                 validateFields()
             }}>Далее</button>
