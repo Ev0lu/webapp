@@ -64,7 +64,6 @@ function Reg(props) {
 
           <Link to="/zak_reg">
                 <button disabled={Boolean(disabledClient)} onClick={() => {setIsRegistered(true)
-                  props.tg.sendData("data": {"status": "unauthorized"})
                          const data = {
                           "status": "unauthorized",
 
