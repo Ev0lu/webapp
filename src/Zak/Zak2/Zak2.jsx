@@ -129,7 +129,7 @@ const checkUniqueF = async () => {
       },
       body: JSON.stringify(user)
     });
-    if (response.ok) {
+    if (response.status === 200) {
       const responseData = await response.json();
       // Handle response data if needed
       console.log(responseData)
@@ -260,13 +260,13 @@ const checkUniqueF = async () => {
              </div>
       
 
-        <Link to={login !== '' && tele.split('').length > 6 && tele !== '' && mail !== '' && check !== '' && checkPh !== '' && (exist === false ? checkUnique !== '' : true) ? linka : '/zak2_reg'}>
+        <Link to={login !== '' && tele.split('').length > 6 && tele !== '' && mail !== '' && check !== '' && checkPh !== '' && (exist === false && !!checkUnique)) ? linka : '/zak2_reg'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
                 sessionStorage.setItem('login', login)
                 sessionStorage.setItem('tele', tele)
                 sessionStorage.setItem('mail', mail)
 
-                if (login !== '' && tele.split('').length > 6 && tele !== '' && mail !== '' && check !== '' && checkPh !== '' && (exist === false ? checkUnique !== '' : true) ) {
+                if (login !== '' && tele.split('').length > 6 && tele !== '' && mail !== '' && check !== '' && checkPh !== '' && (exist === false && !!checkUnique)) ) {
                     postRequest()
                 }
                 validateFields()
