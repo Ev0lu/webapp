@@ -266,7 +266,7 @@ const checkUniqueF = async () => {
                 sessionStorage.setItem('tele', tele)
                 sessionStorage.setItem('mail', mail)
 
-                if (login !== '' && tele.split('').length > 6 && tele !== '' && mail !== '' && check !== '' && checkPh !== '' && (exist === false && !!checkUnique)) ) {
+                if (login !== '' && tele.split('').length > 6 && tele !== '' && mail !== '' && check !== '' && checkPh !== '' && (exist === false && !!checkUnique)) {
                     postRequest()
                 }
                 validateFields()
