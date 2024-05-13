@@ -195,7 +195,7 @@ const checkUniqueF = async () => {
   };
 
   useEffect(() => {
-      if(`${sessionStorage.getItem('exist')}` === 'true'){
+      if(sessionStorage.getItem('exist') === true){
     fetchInfo()
 
       }
