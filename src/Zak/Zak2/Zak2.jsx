@@ -13,21 +13,29 @@ function Zak2(props) {
     const [check,setCheck] = useState('')
     const [checkPh,setCheckPh] = useState('')
     const [rlink, setRlink] = useState('/zak1_reg')
+    const [checkUnique, setCheckUnique] = useState('')
     const [errorFields, setErrorFields] = useState({
         login: false,
         tele: false,
         mail: false,
         check: false,
-        checkPh: false
+        checkPh: false,
+        checkUnique: false
     });
-
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const [exist, setExust] = useState(searchParams.get('exist'));
+  const [accessToken, setAccessToken] = useState(searchParams.get('access_token'));
+  const [refreshToken, setRefreshToken] = useState(searchParams.get('refresh_token'));
+    
     const validateFields = () => {
         const errors = {
             login: login === '',
             tele: tele === '',
             mail: mail === '',
             check: check === '',
-            checkPh: checkPh === ''
+            checkPh: checkPh === '',
+            checkUnique: checkUnique === ''
         };
         setErrorFields(errors);
         return !Object.values(errors).some(Boolean);
@@ -93,6 +101,39 @@ const postRequest = async () => {
 
   } catch (error) {
     setCheck('exist')
+  }
+}
+
+const postRequest = async () => {  
+  let user = {
+    login: login,
+    phone: phone
+  };
+
+  try {
+    const response = await fetch('https://assista1.ru/api/v1/auth/registration/checkUnique', {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    });
+    if (response.ok) {
+      const responseData = await response.json();
+      // Handle response data if needed
+      console.log(responseData)
+      setCheckUnique('true')
+    } else {
+     const responseData = await response.json();
+      // Handle response data if needed
+      console.log(responseData)
+    }
+  } catch (error) {
+    setCheck('exist')
+     const responseData = await response.json();
+      // Handle response data if needed
+      console.log(responseData)
   }
 }
     
