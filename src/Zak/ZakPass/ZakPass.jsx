@@ -66,7 +66,7 @@ const reg = async () => {
           full_name: sessionStorage.getItem('name') + ' ' + sessionStorage.getItem('lname') + `${sessionStorage.getItem('fname') !== null ? ' ' + sessionStorage.getItem('fname') : ''}`,
           phone: sessionStorage.getItem('tele'),
           gender: sessionStorage.getItem('gender'),
-          password: sessionStorage.getItem('pass'),
+          password: pass,
         },
         client:{
          
