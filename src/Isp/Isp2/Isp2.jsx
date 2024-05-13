@@ -107,7 +107,7 @@ const postRequest = async () => {
 const checkUniqueF = async () => {  
   let user = {
     login: login,
-    phone: phone
+    phone: tele
   };
 
   try {
@@ -142,7 +142,7 @@ const checkUniqueF = async () => {
         } else {
             checkUniqueF()
         }
-    },[login,phone])
+    },[login,tele])
 
  const fetchInfo = async () => {
 
@@ -161,7 +161,7 @@ const checkUniqueF = async () => {
 
 
           setLogin(`${data.login}`)
-          setPhone(`${data.phone}`)
+          setTele(`${data.phone}`)
           setMail(`${data.email}`)
 
 
@@ -193,7 +193,7 @@ const checkUniqueF = async () => {
         </div>
         <div className={s.password_input}>
             <input
-                                disabled={exist}
+                                disabled={Boolean(exist)}
                 type={'text'}
                 placeholder="Логин"
                 className={`${s.password_field} ${errorFields.login && s.error}`}
@@ -208,7 +208,7 @@ const checkUniqueF = async () => {
         </div>
         <div className={s.password_input}>
             <input
-                                disabled={exist}
+                                disabled={Boolean(exist)}
                 type={'text'}
                 placeholder="Номер телефона"
                 className={`${s.password_field} ${(errorFields.tele || errorFields.checkPh) && s.error}`}
@@ -224,7 +224,7 @@ const checkUniqueF = async () => {
         </div>
         <div className={s.password_input}>
             <input
-                                disabled={exist}
+                                disabled={Boolean(exist)}
                 type={'text'}
                 placeholder="Почта"
                 className={`${s.password_field} ${errorFields.mail && s.error}`}
