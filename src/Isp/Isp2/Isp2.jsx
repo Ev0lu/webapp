@@ -195,6 +195,7 @@ const checkUniqueF = async () => {
         </div>
         <div className={s.password_input}>
             <input
+                                disabled={exist}
                 type={'text'}
                 placeholder="Логин"
                 className={`${s.password_field} ${errorFields.login && s.error}`}
@@ -209,6 +210,7 @@ const checkUniqueF = async () => {
         </div>
         <div className={s.password_input}>
             <input
+                                disabled={exist}
                 type={'text'}
                 placeholder="Номер телефона"
                 className={`${s.password_field} ${(errorFields.tele || errorFields.checkPh) && s.error}`}
@@ -224,6 +226,7 @@ const checkUniqueF = async () => {
         </div>
         <div className={s.password_input}>
             <input
+                                disabled={exist}
                 type={'text'}
                 placeholder="Почта"
                 className={`${s.password_field} ${errorFields.mail && s.error}`}
