@@ -112,8 +112,10 @@ margin-top: 40px;
 
 
 .reg{
-display: flex;
-width: 315px;
+  display: flex;
+  width: 315px;
+  justify-content:center;
+  align-items:center;
 
 
 }
