@@ -228,6 +228,7 @@ const checkUniqueF = async () => {
 
             />
         {tele === '' && (errorFields.tele && <span className={s.error_message}>Пожалуйста, введите телефон</span>)}
+        {tele.split('').length < 7 && (errorFields.tele && <span className={s.error_message}>Пожалуйста, введите правильный телефон</span>)}
         {errorFields.checkPh && <span className={s.error_message}>Номер должен начинаться с кода страны(+...)</span>}
 
         </div>
@@ -247,13 +248,13 @@ const checkUniqueF = async () => {
              </div>
       
 
-        <Link to={login !== '' && tele !== '' && mail !== '' && check !== '' && checkPh !== '' && (exist === false ? checkUnique !== '' : '') ? '/zak_con' : '/zak2_reg'}>
+        <Link to={login !== '' && tele.split('').length > 6 && tele !== '' && mail !== '' && check !== '' && checkPh !== '' && (exist === false ? checkUnique !== '' : '') ? '/zak_con' : '/zak2_reg'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
                 sessionStorage.setItem('login', login)
                 sessionStorage.setItem('tele', tele)
                 sessionStorage.setItem('mail', mail)
 
-                if (login !== '' && tele !== '' && mail !== '' && check !== '' && checkPh !== '' && (exist === false ? checkUnique !== '' : '') ) {
+                if (login !== '' && tele.split('').length > 6 && tele !== '' && mail !== '' && check !== '' && checkPh !== '' && (exist === false ? checkUnique !== '' : '') ) {
                     postRequest()
                 }
                 validateFields()
