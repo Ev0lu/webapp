@@ -64,7 +64,7 @@ function Reg(props) {
 
           <Link to="/zak_reg">
                 <button onClick={() => {setIsRegistered(true)
-                  disabled={disabledClient}
+                  disabled={Boolean(disabledClient)}
                 sessionStorage.setItem('exist', exist)
                 sessionStorage.setItem('accessToken', accessToken)
                 sessionStorage.setItem('tgId', telegram_id)  
@@ -72,7 +72,7 @@ function Reg(props) {
             </Link> 
             <Link to="/isp_reg">
                 <button onClick={() => {
-                    disabled={disabledWorker}
+                    disabled={Boolean(disabledWorker)}
                     setIsRegistered2(true)
         
                     sessionStorage.setItem('tgId', telegram_id)   
