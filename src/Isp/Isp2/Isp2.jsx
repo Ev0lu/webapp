@@ -145,13 +145,13 @@ const checkUniqueF = async () => {
       // Handle response data if needed
       console.log(responseData)
     if (responseData.detail.includes("login")){
-        setLoginerr(true)
+        setLoginerr('true')
     } else{
         setLoginerr('')
     }
     console.log(responseData.detail.includes("phone"))    
     if (responseData.detail.includes("phone")){
-        setTeleerr(true)
+        setTeleerr('true')
     } else {
         setTeleerr('')
     }
@@ -236,7 +236,7 @@ const checkUniqueF = async () => {
 
             />
             {login === '' && (errorFields.login && <span className={s.error_message}>Пожалуйста, введите логин</span>)}
-            {loginerr === true && <span className={s.error_message}>Логин уже существует</span>}
+            {loginerr === 'true' && <span className={s.error_message}>Логин уже существует</span>}
             {/^[A-Za-z0-9]+$/.test(login) === false && <span className={s.error_message}>Логин поддерживает только латинский алфавит</span>}
 
         </div>
@@ -254,7 +254,7 @@ const checkUniqueF = async () => {
             />
         {tele === '' && (errorFields.tele && <span className={s.error_message}>Пожалуйста, введите телефон</span>)}
         {tele.split('').length < 7 && (errorFields.tele && <span className={s.error_message}>Пожалуйста, введите правильный телефон</span>)}
-        {teleerr === true && <span className={s.error_message}>Почта уже существует</span> }
+        {teleerr === 'true' && <span className={s.error_message}>Почта уже существует</span> }
         {errorFields.checkPh && <span className={s.error_message}>Номер должен начинаться с кода страны(+...)</span>}
 
 
