@@ -24,7 +24,7 @@ function Zak2(props) {
     });
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const [exist, setExust] = useState(`${sessionStorage.getItem('exist')}`);
+  const [exist, setExist] = useState(`${sessionStorage.getItem('exist')}`);
   const [accessToken, setAccessToken] = useState(sessionStorage.getItem('accessToken'));
     
     const validateFields = () => {
@@ -142,6 +142,45 @@ const checkUniqueF = async () => {
             checkUniqueF()
         }
     },[login,phone])
+
+ const fetchInfo = async () => {
+
+
+
+    
+
+    try {
+      const response = await fetch(`https://assista1.ru/api/v1/users/me`,{
+        method: 'GET',
+        headers: {
+           'Authorization': `Bearer ${accessToken}`,
+        }
+      });
+      const data = await response.json();
+
+
+      setLogin(`${data}`)
+
+
+
+
+
+      
+    } catch (error) {
+
+    }
+
+  };
+
+  useEffect(() => {
+      if(`${sessionStorage.getItem('exist')}` === 'true'){
+    fetchInfo()
+
+      }
+  },[])
+
+
+    
     return (
         <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>         
         <div className={s.greetings_wrapper}>
