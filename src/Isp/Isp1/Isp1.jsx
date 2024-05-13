@@ -202,6 +202,8 @@ useEffect(() => {
 
   useEffect(() => {
         setSelectedCountry2(sessionStorage.getItem('selectedCountry2') !== null ? sessionStorage.getItem('selectedCountry2') : '')
+        setSearchQuery(sessionStorage.getItem('selectedCountry') !== null ? sessionStorage.getItem('selectedCountry').split(',')[0] : '')
+        setSearchQuery2(sessionStorage.getItem('selectedCountry2') !== null ? sessionStorage.getItem('selectedCountry2').split(',')[0] : '')
         setSelectedCountry(sessionStorage.getItem('selectedCountry') !== null ? sessionStorage.getItem('selectedCountry') : '')
       }, [])
 
