@@ -114,7 +114,7 @@ function Zak(props) {
         
         const fetchData = async () => {
           try {
-            const response = await fetch(`https://assista1.ru/api/v1/users/check/client?telegram_id=${telegramId}&access_token=${accessToken}&exists=${exist}`);
+            const response = await fetch(`https://assista1.ru/api/v1/users/check/client?telegram_id=${telegramId}`);
             const data = await response.json();
             const exist = await data.exist;
             setIsexist(JSON.stringify(exist))
@@ -159,7 +159,7 @@ function Zak(props) {
         <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }> 
         <div className={s.greetings_wrapper}>
         <div className={s.reg}>
-        <Link to={`/registration?telegram_id=${telegramId}`}>
+        <Link to={`/registration?telegram_id=${telegramId}&access_token=${accessToken}&exists=${exist}`}>
             <img src={props.colorB === 'light' ? blackarr : arrowsvg} className={s.reg_arrow}></img>
         </Link>
             <h1 className={s.greetings_text} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Регистрация</h1>
