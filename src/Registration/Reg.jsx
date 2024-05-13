@@ -7,8 +7,50 @@ function Reg(props) {
   
       const location = useLocation();
       const searchParams = new URLSearchParams(location.search);
-      const [exist, setExist] = useState(searchParams.get('exist'));
-      const [accessToken, setAccessToken] = useState(searchParams.get('access_token'));
+      const [exist, setExist] = useState(`${searchParams.get('exist')}`);
+      const [accessToken, setAccessToken] = useState(`${searchParams.get('access_token')}`);
+      const [disabledWorker, setDisabledWorker] = useState(false)
+      const [disabledClient, setDisabledClient] = useState(false)
+      const fetchInfo = async () => {
+      
+      
+      
+          
+      
+          try {
+            const response = await fetch(`https://assista1.ru/api/v1/users/me`,{
+              method: 'GET',
+              headers: {
+                 'Authorization': `Bearer ${accessToken}`,
+              }
+            });
+            const data = await response.json();
+      
+            if (data.worker !== null) {
+              setDisabledWorker(true)
+              
+            }
+                  
+            if (data.client !== null) {
+              setDisabledClient(true)
+              
+            }
+      
+      
+      
+            
+          } catch (error) {
+      
+          }
+      
+        };
+      
+        useEffect(() => {
+            if(`${sessionStorage.getItem('exist')}` === 'true'){
+          fetchInfo()
+      
+            }
+        },[])
     return (
       <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>    
       <div className={s.greetings_wrapper}>
@@ -16,12 +58,14 @@ function Reg(props) {
 
           <Link to="/zak_reg">
                 <button onClick={() => {setIsRegistered(true)
+                  disabled={disabledClient}
                 sessionStorage.setItem('exist', exist)
                 sessionStorage.setItem('accessToken', accessToken)
                 setIsRegistered2(false)}} className={`${s.greetings_btn} ${isRegistered ? s.lightMode1 : (props.colorB === 'light' ? s.lightMode : s.darkMode)}`}>Я заказчик</button>
             </Link> 
             <Link to="/isp_reg">
                 <button onClick={() => {
+                    disabled={disabledWorker}
                     setIsRegistered2(true)
                     sessionStorage.setItem('exist', exist)
                     sessionStorage.setItem('accessToken', accessToken)
