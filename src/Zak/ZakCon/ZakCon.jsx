@@ -94,8 +94,11 @@ const postRequest = async () => {
       const data = await response.json();
       setIsVerified(true);
       setToken(`${data.session_token}`)
+      console.log(data)
       
     } else {
+       const data = await response.json();
+      console.log(data)
       setCode1('')
       setCode2('')
       setCode3('')
@@ -103,7 +106,7 @@ const postRequest = async () => {
     }
 
   } catch (error) {
-
+    console.log(error)
   }
 }
 
