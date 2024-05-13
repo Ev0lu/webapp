@@ -133,11 +133,11 @@ const postRequest2 = async () => {
 
         </div>
 
-        <Link to={pass === pass2 && check !== '' && (pass.length>9) && (pass.length < 25) ? '/authorization_pass' : '/authorization'}>
+        <Link to={pass === pass2 && (pass.length>9) && (pass.length < 25) ? '/authorization_pass' : '/authorization'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
 
 
-                if (pass === pass2 && check !== ''  && (pass.length>9) && (pass.length < 25)) {
+                if (pass === pass2  && (pass.length>9) && (pass.length < 25)) {
                     postRequest2()
                 }
                 validateFields()
