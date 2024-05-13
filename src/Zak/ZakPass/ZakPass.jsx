@@ -57,7 +57,54 @@ function ZakPass(props) {
     }
 
 
-        
+      const reg = async () => {  
+     let user = {
+        profile: {
+          telegram_id: Number(sessionStorage.getItem('tgId')),
+          login: sessionStorage.getItem('login'),
+          email: sessionStorage.getItem('mail'),
+          full_name: sessionStorage.getItem('name') + ' ' + sessionStorage.getItem('lname') + `${sessionStorage.getItem('fname') !== null ? ' ' + sessionStorage.getItem('fname') : ''}`,
+          phone: sessionStorage.getItem('tele'),
+          gender: sessionStorage.getItem('gender'),
+          password: sessionStorage.getItem('pass'),
+        },
+        client:{
+         
+          birth_date: sessionStorage.getItem('birth_date')
+    
+          
+        }
+    
+  };
+
+
+  try {
+    const response = await fetch(`https://assista1.ru/api/v1/auth/registration/client`, {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'X-SESSION-TOKEN': `${sessionStorage.getItem('session_token')}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      sessionStorage.setItem('access_token', data.access_token)
+      sessionStorage.setItem('profile_id', data.profile_id)
+      sessionStorage.setItem('refresh_token', data.refresh_token)
+      console.log(data)
+    } else {
+      const data = await response.json();
+      console.log(data)
+    }
+
+  } catch (error) {
+  
+      console.log(error)
+  }
+}    
 
 
 
@@ -106,8 +153,10 @@ function ZakPass(props) {
 
         <Link to={pass === pass2 && (pass.length>9) && (pass.length < 25) ? '/zak_reg_photo' : '/zak_pass'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
-
-
+                        if(isVerified === true){
+                            reg()
+                      }
+        
                 if (pass === pass2  && (pass.length>9) && (pass.length < 25)) {
                      sessionStorage.setItem('pass', pass)
                 }
