@@ -155,6 +155,54 @@ function Zak(props) {
         setAnswersText([])
       }*/
 
+
+     const fetchInfo = async () => {
+
+
+
+    
+
+    try {
+      const response = await fetch(`https://assista1.ru/api/v1/users/me`,{
+        method: 'GET',
+        headers: {
+           'Authorization': `Bearer ${accessToken}`,
+        }
+      });
+      const data = await response.json();
+      console.log(data)
+
+          setName(`${data.full_name.split(' ')[0]}`)
+          setLname(`${data.full_name.split(' ')[1]}`)
+          setFname(`${data.full_name.split(' ')[2]}`)
+          setGender(`${data.gender}`)
+          handleGenderChange(`${data.gender}`)
+
+          handleChange(`${data.full_name.split(' ')[0]}`)
+          handleChange2(`${data.full_name.split(' ')[1]}`)
+          handleChange3(`${data.full_name.split(' ')[2]}`)
+
+        
+          validateFields()
+    
+
+
+      
+    } catch (error) {
+
+    }
+
+  };
+
+  useEffect(() => {
+      if(exist === true){
+    fetchInfo()
+
+      }
+  },[])
+
+
+    
     return (
         <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }> 
         <div className={s.greetings_wrapper}>
