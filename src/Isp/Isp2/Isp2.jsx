@@ -37,7 +37,7 @@ function Isp2(props) {
         return !Object.values(errors).some(Boolean);
     };
 
-      const [exist, setExist] = useState(`${sessionStorage.getItem('exist')}`);
+      const [exist, setExist] = useState(sessionStorage.getItem('exist') === 'true');
       const [accessToken, setAccessToken] = useState(sessionStorage.getItem('accessToken'));
     const handleChange = (event) => {
         setLogin(event.target.value.replace(/[^A-Za-z0-9]/g, ''));
