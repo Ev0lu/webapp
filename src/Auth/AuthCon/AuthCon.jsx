@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import s from './IspCon.module.css';
+import s from './AuthCon.module.css';
 import { Link } from 'react-router-dom';
 
-const IspCon = (props) => {
+const AuthCon = (props) => {
   const [code1, setCode1] = useState('');
   const [code2, setCode2] = useState('');
   const [code3, setCode3] = useState('');
@@ -79,7 +79,7 @@ const postRequest = async () => {
   };
 
   try {
-    const response = await fetch('https://assista1.ru/api/v1/auth/code/verify', {
+    const response = await fetch('https://assista1.ru/api/v1/users/forgotPassword/code/verify', {
       method: 'POST',
       headers: {
         'accept': 'application/json',
@@ -160,8 +160,8 @@ const postRequest = async () => {
           />
         </div>
         {error && <div className={s.error_message}>Неправильный код</div>}
-        {tries > 3  && <div className={s.error_message}>Вы исчерпали количество попыток, начните регистрацию заново</div>}
-    <Link to={code1 == '' || code2 == '' || code3 == '' || code4 == '' || tries > 3 || isVerified === false ? '/isp_con' : '/isp3_reg'}>
+        {tries > 3  && <div className={s.error_message}>Вы исчерпали количество попыток, начните авторизацию заново</div>}
+    <Link to={code1 == '' || code2 == '' || code3 == '' || code4 == '' || tries > 3 || isVerified === false ? '/authorization_con' : '/authorization_pass'}>
         <button className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`} onClick={() => {
 
       }}>
@@ -174,4 +174,4 @@ const postRequest = async () => {
   );
 };
 
-export default IspCon;
+export default AuthCon;
