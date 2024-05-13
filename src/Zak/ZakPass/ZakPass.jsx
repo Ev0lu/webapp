@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import s from "./Auth3.module.css"
+import s from "./ZakPass.module.css"
 import { Link } from "react-router-dom";
 import arrowsvg from '../../assets/arrow.svg'
 import blackarr from '../../assets/black.svg'
 
-function Auth3(props) {
+function ZakPass(props) {
 
     const [pass, setPass] = useState('')
     const [pass2, setPass2] = useState('')
@@ -147,5 +147,5 @@ const postRequest2 = async () => {
     )
   }
   
-export default Auth3;
+export default ZakPass;
   
