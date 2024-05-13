@@ -183,6 +183,9 @@ const checkUniqueF = async () => {
           setTele(`${data.phone}`)
           setMail(`${data.email}`)
 
+          setCheck('ex')
+          setCheckPh('ex')
+          setCheckUnique('ex')
           validateFields()
     
 
