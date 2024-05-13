@@ -136,13 +136,19 @@ const checkUniqueF = async () => {
       console.log(responseData)
   }
 }
-    useEffect(() => {
-        if (exist === 'true') {
+  const handleInputBlur = () => {
+    // Здесь можно выполнить проверку ввода, когда инпут теряет фокус
+           
+                        if (exist === 'true') {
+                            
+                        } else {
+                            
+                            if (login !== '' && tele !== '' && tele.split('').length > 6){
+                                checkUniqueF()
+                            }
+                        }
             
-        } else {
-            checkUniqueF()
-        }
-    },[login,tele])
+          };
 
  const fetchInfo = async () => {
 
@@ -199,6 +205,7 @@ const checkUniqueF = async () => {
                 className={`${s.password_field} ${errorFields.login && s.error}`}
                 value={login}
                 onChange={handleChange}
+                onBlur={handleInputBlur}
                 style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
 
             />
@@ -214,6 +221,7 @@ const checkUniqueF = async () => {
                 className={`${s.password_field} ${(errorFields.tele || errorFields.checkPh) && s.error}`}
                 value={tele}
                 onChange={handleChange2}
+                onBlur={handleInputBlur}
                 style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
 
             />
