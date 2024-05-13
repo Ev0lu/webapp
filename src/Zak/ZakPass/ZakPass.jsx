@@ -146,7 +146,7 @@ const reg = async () => {
         {pass.length > 24 && <span className={s.error_message}>Размер пароля должен составлять от 10 до 25 символов</span>}
         </div>
 
-        <Link to={pass === pass2 && (pass.length>9) && (pass.length < 25) ? '/zak_reg_photo' : '/zak_pass'}>
+        <Link to={pass === pass2 && (pass.length>9) && (pass.length < 25) ? '/zak_reg_photo' : '/zak_reg_pass'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
                         if(pass === pass2  && (pass.length>9) && (pass.length < 25)){
                             reg()
