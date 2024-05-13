@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import s from "./Zak2.module.css"
-import { Link } from "react-router-dom";
+import { Route, Routes, Link, Router, useParams, useLocation } from 'react-router-dom';
 import arrowsvg from '../../assets/arrow.svg'
 import blackarr from '../../assets/black.svg'
 
@@ -22,8 +22,7 @@ function Zak2(props) {
         checkPh: false,
         checkUnique: false
     });
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
+
   const [exist, setExist] = useState(sessionStorage.getItem('exist'));
   const [accessToken, setAccessToken] = useState(sessionStorage.getItem('accessToken'));
     
