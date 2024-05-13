@@ -104,7 +104,7 @@ const postRequest = async () => {
   }
 }
 
-const postRequest = async () => {  
+const checkUniqueF = async () => {  
   let user = {
     login: login,
     phone: phone
@@ -136,7 +136,13 @@ const postRequest = async () => {
       console.log(responseData)
   }
 }
-    
+    useEffect(() => {
+        if (exist === 'true') {
+            
+        } else {
+            checkUniqueF()
+        }
+    },[login,phone])
     return (
         <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>         
         <div className={s.greetings_wrapper}>
@@ -148,6 +154,7 @@ const postRequest = async () => {
         </div>
         <div className={s.password_input}>
             <input
+                disabled={exist}
                 type={'text'}
                 placeholder="Логин"
                 className={`${s.password_field} ${errorFields.login && s.error}`}
@@ -161,6 +168,7 @@ const postRequest = async () => {
         </div>
         <div className={s.password_input}>
             <input
+                disabled={exist}
                 type={'text'}
                 placeholder="Номер телефона"
                 className={`${s.password_field} ${(errorFields.tele || errorFields.checkPh) && s.error}`}
@@ -175,6 +183,7 @@ const postRequest = async () => {
         </div>
         <div className={s.password_input}>
             <input
+                disabled={exist}
                 type={'text'}
                 placeholder="Почта"
                 className={`${s.password_field} ${errorFields.mail && s.error}`}
@@ -188,13 +197,13 @@ const postRequest = async () => {
              </div>
       
 
-        <Link to={login !== '' && tele !== '' && mail !== '' && check !== '' && checkPh !== '' ? '/zak_con' : '/zak2_reg'}>
+        <Link to={login !== '' && tele !== '' && mail !== '' && check !== '' && checkPh !== ''&& {exist === 'false' && checkUnique !== '' } ? '/zak_con' : '/zak2_reg'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
                 sessionStorage.setItem('login', login)
                 sessionStorage.setItem('tele', tele)
                 sessionStorage.setItem('mail', mail)
 
-                if (login !== '' && tele !== '' && mail !== '' && check !== '' && checkPh !== '') {
+                if (login !== '' && tele !== '' && mail !== '' && check !== '' && checkPh !== '' && {exist === 'false' && checkUnique !== '' }) {
                     postRequest()
                 }
                 validateFields()
