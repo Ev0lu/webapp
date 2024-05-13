@@ -129,9 +129,9 @@ const checkUniqueF = async () => {
     }
   } catch (error) {
     setCheck('exist')
-     const responseData = await response.json();
+
       // Handle response data if needed
-      console.log(responseData)
+      console.log(error)
   }
 }
 
