@@ -136,10 +136,10 @@ function Zak1(props) {
         </div>
       )}
     </div>
-    <Link to={selectedDate !== null && !err ? "/zak2_reg" : "/zak1_reg"}>
+    <Link to={selectedDate !== null && err !== true ? "/zak2_reg" : "/zak1_reg"}>
         <button onClick={() => {
           validateFields()
-          if (selectedDate !== null && !err){
+          if (selectedDate !== null && err !== true){
               sessionStorage.setItem('birth_date', `${selectedYear}-${selectedMonth+1 < 10 ? '0' + `${selectedMonth+1}` : selectedMonth+1 }-${selectedDate.getDate() < 10 ? '0' + `${selectedDate.getDate()}` : selectedDate.getDate()  }`)
           }
 
