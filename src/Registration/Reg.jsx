@@ -8,6 +8,7 @@ function Reg(props) {
       const location = useLocation();
       const searchParams = new URLSearchParams(location.search);
       const [exist, setExist] = useState(`${searchParams.get('exists')}`);
+      const [telegram_id, setTelegram_id] = useState(`${searchParams.get('telegram_id')}`);
       const [accessToken, setAccessToken] = useState(`${searchParams.get('access_token')}`);
       const [disabledWorker, setDisabledWorker] = useState(false)
       const [disabledClient, setDisabledClient] = useState(false)
@@ -46,7 +47,7 @@ function Reg(props) {
         };
       
         useEffect(() => {
-            if(`${sessionStorage.getItem('exist')}` === 'true'){
+            if(`${searchParams.get('exists')}` === 'true'){
           fetchInfo()
       
             }
