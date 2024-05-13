@@ -182,10 +182,13 @@ const checkUniqueF = async () => {
           setLogin(`${data.login}`)
           setTele(`${data.phone}`)
           setMail(`${data.email}`)
-
+          handleChange(`${data.login}`)
+          handleChange2(`${data.phone}`)
+          handleChange3(`${data.email}`)
           setCheck('ex')
           setCheckPh('ex')
           setCheckUnique('ex')
+        
           validateFields()
     
 
