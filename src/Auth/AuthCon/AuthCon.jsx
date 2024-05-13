@@ -161,7 +161,7 @@ const postRequest = async () => {
         </div>
         {error && <div className={s.error_message}>Неправильный код</div>}
         {tries > 3  && <div className={s.error_message}>Вы исчерпали количество попыток, начните авторизацию заново</div>}
-    <Link to={code1 == '' || code2 == '' || code3 == '' || code4 == '' || tries > 3 || isVerified === false ? '/authorization_con' : '/authorization_pass'}>
+    <Link to={code1 == '' || code2 == '' || code3 == '' || code4 == '' || tries > 3 || isVerified === false ? '/authorization_verify' : '/authorization_pass'}>
         <button className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`} onClick={() => {
 
       }}>
