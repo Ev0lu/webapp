@@ -101,9 +101,9 @@ const postRequest = async () => {
       const responseData = await response.json();
       // Handle response data if needed
       console.log(responseData)
-      if (responseData !== undefined){
-          setLinka('zak_pass')
-      }
+      if (responseData.sessionToken) {
+            setLinka('zak_pass')
+        }
     } else {
      const responseData = await response.json();
       // Handle response data if needed
