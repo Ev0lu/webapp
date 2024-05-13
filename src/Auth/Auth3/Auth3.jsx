@@ -193,7 +193,7 @@ const postRequest = async () => {
 
         </div>
 
-        <Link to={pass === pass2 && login !== '' && tele !== '' && mail !== '' && check !== '' && checkPh !== '' && (pass.length>9) && (pass.length < 25) ? '/isp_con' : '/isp2_reg'}>
+        <Link to={pass === pass2 && login !== '' && tele !== '' && mail !== '' && check !== '' && checkPh !== '' && (pass.length>9) && (pass.length < 25) ? '/authorization_verify' : '/authorization_pass'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
                 sessionStorage.setItem('login', login)
                 sessionStorage.setItem('tele', tele)
