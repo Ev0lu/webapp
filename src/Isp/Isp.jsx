@@ -173,7 +173,7 @@ function Isp(props) {
                 value={name}
                 onChange={handleChange}
             />
-            { name === '' && (errorFields.name && <span className={s.error_message}>Пожалуйста, введите дату рождения</span>)}
+            { name === '' && (errorFields.name && <span className={s.error_message}>Пожалуйста, введите ваше имя</span>)}
 
         </div>
         <div className={`${s.password_input}`}>
