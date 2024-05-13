@@ -12,6 +12,7 @@ function Auth3(props) {
     const [checkPh,setCheckPh] = useState('')
     const [rlink, setRlink] = useState('/zak1_reg')
     const [mail,setMail] = useState(sessionStorage.getItem('mail'))
+    const [token,setToken] = useState(null)
     const [errorFields, setErrorFields] = useState({
 
         pass: false,
@@ -32,7 +33,9 @@ function Auth3(props) {
         return !Object.values(errors).some(Boolean);
     };
 
-
+    useEffect(() => {
+        setToken(sessionStorage.getItem('sessionToken'))
+    },[pass2])
 
     const handleChange4 = (event) => {
         setPass(event.target.value);
