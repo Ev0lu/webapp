@@ -11,6 +11,7 @@ function Isp2(props) {
     const [pass, setPass] = useState('')
     const [pass2, setPass2] = useState('')
     const [check,setCheck] = useState('')
+    const [checkUnique,setCheckUnique] = useState('')
     const [checkPh,setCheckPh] = useState('')
     const [rlink, setRlink] = useState('/zak1_reg')
     const [errorFields, setErrorFields] = useState({
