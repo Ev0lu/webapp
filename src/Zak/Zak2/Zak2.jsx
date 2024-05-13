@@ -23,7 +23,7 @@ function Zak2(props) {
         checkUnique: false
     });
 
-  const [exist, setExist] = useState(sessionStorage.getItem('exist'));
+  const [exist, setExist] = useState(`${sessionStorage.getItem('exist')}`);
   const [accessToken, setAccessToken] = useState(sessionStorage.getItem('accessToken'));
     
     const validateFields = () => {
