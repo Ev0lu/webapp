@@ -63,16 +63,16 @@ function Reg(props) {
       <h1 className={s.greetings_text} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Регистрация</h1>
 
           <Link to="/zak_reg">
-                <button onClick={() => {setIsRegistered(true)
-                  disabled={Boolean(disabledClient)}
+                <button disabled={Boolean(disabledClient)} onClick={() => {setIsRegistered(true)
+                  
                 sessionStorage.setItem('exist', exist)
                 sessionStorage.setItem('accessToken', accessToken)
                 sessionStorage.setItem('tgId', telegram_id)  
                 setIsRegistered2(false)}} className={`${s.greetings_btn} ${isRegistered ? s.lightMode1 : (props.colorB === 'light' ? s.lightMode : s.darkMode)}`}>Я заказчик</button>
             </Link> 
             <Link to="/isp_reg">
-                <button onClick={() => {
-                    disabled={Boolean(disabledWorker)}
+                <button  disabled={Boolean(disabledWorker)} onClick={() => {
+                   
                     setIsRegistered2(true)
         
                     sessionStorage.setItem('tgId', telegram_id)   
