@@ -26,6 +26,11 @@ import Isp2 from './Isp/Isp2/Isp2'
 import Isp3 from './Isp/Isp3/Isp3'
 import IspPh from './Isp/IspPh/IspPh'
 import IspCon from './Isp/IspCon/IspCon';
+
+import AuthCon from './Auth/AuthCon/AuthCon';
+import Auth2 from './Auth/Auth2/Auth2'
+import Auth3 from './Auth/Auth3/Auth3'
+
 import ZakCon from './Zak/ZakCon/ZakCon';
 
 const tg = window.Telegram.WebApp
@@ -79,6 +84,9 @@ function App() {
 
           <Route path="/success_a" element={<SuccessAuth tg={tg} colorB={colorB} />} />
           <Route path="/success_r" element={<SuccessReg tg={tg} colorB={colorB} />} />
+          <Route path="/authorization_verify" element={<AuthCon  tg={tg} colorB={colorB} />} />
+          <Route path="/authorization_mail" element={<Auth1 tg={tg} colorB={colorB} />} />
+          <Route path="/authorization_pass" element={<Auth2  tg={tg} colorB={colorB} />} />
 
 
           
