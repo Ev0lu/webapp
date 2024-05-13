@@ -94,6 +94,7 @@ const postRequest = async () => {
       const data = await response.json();
       setIsVerified(true);
       setToken(`${data.session_token}`)
+      sessionStorage.setItem('session_token', `${data.session_token}`)
       console.log(data)
       
     } else {
