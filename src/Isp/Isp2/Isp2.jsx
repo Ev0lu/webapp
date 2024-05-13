@@ -155,7 +155,7 @@ const checkUniqueF = async () => {
     } else {
         setTeleerr('')
     }
-  } catch (error) {
+  }} catch (error) {
     setCheck('exist')
      const responseData = await response.json();
       // Handle response data if needed
