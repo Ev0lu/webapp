@@ -130,16 +130,15 @@ const Auth = (props) => {
             postRequest()
             validateFields()
                let user = {
-                login: login,
-                password: password,
                 access_token: tokenAccess,
                 refresh_token: tokenRefresh
                    
               };
-            props.tg.sendData(JSON.stringify(user))
-            tg.close()
-            
-        
+            if ((resp !== 'Incorrect login or password') || (resp !== '')) {
+                props.tg.sendData(JSON.stringify(user))
+                tg.close()
+                
+            }
         }} className={`${s.greetings_btn2} ${props.colorB==="light" ? s.authPassword1 : s.authPassword1}` }>Далее</button>
         </Link>
         </div>
