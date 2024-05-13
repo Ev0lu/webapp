@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import s from "./Isp2.module.css"
+import s from "./Auth2.module.css"
 import { Link } from "react-router-dom";
 import arrowsvg from '../../assets/arrow.svg'
 import blackarr from '../../assets/black.svg'
 
-function Isp2(props) {
+function Auth2(props) {
     const [login, setLogin] = useState('');
     const [tele, setTele] = useState('');
     const [mail, setMail] = useState('');
@@ -127,5 +127,5 @@ const postRequest = async () => {
     )
   }
   
-export default Isp2;
+export default Auth2;
   
