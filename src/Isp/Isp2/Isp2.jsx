@@ -240,13 +240,13 @@ const checkUniqueF = async () => {
              </div>
 
 
-        <Link to={login !== '' && tele !== '' && mail !== '' && check !== '' && checkPh !== ''? '/isp_con' : '/isp2_reg'}>
+        <Link to={login !== '' && tele !== '' && mail !== '' && check !== '' && checkPh !== '' (exist === false ? checkUnique !== '' : '')  ? '/isp_con' : '/isp2_reg'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
                 sessionStorage.setItem('login', login)
                 sessionStorage.setItem('tele', tele)
                 sessionStorage.setItem('mail', mail)
 
-                if (login !== '' && tele !== '' && mail !== '' && check !== '' && checkPh !== ''  && {exist === 'false' && checkUnique !== '' }) {
+                if (login !== '' && tele !== '' && mail !== '' && check !== '' && checkPh !== ''  && (exist === false ? checkUnique !== '' : '')) {
                     postRequest()
                 }
                 validateFields()
