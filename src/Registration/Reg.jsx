@@ -12,6 +12,11 @@ function Reg(props) {
       const [accessToken, setAccessToken] = useState(`${searchParams.get('access_token')}`);
       const [disabledWorker, setDisabledWorker] = useState(false)
       const [disabledClient, setDisabledClient] = useState(false)
+      useEffect(() => {
+                sessionStorage.setItem('exist', exist)
+                sessionStorage.setItem('accessToken', accessToken)
+                sessionStorage.setItem('tgId', telegram_id)  
+      }, [])
       const fetchInfo = async () => {
       
       
@@ -62,7 +67,7 @@ function Reg(props) {
                   disabled={disabledClient}
                 sessionStorage.setItem('exist', exist)
                 sessionStorage.setItem('accessToken', accessToken)
-                sessionStorage.setItem('tgId', telegram_id)                        
+                sessionStorage.setItem('tgId', telegram_id)  
                 setIsRegistered2(false)}} className={`${s.greetings_btn} ${isRegistered ? s.lightMode1 : (props.colorB === 'light' ? s.lightMode : s.darkMode)}`}>Я заказчик</button>
             </Link> 
             <Link to="/isp_reg">
