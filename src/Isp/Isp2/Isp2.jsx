@@ -22,7 +22,7 @@ function Isp2(props) {
         check: false,
         checkPh: false
     });
-
+    const [linka,setLinka] = useState('isp_con')
     const validateFields = () => {
         const errors = {
             login: login === '',
@@ -96,7 +96,18 @@ const postRequest = async () => {
       },
       body: JSON.stringify(user)
     });
-
+    if (response.ok) {
+      const responseData = await response.json();
+      // Handle response data if needed
+      console.log(responseData)
+      if (responseData !== undefined){
+          setLinka('isp_pass')
+      }
+    } else {
+     const responseData = await response.json();
+      // Handle response data if needed
+      console.log(responseData)
+    }
   } catch (error) {
     setCheck('exist')
   }
@@ -247,7 +258,7 @@ const checkUniqueF = async () => {
              </div>
 
 
-        <Link to={login !== '' && tele.split('').length > 6 && tele !== '' && mail !== '' && check !== '' && checkPh !== '' (exist === false ? checkUnique !== '' : '')  ? '/isp_con' : '/isp2_reg'}>
+        <Link to={login !== '' && tele.split('').length > 6 && tele !== '' && mail !== '' && check !== '' && checkPh !== '' (exist === false ? checkUnique !== '' : '')  ? linka : '/isp2_reg'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
                 sessionStorage.setItem('login', login)
                 sessionStorage.setItem('tele', tele)
