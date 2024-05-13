@@ -85,8 +85,8 @@ function App() {
           <Route path="/success_a" element={<SuccessAuth tg={tg} colorB={colorB} />} />
           <Route path="/success_r" element={<SuccessReg tg={tg} colorB={colorB} />} />
           <Route path="/authorization_verify" element={<AuthCon  tg={tg} colorB={colorB} />} />
-          <Route path="/authorization_mail" element={<Auth1 tg={tg} colorB={colorB} />} />
-          <Route path="/authorization_pass" element={<Auth2  tg={tg} colorB={colorB} />} />
+          <Route path="/authorization_mail" element={<Auth2 tg={tg} colorB={colorB} />} />
+          <Route path="/authorization_pass" element={<Auth3  tg={tg} colorB={colorB} />} />
 
 
           
