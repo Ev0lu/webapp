@@ -17,8 +17,6 @@ function Zak2(props) {
         login: false,
         tele: false,
         mail: false,
-        pass: false,
-        pass2: false,
         check: false,
         checkPh: false
     });
@@ -28,8 +26,6 @@ function Zak2(props) {
             login: login === '',
             tele: tele === '',
             mail: mail === '',
-            pass: pass === '',
-            pass2: pass2 === '',
             check: check === '',
             checkPh: checkPh === ''
         };
@@ -61,13 +57,6 @@ function Zak2(props) {
             setCheck('')
         }
     };
-    const handleChange4 = (event) => {
-        setPass(event.target.value);
-    };
-    const handleChange5 = (event) => {
-        setPass2(event.target.value);
-    };
-
 
 
 
