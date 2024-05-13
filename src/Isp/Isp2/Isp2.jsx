@@ -22,7 +22,7 @@ function Isp2(props) {
         check: false,
         checkPh: false
     });
-    const [linka,setLinka] = useState('isp_con')
+    const [linka,setLinka] = useState('/isp_con')
     const validateFields = () => {
         const errors = {
             login: login === '',
@@ -101,7 +101,7 @@ const postRequest = async () => {
       // Handle response data if needed
       console.log(responseData)
      if (responseData.sessionToken) {
-                setLinka('isp_pass');
+                setLinka('/isp_pass');
         }
     } else {
      const responseData = await response.json();
