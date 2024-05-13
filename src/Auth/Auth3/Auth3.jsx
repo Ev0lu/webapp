@@ -95,7 +95,7 @@ const postRequest2 = async () => {
         <div className={s.greetings_wrapper}>
         <div className={s.reg}>
 
-            <h1 className={s.greetings_text} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Регистрация</h1>
+            <h1 className={s.greetings_text} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Восстановление пароля</h1>
         </div>
 
 
