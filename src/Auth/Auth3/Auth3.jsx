@@ -11,6 +11,7 @@ function Auth3(props) {
     const [check,setCheck] = useState('')
     const [checkPh,setCheckPh] = useState('')
     const [rlink, setRlink] = useState('/zak1_reg')
+    const [mail,setMail] = useState(sessionStorage.getItem('mail'))
     const [errorFields, setErrorFields] = useState({
 
         pass: false,
