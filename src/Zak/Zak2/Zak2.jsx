@@ -183,8 +183,8 @@ const checkUniqueF = async () => {
           setTele(`${data.phone}`)
           setMail(`${data.email}`)
 
-
-
+          validateFields()
+    
 
 
       
