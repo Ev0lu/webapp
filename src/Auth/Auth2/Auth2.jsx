@@ -91,7 +91,7 @@ const postRequest = async () => {
         <Link to='/authorization'>
             <img src={props.colorB === 'light' ? blackarr : arrowsvg} className={s.reg_arrow}></img>
         </Link>
-            <h1 className={s.greetings_text} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Восстановление пароля</h1>
+            <h1 className={s.greetings_text} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Введите почту</h1>
         </div>
 
 
