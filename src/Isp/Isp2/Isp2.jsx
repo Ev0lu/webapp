@@ -139,7 +139,7 @@ const checkUniqueF = async () => {
   const handleInputBlur = () => {
     // Здесь можно выполнить проверку ввода, когда инпут теряет фокус
            
-                        if (exist === 'true') {
+                        if (exist === true) {
                             
                         } else {
                             
