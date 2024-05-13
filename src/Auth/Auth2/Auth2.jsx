@@ -111,7 +111,7 @@ const postRequest = async () => {
              </div>
 
 
-        <Link to={mail !== '' && check !== '' ? '/auth_con' : '/auth2'}>
+        <Link to={mail !== '' && check !== '' ? '/authorization_con' : '/authorization_mail'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
 
                 sessionStorage.setItem('mail', mail)
