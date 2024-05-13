@@ -138,7 +138,9 @@ const checkUniqueF = async () => {
         if (exist === 'true') {
             
         } else {
+            if (login !== '' && tele !== ''){
             checkUniqueF()
+            }
         }
     },[login,tele])
 
@@ -156,7 +158,7 @@ const checkUniqueF = async () => {
         }
       });
       const data = await response.json();
-
+      console.log(data)
 
           setLogin(`${data.login}`)
           setTele(`${data.phone}`)
