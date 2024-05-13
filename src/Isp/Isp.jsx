@@ -69,7 +69,8 @@ function Isp(props) {
         setErrorFields(errors);
         return !Object.values(errors).some(Boolean);
     };
-
+  const [exist, setExist] = useState(sessionStorage.getItem('exist') === 'true');
+  const [accessToken, setAccessToken] = useState(sessionStorage.getItem('accessToken'));
 
     /*useEffect(() => {
         const fetchQuestion = async () => {
@@ -157,7 +158,7 @@ function Isp(props) {
         <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }> 
         <div className={s.greetings_wrapper}>
         <div className={s.reg}>
-        <Link to='/registration'>
+        <Link to='/registration?telegram_id=${telegramId}&access_token=${accessToken}&exists=${exist}'>
             <img src={props.colorB === 'light' ? blackarr : arrowsvg} className={s.reg_arrow}></img>
         </Link>
             <h1 className={s.greetings_text} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Регистрация</h1>
