@@ -20,10 +20,10 @@ function ZakPass(props) {
         check: false,
         checkPh: false
     });
+  const [isVerified, setIsVerified] = useState(false);
 
     const validateFields = () => {
         const errors = {
-
             pass: pass === '',
             pass2: pass2 === '',
             check: check === '',
