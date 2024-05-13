@@ -32,6 +32,8 @@ import Auth2 from './Auth/Auth2/Auth2'
 import Auth3 from './Auth/Auth3/Auth3'
 
 import ZakCon from './Zak/ZakCon/ZakCon';
+import IspPass from './Isp/IspPass/IspPass';
+import ZakPass from './Zak/ZakPass/ZakPass';
 
 const tg = window.Telegram.WebApp
 function App() {
@@ -87,7 +89,8 @@ function App() {
           <Route path="/authorization_verify" element={<AuthCon  tg={tg} colorB={colorB} />} />
           <Route path="/authorization_mail" element={<Auth2 tg={tg} colorB={colorB} />} />
           <Route path="/authorization_pass" element={<Auth3  tg={tg} colorB={colorB} />} />
-
+          <Route path="/isp_reg_pass" element={<IspPass  tg={tg} colorB={colorB} />} />
+          <Route path="/zak_reg_pass" element={<ZakPass  tg={tg} colorB={colorB} />} />
 
           
           
