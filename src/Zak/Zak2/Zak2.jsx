@@ -134,15 +134,22 @@ const checkUniqueF = async () => {
       console.log(responseData)
   }
 }
-    useEffect(() => {
-        if (exist === 'true') {
+
+
+   const handleInputBlur = () => {
+    // Здесь можно выполнить проверку ввода, когда инпут теряет фокус
+           
+                        if (exist === 'true') {
+                            
+                        } else {
+                            
+                            if (login !== '' && tele !== '' && tele.split('').length > 6){
+                                checkUniqueF()
+                            }
+                        }
             
-        } else {
-            if (login !== '' && tele !== '' && tele.split('').length > 6){
-                checkUniqueF()
-            }
-        }
-    },[login,tele])
+          };
+
 
  const fetchInfo = async () => {
 
@@ -202,6 +209,7 @@ const checkUniqueF = async () => {
                 value={login}
                 onChange={handleChange}
                 style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
+                onBlur={handleInputBlur}
 
             />
             {login === '' && (errorFields.login && <span className={s.error_message}>Пожалуйста, введите логин</span>)}
@@ -216,6 +224,7 @@ const checkUniqueF = async () => {
                 value={tele}
                 onChange={handleChange2}
                 style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
+                onBlur={handleInputBlur}
 
             />
         {tele === '' && (errorFields.tele && <span className={s.error_message}>Пожалуйста, введите телефон</span>)}
