@@ -124,7 +124,7 @@ const Auth = (props) => {
                 { password === '' && (errorFields.password && <span className={s.error_message}>Пожалуйста, введите пароль</span>)}
                 { resp === 'Incorrect login or password' && (errorFields.resp && <span className={s.error_message}>Неверный логин или пароль</span>)}
               <Link to='/authorization_mail'>
-                <span>Забыл пароль</span>
+                <span className={s.spanForgot}>Забыл пароль</span>
             </Link>
         </div>
             
