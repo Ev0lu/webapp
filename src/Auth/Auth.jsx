@@ -125,6 +125,7 @@ const Auth = (props) => {
                 { resp === 'Incorrect login or password' && (errorFields.resp && <span className={s.error_message}>Неверный логин или пароль</span>)}
 
         </div>
+            <span>Забыл пароль</span>
         <Link to={(password.length<10) || (password.length > 25) || (resp === 'Incorrect login or password') || (resp === '') ? '/authorization' : '/success_a'}>
         <button onClick={() => {
             postRequest()
