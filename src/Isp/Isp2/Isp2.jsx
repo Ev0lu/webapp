@@ -37,7 +37,10 @@ function Isp2(props) {
         return !Object.values(errors).some(Boolean);
     };
 
-
+      const location = useLocation();
+      const searchParams = new URLSearchParams(location.search);
+      const [exist, setExist] = useState(`${sessionStorage.getItem('exist')}`);
+      const [accessToken, setAccessToken] = useState(sessionStorage.getItem('accessToken'));
     const handleChange = (event) => {
         setLogin(event.target.value.replace(/[^A-Za-z0-9]/g, ''));
     };
@@ -59,12 +62,6 @@ function Isp2(props) {
         } else{
             setCheck('')
         }
-    };
-    const handleChange4 = (event) => {
-        setPass(event.target.value);
-    };
-    const handleChange5 = (event) => {
-        setPass2(event.target.value);
     };
 
 
@@ -106,6 +103,86 @@ const postRequest = async () => {
     setCheck('exist')
   }
 }
+
+
+
+const checkUniqueF = async () => {  
+  let user = {
+    login: login,
+    phone: phone
+  };
+
+  try {
+    const response = await fetch('https://assista1.ru/api/v1/auth/registration/checkUnique', {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    });
+    if (response.ok) {
+      const responseData = await response.json();
+      // Handle response data if needed
+      console.log(responseData)
+      setCheckUnique('true')
+    } else {
+     const responseData = await response.json();
+      // Handle response data if needed
+      console.log(responseData)
+    }
+  } catch (error) {
+    setCheck('exist')
+     const responseData = await response.json();
+      // Handle response data if needed
+      console.log(responseData)
+  }
+}
+    useEffect(() => {
+        if (exist === 'true') {
+            
+        } else {
+            checkUniqueF()
+        }
+    },[login,phone])
+
+ const fetchInfo = async () => {
+
+
+
+    
+
+    try {
+      const response = await fetch(`https://assista1.ru/api/v1/users/me`,{
+        method: 'GET',
+        headers: {
+           'Authorization': `Bearer ${accessToken}`,
+        }
+      });
+      const data = await response.json();
+
+
+          setLogin(`${data.login}`)
+          setPhone(`${data.phone}`)
+          setMail(`${data.email}`)
+
+
+
+
+
+      
+    } catch (error) {
+
+    }
+
+  };
+
+  useEffect(() => {
+      if(`${sessionStorage.getItem('exist')}` === 'true'){
+    fetchInfo()
+
+      }
+  },[])
     
     return (
         <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>         
@@ -166,7 +243,7 @@ const postRequest = async () => {
                 sessionStorage.setItem('tele', tele)
                 sessionStorage.setItem('mail', mail)
 
-                if (login !== '' && tele !== '' && mail !== '' && check !== '' && checkPh !== '') {
+                if (login !== '' && tele !== '' && mail !== '' && check !== '' && checkPh !== ''  && {exist === 'false' && checkUnique !== '' }) {
                     postRequest()
                 }
                 validateFields()
