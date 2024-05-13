@@ -57,7 +57,7 @@ function ZakPass(props) {
     }
 
 
-      const reg = async () => {  
+const reg = async () => {  
      let user = {
         profile: {
           telegram_id: Number(sessionStorage.getItem('tgId')),
@@ -126,7 +126,7 @@ function ZakPass(props) {
                 value={pass}
                 onChange={handleChange4}
                 style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
-
+                
             />
             {pass === '' && (errorFields.pass && <span className={s.error_message}>Пожалуйста, введите пароль</span>)}
 
@@ -139,27 +139,20 @@ function ZakPass(props) {
                 value={pass2}
                 onChange={handleChange5}
                 style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
-
             />
         { pass === '' && (errorFields.pass2 && <span className={s.error_message}>Пожалуйста, подтвердите пароль</span>)}
         {pass!=pass2 && <span className={s.error_message}>Пароли должны совпадать</span>}
         { pass.length<10 && <span className={s.error_message}>Размер пароля должен составлять от 10 до 25 символов</span>}
         {pass.length > 24 && <span className={s.error_message}>Размер пароля должен составлять от 10 до 25 символов</span>}
-
-
-
-
         </div>
 
-        <Link to={pass === pass2 && (pass.length>9) && (pass.length < 25) ? '/zak_reg_photo' : '/zak_pass'}>
+        <Link to={isVerified === true &&pass === pass2 && (pass.length>9) && (pass.length < 25) ? '/zak_reg_photo' : '/zak_pass'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
-                        if(isVerified === true){
+                        if(isVerified === true && pass === pass2  && (pass.length>9) && (pass.length < 25)){
                             reg()
                       }
         
-                if (pass === pass2  && (pass.length>9) && (pass.length < 25)) {
-                     sessionStorage.setItem('pass', pass)
-                }
+        
                 validateFields()
             }}>Далее</button>
         </Link>
