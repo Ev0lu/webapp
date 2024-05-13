@@ -82,8 +82,7 @@ function Zak2(props) {
         setLogin(sessionStorage.getItem('login') !== null ? sessionStorage.getItem('login') : '')
         setTele(sessionStorage.getItem('tele') !== null ? sessionStorage.getItem('tele') : '')
         setMail(sessionStorage.getItem('mail') !== null ? sessionStorage.getItem('mail') : '')
-        setPass(sessionStorage.getItem('pass') !== null ? sessionStorage.getItem('pass') : '')
-        setPass2(sessionStorage.getItem('pass') !== null ? sessionStorage.getItem('pass') : '')
+
 
       }, [])
 
@@ -157,47 +156,15 @@ const postRequest = async () => {
             {mail === '' && (errorFields.mail && <span className={s.error_message}>Пожалуйста, введите почту</span>)}
             {errorFields.check && <span className={s.error_message}>Почта не соответствует формату</span>}
              </div>
-        <div className={s.password_input}>
-            <input
-                type={'text'}
-                placeholder="Пароль"
-                className={`${s.password_field} ${errorFields.pass && s.error}`}
-                value={pass}
-                onChange={handleChange4}
-                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
+      
 
-            />
-            {pass === '' && (errorFields.pass && <span className={s.error_message}>Пожалуйста, введите пароль</span>)}
-
-             </div>
-        <div className={s.password_input}>
-             <input
-                type={'text'}
-                placeholder="Подтверждение пароля"
-                className={`${s.password_field} ${errorFields.pass2 && s.error}`}
-                value={pass2}
-                onChange={handleChange5}
-                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
-
-            />
-        { pass === '' && (errorFields.pass2 && <span className={s.error_message}>Пожалуйста, подтвердите пароль</span>)}
-        {pass!=pass2 && <span className={s.error_message}>Пароли должны совпадать</span>}
-        
-        { pass.length<10 && <span className={s.error_message}>Размер пароля должен составлять от 10 до 25 символов</span>}
-        {pass.length > 24 && <span className={s.error_message}>Размер пароля должен составлять от 10 до 25 символов</span>}
-
-
-
-
-        </div>
-
-        <Link to={pass === pass2 && login !== '' && tele !== '' && mail !== '' && check !== '' && checkPh !== '' && (pass.length>9) && (pass.length < 25) ? '/zak_con' : '/zak2_reg'}>
+        <Link to={login !== '' && tele !== '' && mail !== '' && check !== '' && checkPh !== '' ? '/zak_con' : '/zak2_reg'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
                 sessionStorage.setItem('login', login)
                 sessionStorage.setItem('tele', tele)
                 sessionStorage.setItem('mail', mail)
-                sessionStorage.setItem('pass', pass)
-                if (pass === pass2 && login !== '' && tele !== '' && mail !== '' && check !== '' && checkPh !== '') {
+
+                if (login !== '' && tele !== '' && mail !== '' && check !== '' && checkPh !== '') {
                     postRequest()
                 }
                 validateFields()
