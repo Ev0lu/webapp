@@ -71,9 +71,9 @@ const AuthCon = (props) => {
   
 const postRequest = async () => {  
   let user = {
-    email_data: {
-      email: mail
-    },
+   
+    email: mail,
+    
     code: `${code1}${code2}${code3}${code4}`
     
   };
