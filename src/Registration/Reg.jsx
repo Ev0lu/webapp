@@ -1,6 +1,6 @@
 import { Route, Routes, Link, Router, useParams, useLocation } from 'react-router-dom';
 import s from './registration.module.css'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 function Reg(props) {
   const [isRegistered, setIsRegistered] = useState(false);
   const [isRegistered2, setIsRegistered2] = useState(false);
