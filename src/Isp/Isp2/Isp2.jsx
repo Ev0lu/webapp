@@ -5,6 +5,8 @@ import arrowsvg from '../../assets/arrow.svg'
 import blackarr from '../../assets/black.svg'
 
 function Isp2(props) {
+    const [loginerr, setLoginerr] = useState('');
+    const [teleerr, setTeleerr] = useState('');
     const [login, setLogin] = useState('');
     const [tele, setTele] = useState('');
     const [mail, setMail] = useState('');
@@ -136,10 +138,22 @@ const checkUniqueF = async () => {
       // Handle response data if needed
       console.log(responseData)
       setCheckUnique('true')
+        setTeleerr('')
+        setLoginerr('')
     } else {
      const responseData = await response.json();
       // Handle response data if needed
       console.log(responseData)
+    if (responseData.detail.includes("login")){
+        setLoginerr(true)
+    } else{
+        setLoginerr('')
+    }
+        
+    if (responseData.detail.includes("phone")){
+        setTeleerr(true)
+    } else {
+        setTeleerr('')
     }
   } catch (error) {
     setCheck('exist')
@@ -222,6 +236,7 @@ const checkUniqueF = async () => {
 
             />
             {login === '' && (errorFields.login && <span className={s.error_message}>Пожалуйста, введите логин</span>)}
+            {loginerr === true && <span className={s.error_message}>Логин уже существует</span>}
             {/^[A-Za-z0-9]+$/.test(login) === false && <span className={s.error_message}>Логин поддерживает только латинский алфавит</span>}
 
         </div>
@@ -239,6 +254,7 @@ const checkUniqueF = async () => {
             />
         {tele === '' && (errorFields.tele && <span className={s.error_message}>Пожалуйста, введите телефон</span>)}
         {tele.split('').length < 7 && (errorFields.tele && <span className={s.error_message}>Пожалуйста, введите правильный телефон</span>)}
+        {teleerr === true && <span className={s.error_message}>Почта уже существует</span> }
         {errorFields.checkPh && <span className={s.error_message}>Номер должен начинаться с кода страны(+...)</span>}
 
 
