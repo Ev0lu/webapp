@@ -104,7 +104,7 @@ function IspPass(props) {
 
         </div>
 
-        <Link to={pass === pass2 && (pass.length>9) && (pass.length < 25) ? '/isp_reg_photo' : '/isp_reg_pass'}>
+        <Link to={pass === pass2 && (pass.length>9) && (pass.length < 25) ? '/isp3_reg' : '/isp_reg_pass'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
                 
 
