@@ -108,8 +108,11 @@
 .spanForgot{
   font-size: 14px;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+  text-decoration:none;
+
   
 }
 a{
-  display:flex;
+  text-decoration:none;
+
 }
