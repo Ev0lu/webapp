@@ -111,7 +111,7 @@ const postRequest = async () => {
       // Handle response data if needed
       console.log(responseData)
     }*/
-  } catch (error) {
+  }} catch (error) {
      console.log(error)
   }
 }
