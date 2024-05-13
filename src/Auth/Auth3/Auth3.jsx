@@ -76,11 +76,11 @@ const postRequest2 = async () => {
     });
     if (response.ok) {
       const data = await response.json();
-      console.log(data)
+
 
     } else {
       const data = await response.json();
-      console.log(data)
+
     }
   } catch (error) {
     setCheck('')
@@ -132,7 +132,7 @@ const postRequest2 = async () => {
 
         </div>
 
-        <Link to={pass === pass2 && (pass.length>9) && (pass.length < 25) ? '/authorizationauthorization_pass' : '/authorization_pass'}>
+        <Link to={pass === pass2 && (pass.length>9) && (pass.length < 25) ? '/authorization' : '/authorization_pass'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
 
 
