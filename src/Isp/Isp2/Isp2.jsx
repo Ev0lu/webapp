@@ -86,8 +86,8 @@ function Isp2(props) {
 
         
 const postRequest = async () => {  
-  let user = {
-    email: mail,
+  const user = {
+    email: `${mail}`,
   };
 
   try {
