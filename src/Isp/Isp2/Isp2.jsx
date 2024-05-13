@@ -149,7 +149,7 @@ const checkUniqueF = async () => {
     } else{
         setLoginerr('')
     }
-        
+    console.log(responseData.detail.includes("phone"))    
     if (responseData.detail.includes("phone")){
         setTeleerr(true)
     } else {
