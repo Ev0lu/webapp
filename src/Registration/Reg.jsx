@@ -7,7 +7,7 @@ function Reg(props) {
   
       const location = useLocation();
       const searchParams = new URLSearchParams(location.search);
-      const [exist, setExist] = useState(`${searchParams.get('exist')}`);
+      const [exist, setExist] = useState(`${searchParams.get('exists')}`);
       const [accessToken, setAccessToken] = useState(`${searchParams.get('access_token')}`);
       const [disabledWorker, setDisabledWorker] = useState(false)
       const [disabledClient, setDisabledClient] = useState(false)
