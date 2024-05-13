@@ -24,9 +24,8 @@ function Zak2(props) {
     });
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const [exist, setExust] = useState(searchParams.get('exist'));
-  const [accessToken, setAccessToken] = useState(searchParams.get('access_token'));
-  const [refreshToken, setRefreshToken] = useState(searchParams.get('refresh_token'));
+  const [exist, setExust] = useState(sessionStorage.getItem('exist'));
+  const [accessToken, setAccessToken] = useState(sessionStorage.getItem('accessToken'));
     
     const validateFields = () => {
         const errors = {
