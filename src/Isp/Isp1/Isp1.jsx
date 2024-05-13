@@ -187,6 +187,7 @@ function Isp1(props) {
 useEffect(() => {
   setOffset(0); // Reset offset to 0 when searchQuery changes
   setCountries([]); // Reset countries list to empty when searchQuery changes
+  
 }, [searchQuery]);
 useEffect(() => {
   setOffset2(0); // Reset offset to 0 when searchQuery changes
@@ -230,7 +231,9 @@ useEffect(() => {
   };
   
 useEffect(() => {
-  fetchCountries(); // Call fetchCountries whenever searchQuery changes
+  if (searchQuery !== ''){
+    fetchCountries(); // Call fetchCountries whenever searchQuery changes
+  }
 }, [searchQuery]);
 useEffect(() => {
   fetchCities(); // Call fetchCountries whenever searchQuery changes
