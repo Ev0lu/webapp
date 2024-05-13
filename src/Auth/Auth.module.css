@@ -103,3 +103,10 @@
   flex-direction: column;
   gap: 5px;
 }
+
+
+.spanForgot{
+  font-size: 14px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+  
+}
