@@ -56,6 +56,7 @@ function Zak2(props) {
     };
     const handleChange3 = (event) => {
         setMail(event.target.value);
+        console.log(event.target.value)
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         const isValidEmail = emailRegex.test(event.target.value);
         if (isValidEmail === true) {
