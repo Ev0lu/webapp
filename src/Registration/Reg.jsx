@@ -62,12 +62,15 @@ function Reg(props) {
                   disabled={disabledClient}
                 sessionStorage.setItem('exist', exist)
                 sessionStorage.setItem('accessToken', accessToken)
+                sessionStorage.setItem('tgId', telegram_id)                        
                 setIsRegistered2(false)}} className={`${s.greetings_btn} ${isRegistered ? s.lightMode1 : (props.colorB === 'light' ? s.lightMode : s.darkMode)}`}>Я заказчик</button>
             </Link> 
             <Link to="/isp_reg">
                 <button onClick={() => {
                     disabled={disabledWorker}
                     setIsRegistered2(true)
+        
+                    sessionStorage.setItem('tgId', telegram_id)   
                     sessionStorage.setItem('exist', exist)
                     sessionStorage.setItem('accessToken', accessToken)
                     setIsRegistered(false)
