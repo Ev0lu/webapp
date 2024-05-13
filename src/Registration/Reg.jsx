@@ -1,4 +1,4 @@
-import { Route, Routes, Link, Router } from 'react-router-dom';
+import { Route, Routes, Link, Router, useParams, useLocation } from 'react-router-dom';
 import s from './registration.module.css'
 import { useState } from 'react';
 function Reg(props) {
