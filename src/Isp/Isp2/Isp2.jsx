@@ -103,7 +103,7 @@ const postRequest = async () => {
       const responseData = await response.json();
       // Handle response data if needed
       console.log(responseData)
-     if (responseData.sessionToken) {
+     if (responseData.session_token) {
                 setLinka('/isp_pass');
         }
     } else {
@@ -144,17 +144,17 @@ const checkUniqueF = async () => {
      const responseData = await response.json();
       // Handle response data if needed
       console.log(responseData)
-    if (responseData.detail.includes("login")){
-        setLoginerr('true')
-    } else{
-        setLoginerr('')
-    }
-    console.log(responseData.detail.includes("phone"))    
-    if (responseData.detail.includes("phone")){
-        setTeleerr('true')
-    } else {
-        setTeleerr('')
-    }
+        if (responseData.detail.includes("login")){
+            setLoginerr('true')
+        } else{
+            setLoginerr('')
+        }
+        console.log(responseData.detail.includes("phone"))    
+        if (responseData.detail.includes("phone")){
+            setTeleerr('true')
+        } else {
+            setTeleerr('')
+        }
   }} catch (error) {
      
       // Handle response data if needed
@@ -284,7 +284,7 @@ const checkUniqueF = async () => {
                 sessionStorage.setItem('tele', tele)
                 sessionStorage.setItem('mail', mail)
 
-                if (login !== '' && tele.split('').length > 6 && tele !== '' && mail !== '' && check !== '' && checkPh !== '') {
+                if (login !== '' && tele.split('').length > 6 && tele !== '' && mail !== '' && check !== '' && checkPh !== '' && (exist === false && !!checkUnique)) {
                     postRequest()
                 }
                 validateFields()
