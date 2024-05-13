@@ -159,7 +159,9 @@ const checkUniqueF = async () => {
       const data = await response.json();
 
 
-      setLogin(`${data}`)
+          setLogin(`${data.login}`)
+          setPhone(`${data.phone}`)
+          setMail(`${data.email}`)
 
 
 
