@@ -82,8 +82,7 @@ function Isp2(props) {
         setLogin(sessionStorage.getItem('login') !== null ? sessionStorage.getItem('login') : '')
         setTele(sessionStorage.getItem('tele') !== null ? sessionStorage.getItem('tele') : '')
         setMail(sessionStorage.getItem('mail') !== null ? sessionStorage.getItem('mail') : '')
-        setPass(sessionStorage.getItem('pass') !== null ? sessionStorage.getItem('pass') : '')
-        setPass2(sessionStorage.getItem('pass') !== null ? sessionStorage.getItem('pass') : '')
+
 
       }, [])
 
@@ -161,7 +160,7 @@ const postRequest = async () => {
              </div>
 
 
-        <Link to={pass === pass2 && login !== '' && tele !== '' && mail !== '' && check !== '' && checkPh !== '' && (pass.length>9) && (pass.length < 25) ? '/isp_con' : '/isp2_reg'}>
+        <Link to={login !== '' && tele !== '' && mail !== '' && check !== '' && checkPh !== ''? '/isp_con' : '/isp2_reg'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
                 sessionStorage.setItem('login', login)
                 sessionStorage.setItem('tele', tele)
