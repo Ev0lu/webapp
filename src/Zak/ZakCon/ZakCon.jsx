@@ -113,7 +113,7 @@ const postRequest = async () => {
   const reg = async () => {  
      let user = {
         profile: {
-          telegram_id: sessionStorage.getItem('tgId'),
+          telegram_id: Number(sessionStorage.getItem('tgId')),
           login: sessionStorage.getItem('login'),
           email: sessionStorage.getItem('mail'),
           full_name: sessionStorage.getItem('name') + ' ' + sessionStorage.getItem('lname') + `${sessionStorage.getItem('fname') !== null ? ' ' + sessionStorage.getItem('fname') : ''}`,
