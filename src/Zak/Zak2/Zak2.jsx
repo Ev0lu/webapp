@@ -202,7 +202,7 @@ const checkUniqueF = async () => {
         </div>
         <div className={s.password_input}>
             <input
-                disabled={Boolean('false')}
+                disabled={Boolean(exist)}
                 type={'text'}
                 placeholder="Логин"
                 className={`${s.password_field} ${errorFields.login && s.error}`}
