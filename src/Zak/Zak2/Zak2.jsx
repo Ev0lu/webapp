@@ -185,7 +185,7 @@ const checkUniqueF = async () => {
           setMail(`${data.email}`)
           setCheck('ex')
           setCheckPh('ex')
-          setCheckUnique('ex')
+          setCheckUnique('true')
           handleChange(`${data.login}`)
           handleChange2(`${data.phone}`)
           handleChange3(`${data.email}`)
@@ -268,13 +268,13 @@ const checkUniqueF = async () => {
              </div>
       
 
-        <Link to={(login !== '' && tele.split('').length > 6 && tele !== '' && mail !== '' && check !== '' && checkPh !== '') ? linka : '/zak2_reg'}>
+        <Link to={(login !== '' && tele.split('').length > 6 && tele !== '' && mail !== '' && check !== '' && checkPh !== '' && !!checkUnique) ? linka : '/zak2_reg'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
                 sessionStorage.setItem('login', login)
                 sessionStorage.setItem('tele', tele)
                 sessionStorage.setItem('mail', mail)
 
-                if (login !== '' && tele.split('').length > 6 && tele !== '' && mail !== '' && check !== '' && checkPh !== '') {
+                if (login !== '' && tele.split('').length > 6 && tele !== '' && mail !== '' && check !== '' && checkPh !== '' && !!checkUnique) {
                     postRequest()
                 }
                 validateFields()
