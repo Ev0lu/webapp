@@ -52,12 +52,7 @@ function Auth3(props) {
             setRlink('/zak1_reg')
         }
     }
-    useEffect(() => {
 
-        setPass(sessionStorage.getItem('pass') !== null ? sessionStorage.getItem('pass') : '')
-        setPass2(sessionStorage.getItem('pass') !== null ? sessionStorage.getItem('pass') : '')
-
-      }, [])
 
         
 const postRequest2 = async () => {  
@@ -134,7 +129,7 @@ const postRequest2 = async () => {
 
         </div>
 
-        <Link to={pass === pass2 && (pass.length>9) && (pass.length < 25) ? '/authorization_pass' : '/authorization'}>
+        <Link to={pass === pass2 && (pass.length>9) && (pass.length < 25) ? '/authorizationauthorization_pass' : '/authorization_pass'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
 
 
