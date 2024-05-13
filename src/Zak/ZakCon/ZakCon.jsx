@@ -205,7 +205,7 @@ const postRequest = async () => {
         </div>
         {error && <div className={s.error_message}>Неправильный код</div>}
         {tries > 3  && <div className={s.error_message}>Вы исчерпали количество попыток, начните регистрацию заново</div>}
-    <Link to={code1 == '' || code2 == '' || code3 == '' || code4 == '' || tries > 3 || isVerified === false ? '/zak_con' : '/zak_reg_photo'}>
+    <Link to={code1 == '' || code2 == '' || code3 == '' || code4 == '' || tries > 3 || isVerified === false ? '/zak_con' : '/zak_reg_pass'}>
         <button className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`} onClick={() => {
           if(isVerified === true)
         reg()
