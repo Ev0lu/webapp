@@ -22,7 +22,7 @@ function Zak2(props) {
         checkPh: false,
         checkUnique: false
     });
-    const [linka,setLinka] = useState('zak_con')
+    const [linka,setLinka] = useState('/zak_con')
 
   const [exist, setExist] = useState(sessionStorage.getItem('exist') === 'true');
   const [accessToken, setAccessToken] = useState(sessionStorage.getItem('accessToken'));
@@ -102,7 +102,7 @@ const postRequest = async () => {
       // Handle response data if needed
       console.log(responseData)
       if (responseData.sessionToken) {
-            setLinka('zak_pass')
+            setLinka('/zak_pass')
         }
     } else {
      const responseData = await response.json();
