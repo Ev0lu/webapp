@@ -187,9 +187,14 @@ function Isp1(props) {
 useEffect(() => {
   setOffset(0); // Reset offset to 0 when searchQuery changes
   setCountries([]); // Reset countries list to empty when searchQuery changes
-  
+    if (searchQuery === ''){
+    setSelectedCountry([])
+  }
 }, [searchQuery]);
 useEffect(() => {
+  if (searchQuery2 === ''){
+    setSelectedCountry2('')
+  }
   setOffset2(0); // Reset offset to 0 when searchQuery changes
   setCities([]); // Reset countries list to empty when searchQuery changes
 }, [searchQuery2]);
