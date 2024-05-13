@@ -138,8 +138,8 @@ const checkUniqueF = async () => {
         if (exist === 'true') {
             
         } else {
-            if (login !== '' && tele !== ''){
-            checkUniqueF()
+            if (login !== '' && tele !== '' && tele.split('').length > 6){
+                checkUniqueF()
             }
         }
     },[login,tele])
