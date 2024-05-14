@@ -88,7 +88,7 @@ const uploadPhoto = async () => {
   return (
     <div className={s.greetings} style={props.colorB === "light" ? {backgroundColor: "white"} : {backgroundColor: "#232323"} }>
       <div className={s.greetings_wrapper}>
-        <h1 className={s.greetings_text} style={props.colorB === 'light' ? {color: 'black'} : {color: 'white'} }>Регистрация</h1>
+        <h1 className={s.greetings_text} style={props.colorB === 'light' ? {color: 'black'} : {color: 'white'} }>Фотография</h1>
         <div className={s.avatar_container}>
           <label htmlFor="avatar_input" className={s.avatar}>
             {avatar ? (
@@ -118,7 +118,6 @@ const uploadPhoto = async () => {
               onChange={handleAvatarChange}
               className={s.avatar_input}
             />
-            {errorFields.avatar && <span className={s.error_message}>Пожалуйста, приложите изображение</span>}
             {size === true && (errorFields.size && <span className={s.error_message}>Изображение должно быть меньше 50Кб</span>)}
           </div>
         </div>
