@@ -26,16 +26,16 @@ const IspCon = (props) => {
   const handleCodeChange = (index, value) => {
     switch (index) {
       case 0:
-        setCode1(value);
+        setCode1(value.toUpperCase());
         break;
       case 1:
-        setCode2(value);
+        setCode2(value.toUpperCase());
         break;
       case 2:
-        setCode3(value);
+        setCode3(value.toUpperCase());
         break;
       case 3:
-        setCode4(value);
+        setCode4(value.toUpperCase());
         break;
       default:
         break;
