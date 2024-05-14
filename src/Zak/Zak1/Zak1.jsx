@@ -25,11 +25,12 @@ function Zak1(props) {
 
      useEffect(() => {
          setNowYear(nowYear-17)
+         console.log(nowYear)
      },[])
 
     
     useEffect(() => {
-        if (selectedYear > nowYear || selectedYear < nowYear - 100) {
+        if (selectedYear > (new Date().getFullYear())-17 || selectedYear < (new Date().getFullYear()) - 100) {
             setErr(true);
         } else {
             setErr(false);
