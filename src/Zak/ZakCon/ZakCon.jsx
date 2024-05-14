@@ -157,7 +157,7 @@ const postRequest2 = async () => {
             onChange={(e) => handleCodeChange(0, e.target.value)}
             className={s.code_box}
             onFocus={(e) => e.target.select()}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyPress}
             maxLength={1}
             style={{ width: 'auto', padding: '10px', maxWidth: 40 }} // Add this line
           />
@@ -168,7 +168,7 @@ const postRequest2 = async () => {
             onChange={(e) => handleCodeChange(1, e.target.value)}
             className={s.code_box}
             onFocus={(e) => e.target.select()}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyPress}
             maxLength={1}
             style={{ width: 'auto', padding: '10px', maxWidth: 40 }} // Add this line
           />
@@ -179,7 +179,7 @@ const postRequest2 = async () => {
             onChange={(e) => handleCodeChange(2, e.target.value)}
             className={s.code_box}
             onFocus={(e) => e.target.select()}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyPress}
             maxLength={1}
             style={{ width: 'auto', padding: '10px', maxWidth: 40 }} // Add this line
           />
@@ -190,7 +190,7 @@ const postRequest2 = async () => {
             onChange={(e) => handleCodeChange(3, e.target.value)}
             className={s.code_box}
             onFocus={(e) => e.target.select()}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyPress}
             maxLength={1}
             style={{ width: 'auto', padding: '10px', maxWidth: 40 }} // Add this line
           />
