@@ -78,7 +78,16 @@ const Auth = (props) => {
             setResp(responseData.detail)
             setTokenRefresh(responseData.refresh_token)
             setTokenAccess(responseData.access_token)
-
+            const data = {
+                access_token: responseData.access_token,
+                refresh_token: responseData.refresh_token
+                   
+              };
+            if ((responseData.detail !== 'Incorrect login or password') || (responseData.detail !== '')) {
+                props.tg.sendData(JSON.stringify(data))
+                props.tg.close()
+                
+            }
             
             
 
@@ -130,18 +139,11 @@ const Auth = (props) => {
             
         <Link to={(password.length<10) || (password.length > 25) || (resp === 'Incorrect login or password') || (resp === '') ? '/authorization' : '/success_a'}>
         <button onClick={() => {
-            postRequest()
             validateFields()
-               const data = {
-                access_token: tokenAccess,
-                refresh_token: tokenRefresh
-                   
-              };
-            if ((resp !== 'Incorrect login or password') || (resp !== '')) {
-                props.tg.sendData(JSON.stringify(data))
-                props.tg.close()
-                
-            }
+
+             postRequest()
+            
+
         }} className={`${s.greetings_btn2} ${props.colorB==="light" ? s.authPassword1 : s.authPassword1}` }>Далее</button>
         </Link>
         </div>
