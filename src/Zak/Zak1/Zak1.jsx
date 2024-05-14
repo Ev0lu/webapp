@@ -71,6 +71,7 @@ function Zak1(props) {
       };
     
       const handleDateClick = (day) => {
+        console.log(selectedYear, selectedMonth, day)
         setSelectedDate(new Date(selectedYear, selectedMonth, day));
         //setShowCalendar(!showCalendar);
 
@@ -80,6 +81,7 @@ function Zak1(props) {
 
     useEffect(() => {
          if (`${sessionStorage.getItem('birth_date')}` !== 'null') {
+             console.log(Number(sessionStorage.getItem('birth_date').split('-').reverse()[0]), Number(sessionStorage.getItem('birth_date').split('-').reverse()[1]), Number(sessionStorage.getItem('birth_date').split('-').reverse()[2]))
              setSelectedDate(new Date(Number(sessionStorage.getItem('birth_date').split('-').reverse()[0]), Number(sessionStorage.getItem('birth_date').split('-').reverse()[1]), Number(sessionStorage.getItem('birth_date').split('-').reverse()[2])));
          }
     }, [])
