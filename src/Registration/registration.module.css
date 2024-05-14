@@ -103,40 +103,26 @@
   background-color: white;
 }
 
-.greetings_btn:disabled .lightMode,
-.greetings_btn.lightMode {
+.greetings_btn:not([disabled]) .lightMode:hover,
+.greetings_btn:not([disabled]) .darkMode:hover {
     color: black;
     background-color: white;
 }
 
-.greetings_btn:disabled .darkMode,
-.greetings_btn.darkMode {
+.greetings_btn:not([disabled]) .lightMode:active,
+.greetings_btn:not([disabled]) .darkMode:active {
+    color: black;
+    background-color: white;
+}
+
+.greetings_btn[disabled] .lightMode:hover,
+.greetings_btn[disabled] .darkMode:hover {
     color: white;
     background-color: #232323;
 }
 
-
-
-.greetings_btn:disabled .lightMode:hover,
-.greetings_btn.lightMode:hover {
-    color: black;
-    background-color: white;
-}
-
-.greetings_btn:disabled .darkMode:hover,
-.greetings_btn.darkMode:hover {
-    color: white;
-    background-color: #232323;
-}
-
-.greetings_btn:disabled .lightMode:active,
-.greetings_btn.lightMode:active {
-    color: black;
-    background-color: white;
-}
-
-.greetings_btn:disabled .darkMode:active,
-.greetings_btn.darkMode:active {
+.greetings_btn[disabled] .lightMode:active,
+.greetings_btn[disabled] .darkMode:active {
     color: white;
     background-color: #232323;
 }
