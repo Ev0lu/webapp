@@ -23,7 +23,7 @@ function ZakPh(props) {
   };
 
   useEffect(() => {
-
+      validateFields()
       setAccessToken(sessionStorage.getItem('access_token'));
 
 
@@ -32,7 +32,8 @@ function ZakPh(props) {
 const handleAvatarChange = (event) => {
   const file = event.target.files[0];
     if (file.size > 50 * 1024) { // размер в байтах
-      setErrorFields({ size: true });
+      console.log(file.size)
+      setSize(true)
       setAvatar(null);
       return; // прерываем выполнение функции
     }
@@ -42,7 +43,7 @@ const handleAvatarChange = (event) => {
       const img = new Image();
       img.onload = () => {
        
-          setErrorFields({ size: false });
+          setSize(false)
           setAvatar(reader.result);
           
           setFilepic(file)
@@ -124,13 +125,13 @@ const uploadPhoto = async () => {
               className={s.avatar_input}
             />
             {avatar === null && (errorFields.avatar && <span className={s.error_message}>Пожалуйста, приложите изображение</span>)}
-            {size === true && (errorFields.size && <span className={s.error_message}>Изображение должно быть меньше 800x800 и 50Кб</span>)}
+            {size === true && (errorFields.size && <span className={s.error_message}>Изображение должно быть меньше 50Кб</span>)}
           </div>
         </div>
-        <Link to={avatar !== null ? '/success_r' : '/zak_reg_photo'}>
+        <Link to={(avatar !== null  && size !== true) ? '/success_r' : '/zak_reg_photo'}>
           <button onClick={() => {
           validateFields()
-          if (avatar !== null){
+          if (avatar !== null && size !== true){
               uploadPhoto()
                const data = {
     
@@ -140,7 +141,7 @@ const uploadPhoto = async () => {
                            
                       };
                     props.tg.sendData(JSON.stringify(data))
-                    props.tg.close()
+                    
           }
     
     
@@ -156,6 +157,7 @@ const uploadPhoto = async () => {
                        
                   };
                 props.tg.sendData(JSON.stringify(data))
+                
                 props.tg.close()
           }} className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>Пропустить</button>
         </Link>
