@@ -7,6 +7,7 @@ import blackarr from '../../assets/black.svg'
 function Zak2(props) {
     const [login, setLogin] = useState('');
     const [tele, setTele] = useState('');
+    const [teleCon, setTeleCon] = useState('');
     const [mail, setMail] = useState('');
     const [pass, setPass] = useState('')
     const [pass2, setPass2] = useState('')
@@ -136,10 +137,22 @@ const checkUniqueF = async () => {
       console.log(responseData)
       setCheckUnique('true')
     } else {
-     const responseData = await response.json();
+         const responseData = await response.json();
       // Handle response data if needed
       console.log(responseData)
-    }
+        if (responseData.detail[0].msg.includes("login")){
+            setLoginerr('true')
+        } else{
+            setLoginerr('')
+        }
+        console.log(responseData.detail[0].msg.includes("phone"))    
+        if (responseData.detail[0].msg.includes("phone")){
+            setTeleerr('true')
+        } else {
+            setTeleerr('')
+            setTeleCon(tele)
+            console.log(teleCon)
+        }
   } catch (error) {
     setCheck('exist')
 
@@ -233,7 +246,6 @@ const checkUniqueF = async () => {
 
             />
             {login === '' && (errorFields.login && <span className={s.error_message}>Пожалуйста, введите логин</span>)}
-            {/^[A-Za-z0-9]+$/.test(login) === false && <span className={s.error_message}>Логин поддерживает только латинский алфавит</span>}
         </div>
         <div className={s.password_input}>
             <input
@@ -247,7 +259,7 @@ const checkUniqueF = async () => {
                 onBlur={handleInputBlur}
 
             />
-        {tele === '' && (errorFields.tele && <span className={s.error_message}>Пожалуйста, введите телефон</span>)}
+        {teleCon === '' && (errorFields.tele && <span className={s.error_message}>Пожалуйста, введите телефон</span>)}
         {tele.split('').length < 7 && (errorFields.tele && <span className={s.error_message}>Пожалуйста, введите правильный телефон</span>)}
         {errorFields.checkPh && <span className={s.error_message}>Номер должен начинаться с кода страны(+...)</span>}
 
@@ -268,13 +280,13 @@ const checkUniqueF = async () => {
              </div>
       
 
-        <Link to={(login !== '' && tele.split('').length > 6 && tele !== '' && mail !== '' && check !== '' && checkPh !== '' && !!checkUnique) ? linka : '/zak2_reg'}>
+        <Link to={(login !== '' && tele.split('').length > 6 && teleCon !== '' && mail !== '' && check !== '' && checkPh !== '' && !!checkUnique) ? linka : '/zak2_reg'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
                 sessionStorage.setItem('login', login)
-                sessionStorage.setItem('tele', tele)
+                sessionStorage.setItem('tele', teleCon)
                 sessionStorage.setItem('mail', mail)
 
-                if (login !== '' && tele.split('').length > 6 && tele !== '' && mail !== '' && check !== '' && checkPh !== '' && !!checkUnique) {
+                if (login !== '' && tele.split('').length > 6 && teleCon !== '' && mail !== '' && check !== '' && checkPh !== '' && !!checkUnique) {
                     postRequest()
                 }
                 validateFields()
