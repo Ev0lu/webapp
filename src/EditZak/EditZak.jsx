@@ -165,8 +165,9 @@ function EditZak(props) {
       setFname(`${data.full_name.split(' ')[2]}`)
       setGender(`${data.gender}`)
       setPhone(`${data.phone}`)
-      setDr(`${data.client.birth_date}`)
-
+      setSelectedDate(new Date(Number(data.client.birth_date.split('-').reverse()[2]), Number(data.client.birth_date.split('-').reverse()[1])-1, Number(data.client.birth_date.split('-').reverse()[0])));
+      setSelectedYear(Number(data.client.birth_date.split('-').reverse()[2]))
+      setSelectedMonth(Number(data.client.birth_date.split('-').reverse()[1])-1)
       
       
 
@@ -283,12 +284,12 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
         className={`${s.password_field} ${errorFields.selectedDate && s.error}`}
         style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
 
-        value={selectedDate !== null ?
-        selectedDate.toLocaleDateString('ru-RU') : dr}
+        value={selectedDate ?
+        selectedDate.toLocaleDateString('ru-RU') : ''}
         readOnly
       />
       {selectedDate === null && (errorFields.selectedDate && <span className={s.error_message}>Пожалуйста, введите дату</span>)}
-      {errorFields.err && <span className={s.error_message}>Вы должны быть старше 18 лет</span>}
+      {errorFields.err && <span className={s.error_message}>Вы должны быть старше 16 лет</span>}
 
       </div>
       <div className={`${s.icon} ${errorFields.selectedDate && s.open}`} onClick={toggleCalendar}>
