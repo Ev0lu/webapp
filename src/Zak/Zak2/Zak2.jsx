@@ -143,6 +143,7 @@ const checkUniqueF = async () => {
         
          const responseData = await response.json();
       // Handle response data if needed
+        console.log(responseData)
       if (responseData.detail[0]?.msg ? responseData.detail[0].msg.includes("login") : responseData.detail.includes("login")){
             setLoginerr('true')
         } else{
@@ -213,7 +214,7 @@ const checkUniqueF = async () => {
 
       
     } catch (error) {
-
+        
     }
 
   };
