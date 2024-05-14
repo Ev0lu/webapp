@@ -107,22 +107,22 @@
 
 
 
-.greetings_btn:disabled  {
+.greetings_btn:disabled .lightMode {
     color: black;
     background-color: white;
 }
 
-.greetings_btn:disabled {
+.greetings_btn:disabled .darkMode{
     color: white;
     background-color: #232323;
 }
 
-.greetings_btn:disabled {
+.greetings_btn:disabled .lightMode{
     color: black;
     background-color: white;
 }
 
-.greetings_btn:disabled {
+.greetings_btn:disabled .darkMode{
     color: white;
     background-color: #232323;
 }
