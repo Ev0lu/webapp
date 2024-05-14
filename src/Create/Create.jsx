@@ -154,7 +154,9 @@ function Create(props) {
     setLoading(false);
   };
   const fetchCities = async () => {
-
+  if (selectedCountry[1] === '' || selectedCountry[1] === undefined) {
+      return;
+    }
 
     setLoading2(true);
 
@@ -393,7 +395,6 @@ const fetchSkills = async () => {
 
       setSkills(prevCountries => [...newCountries]); // Добавляем загруженные страны к списку
     } catch (error) {
-      console.error('Error fetching skills:', error);
     }
 
     setLoading(false);
@@ -431,15 +432,11 @@ const fetchSkills = async () => {
   
       if (response.ok) {
         const data = await response.json();
-        console.log(data)
         // Обработка полученных данных
       } else {
         const data = await response.json();
-        console.log(data)
-        console.error('Failed to fetch orders:', response.status);
       }
     } catch (error) {
-      console.error('Error fetching order:', error);
     }
 };
 
