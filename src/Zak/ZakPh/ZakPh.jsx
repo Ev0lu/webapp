@@ -130,16 +130,18 @@ const uploadPhoto = async () => {
         <Link to={avatar !== null ? '/success_r' : '/zak_reg_photo'}>
           <button onClick={() => {
           validateFields()
-          uploadPhoto()
-           const data = {
-
-                    access_token: sessionStorage.getItem('access_token'),
-                    refresh_token: sessionStorage.getItem('refresh_token'),
-                    profile_id: sessionStorage.getItem('profile_id')
-                       
-                  };
-                props.tg.sendData(JSON.stringify(data))
-                props.tg.close()
+          if (avatar !== null){
+              uploadPhoto()
+               const data = {
+    
+                        access_token: sessionStorage.getItem('access_token'),
+                        refresh_token: sessionStorage.getItem('refresh_token'),
+                        profile_id: sessionStorage.getItem('profile_id')
+                           
+                      };
+                    props.tg.sendData(JSON.stringify(data))
+                    props.tg.close()
+          }
     
     
     }} className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>Далее</button>
