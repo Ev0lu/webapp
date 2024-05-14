@@ -26,7 +26,6 @@ function Zak1(props) {
 
      useEffect(() => {
          setNowYear(nowYear-17)
-         console.log(nowYear)
      },[])
     useEffect(() => {
         setDr(`${sessionStorage.getItem('birth_date')}`)
@@ -71,7 +70,6 @@ function Zak1(props) {
       };
     
       const handleDateClick = (day) => {
-        console.log(selectedYear, selectedMonth, day)
         setSelectedDate(new Date(selectedYear, selectedMonth, day));
         //setShowCalendar(!showCalendar);
 
