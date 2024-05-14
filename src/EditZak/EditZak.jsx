@@ -295,7 +295,7 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
         {showCalendar ? <img src={props.colorB === 'light' ? lightplus : plus}></img>: <img src={props.colorB === 'dark' ? minus : lightminus}></img>}
       </div>
       {selectedDate === null && (errorFields.selectedDate && <span className={s.error_message}>Пожалуйста, введите дату</span>)}
-      {errorFields.err && <span className={s.error_message}>Вы должны быть старше 16 лет</span>}
+      {errorFields.err && <span className={s.error_message1}>Вы должны быть старше 16 лет</span>}
       {showCalendar && (
         <div className={`${s.calendar} ${props.colorB === 'light' ? s.light : s.dark}`}>
           <div className={s.nav}>
