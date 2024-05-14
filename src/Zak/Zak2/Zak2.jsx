@@ -5,6 +5,8 @@ import arrowsvg from '../../assets/arrow.svg'
 import blackarr from '../../assets/black.svg'
 
 function Zak2(props) {
+    const [loginerr, setLoginerr] = useState('');
+    const [teleerr, setTeleerr] = useState('');
     const [login, setLogin] = useState('');
     const [tele, setTele] = useState('');
     const [teleCon, setTeleCon] = useState('');
