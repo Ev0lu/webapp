@@ -124,7 +124,7 @@ const uploadPhoto = async () => {
               onChange={handleAvatarChange}
               className={s.avatar_input}
             />
-            {avatar === null && (errorFields.avatar && <span className={s.error_message}>Пожалуйста, приложите изображение</span>)}
+            {errorFields.avatar && <span className={s.error_message}>Пожалуйста, приложите изображение</span>}
             {size === true && (errorFields.size && <span className={s.error_message}>Размер изображения должен быть меньше 50Кб</span>)}
           </div>
         </div>
