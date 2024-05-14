@@ -72,7 +72,7 @@ const uploadPhoto = async () => {
     const response = await fetch('https://assista1.ru/api/v1/users/uploadPhoto', {
       method: 'PATCH',
       headers: {
-        'Authorization': `Bearer ${accessToken}`,
+        'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`,
       },
       body: formData
     });
