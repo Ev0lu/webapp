@@ -98,13 +98,13 @@ function Zak1(props) {
         readOnly
       />
 
-
+      {selectedDate === null && (errorFields.selectedDate && <span className={s.error_message}>Пожалуйста, введите дату</span>)}
+      {errorFields.err && <span className={s.error_message}>Вы должны быть старше 18 лет</span>}
       </div>
       <div className={`${s.icon} `} onClick={toggleCalendar}>
         {showCalendar ? <img src={props.colorB === 'light' ? lightplus : plus}></img>: <img src={props.colorB === 'dark' ? minus : lightminus}></img>}
       </div>
-      {selectedDate === null && (errorFields.selectedDate && <span className={s.error_message}>Пожалуйста, введите дату</span>)}
-      {errorFields.err && <span className={s.error_message}>Вы должны быть старше 18 лет</span>}
+
       {showCalendar && (
         <div className={`${s.calendar} ${props.colorB === 'light' ? s.light : s.dark}`}>
           <div className={s.nav}>
