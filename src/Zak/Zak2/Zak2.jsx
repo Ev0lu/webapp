@@ -59,7 +59,6 @@ function Zak2(props) {
     };
     const handleChange3 = (event) => {
         setMail(event.target.value);
-        console.log(event.target.value)
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         const isValidEmail = emailRegex.test(event.target.value);
         if (isValidEmail === true) {
@@ -104,14 +103,12 @@ const postRequest = async () => {
     if (response.ok) {
       const responseData = await response.json();
       // Handle response data if needed
-      console.log(responseData)
       if (responseData.sessionToken) {
             setLinka('/zak_pass')
         }
     } else {
      const responseData = await response.json();
       // Handle response data if needed
-      console.log(responseData)
     }
   } catch (error) {
     setCheck('exist')
@@ -136,7 +133,6 @@ const checkUniqueF = async () => {
     if (response.status === 200) {
       const responseData = await response.json();
       // Handle response data if needed
-      console.log(responseData)
       setTeleCon(tele)
       setCheckUnique('true')
       setLoginerr('')
@@ -155,13 +151,11 @@ const checkUniqueF = async () => {
         } else {
             setTeleerr('')
             setTeleCon(tele)
-            console.log(teleCon)
         }
   }} catch (error) {
     setCheck('exist')
 
       // Handle response data if needed
-      console.log(error)
   }
 }
 
@@ -195,7 +189,6 @@ const checkUniqueF = async () => {
         }
       });
       const data = await response.json();
-      console.log(data)
 
           setLogin(`${data.login}`)
           setTeleCon(`${data.phone}`)
