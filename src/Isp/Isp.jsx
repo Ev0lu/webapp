@@ -210,7 +210,7 @@ function Isp(props) {
         <div className={`${s.password_input}`}>
             <input
                 style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
-
+                disabled={Boolean(exist)}
                 type={'text'}
                 placeholder="Имя*"
                 className={`${s.password_field} ${errorFields.name && s.error}`}
@@ -226,6 +226,7 @@ function Isp(props) {
                 placeholder="Фамилия*"
                 className={`${s.password_field} ${errorFields.lname && s.error}`}
                 value={lname}
+                 disabled={Boolean(exist)}
                 onChange={handleChange2}
             />
             { lname === '' && (errorFields.lname && <span className={s.error_message}>Пожалуйста, введите фамилию</span>)}
@@ -235,6 +236,7 @@ function Isp(props) {
 style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }                type={'text'}
                 placeholder="Отчество"
                 className={s.password_field}
+                 disabled={Boolean(exist)}
                 value={fname}
                 onChange={handleChange3}
             />
