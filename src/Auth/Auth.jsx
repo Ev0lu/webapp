@@ -132,14 +132,14 @@ const Auth = (props) => {
         <button onClick={() => {
             postRequest()
             validateFields()
-               let user = {
+               const data = {
                 access_token: tokenAccess,
                 refresh_token: tokenRefresh
                    
               };
             if ((resp !== 'Incorrect login or password') || (resp !== '')) {
-                props.tg.sendData(JSON.stringify(user))
-                tg.close()
+                props.tg.sendData(JSON.stringify(data))
+                props.tg.close()
                 
             }
         }} className={`${s.greetings_btn2} ${props.colorB==="light" ? s.authPassword1 : s.authPassword1}` }>Далее</button>
