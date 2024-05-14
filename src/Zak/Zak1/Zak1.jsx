@@ -73,6 +73,7 @@ function Zak1(props) {
       const handleDateClick = (day) => {
         setSelectedDate(new Date(selectedYear, selectedMonth, day));
         //setShowCalendar(!showCalendar);
+         console.log(new Date(selectedYear, selectedMonth, day))
       };      
 
       const daysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate();
