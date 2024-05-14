@@ -142,18 +142,18 @@ const checkUniqueF = async () => {
       console.log(responseData)
         if (responseData.detail[0].msg.includes("login")){
             setLoginerr('true')
-        } else{
+        } else {
             setLoginerr('')
         }
         console.log(responseData.detail[0].msg.includes("phone"))    
-        if (responseData.detail[0].msg.includes("phone")){
+        if (responseData.detail[0].msg.includes("phone")) {
             setTeleerr('true')
         } else {
             setTeleerr('')
             setTeleCon(tele)
             console.log(teleCon)
         }
-  } catch (error) {
+  }} catch (error) {
     setCheck('exist')
 
       // Handle response data if needed
