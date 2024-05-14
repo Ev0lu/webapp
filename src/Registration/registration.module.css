@@ -91,6 +91,19 @@
 }
 
 
+
+
+
+.greetings_btn.darkMode {
+  color: white;
+  background-color: #232323;
+}
+.greetings_btn.lightMode {
+  color: black;
+  background-color: white;
+}
+
+
 .greetings_btn:disabled .lightMode:hover {
     color: black;
     background-color: white;
@@ -110,14 +123,4 @@
 .greetings_btn:disabled .darkMode:active {
   color: white;
   background-color: #232323;
-}
-
-
-.greetings_btn.darkMode {
-  color: white;
-  background-color: #232323;
-}
-.greetings_btn.lightMode {
-  color: black;
-  background-color: white;
 }
