@@ -18,7 +18,7 @@ const ZakCon = (props) => {
         setMail(sessionStorage.getItem('mail') !== null ? sessionStorage.getItem('mail') : '')
       }, [])
   useEffect(() => {
-    if (code1 != '' && code2 != '' && code3 != '' && code4 != ''){
+    if (code1 != '' && code2 != '' && code3 != '' && code4 != '' && tries < 4){
       handleSubmit()
     }
   }, [code4])
@@ -108,7 +108,9 @@ const postRequest = async () => {
       setCode2('')
       setCode3('')
       setCode4('')
+      if (tries < 4) {
       postRequest2()
+      }
       setInvalid(true)
     }
 
