@@ -24,7 +24,8 @@ function IspPh(props) {
 
 const handleAvatarChange = (event) => {
   const file = event.target.files[0];
-  if (file.size > 50 * 1024) { // размер в байтах
+  if (file.size > 52 * 1024) { // размер в байтах
+      console.log(file.size, 52*1024)
       setErrorFields({ size: true });
       setAvatar(null);
       return; // прерываем выполнение функции
@@ -34,16 +35,13 @@ const handleAvatarChange = (event) => {
     reader.onload = () => {
       const img = new Image();
       img.onload = () => {
-        if (img.width > 800 || img.height > 800) {
-          setErrorFields({ size: true });
-          setAvatar(null);
-        } else {
+
           setErrorFields({ size: false });
           setAvatar(reader.result);
           
           setFilepic(file)
           
-        }
+        
       };
       img.src = reader.result;
     };
