@@ -9,6 +9,7 @@ function Isp2(props) {
     const [teleerr, setTeleerr] = useState('');
     const [login, setLogin] = useState('');
     const [tele, setTele] = useState('');
+    const [teleCon, setTeleCon] = useState('');
     const [mail, setMail] = useState('');
     const [pass, setPass] = useState('')
     const [pass2, setPass2] = useState('')
@@ -154,6 +155,8 @@ const checkUniqueF = async () => {
             setTeleerr('true')
         } else {
             setTeleerr('')
+            setTeleCon(tele)
+            console.log(teleCon)
         }
   }} catch (error) {
      
@@ -281,10 +284,10 @@ const checkUniqueF = async () => {
         <Link to={(login !== '' && tele.split('').length > 6 && tele !== '' && mail !== '' && check !== '' && checkPh !== '' && (exist === false && !!checkUnique))  ? linka : '/isp2_reg'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
                 sessionStorage.setItem('login', login)
-                sessionStorage.setItem('tele', tele)
+                sessionStorage.setItem('tele', teleCon)
                 sessionStorage.setItem('mail', mail)
 
-                if (login !== '' && tele.split('').length > 6 && tele !== '' && mail !== '' && check !== '' && checkPh !== '' && (exist === false && !!checkUnique)) {
+                if (login !== '' && tele.split('').length > 6 && teleCon !== '' && mail !== '' && check !== '' && checkPh !== '' && (exist === false && !!checkUnique)) {
                     postRequest()
                 }
                 validateFields()
