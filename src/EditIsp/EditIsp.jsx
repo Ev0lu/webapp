@@ -273,7 +273,9 @@ useEffect(() => {
   };
   
 useEffect(() => {
-  fetchCountries(); // Call fetchCountries whenever searchQuery changes
+  if (searchQuery !== ''){
+    fetchCountries(); // Call fetchCountries whenever searchQuery changes
+  }
 }, [searchQuery]);
 useEffect(() => {
   fetchCities(); // Call fetchCountries whenever searchQuery changes
