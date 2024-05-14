@@ -134,13 +134,14 @@ const checkUniqueF = async () => {
       },
       body: JSON.stringify(user)
     });
-    if (response.ok) {
+    if (response.status === 200) {
       const responseData = await response.json();
       // Handle response data if needed
       console.log(responseData)
       setCheckUnique('true')
       setTeleerr('')
       setLoginerr('')
+      setTeleCon(tele)
     } else {
      const responseData = await response.json();
       // Handle response data if needed
