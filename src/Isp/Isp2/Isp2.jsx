@@ -243,7 +243,6 @@ const checkUniqueF = async () => {
             />
             {login === '' && (errorFields.login && <span className={s.error_message}>Пожалуйста, введите логин</span>)}
             {loginerr === 'true' && <span className={s.error_message}>Логин уже существует</span>}
-            {/^[A-Za-z0-9]+$/.test(login) === false && <span className={s.error_message}>Логин поддерживает только латинский алфавит</span>}
 
         </div>
         <div className={s.password_input}>
@@ -258,7 +257,7 @@ const checkUniqueF = async () => {
                 style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
 
             />
-        {tele === '' && (errorFields.tele && <span className={s.error_message}>Пожалуйста, введите телефон</span>)}
+        {teleCon === '' && (errorFields.tele && <span className={s.error_message}>Пожалуйста, введите телефон</span>)}
         {tele.split('').length < 7 && (errorFields.tele && <span className={s.error_message}>Пожалуйста, введите правильный телефон</span>)}
         {teleerr === 'true' && <span className={s.error_message}>Почта уже существует</span> }
         {errorFields.checkPh && <span className={s.error_message}>Номер должен начинаться с кода страны(+...)</span>}
@@ -281,13 +280,13 @@ const checkUniqueF = async () => {
              </div>
 
 
-        <Link to={(login !== '' && tele.split('').length > 6 && tele !== '' && mail !== '' && check !== '' && checkPh !== '' && (exist === false && !!checkUnique))  ? linka : '/isp2_reg'}>
+        <Link to={(login !== '' && tele.split('').length > 6 && teleCon !== '' && mail !== '' && check !== '' && checkPh !== ''  && !!checkUnique)  ? linka : '/isp2_reg'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
                 sessionStorage.setItem('login', login)
                 sessionStorage.setItem('tele', teleCon)
                 sessionStorage.setItem('mail', mail)
 
-                if (login !== '' && tele.split('').length > 6 && teleCon !== '' && mail !== '' && check !== '' && checkPh !== '' && (exist === false && !!checkUnique)) {
+                if (login !== '' && tele.split('').length > 6 && teleCon !== '' && mail !== '' && check !== '' && checkPh !== '' && !!checkUnique) {
                     postRequest()
                 }
                 validateFields()
