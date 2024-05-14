@@ -196,7 +196,7 @@ const checkUniqueF = async () => {
       console.log(data)
 
           setLogin(`${data.login}`)
-          setTele(`${data.phone}`)
+          setTeleCon(`${data.phone}`)
           setMail(`${data.email}`)
           setCheck('ex')
           setCheckPh('ex')
@@ -248,6 +248,8 @@ const checkUniqueF = async () => {
 
             />
             {login === '' && (errorFields.login && <span className={s.error_message}>Пожалуйста, введите логин</span>)}
+             {loginerr === 'true' && <span className={s.error_message}>Логин уже существует</span>}
+
         </div>
         <div className={s.password_input}>
             <input
@@ -264,6 +266,7 @@ const checkUniqueF = async () => {
         {teleCon === '' && (errorFields.tele && <span className={s.error_message}>Пожалуйста, введите телефон</span>)}
         {tele.split('').length < 7 && (errorFields.tele && <span className={s.error_message}>Пожалуйста, введите правильный телефон</span>)}
         {errorFields.checkPh && <span className={s.error_message}>Номер должен начинаться с кода страны(+...)</span>}
+        {teleerr === 'true' && <span className={s.error_message}>Почта уже существует</span> }
 
         </div>
         <div className={s.password_input}>
