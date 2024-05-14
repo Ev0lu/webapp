@@ -165,6 +165,9 @@ function Isp1(props) {
     setLoading(false);
   };
   const fetchCities = async () => {
+    if (selectedCountry[1] === '' || selectedCountry[1] === undefined) {
+      return;
+    }
 
 
     setLoading2(true);
