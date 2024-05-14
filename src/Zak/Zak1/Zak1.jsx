@@ -82,7 +82,7 @@ function Zak1(props) {
     useEffect(() => {
          if (`${sessionStorage.getItem('birth_date')}` !== 'null') {
              console.log(Number(sessionStorage.getItem('birth_date').split('-').reverse()[0]), Number(sessionStorage.getItem('birth_date').split('-').reverse()[1]), Number(sessionStorage.getItem('birth_date').split('-').reverse()[2]))
-             setSelectedDate(new Date(Number(sessionStorage.getItem('birth_date').split('-').reverse()[0]), Number(sessionStorage.getItem('birth_date').split('-').reverse()[1]), Number(sessionStorage.getItem('birth_date').split('-').reverse()[2])));
+             setSelectedDate(new Date(Number(sessionStorage.getItem('birth_date').split('-').reverse()[2]), Number(sessionStorage.getItem('birth_date').split('-').reverse()[1]), Number(sessionStorage.getItem('birth_date').split('-').reverse()[0])));
          }
     }, [])
 
