@@ -38,7 +38,7 @@ function Zak1(props) {
         } else {
             setErr(false);
         }
-    }, [selectedYear]);
+    }, [selectedYear,selectedDate]);
 
     
       const [errorFields, setErrorFields] = useState({
