@@ -210,6 +210,13 @@
   font-size: 12px;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
 }
+.error_message1 {
+ position: absolute;
+ margin-top:5px;
+  color: #FF0000;
+  font-size: 12px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+}
 .date_flex{
   display: flex;
   flex-direction: column;
