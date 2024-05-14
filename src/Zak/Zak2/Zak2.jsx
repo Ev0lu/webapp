@@ -151,7 +151,7 @@ const checkUniqueF = async () => {
         if (responseData.detail.includes("phone")){
             setTeleerr('true')
             setMessageerr('Пользователь с указанным телефоном уже существует')
-        } else if (responseData.detail[0]?.msg ? responseData.detail[0].msg.includes("phone")) {
+        } else if (responseData.detail[0]?.msg ? responseData.detail[0].msg.includes("phone") : false) {
             setTeleerr('true')
             setMessageerr('Телефон не валиден')
         } else {
