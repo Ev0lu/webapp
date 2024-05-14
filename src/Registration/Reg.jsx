@@ -10,12 +10,14 @@ function Reg(props) {
       const [exist, setExist] = useState(`${searchParams.get('exists')}`);
       const [telegram_id, setTelegram_id] = useState(`${searchParams.get('telegram_id')}`);
       const [accessToken, setAccessToken] = useState(`${searchParams.get('access_token')}`);
+      const [refreshToken, setRefreshToken] = useState(`${searchParams.get('refresh_token')}`);
       const [disabledWorker, setDisabledWorker] = useState(false)
       const [disabledClient, setDisabledClient] = useState(false)
       useEffect(() => {
                 sessionStorage.setItem('exist', exist)
                 sessionStorage.setItem('accessToken', accessToken)
-                sessionStorage.setItem('tgId', telegram_id)  
+                sessionStorage.setItem('tgId', telegram_id) 
+                sessionStorage.setItem('refresh_token', refreshToken)  
       }, [])
       const fetchInfo = async () => {
       
@@ -68,13 +70,14 @@ function Reg(props) {
                 sessionStorage.setItem('exist', exist)
                 sessionStorage.setItem('accessToken', accessToken)
                 sessionStorage.setItem('tgId', telegram_id)  
+                 sessionStorage.setItem('refresh_token', refreshToken)  
                 setIsRegistered2(false)}} className={`${s.greetings_btn} ${isRegistered ? s.lightMode1 : (props.colorB === 'light' ? s.lightMode : s.darkMode)}`}>Я заказчик</button>
             </Link> 
             <Link to="/isp_reg">
                 <button  disabled={Boolean(disabledWorker)} onClick={() => {
                    
                     setIsRegistered2(true)
-        
+                    sessionStorage.setItem('refresh_token', refreshToken)  
                     sessionStorage.setItem('tgId', telegram_id)   
                     sessionStorage.setItem('exist', exist)
                     sessionStorage.setItem('accessToken', accessToken)
