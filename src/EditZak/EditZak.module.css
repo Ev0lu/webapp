@@ -780,6 +780,15 @@ h3{
 }
 
 .error_message {
+ position: absolute;
+ margin-top:5px;
+  color: #FF0000;
+  font-size: 12px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+}
+.error_message1 {
+ position: absolute;
+ margin-top:25px;
   color: #FF0000;
   font-size: 12px;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
