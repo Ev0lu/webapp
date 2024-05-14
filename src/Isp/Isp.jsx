@@ -118,7 +118,6 @@ function Isp(props) {
             const exist = await data.exist;
             setIsexist(JSON.stringify(exist))
           } catch (error) {
-            console.error(error);
           }
         };
         fetchData();
