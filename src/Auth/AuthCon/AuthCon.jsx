@@ -17,7 +17,9 @@ const AuthCon = (props) => {
         setMail(sessionStorage.getItem('mail') !== null ? sessionStorage.getItem('mail') : '')
       }, [])
   useEffect(() => {
-    handleSubmit()
+    if (code1 != '' && code2 != '' && code3 != '' && code4 != '' && tries < 4){
+      handleSubmit()
+    }
   }, [code4])
   const handleCodeChange = (index, value) => {
     switch (index) {
@@ -91,13 +93,20 @@ const postRequest = async () => {
     if (response.ok) {
       const data = await response.json();
       setIsVerified(true);
-      sessionStorage.setItem('sessionToken', data.session_token)
+      setInvalid(false)
+      setToken(`${data.session_token}`)
+      sessionStorage.setItem('session_token', `${data.session_token}`)
       //тут реквест выполнять
     } else {
+      const data = await response.json();
       setCode1('')
       setCode2('')
       setCode3('')
       setCode4('')
+      if (tries < 4) {
+      postRequest2()
+      }
+      setInvalid(true)
     }
 
   } catch (error) {
@@ -106,7 +115,34 @@ const postRequest = async () => {
 }
 
 
-   
+  const postRequest2 = async () => {  
+  let user = {
+    email: mail,
+  };
+
+  try {
+    const response = await fetch('https://assista1.ru/api/v1/auth/code/send', {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    });
+    if (response.ok) {
+      const responseData = await response.json();
+      // Handle response data if needed
+      console.log(responseData)
+
+    } else {
+     const responseData = await response.json();
+      // Handle response data if needed
+      console.log(responseData)
+    }
+  } catch (error) {
+
+  }
+} 
   
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }> 
