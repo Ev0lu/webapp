@@ -33,7 +33,6 @@ function Isp3(props) {
   const [token, setToken] = useState('')
   useEffect(() => {
     setToken(sessionStorage.getItem('sessionToken'))
-    console.log(token)
   }, [])
   const limit = 25;
   const limit2 = 25;
@@ -171,7 +170,6 @@ const fetchSkills = async () => {
 
       setSkills(prevCountries => [...newCountries]); // Добавляем загруженные страны к списку
     } catch (error) {
-      console.error('Error fetching skills:', error);
     }
 
     setLoading(false);
@@ -197,7 +195,6 @@ const fetchSkills = async () => {
       setOffset2(prevOffset => prevOffset + limit2); // Увеличиваем offset для следующего запроса
 
     } catch (error) {
-      console.error('Error fetching skills:', error);
     }
 
     setLoading(false);
@@ -240,7 +237,6 @@ const reg = async () => {
     }
     
   };
-  console.log(user)
 
   try {
     const response = await fetch(`https://assista1.ru/api/v1/auth/registration/worker`, {
