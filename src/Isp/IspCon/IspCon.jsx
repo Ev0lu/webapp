@@ -101,7 +101,6 @@ const postRequest = async () => {
       //тут реквест выполнять
     } else {
       const data = await response.json();
-      console.log(data)
       setCode1('')
       setCode2('')
       setCode3('')
@@ -134,12 +133,10 @@ const postRequest2 = async () => {
     if (response.ok) {
       const responseData = await response.json();
       // Handle response data if needed
-      console.log(responseData)
 
     } else {
      const responseData = await response.json();
       // Handle response data if needed
-      console.log(responseData)
     }
   } catch (error) {
 
