@@ -93,7 +93,7 @@ function Zak1(props) {
         className={`${s.password_field} ${errorFields.selectedDate && s.error}`}
         style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
 
-        value={selectedDate ? selectedDate.toLocaleDateString('ru-RU') : `${sessionStorage.getItem('birth_date')}` !== 'null' ? `${sessionStorage.getItem('birth_date').split('-').join('.')}` :
+        value={selectedDate ? selectedDate.toLocaleDateString('ru-RU') : `${sessionStorage.getItem('birth_date')}` !== 'null' ? `${sessionStorage.getItem('birth_date').split('-').reverse().join('.')}` :
         ''}
         readOnly
       />
