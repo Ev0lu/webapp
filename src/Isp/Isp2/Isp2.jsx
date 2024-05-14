@@ -71,7 +71,6 @@ function Isp2(props) {
 
     const checking = () => {
         if ((pass !== pass2) || (login === '') || (tele === '') || (mail === '')) {
-            console.log('error')
             setRlink('/zak_reg')
         } else {
             setRlink('/zak1_reg')
@@ -109,10 +108,8 @@ const postRequest = async () => {
     } else {
      const responseData = await response.json();
       // Handle response data if needed
-      console.log(responseData)
     }
   } catch (error) {
-     console.log(error)
   }
 }
 
@@ -136,7 +133,6 @@ const checkUniqueF = async () => {
     if (response.status === 200) {
       const responseData = await response.json();
       // Handle response data if needed
-      console.log(responseData)
       setCheckUnique('true')
       setTeleerr('')
       setLoginerr('')
@@ -144,7 +140,6 @@ const checkUniqueF = async () => {
     } else {
      const responseData = await response.json();
       // Handle response data if needed
-      console.log(responseData)
         if (responseData.detail[0]?.msg ? responseData.detail[0].msg.includes("login") : responseData.detail.includes("login")){
             setLoginerr('true')
         } else{
@@ -155,12 +150,10 @@ const checkUniqueF = async () => {
         } else {
             setTeleerr('')
             setTeleCon(tele)
-            console.log(teleCon)
         }
   }} catch (error) {
      
       // Handle response data if needed
-      console.log(error)
   }
 }
  
