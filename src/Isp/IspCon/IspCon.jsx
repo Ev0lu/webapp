@@ -17,8 +17,12 @@ const IspCon = (props) => {
         setMail(sessionStorage.getItem('mail') !== null ? sessionStorage.getItem('mail') : '')
       }, [])
   useEffect(() => {
-    handleSubmit()
+      if (code1 != '' && code2 != '' && code3 != '' && code4 != '' && tries < 4){
+      handleSubmit()
+    }
   }, [code4])
+  const [token, setToken] = useState('')
+
   const handleCodeChange = (index, value) => {
     switch (index) {
       case 0:
@@ -91,13 +95,21 @@ const postRequest = async () => {
     if (response.ok) {
       const data = await response.json();
       setIsVerified(true);
-      sessionStorage.setItem('sessionToken', data.session_token)
+      setInvalid(false)
+      setToken(`${data.session_token}`)
+      sessionStorage.setItem('session_token', `${data.session_token}`)
       //тут реквест выполнять
     } else {
+      const data = await response.json();
+      console.log(data)
       setCode1('')
       setCode2('')
       setCode3('')
       setCode4('')
+      if (tries < 4) {
+          postRequest2()
+      }
+      setInvalid(true)
     }
 
   } catch (error) {
@@ -105,7 +117,34 @@ const postRequest = async () => {
   }
 }
 
+const postRequest2 = async () => {  
+  let user = {
+    email: mail,
+  };
 
+  try {
+    const response = await fetch('https://assista1.ru/api/v1/auth/code/send', {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    });
+    if (response.ok) {
+      const responseData = await response.json();
+      // Handle response data if needed
+      console.log(responseData)
+
+    } else {
+     const responseData = await response.json();
+      // Handle response data if needed
+      console.log(responseData)
+    }
+  } catch (error) {
+
+  }
+}
    
   
   return (
@@ -121,7 +160,8 @@ const postRequest = async () => {
             onChange={(e) => handleCodeChange(0, e.target.value)}
             className={s.code_box}
             onFocus={(e) => e.target.select()}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyPress}
+
             maxLength={1}
             style={{ width: 'auto', padding: '10px', maxWidth: 40 }} // Add this line
           />
@@ -132,7 +172,8 @@ const postRequest = async () => {
             onChange={(e) => handleCodeChange(1, e.target.value)}
             className={s.code_box}
             onFocus={(e) => e.target.select()}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyPress}
+
             maxLength={1}
             style={{ width: 'auto', padding: '10px', maxWidth: 40 }} // Add this line
           />
@@ -143,7 +184,8 @@ const postRequest = async () => {
             onChange={(e) => handleCodeChange(2, e.target.value)}
             className={s.code_box}
             onFocus={(e) => e.target.select()}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyPress}
+
             maxLength={1}
             style={{ width: 'auto', padding: '10px', maxWidth: 40 }} // Add this line
           />
@@ -154,13 +196,14 @@ const postRequest = async () => {
             onChange={(e) => handleCodeChange(3, e.target.value)}
             className={s.code_box}
             onFocus={(e) => e.target.select()}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyPress}
+
             maxLength={1}
             style={{ width: 'auto', padding: '10px', maxWidth: 40 }} // Add this line
           />
         </div>
-        {error && <div className={s.error_message}>Неправильный код</div>}
-        {tries > 3  && <div className={s.error_message}>Вы исчерпали количество попыток, начните регистрацию заново</div>}
+        {invalid === true && <span className={s.error_message}>Неправильный код. На почту был выслан новый код</span>}
+        {tries > 3  && <span className={s.error_message}>Вы исчерпали количество попыток, начните регистрацию заново</span>}
     <Link to={code1 == '' || code2 == '' || code3 == '' || code4 == '' || tries > 3 || isVerified === false ? '/isp_con' : '/isp_reg_pass'}>
         <button className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`} onClick={() => {
 
