@@ -104,23 +104,26 @@
 }
 
 
-.greetings_btn:disabled .lightMode:hover {
+.greetings_btn:disabled .lightMode:hover,
+.greetings_btn.lightMode:hover {
     color: black;
     background-color: white;
 }
 
-.greetings_btn:disabled  .darkMode:hover {
+.greetings_btn:disabled .darkMode:hover,
+.greetings_btn.darkMode:hover {
     color: white;
     background-color: #232323;
 }
 
-
-.greetings_btn:disabled .lightMode:active {
-  color: black;
-  background-color: white;
+.greetings_btn:disabled .lightMode:active,
+.greetings_btn.lightMode:active {
+    color: black;
+    background-color: white;
 }
 
-.greetings_btn:disabled .darkMode:active {
-  color: white;
-  background-color: #232323;
+.greetings_btn:disabled .darkMode:active,
+.greetings_btn.darkMode:active {
+    color: white;
+    background-color: #232323;
 }
