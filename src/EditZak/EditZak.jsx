@@ -112,12 +112,12 @@ function EditZak(props) {
          setNowYear(nowYear-17)
      },[])
        useEffect(() => {
-         if (selectedYear > nowYear) {
+        if (selectedYear > (new Date().getFullYear())-17 || selectedYear < (new Date().getFullYear()) - 100) {
               setErr(false)
          } else {
              setErr(true)
          }
-     },[selectedYear])
+     },[selectedYear,selectedDate])
 
 
       const toggleCalendar = () => {
@@ -188,7 +188,7 @@ const patchProfile = async () => {
     const requestBody = {
     
        
-      "birth_date":  selectedDate === null ? dr : `${selectedYear}-${selectedMonth+1 < 10 ? '0' + `${selectedMonth+1}` : selectedMonth+1 }-${selectedDate.getDate() < 10 ? '0' + `${selectedDate.getDate()}` : selectedDate.getDate()  }`,
+      "birth_date":  `${selectedYear}-${selectedMonth+1 < 10 ? '0' + `${selectedMonth+1}` : selectedMonth+1 }-${selectedDate.getDate() < 10 ? '0' + `${selectedDate.getDate()}` : selectedDate.getDate()  }`,
       "profile": {
           "full_name": name + ' ' + lname + `${fname !== '' ? ' ' + fname : ''}`,
           "gender": `${gender}`,
