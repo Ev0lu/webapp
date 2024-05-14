@@ -31,7 +31,9 @@ function ZakPh(props) {
 
 const handleAvatarChange = (event) => {
   const file = event.target.files[0];
+  console.log(file)
     if (file.size > 50 * 1024) { // размер в байтах
+      console.log(file.size)
       setSize(true)
       setAvatar(null);
       return; // прерываем выполнение функции
@@ -60,6 +62,8 @@ const handleAvatarChange = (event) => {
 const uploadPhoto = async () => {
     const formData = new FormData();
     formData.append('photo', filepic);
+    console.log(formData)
+  console.log(sessionStorage.getItem('access_token'))
     if (!filepic) {
       return;
     }
