@@ -149,13 +149,14 @@ function Edit(props) {
       setCountries(prevCountries => [...prevCountries, ...newCountries]); // Добавляем загруженные страны к списку
       setOffset(prevOffset => prevOffset + limit); // Увеличиваем offset для следующего запроса
     } catch (error) {
-      console.error('Error fetching countries:', error);
     }
 
     setLoading(false);
   };
   const fetchCities = async () => {
-
+  if (selectedCountry[1] === '' || selectedCountry[1] === undefined) {
+      return;
+    }
 
     setLoading2(true);
 
@@ -167,7 +168,6 @@ function Edit(props) {
       setCities(prevCountries => [...prevCountries, ...newCities]); // Добавляем загруженные страны к списку
       setOffset2(prevOffset => prevOffset + limit2); // Увеличиваем offset для следующего запроса
     } catch (error) {
-      console.error('Error fetching cities:', error);
     }
 
     setLoading2(false);
@@ -395,7 +395,7 @@ const fetchSkills = async () => {
 
       setSkills(prevCountries => [...newCountries]); // Добавляем загруженные страны к списку
     } catch (error) {
-      console.error('Error fetching skills:', error);
+
     }
 
     setLoading(false);
@@ -433,15 +433,14 @@ const fetchSkills = async () => {
   
       if (response.ok) {
         const data = await response.json();
-        console.log(data)
+
         // Обработка полученных данных
       } else {
         const data = await response.json();
-        console.log(data)
-        console.error('Failed to fetch orders:', response.status);
+
       }
     } catch (error) {
-      console.error('Error fetching order:', error);
+
     }
 };
 
@@ -461,7 +460,7 @@ const fetchSkills = async () => {
         try {
           const response = await fetch(`https://assista1.ru/api/v1/order/${order_id}`);
           const data = await response.json();
-          console.log(data)
+
           setLogin(`${data.order.title}`)
           setTele(`${data.order.task}`)
           if (data.order.is_online === true) {
@@ -479,7 +478,6 @@ const fetchSkills = async () => {
           setSearchQuery2(`${data.order.location.city_title}`)
           
         } catch (error) {
-          console.error('Error fetching order:', error);
         }
 
   };
