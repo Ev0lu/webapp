@@ -137,8 +137,12 @@ const checkUniqueF = async () => {
       const responseData = await response.json();
       // Handle response data if needed
       console.log(responseData)
+      setTeleCon(tele)
       setCheckUnique('true')
+      setLoginerr('')
+    setTeleerr('')
     } else {
+        
          const responseData = await response.json();
       // Handle response data if needed
       console.log(responseData)
