@@ -127,3 +127,25 @@
     color: white;
     background-color: #232323;
 }
+
+
+.greetings_btn:disabled  {
+    color: black;
+    background-color: white;
+}
+
+.greetings_btn:disabled {
+    color: white;
+    background-color: #232323;
+}
+
+.greetings_btn:disabled {
+    color: black;
+    background-color: white;
+}
+
+.greetings_btn:disabled {
+    color: white;
+    background-color: #232323;
+}
+
