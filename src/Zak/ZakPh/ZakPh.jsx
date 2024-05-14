@@ -63,7 +63,8 @@ const uploadPhoto = async () => {
     if (!filepic) {
       return;
     }
-
+  console.log(formData)
+  console.log(sessionStorage.getItem('access_token'))
     
 
   try {
@@ -77,11 +78,16 @@ const uploadPhoto = async () => {
 
     if (response.ok) {
       const responseData = await response.json();
+      console.log(responseData)
       // Handle response data if needed
     } else {
       const responseData = await response.json();
+       console.log(responseData)
+
     }
   } catch (error) {
+     console.log(error)
+
   }
 };
 
