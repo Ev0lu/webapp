@@ -145,12 +145,12 @@ const checkUniqueF = async () => {
      const responseData = await response.json();
       // Handle response data if needed
       console.log(responseData)
-        if (responseData.detail[0].msg.includes("login") || responseData.detail.includes("login")){
+        if (responseData.detail[0]?.msg ? responseData.detail[0].msg.includes("login") : responseData.detail.includes("login")){
             setLoginerr('true')
         } else{
             setLoginerr('')
         }
-        if (responseData.detail[0].msg.includes("phone") || responseData.detail.includes("phone")){
+        if (responseData.detail[0]?.msg ? responseData.detail[0].msg.includes("phone") : responseData.detail.includes("phone")){
             setTeleerr('true')
         } else {
             setTeleerr('')
