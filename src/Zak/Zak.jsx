@@ -54,7 +54,6 @@ function Zak(props) {
 
     const checking = () => {
         if ((gender === '') || (name === '') || (lname === '')) {
-            console.log('error')
             setRlink('/zak_reg')
         } else {
             setRlink('/zak1_reg')
@@ -119,7 +118,6 @@ function Zak(props) {
             const exist = await data.exist;
             setIsexist(JSON.stringify(exist))
           } catch (error) {
-            console.error(error);
           }
         };
         fetchData();
@@ -170,7 +168,6 @@ function Zak(props) {
         }
       });
       const data = await response.json();
-      console.log(data)
 
           setName(`${data.full_name.split(' ')[0]}`)
           setLname(`${data.full_name.split(' ')[1]}`)
