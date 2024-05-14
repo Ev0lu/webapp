@@ -99,11 +99,9 @@ const postRequest = async () => {
       setInvalid(false)
       setToken(`${data.session_token}`)
       sessionStorage.setItem('session_token', `${data.session_token}`)
-      console.log(data)
       
     } else {
        const data = await response.json();
-      console.log(data)
       setCode1('')
       setCode2('')
       setCode3('')
@@ -115,7 +113,6 @@ const postRequest = async () => {
     }
 
   } catch (error) {
-    console.log(error)
   }
 }
 const postRequest2 = async () => {  
@@ -135,12 +132,10 @@ const postRequest2 = async () => {
     if (response.ok) {
       const responseData = await response.json();
       // Handle response data if needed
-      console.log(responseData)
 
     } else {
      const responseData = await response.json();
       // Handle response data if needed
-      console.log(responseData)
     }
   } catch (error) {
 
