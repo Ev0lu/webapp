@@ -73,10 +73,16 @@ function Zak1(props) {
       const handleDateClick = (day) => {
         setSelectedDate(new Date(selectedYear, selectedMonth, day));
         //setShowCalendar(!showCalendar);
-         console.log(new Date(selectedYear, selectedMonth, day))
+
       };      
 
       const daysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate();
+
+    useEffect(() => {
+         if (`${sessionStorage.getItem('birth_date')}` !== 'null') {
+             setSelectedDate(new Date(Number(sessionStorage.getItem('birth_date').split('-').reverse()[0]), Number(sessionStorage.getItem('birth_date').split('-').reverse()[1]), Number(sessionStorage.getItem('birth_date').split('-').reverse()[2])));
+         }
+    }, [])
 
     return (
       <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>             
@@ -94,7 +100,7 @@ function Zak1(props) {
         className={`${s.password_field} ${errorFields.selectedDate && s.error}`}
         style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
 
-        value={selectedDate ? selectedDate.toLocaleDateString('ru-RU') : `${sessionStorage.getItem('birth_date')}` !== 'null' ? `${sessionStorage.getItem('birth_date').split('-').reverse().join('.')}` :
+        value={selectedDate ? selectedDate.toLocaleDateString('ru-RU') :
         ''}
         readOnly
       />
