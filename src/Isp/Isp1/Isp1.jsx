@@ -159,7 +159,6 @@ function Isp1(props) {
       setCountries(prevCountries => [...prevCountries, ...newCountries]); // Добавляем загруженные страны к списку
       setOffset(prevOffset => prevOffset + limit); // Увеличиваем offset для следующего запроса
     } catch (error) {
-      console.error('Error fetching countries:', error);
     }
 
     setLoading(false);
@@ -180,7 +179,6 @@ function Isp1(props) {
       setCities(prevCountries => [...prevCountries, ...newCities]); // Добавляем загруженные страны к списку
       setOffset2(prevOffset => prevOffset + limit2); // Увеличиваем offset для следующего запроса
     } catch (error) {
-      console.error('Error fetching cities:', error);
     }
 
     setLoading2(false);
