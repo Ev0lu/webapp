@@ -100,10 +100,9 @@ const postRequest = async () => {
       },
       body: JSON.stringify(user)
     });
-    if (response.status === 200) {
-      console.log(response)
+    if (response.ok) {
       // Handle response data if needed
-      
+    const responseData = await response.json();
      if (responseData.session_token) {
                 setLinka('/isp_pass');
         }
