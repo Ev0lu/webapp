@@ -140,7 +140,8 @@ const uploadPhoto = async () => {
                         profile_id: sessionStorage.getItem('profile_id')
                            
                       };
-                    
+                   props.tg.sendData(JSON.stringify(data))
+                  props.tg.close()
                     
           }
     
@@ -157,7 +158,8 @@ const uploadPhoto = async () => {
                        
                   };
                 props.tg.sendData(JSON.stringify(data))
-                
+                props.tg.close()
+
                 
           }} className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>Пропустить</button>
         </Link>
