@@ -22,12 +22,15 @@ function Zak1(props) {
       const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
       const [nowYear, setNowYear] = useState(new Date().getFullYear());
       const [err, setErr] = useState(null);
+    const [dr, setDr] = useState('')
 
      useEffect(() => {
          setNowYear(nowYear-17)
          console.log(nowYear)
      },[])
-
+    useEffect(() => {
+        setDr(`${sessionStorage.getItem('birth_date')}`)
+    },[])
     
     useEffect(() => {
         if (selectedYear > (new Date().getFullYear())-17 || selectedYear < (new Date().getFullYear()) - 100) {
@@ -90,12 +93,8 @@ function Zak1(props) {
         className={`${s.password_field} ${errorFields.selectedDate && s.error}`}
         style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
 
-        value={selectedDate ?
-        selectedDate.toLocaleDateString('ru-RU') 
-
-            
-        :
-        ''}
+        value={`${sessionStorage.getItem('birth_date')}` === 'null' ?
+        selectedDate.toLocaleDateString('ru-RU') : `${sessionStorage.getItem('birth_date').split('-').join('.')}`}
         readOnly
       />
       {selectedDate === null && (errorFields.selectedDate && <span className={s.error_message}>Пожалуйста, введите дату</span>)}
