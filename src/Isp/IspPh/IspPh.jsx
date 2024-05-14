@@ -25,7 +25,6 @@ function IspPh(props) {
 const handleAvatarChange = (event) => {
   const file = event.target.files[0];
   if (file.size > 50 * 1024) { // размер в байтах
-      console.log(file.size, 50*1024)
       setSize(true)
       setAvatar(null);
       return; // прерываем выполнение функции
@@ -62,7 +61,6 @@ const uploadPhoto = async () => {
     const formData = new FormData();
 
     if (!filepic) {
-      console.error('File is not selected');
       return;
     }
 
@@ -80,14 +78,10 @@ const uploadPhoto = async () => {
     if (response.ok) {
       const responseData = await response.json();
       // Handle response data if needed
-      console.log(responseData)
     } else {
-      console.error('Failed to upload photo');
       const responseData = await response.json();
-      console.log(responseData)
     }
   } catch (error) {
-    console.error('Error uploading photo:', error);
   }
 };
 
