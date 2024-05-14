@@ -35,14 +35,15 @@
 
 .greetings_btn:not([disabled]) .lightMode:hover,
 .greetings_btn:not([disabled]) .darkMode:hover {
-    color: black;
-    background-color: white;
+    background-color: #D3C5A7;
+    color: white;
+  
 }
 
 .greetings_btn:not([disabled]) .lightMode:active,
 .greetings_btn:not([disabled]) .darkMode:active {
-    color: black;
-    background-color: white;
+    background-color: #B7AA8C;
+    color: white;
 }
 
 .greetings_btn[disabled] .lightMode:hover,
