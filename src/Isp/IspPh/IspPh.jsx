@@ -24,8 +24,8 @@ function IspPh(props) {
 
 const handleAvatarChange = (event) => {
   const file = event.target.files[0];
-  if (file.size > 52 * 1024) { // размер в байтах
-      console.log(file.size, 52*1024)
+  if (file.size > 50 * 1024) { // размер в байтах
+      console.log(file.size, 50*1024)
       setErrorFields({ size: true });
       setAvatar(null);
       return; // прерываем выполнение функции
@@ -52,7 +52,7 @@ const handleAvatarChange = (event) => {
   const validateFields = () => {
     const errors = {
       avatar: avatar === null,
-      size: size === false
+      size: size === true
     };
     setErrorFields(errors);
     return !Object.values(errors).some(Boolean);
@@ -125,19 +125,19 @@ const uploadPhoto = async () => {
               className={s.avatar_input}
             />
             {avatar === null && (errorFields.avatar && <span className={s.error_message}>Пожалуйста, приложите изображение</span>)}
-            {size === true && (errorFields.size && <span className={s.error_message}>Изображение должно быть меньше 800x800 и 50Кб</span>)}
+            {size === true && (errorFields.size && <span className={s.error_message}>Размер изображения должен быть меньше 50Кб</span>)}
           </div>
         </div>
         <Link to={avatar !== null ? '/success_r' : '/zak_reg_photo'}>
           <button onClick={() => {
           validateFields()
           uploadPhoto()
-                  let user = {
+                  const data = {
                           access_token: sessionStorage.getItem('access_token'),
                           refresh_token: sessionStorage.getItem('refresh_token'),
                           profile_id: sessionStorage.getItem('profile_id')
                       };
-            props.tg.sendData(JSON.stringify(user))
+            props.tg.sendData(JSON.stringify(data))
             props.tg.close()
     
     
@@ -145,12 +145,12 @@ const uploadPhoto = async () => {
         </Link>
         <Link to={'/success_r'}>
           <button onClick={() => {
-                        let user = {
+                        const data = {
                           access_token: sessionStorage.getItem('access_token'),
                           refresh_token: sessionStorage.getItem('refresh_token'),
                           profile_id: sessionStorage.getItem('profile_id')
                       };
-            props.tg.sendData(JSON.stringify(user))
+            props.tg.sendData(JSON.stringify(data))
             props.tg.close()
           }} className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>Пропустить</button>
         </Link>
