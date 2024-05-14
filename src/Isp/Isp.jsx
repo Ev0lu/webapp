@@ -245,11 +245,11 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
         <div className={`${s.radio_gender}`} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>
             <label htmlFor="gender" style={{ fontSize: '14px' }}>Ваш пол:</label>
             <div>
-                <input type="radio" id="male" name="gender" value="male" checked={gender === 'male'} onChange={handleGenderChange} />
+                <input disabled={Boolean(exist)} type="radio" id="male" name="gender" value="male" checked={gender === 'male'} onChange={handleGenderChange} />
                 <label htmlFor="male" className={s.genderlabel}>Мужской</label>
             </div>
             <div>
-                <input type="radio" id="female" name="gender" value="female" checked={gender === 'female'} onChange={handleGenderChange} />
+                <input disabled={Boolean(exist)} type="radio" id="female" name="gender" value="female" checked={gender === 'female'} onChange={handleGenderChange} />
                 <label htmlFor="female" className={s.genderlabel}>Женский</label>
             </div>
             {gender === '' && (errorFields.gender && <span className={s.error_message}>Выберите ваш пол</span>)}
