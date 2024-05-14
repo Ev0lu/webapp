@@ -92,7 +92,6 @@ const postRequest = async () => {
       },
       body: JSON.stringify(user)
     });
-    console.log(response)
     if (response.ok) {
       const data = await response.json();
       setIsVerified(true);
