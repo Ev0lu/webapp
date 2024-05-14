@@ -26,7 +26,7 @@ const handleAvatarChange = (event) => {
   const file = event.target.files[0];
   if (file.size > 50 * 1024) { // размер в байтах
       console.log(file.size, 50*1024)
-      setErrorFields({ size: true });
+      setSize(true)
       setAvatar(null);
       return; // прерываем выполнение функции
     }
@@ -36,7 +36,7 @@ const handleAvatarChange = (event) => {
       const img = new Image();
       img.onload = () => {
 
-          setErrorFields({ size: false });
+          setSize(false)
           setAvatar(reader.result);
           
           setFilepic(file)
