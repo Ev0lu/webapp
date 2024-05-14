@@ -18,7 +18,9 @@ const ZakCon = (props) => {
         setMail(sessionStorage.getItem('mail') !== null ? sessionStorage.getItem('mail') : '')
       }, [])
   useEffect(() => {
-    handleSubmit()
+    if (code1 != '' && code2 != '' && code3 != '' && code4 != ''){
+      handleSubmit()
+    }
   }, [code4])
 
 
