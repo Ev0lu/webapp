@@ -19,7 +19,39 @@ function Isp(props) {
         gender: false
     });
 
+const refreshTok = async () => {  
+  let user = {
+    refresh_token: `${sessionStorage.getItem('refresh_token')}`,
+  };
 
+  try {
+    const response = await fetch('https://assista1.ru/api/v1/auth/refreshToken', {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    });
+    if (response.ok) {
+      const responseData = await response.json();
+      sessionStorage.setItem('accessToken', responseData.access_token)
+      sessionStorage.setItem('refresh_token', responseData.refresh_token)     
+      // Handle response data if needed
+
+    } else {
+     const responseData = await response.json();
+      // Handle response data if needed
+        const data = {
+            "status": "unauthorized"
+        }
+        props.tg.sendData(JSON.stringify(data))
+        props.tg.close()
+    }
+  } catch (error) {
+
+  }
+}
 
 
     const handleChange = (event) => {
@@ -165,23 +197,27 @@ function Isp(props) {
            'Authorization': `Bearer ${accessToken}`,
         }
       });
-      const data = await response.json();
-      console.log(data)
-
-          setName(`${data.full_name.split(' ')[0]}`)
-          setLname(`${data.full_name.split(' ')[1]}`)
-          setFname(`${data.full_name.split(' ')[2]}`)
-          setGender(`${data.gender}`)
-          handleGenderChange(`${data.gender}`)
-
-          handleChange(`${data.full_name.split(' ')[0]}`)
-          handleChange2(`${data.full_name.split(' ')[1]}`)
-          handleChange3(`${data.full_name.split(' ')[2]}`)
-
+        if(response.status !== 401) {
+              const data = await response.json();
+             
         
-          validateFields()
+                  setName(`${data.full_name.split(' ')[0]}`)
+                  setLname(`${data.full_name.split(' ')[1]}`)
+                  setFname(`${data.full_name.split(' ')[2]}`)
+                  setGender(`${data.gender}`)
+                  handleGenderChange(`${data.gender}`)
+        
+                  handleChange(`${data.full_name.split(' ')[0]}`)
+                  handleChange2(`${data.full_name.split(' ')[1]}`)
+                  handleChange3(`${data.full_name.split(' ')[2]}`)
+        
+                
+                  validateFields()
+        } else{
+            refreshTok()
+        }
     
-
+        
 
       
     } catch (error) {
