@@ -14,6 +14,8 @@ function Zak2(props) {
     const [pass, setPass] = useState('')
     const [pass2, setPass2] = useState('')
     const [check,setCheck] = useState('')
+    const [messageerr,setMessageerr] = useState('')
+
     const [checkPh,setCheckPh] = useState('')
     const [rlink, setRlink] = useState('/zak1_reg')
     const [checkUnique, setCheckUnique] = useState('')
@@ -141,13 +143,17 @@ const checkUniqueF = async () => {
         
          const responseData = await response.json();
       // Handle response data if needed
-        if (responseData.detail[0]?.msg ? responseData.detail[0].msg.includes("login") : responseData.detail.includes("login")){
+      if (responseData.detail[0]?.msg ? responseData.detail[0].msg.includes("login") : responseData.detail.includes("login")){
             setLoginerr('true')
-        } else {
+        } else{
             setLoginerr('')
         }
-        if (responseData.detail[0]?.msg ? responseData.detail[0].msg.includes("phone") : responseData.detail.includes("phone")) {
+        if (responseData.detail.includes("phone")){
             setTeleerr('true')
+            setMessageerr('Пользователь с указанным телефоном уже существует')
+        } else if (responseData.detail[0]?.msg ? responseData.detail[0].msg.includes("phone")) {
+            setTeleerr('true')
+            setMessageerr('Телефон не валиден')
         } else {
             setTeleerr('')
             setTeleCon(tele)
