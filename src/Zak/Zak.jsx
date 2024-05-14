@@ -220,6 +220,7 @@ function Zak(props) {
                 placeholder="Имя*"
                 className={`${s.password_field} ${errorFields.name && s.error}`}
                 value={name}
+                disabled={Boolean(exist)}
                 onChange={handleChange}
             />
             { name === '' && (errorFields.name && <span className={s.error_message}>Пожалуйста, введите ваше имя</span>)}
@@ -231,6 +232,7 @@ function Zak(props) {
                 placeholder="Фамилия*"
                 className={`${s.password_field} ${errorFields.lname && s.error}`}
                 value={lname}
+                disabled={Boolean(exist)}
                 onChange={handleChange2}
             />
             { lname === '' && (errorFields.lname && <span className={s.error_message}>Пожалуйста, введите фамилию</span>)}
@@ -241,6 +243,7 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
                 placeholder="Отчество"
                 className={s.password_field}
                 value={fname}
+                disabled={Boolean(exist)}
                 onChange={handleChange3}
             />
 
