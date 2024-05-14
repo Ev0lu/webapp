@@ -41,16 +41,13 @@ const handleAvatarChange = (event) => {
     reader.onload = () => {
       const img = new Image();
       img.onload = () => {
-        if (img.width > 500 || img.height > 500) {
-          setErrorFields({ size: true });
-          setAvatar(null);
-        } else {
+       
           setErrorFields({ size: false });
           setAvatar(reader.result);
           
           setFilepic(file)
           
-        }
+        
       };
       img.src = reader.result;
     };
