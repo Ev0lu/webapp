@@ -259,7 +259,7 @@ const checkUniqueF = async () => {
             />
         {teleCon === '' && (errorFields.tele && <span className={s.error_message}>Пожалуйста, введите телефон</span>)}
         {tele.split('').length < 7 && (errorFields.tele && <span className={s.error_message}>Пожалуйста, введите правильный телефон</span>)}
-        {teleerr === 'true' && <span className={s.error_message}>`${messageerr}`</span> }
+        {teleerr === 'true' && <span className={s.error_message}>{messageerr}</span> }
         {errorFields.checkPh && <span className={s.error_message}>Номер должен начинаться с кода страны(+...)</span>}
 
 
