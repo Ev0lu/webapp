@@ -10,7 +10,8 @@ const ZakCon = (props) => {
   const [error, setError] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
   const [code, setCode] = useState('');
-  const [invalid, setInvalid] = useState(true)
+  const [invalid, setInvalid] = useState(false)
+  const [incorrect, setIncorrect] = useState(true)
   const [tries, setTries] = useState(0)
   const [mail, setMail] = useState()
   useEffect(() => {
@@ -104,13 +105,42 @@ const postRequest = async () => {
       setCode2('')
       setCode3('')
       setCode4('')
+      postRequest2()
+      setInvalid(true)
     }
 
   } catch (error) {
     console.log(error)
   }
 }
+const postRequest2 = async () => {  
+  let user = {
+    email: mail,
+  };
 
+  try {
+    const response = await fetch('https://assista1.ru/api/v1/auth/code/send', {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    });
+    if (response.ok) {
+      const responseData = await response.json();
+      // Handle response data if needed
+      console.log(responseData)
+
+    } else {
+     const responseData = await response.json();
+      // Handle response data if needed
+      console.log(responseData)
+    }
+  } catch (error) {
+
+  }
+}
 
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }> 
@@ -163,8 +193,8 @@ const postRequest = async () => {
             style={{ width: 'auto', padding: '10px', maxWidth: 40 }} // Add this line
           />
         </div>
-        {error && <div className={s.error_message}>Неправильный код</div>}
-        {tries > 3  && <div className={s.error_message}>Вы исчерпали количество попыток, начните регистрацию заново</div>}
+        {invalid === true && <span className={s.error_message}>Неправильный код</span>}
+        {tries > 3  && <span className={s.error_message}>Вы исчерпали количество попыток, начните регистрацию заново</span>}
     <Link to={code1 == '' || code2 == '' || code3 == '' || code4 == '' || tries > 3 || isVerified === false ? '/zak_con' : '/zak_reg_pass'}>
         <button className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`} onClick={() => {
   
