@@ -193,10 +193,12 @@ const checkUniqueF = async () => {
           setLogin(`${data.login}`)
           setTele(`${data.phone}`)
           setMail(`${data.email}`)
-            setTeleerr('ex')
-            setLoginerr('ex')
-
-
+         setTeleerr('ex')
+         setLoginerr('ex')
+         setCheckUnique('true')
+          handleChange(`${data.login}`)
+          handleChange2(`${data.phone}`)
+          handleChange3(`${data.email}`)
 
 
       
