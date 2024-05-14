@@ -47,7 +47,7 @@ const Auth = (props) => {
         setPassword(event.target.value);
     };
     const handleChange2 = (event) => {
-    setLogin(event.target.value.replace(/[^A-Za-z0-9]/g, ''));
+    setLogin(event.target.value.replace(/[^A-Za-z0-9!@#$%^&*()]/g, ''));
     };
 
 
