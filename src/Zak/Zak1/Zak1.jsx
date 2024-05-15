@@ -19,7 +19,7 @@ function Zak1(props) {
       const [showCalendar, setShowCalendar] = useState(false);
       const [selectedDate, setSelectedDate] = useState(null);
       const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
-      const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+      const [selectedYear, setSelectedYear] = useState((new Date().getFullYear())-17);
       const [nowYear, setNowYear] = useState(new Date().getFullYear());
       const [err, setErr] = useState(null);
     const [dr, setDr] = useState('')
@@ -66,10 +66,14 @@ function Zak1(props) {
       };
     
       const handleYearChange = (delta) => {
-        setSelectedYear((prevYear) => prevYear + delta);
+        if (selectedYear> (new Date().getFullYear())-17){
+        } else {
+            setSelectedYear((prevYear) => prevYear + delta);
+        }
       };
     
       const handleDateClick = (day) => {
+          
         setSelectedDate(new Date(selectedYear, selectedMonth, day));
         //setShowCalendar(!showCalendar);
 
@@ -149,7 +153,7 @@ function Zak1(props) {
         <button onClick={() => {
           validateFields()
           if (selectedDate !== null && err !== true){
-              sessionStorage.setItem('birth_date', `${selectedYear}-${selectedMonth+1 < 10 ? '0' + `${selectedMonth+1}` : selectedMonth+1 }-${selectedDate.getDate() < 10 ? '0' + `${selectedDate.getDate()}` : selectedDate.getDate()  }`)
+              sessionStorage.setItem('birth_date', `${selectedYear}-${selectedMonth + 1 < 10 ? '0' + `${selectedMonth + 1}` : selectedMonth + 1 }-${selectedDate.getDate() < 10 ? '0' + `${selectedDate.getDate()}` : selectedDate.getDate()  }`)
           }
 
       }} className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>Далее</button>
