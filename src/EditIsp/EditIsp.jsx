@@ -19,6 +19,7 @@ function EditIsp(props) {
  const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const [accessToken, setAccessToken] = useState(searchParams.get('access_token'));
+  const [refreshToken, setRefreshToken] = useState(searchParams.get('refresh_token'));
   const [telegram_id, setTelegram_id] = useState(searchParams.get('telegram_id'));
   const [today, setToday] = useState(new Date())
   // Получение значений параметров access_token и refresh_token из URL
@@ -587,6 +588,54 @@ useEffect(() => {
   useEffect(() => {
     fetchInfo()
   },[])
+
+
+
+
+
+
+
+
+
+
+
+
+
+  const refreshTok = async () => {  
+    let user = {
+      refresh_token: `${refreshToken}`,
+    };
+  
+    try {
+      const response = await fetch('https://assista1.ru/api/v1/auth/refreshToken', {
+        method: 'POST',
+        headers: {
+          'accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+      });
+      if (response.ok) {
+        const responseData = await response.json();
+        sessionStorage.setItem('accessToken', responseData.access_token)
+        setRefreshToken(responseData.refresh_token)     
+        // Handle response data if needed
+  
+      } else {
+       const responseData = await response.json();
+        // Handle response data if needed
+          const data = {
+              "status": "unauthorized"
+          }
+          props.tg.sendData(JSON.stringify(data))
+
+      }
+    } catch (error) {
+  
+    }
+  }
+
+
 const patchProfile = async () => {
     const requestBody = {
 
@@ -620,10 +669,7 @@ const patchProfile = async () => {
         // Обработка полученных данных
       } else {
         if (response.status === 401 || response.status === 400 ) {
-          const data = {
-            "status": "unauthorized"
-        }
-          props.tg.sendData(JSON.stringify(data))
+          refreshTok()
         }
       }
     } catch (error) {

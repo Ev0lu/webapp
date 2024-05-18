@@ -444,11 +444,7 @@ const fetchSkills = async () => {
 
         console.log(asd)
         if (response.status === 401 || response.status === 400 ) {
-          const data = {
-            "status": "unauthorized"
-        }
-        console.log(asd)
-          props.tg.sendData(JSON.stringify(data))
+          refreshTok()
         }
       }
     } catch (error) {
@@ -461,6 +457,53 @@ const fetchSkills = async () => {
   const filteredSkills = skills.filter((skill) =>{
 
      return skill.label.toLowerCase().includes(searchQuery1__1.toLowerCase())});
+
+
+
+
+
+
+
+
+     const refreshTok = async () => {  
+      let user = {
+        refresh_token: `${refreshToken}`,
+      };
+    
+      try {
+        const response = await fetch('https://assista1.ru/api/v1/auth/refreshToken', {
+          method: 'POST',
+          headers: {
+            'accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(user)
+        });
+        if (response.ok) {
+          const responseData = await response.json();
+          sessionStorage.setItem('accessToken', responseData.access_token)
+          setRefreshToken(responseData.refresh_token)     
+          // Handle response data if needed
+    
+        } else {
+         const responseData = await response.json();
+          // Handle response data if needed
+            const data = {
+                "status": "unauthorized"
+            }
+            props.tg.sendData(JSON.stringify(data))
+
+        }
+      } catch (error) {
+    
+      }
+    }
+
+
+
+
+
+
 
 
    const fetchOrders = async () => {
