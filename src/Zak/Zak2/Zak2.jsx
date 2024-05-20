@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import s from "./Zak2.module.css"
-import { Route, Routes, Link, Router, useParams, useLocation } from 'react-router-dom';
+import { Route, Routes, Link, Router, useParams, useLocation, useNavigate } from 'react-router-dom';
 import arrowsvg from '../../assets/arrow.svg'
 import blackarr from '../../assets/black.svg'
 
@@ -15,7 +15,7 @@ function Zak2(props) {
     const [pass2, setPass2] = useState('')
     const [check,setCheck] = useState('')
     const [messageerr,setMessageerr] = useState('')
-
+    const navigate = useNavigate()
     const [checkPh,setCheckPh] = useState('')
     const [rlink, setRlink] = useState('/zak1_reg')
     const [checkUnique, setCheckUnique] = useState('')
@@ -106,7 +106,9 @@ const postRequest = async () => {
       const responseData = await response.json();
       // Handle response data if needed
       if (responseData.sessionToken) {
-            setLinka('/zak_pass')
+        sessionStorage.setItem('session_token', responseData.session_token)
+     
+        return navigate("/isp_reg_pass")
         }
     } else {
      const responseData = await response.json();
@@ -197,13 +199,17 @@ const checkUniqueF = async () => {
       const data = await response.json();
 
           setLogin(`${data.login}`)
-          setTeleCon(`${data.phone}`)
+          setTele(`${data.phone.split('-').join('')}`)
+
+          setTeleCon(`${data.phone.split('-').join('')}`)
           setMail(`${data.email}`)
-          setCheck('ex')
-          setCheckPh('ex')
+          setTeleerr('')
+          setLoginerr('')
           setCheckUnique('true')
+          setCheckPh('sd')
+          setCheck('df')
           handleChange(`${data.login}`)
-          handleChange2(`${data.phone}`)
+          handleChange2(`${data.phone.split('-').join('')}`)
           handleChange3(`${data.email}`)
 
         

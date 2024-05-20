@@ -12,7 +12,7 @@ function Auth3(props) {
     const [checkPh,setCheckPh] = useState('')
     const [rlink, setRlink] = useState('/zak1_reg')
     const [mail,setMail] = useState(sessionStorage.getItem('mail'))
-    const [token,setToken] = useState(null)
+    const [token,setToken] = useState(sessionStorage.getItem('session_token'))
     const [errorFields, setErrorFields] = useState({
 
         pass: false,
@@ -34,7 +34,7 @@ function Auth3(props) {
     };
 
     useEffect(() => {
-        setToken(sessionStorage.getItem('sessionToken'))
+        setToken(sessionStorage.getItem('session_token'))
     },[pass2])
 
     const handleChange4 = (event) => {
@@ -76,14 +76,18 @@ const postRequest2 = async () => {
     });
     if (response.ok) {
       const data = await response.json();
-
+      console.log(data)
+      console.log(token)
 
     } else {
       const data = await response.json();
+      console.log(data)
+      console.log(token)
 
     }
   } catch (error) {
     setCheck('')
+    console.log(error)
   }
 }
 

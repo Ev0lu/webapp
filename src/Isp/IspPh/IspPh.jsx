@@ -169,6 +169,7 @@ const refreshTok = async () => {
         <div>
             {loading && <img className={s.loader} src={loader}></img>}
           </div>
+        { avatar !== null &&
         <Link to={avatar !== null ? '/success_r' : '/zak_reg_photo'}>
           <button onClick={() => {
           validateFields()
@@ -177,7 +178,7 @@ const refreshTok = async () => {
     
     
     }} className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>Далее</button>
-        </Link>
+        </Link>}
         <Link to={'/success_r'}>
           <button onClick={() => {
                 const data = {

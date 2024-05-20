@@ -96,11 +96,10 @@ const postRequest = async () => {
 
     if (response.ok) {
       const data = await response.json();
+      sessionStorage.setItem('session_token', `${data.session_token}`)
       setIsVerified(true);
       setInvalid(false)
-      setToken(`${data.session_token}`)
-      sessionStorage.setItem('session_token', `${data.session_token}`)
-      //тут реквест выполнять
+
     } else {
       const data = await response.json();
       setCode1('')
@@ -150,6 +149,20 @@ const handleRequestCodeAgain = () => {
   setTimer(60); 
 
 };
+
+
+
+const handlePaste = (e) => {
+  e.preventDefault();
+  const pasteData = e.clipboardData.getData('text');
+  if (pasteData.length === 4) {
+    setCode1(pasteData[0].toUpperCase());
+    setCode2(pasteData[1].toUpperCase());
+    setCode3(pasteData[2].toUpperCase());
+    setCode4(pasteData[3].toUpperCase());
+  }
+};
+  
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }> 
     <div className={s.greetings_wrapper}>
@@ -165,6 +178,7 @@ const handleRequestCodeAgain = () => {
             onFocus={(e) => e.target.select()}
             onKeyDown={handleKeyPress}
             maxLength={1}
+            onPaste={(e) => handlePaste(e)}
             style={{ width: 'auto', padding: '10px', maxWidth: 40 }} // Add this line
           />
           <input

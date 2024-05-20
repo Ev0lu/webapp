@@ -25,6 +25,8 @@ function EditIsp(props) {
   // Получение значений параметров access_token и refresh_token из URL
   const [langLevels, setLangLevels] = useState([])
   const [selectedLangLevels, setSelectedLangLevels] = useState({});
+  const [debounceTimeout, setDebounceTimeout] = useState(null); // Таймаут для задержки запроса
+  const [isCancelled, setIsCancelled] = useState(false); // Флаг отмены запроса
 
   
   const [isOpen, setIsOpen] = useState(false);
@@ -193,6 +195,7 @@ function EditIsp(props) {
 
   const fetchCountries = async () => {
 
+    if (isCancelled) return;
 
 
     setLoading(true);
@@ -210,6 +213,7 @@ function EditIsp(props) {
     setLoading(false);
   };
   const fetchCities = async () => {
+    if (isCancelled) return;
     if (selectedCountry[1] === '' || selectedCountry[1] === undefined) {
       return;
     }
@@ -254,7 +258,21 @@ useEffect(() => {
       scrollTop + clientHeight >= scrollHeight-30
     ) {
       if (!loading) {
-        fetchCountries(); // Загружаем следующую порцию стран при достижении конца прокрутки
+        setIsCancelled(false); 
+        if (debounceTimeout) {
+          clearTimeout(debounceTimeout);
+        }
+        if (searchQuery !== ''){
+
+        const timeout = setTimeout(() => {
+          fetchCountries();
+        }, 300); // Задержка выполнения запроса на 300 миллисекунд после последнего изменения поискового запроса
+      
+        setDebounceTimeout(timeout);
+      }
+        return () => {
+          setIsCancelled(true); // Установка флага отмены перед размонтированием компонента
+        }; // Загружаем следующую порцию стран при достижении конца прокрутки
       }
     }
   };
@@ -269,28 +287,68 @@ useEffect(() => {
       scrollTop + clientHeight >= scrollHeight-30
     ) {
       if (!loading2) {
-        fetchCities(); // Загружаем следующую порцию стран при достижении конца прокрутки
+        setIsCancelled(false);
+        if (debounceTimeout) {
+          clearTimeout(debounceTimeout);
+        }
+        if (searchQuery2 !== ''){
+        const timeout = setTimeout(() => {
+          fetchCities();
+        }, 300); // Задержка выполнения запроса на 300 миллисекунд после последнего изменения поискового запроса
+      }
+        setDebounceTimeout(timeout);
+        return () => {
+          setIsCancelled(true); // Установка флага отмены перед размонтированием компонента
+        }; // Загружаем следующую порцию стран при достижении конца прокрутки
       }
     }
   };
   
 useEffect(() => {
   if (searchQuery !== ''){
-    fetchCountries(); // Call fetchCountries whenever searchQuery changes
+    setIsCancelled(false);
+    if (debounceTimeout) {
+      clearTimeout(debounceTimeout);
+    }
+    if (searchQuery !== ''){
+
+    const timeout = setTimeout(() => {
+      fetchCountries();
+    }, 300); // Задержка выполнения запроса на 300 миллисекунд после последнего изменения поискового запроса
+
+    setDebounceTimeout(timeout);
+  }
+    return () => {
+      setIsCancelled(true); // Установка флага отмены перед размонтированием компонента
+    };// Call fetchCountries whenever searchQuery changes
   }
 }, [searchQuery]);
 useEffect(() => {
-  fetchCities(); // Call fetchCountries whenever searchQuery changes
+  setIsCancelled(false);
+  if (debounceTimeout) {
+    clearTimeout(debounceTimeout);
+  }
+  if (searchQuery2 !== ''){
+
+  const timeout = setTimeout(() => {
+    fetchCities();
+  }, 300); // Задержка выполнения запроса на 300 миллисекунд после последнего изменения поискового запроса
+
+  setDebounceTimeout(timeout);
+}
+  return () => {
+    setIsCancelled(true); // Установка флага отмены перед размонтированием компонента
+  }; // Call fetchCountries whenever searchQuery changes
 }, [searchQuery2]);
 
 const handleInputChange = (e) => {
-  const newSearchQuery = e.target.value;
+  const newSearchQuery =   e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
   setSearchQuery(newSearchQuery);
   setOffset(0); // Reset offset to 0 whenever searchQuery changes
 };
 
 const handleInputChange2 = (e) => {
-  const newSearchQuery2 = e.target.value;
+  const newSearchQuery2 =   e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
   setSearchQuery2(newSearchQuery2);
   setOffset2(0);
 };
@@ -562,8 +620,7 @@ useEffect(() => {
         }
       });
       const data = await response.json();
-
-
+      console.log(data)
       setName(`${data.full_name.split(' ')[0]}`)
       setLname(`${data.full_name.split(' ')[1]}`)
       setFname(`${data.full_name.split(' ')[2]}`)
@@ -575,7 +632,8 @@ useEffect(() => {
       setSelectedCountries1Id__2(data.worker.skills.map(lang => lang[1]))
       selectCountry(['', ''])
       selectCountry2(['', data.worker.location.city_id])
-
+      const levels = data.worker.languages.map(lang => ({ label: lang[2], value: lang[0] }));
+      setLangLevels(levels);
 
 
       

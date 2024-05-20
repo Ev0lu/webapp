@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import s from "./Isp2.module.css"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import arrowsvg from '../../assets/arrow.svg'
 import blackarr from '../../assets/black.svg'
 
@@ -18,6 +18,7 @@ function Isp2(props) {
     const [checkPh,setCheckPh] = useState('')
     const [messageerr,setMessageerr] = useState('')
     const [rlink, setRlink] = useState('/zak1_reg')
+    const navigate = useNavigate()
     const [errorFields, setErrorFields] = useState({
         login: false,
         tele: false,
@@ -77,14 +78,14 @@ function Isp2(props) {
             setRlink('/zak1_reg')
         }
     }
+
     useEffect(() => {
-        setLogin(sessionStorage.getItem('login') !== null ? sessionStorage.getItem('login') : '')
-        setTele(sessionStorage.getItem('tele') !== null ? sessionStorage.getItem('tele') : '')
-        setMail(sessionStorage.getItem('mail') !== null ? sessionStorage.getItem('mail') : '')
+      setLogin(sessionStorage.getItem('login') !== null ? sessionStorage.getItem('login') : '')
+      setTele(sessionStorage.getItem('tele') !== null ? sessionStorage.getItem('tele') : '')
+      setMail(sessionStorage.getItem('mail') !== null ? sessionStorage.getItem('mail') : '')
 
 
-      }, [])
-
+    }, [])
         
 const postRequest = async () => {  
   const user = {
@@ -102,11 +103,18 @@ const postRequest = async () => {
     });
     if (response.ok) {
     const responseData = await response.json();
+    
+    console.log(mail)
+    
      if (responseData.session_token) {
-                setLinka('/isp_pass');
+   
+      sessionStorage.setItem('session_token', responseData.session_token)
+     
+      return navigate("/isp_reg_pass")
         }
     } else {
      const responseData = await response.json();
+     console.log(responseData)
     }
   } catch (error) {
   }
@@ -189,16 +197,19 @@ const checkUniqueF = async () => {
         }
       });
       const data = await response.json();
-
+        
 
           setLogin(`${data.login}`)
-          setTele(`${data.phone}`)
+          setTele(`${data.phone.split('-').join('')}`)
+          setTeleCon(`${data.phone.split('-').join('')}`)
           setMail(`${data.email}`)
-         setTeleerr('ex')
-         setLoginerr('ex')
+         setTeleerr('')
+         setLoginerr('')
          setCheckUnique('true')
+         setCheckPh('sd')
+         setCheck('df')
           handleChange(`${data.login}`)
-          handleChange2(`${data.phone}`)
+          handleChange2(`${data.phone.split('-').join('')}`)
           handleChange3(`${data.email}`)
 
 
@@ -210,7 +221,7 @@ const checkUniqueF = async () => {
   };
 
   useEffect(() => {
-      if(sessionStorage.getItem('exist') === true){
+      if(sessionStorage.getItem('exist') === 'true'){
     fetchInfo()
 
       }
@@ -281,11 +292,11 @@ const checkUniqueF = async () => {
                 sessionStorage.setItem('login', login)
                 sessionStorage.setItem('tele', teleCon)
                 sessionStorage.setItem('mail', mail)
-
+                validateFields()
                 if (login !== '' && tele.split('').length > 6 && teleCon !== '' && mail !== '' && check !== '' && checkPh !== ''  && teleerr === '' && loginerr === ''  && tele === teleCon) {
                     postRequest()
                 }
-                validateFields()
+             
             }}>Далее</button>
         </Link>
         </div>

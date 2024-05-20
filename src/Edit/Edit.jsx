@@ -21,6 +21,11 @@ function Edit(props) {
   const searchParams = new URLSearchParams(location.search);
   const [accessToken, setAccessToken] = useState(searchParams.get('access_token'));
   const [refreshToken, setRefreshToken] = useState(searchParams.get('refresh_token'));
+  const [telegram_id, setTelegram_id] = useState(searchParams.get('telegram_id'));
+
+  const [debounceTimeout, setDebounceTimeout] = useState(null); // Таймаут для задержки запроса
+  const [isCancelled, setIsCancelled] = useState(false); // Флаг отмены запроса
+
   const [today, setToday] = useState(new Date())
   // Получение значений параметров access_token и refresh_token из URL
 
@@ -59,7 +64,11 @@ function Edit(props) {
     tele: false,
     login: false
   });
+useEffect(()=>{
+  setAccessToken(sessionStorage.getItem('accessToken') !== null ? sessionStorage.getItem('accessToken') : searchParams.get('access_token'))
+  setRefreshToken(sessionStorage.getItem('refreshToken') !== null ? sessionStorage.getItem('refreshToken') : searchParams.get('refresh_token'))
 
+},[])
   const validateFields = () => {
     const errors = {
       selectedCountry2: selectedCountry2 === '',
@@ -140,6 +149,7 @@ function Edit(props) {
 
 
   const fetchCountries = async () => {
+    if (isCancelled) return;
 
 
 
@@ -158,6 +168,8 @@ function Edit(props) {
     setLoading(false);
   };
   const fetchCities = async () => {
+    if (isCancelled) return;
+
   if (selectedCountry[1] === '' || selectedCountry[1] === undefined) {
       return;
     }
@@ -188,8 +200,8 @@ useEffect(() => {
 
 
   useEffect(() => {
-        setSelectedCountry2(sessionStorage.getItem('selectedCountry2') !== null ? sessionStorage.getItem('selectedCountry2') : '')
-        setSelectedCountry(sessionStorage.getItem('selectedCountry') !== null ? sessionStorage.getItem('selectedCountry') : '')
+        setSelectedCountry2(sessionStorage.getItem('selectedCountry2') !== null && sessionStorage.getItem('selectedCountry2'))
+        setSelectedCountry(sessionStorage.getItem('selectedCountry') !== null && sessionStorage.getItem('selectedCountry'))
       }, [])
 
   const handleScroll = (e) => {
@@ -232,13 +244,13 @@ useEffect(() => {
 }, [searchQuery2]);
 
 const handleInputChange = (e) => {
-  const newSearchQuery = e.target.value;
+  const newSearchQuery =e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);;
   setSearchQuery(newSearchQuery);
   setOffset(0); // Reset offset to 0 whenever searchQuery changes
 };
 
 const handleInputChange2 = (e) => {
-  const newSearchQuery2 = e.target.value;
+  const newSearchQuery2 = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);;
   setSearchQuery2(newSearchQuery2);
   setOffset2(0);
 };
@@ -247,7 +259,7 @@ const handleInputChange2 = (e) => {
 
    const [price, setPrice] = useState(0)
    const [term, setTerm] = useState('')
-   const [termScale, setTermScale] = useState(40)
+   const [termScale, setTermScale] = useState(0)
 
 
     const handleChange = (event) => {
@@ -274,8 +286,8 @@ const handleInputChange2 = (e) => {
 
       useEffect(()=>{
         if(termScale == 0){
-          setTerm('0')
-          setTermH(0)
+          setTerm('1')
+          setTermH(1)
       }else if(termScale == 20){
           setTerm('7')
           setTermH(7)
@@ -423,32 +435,29 @@ const fetchSkills = async () => {
         "location": place === 'offline' ? { "city_id":  `${selectedCountry2[1]}` } : null
 
     };
-    
+
     try {
 
-      const response = await fetch(`https://assista1.ru/api/v1/order/create`, {
-        method: 'POST',
+      const response = await fetch(`https://assista1.ru/api/v1/order/${order_id}`, {
+        method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${accessToken}`
         },
         body: JSON.stringify(requestBody)
       });
-  
+
       if (response.ok) {
         const data = await response.json();
-        props.tg.sendData(JSON.stringify(data))
-        // Обработка полученных данных
+        
+        props.tg.close()
       } else {
         const asd = await response.json();
-
-        console.log(asd)
         if (response.status === 401 || response.status === 400 ) {
           refreshTok()
         }
       }
     } catch (error) {
-      console.log(error)
     }
 };
 
@@ -479,12 +488,13 @@ const fetchSkills = async () => {
           },
           body: JSON.stringify(user)
         });
-        if (response.ok) {
+        if (response.status === 200) {
           const responseData = await response.json();
           sessionStorage.setItem('accessToken', responseData.access_token)
+          sessionStorage.setItem('refreshToken', responseData.refresh_token)
+          setAccessToken(responseData.access_token)
           setRefreshToken(responseData.refresh_token)     
           // Handle response data if needed
-    
         } else {
          const responseData = await response.json();
           // Handle response data if needed
@@ -515,7 +525,6 @@ const fetchSkills = async () => {
         try {
           const response = await fetch(`https://assista1.ru/api/v1/order/${order_id}`);
           const data = await response.json();
-
           setLogin(`${data.order.title}`)
           setTele(`${data.order.task}`)
           if (data.order.is_online === true) {
@@ -526,11 +535,14 @@ const fetchSkills = async () => {
           setPrice(`${data.order.price}`)
           setTerm(`${data.order.duration}`)
           setSelectedCountries1Id__1(data.order.skills.map(lang => lang[1]))
+
           setSelectedCountries1__1(data.order.skills.map(lang => lang[0]))
           setCity(`${[data.order.location.city_title, data.order.location.city_id]}`)
-          setSelectedCountry(`${data.order.location.country_title}`);
+          setSelectedCountry2([data.order.location.city_title, data.order.location.city_id])
+          setSelectedCountry(`${[data.order.location.country_title, 'has']}`);
           setSearchQuery(`${data.order.location.country_title}`)
           setSearchQuery2(`${data.order.location.city_title}`)
+          
           
         } catch (error) {
         }
@@ -558,7 +570,7 @@ const fetchSkills = async () => {
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>  
          <div className={s.greetings_wrapper}>
         <div className={s.reg}>
-            <h1 className={s.greetings_text} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Создание заказа</h1>
+            <h1 className={s.greetings_text} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Редактирование заказа</h1>
         </div>
 
           <div className={s.password_input}>
@@ -714,7 +726,7 @@ const fetchSkills = async () => {
                 <h3 style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Цена</h3>
               </div>
             <div style={{display:'flex'}}>            <input
-                type={'text'}
+                type='number'
                 placeholder=""
                 className={`${s.password_field3} ${errorFields.login && s.error}`}
                 value={price}
@@ -733,7 +745,7 @@ const fetchSkills = async () => {
 >Срок</h3>
   
             <input
-                type={'text'}
+                type='number'
                 placeholder=""
                 className={`${s.password_field3} ${errorFields.login && s.error}`}
                 value={term}
@@ -764,14 +776,19 @@ const fetchSkills = async () => {
 
 
            
-      <Link to={(selectedCountry2 === '') || (selectedCountry == '') || selectedCountries1Id__1.length !== 0 || term !== '' ? '/edit' : '/edit'}>
+      <Link to={(selectedCountry2 === '') || (selectedCountry == '') || selectedCountries1Id__1.length !== 0 || term !== '' ? `/update/${order_id}?access_token=${accessToken}&refresh_token=${refreshToken}&telegram_id=${telegram_id}` : `/update/${order_id}?access_token=${accessToken}&refresh_token=${refreshToken}&telegram_id=${telegram_id}`}>
         <button onClick={() => {
           validateFields()
           if (login !== ''  && tele !== ''   && selectedCountries1Id__1.length !== 0 && term !== ''  && price !== '' && checkSelected !== 'false') {
             patchOrder()
           }
           
-        }}className={`${s.greetings_btn} ${props.colorB === 'light' ? s.light : s.dark}`}>Создать заказ</button>
+        }}className={`${s.greetings_btn} ${props.colorB === 'light' ? s.light : s.dark}`}>Редактировать</button>
+      </Link>
+      <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? `/update/:${order_id}?access_token=${accessToken}&refresh_token=${refreshToken}&telegram_id=${telegram_id}` : `/update/:${order_id}?access_token=${accessToken}&refresh_token=${refreshToken}&telegram_id=${telegram_id}`}>
+        <button onClick={() => {
+            props.tg.close()
+        }}className={`${s.greetings_btn} ${props.colorB === 'light' ? s.light : s.dark}`}>Отменить</button>
       </Link>
       </div>
     </div>

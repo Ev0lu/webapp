@@ -23,6 +23,7 @@ function Create(props) {
   const [today, setToday] = useState(new Date())
   // Получение значений параметров access_token и refresh_token из URL
 
+  const [isCancelled, setIsCancelled] = useState(false); // Флаг отмены запроса
 
   
   const [isOpen, setIsOpen] = useState(false);
@@ -139,6 +140,7 @@ function Create(props) {
 
 
   const fetchCountries = async () => {
+    if (isCancelled) return;
 
 
 
@@ -157,6 +159,8 @@ function Create(props) {
     setLoading(false);
   };
   const fetchCities = async () => {
+    if (isCancelled) return;
+
   if (selectedCountry[1] === '' || selectedCountry[1] === undefined) {
       return;
     }
@@ -229,15 +233,16 @@ useEffect(() => {
 useEffect(() => {
   fetchCities(); // Call fetchCountries whenever searchQuery changes
 }, [searchQuery2]);
+const [debounceTimeout, setDebounceTimeout] = useState(null); // Таймаут для задержки запроса
 
 const handleInputChange = (e) => {
-  const newSearchQuery = e.target.value;
+  const newSearchQuery = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);;
   setSearchQuery(newSearchQuery);
   setOffset(0); // Reset offset to 0 whenever searchQuery changes
 };
 
 const handleInputChange2 = (e) => {
-  const newSearchQuery2 = e.target.value;
+  const newSearchQuery2 = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);;
   setSearchQuery2(newSearchQuery2);
   setOffset2(0);
 };
@@ -246,7 +251,7 @@ const handleInputChange2 = (e) => {
 
    const [price, setPrice] = useState(0)
    const [term, setTerm] = useState('')
-   const [termScale, setTermScale] = useState(40)
+   const [termScale, setTermScale] = useState(0)
 
 
     const handleChange = (event) => {
@@ -259,7 +264,7 @@ const handleInputChange2 = (e) => {
         setPrice(event.target.value);
     };
     const handleChange4 = (event) => {
-      if (event.target.value == 90 ){
+     /* if (event.target.value == 90 ){
         setTerm(event.target.value);
       } else if (event.target.value < 90 || event.target.value > 60 ){
         setTermScale(80)
@@ -276,7 +281,7 @@ const handleInputChange2 = (e) => {
       } else {
         setTermScale(0)
         setTerm(event.target.value);
-      }
+      }*/
       setTerm(event.target.value);
 
         
@@ -293,8 +298,8 @@ const handleInputChange2 = (e) => {
 
       useEffect(()=>{
         if(termScale == 0){
-            setTerm('0')
-            setTermH(0)
+            setTerm('1')
+            setTermH(1)
         }else if(termScale == 20){
             setTerm('7')
             setTermH(7)
@@ -676,7 +681,7 @@ useState(() => {
                 <h3 style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Цена</h3>
               </div>
             <div style={{display:'flex'}}>            <input
-                type={'text'}
+                type='number'
                 placeholder=""
                 className={`${s.password_field3} ${errorFields.login && s.error}`}
                 value={price}
@@ -695,7 +700,7 @@ useState(() => {
 >Срок</h3>
   
             <input
-                type={'text'}
+                type='number'
                 placeholder=""
                 className={`${s.password_field3} ${errorFields.login && s.error}`}
                 value={term}

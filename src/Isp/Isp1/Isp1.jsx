@@ -204,7 +204,7 @@ useEffect(() => {
 
         const timeout = setTimeout(() => {
           fetchCountries();
-        }, 400); // Задержка выполнения запроса на 300 миллисекунд после последнего изменения поискового запроса
+        }, 300); // Задержка выполнения запроса на 300 миллисекунд после последнего изменения поискового запроса
       
         setDebounceTimeout(timeout);
       }
@@ -233,7 +233,7 @@ useEffect(() => {
         if (searchQuery2 !== ''){
         const timeout = setTimeout(() => {
           fetchCities();
-        }, 400); // Задержка выполнения запроса на 300 миллисекунд после последнего изменения поискового запроса
+        }, 300); // Задержка выполнения запроса на 300 миллисекунд после последнего изменения поискового запроса
       }
         setDebounceTimeout(timeout);
         return () => {
@@ -253,7 +253,7 @@ useEffect(() => {
 
     const timeout = setTimeout(() => {
       fetchCountries();
-    }, 400); // Задержка выполнения запроса на 300 миллисекунд после последнего изменения поискового запроса
+    }, 300); // Задержка выполнения запроса на 300 миллисекунд после последнего изменения поискового запроса
 
     setDebounceTimeout(timeout);
   }
@@ -271,7 +271,7 @@ useEffect(() => {
 
   const timeout = setTimeout(() => {
     fetchCities();
-  }, 400); // Задержка выполнения запроса на 300 миллисекунд после последнего изменения поискового запроса
+  }, 300); // Задержка выполнения запроса на 300 миллисекунд после последнего изменения поискового запроса
 
   setDebounceTimeout(timeout);
 }
@@ -281,13 +281,15 @@ useEffect(() => {
 }, [searchQuery2]);
 
 const handleInputChange = (e) => {
-  const newSearchQuery = e.target.value;
+  const newSearchQuery = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
+
+
   setSearchQuery(newSearchQuery);
   setOffset(0); // Reset offset to 0 whenever searchQuery changes
 };
 
 const handleInputChange2 = (e) => {
-  const newSearchQuery2 = e.target.value;
+  const newSearchQuery2 =   e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
   setSearchQuery2(newSearchQuery2);
   setOffset2(0);
 };

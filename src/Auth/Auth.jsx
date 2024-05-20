@@ -15,7 +15,7 @@ const Auth = (props) => {
     const [errorFields, setErrorFields] = useState({
       pass: pass,
         login: login,
-        resp: resp
+
     });
     useEffect(() => {
         setTimeout(() => { setShowPassword(false)}, 500)
@@ -40,8 +40,8 @@ const Auth = (props) => {
       const validateFields = () => {
         const errors = {
           pass: pass === '',
-            login: login === '',
-            resp: resp === 'Incorrect login or password'
+          login: login === '',
+            
             
         };
         setErrorFields(errors);
@@ -83,7 +83,6 @@ const Auth = (props) => {
     if (response.ok) {
             const responseData = await response.json();
             console.log(responseData)
-            setResp(responseData.detail)
             setTokenRefresh(responseData.refresh_token)
             setTokenAccess(responseData.access_token)
             const data = {
@@ -91,23 +90,27 @@ const Auth = (props) => {
                 refresh_token: responseData.refresh_token
                    
               };
-            if ((responseData.detail !== 'Incorrect login or password') || (responseData.detail !== '')) {
+              if ((responseData.detail !== 'Incorrect login or password') || (responseData.detail !== '')) {
                 props.tg.sendData(JSON.stringify(data))
                 props.tg.close()
                 
             }
-            
-            
+
 
     } else {
            const responseData = await response.json();
+
+             setResp(responseData.detail)
+
+
             console.log(responseData)
-            setResp(responseData.detail)
-    }
+
+              }
   } catch (error) {
     console.error('Ошибка:', error);
   }
 }
+
 
     return (
         <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>
@@ -138,20 +141,21 @@ const Auth = (props) => {
             />
                <img className={s.toggle_password} onClick={handleTogglePassword} src={props.colorB === 'dark' ? eyed : eyeLight}></img>
                 { pass === '' && (errorFields.pass && <span className={s.error_message}>Пожалуйста, введите пароль</span>)}
-                { resp === 'Incorrect login or password' && (errorFields.resp && <span className={s.error_message}>Неверный логин или пароль</span>)}
+                {resp === 'Incorrect login or password'  &&  <span className={s.error_message}>Неверный логин или пароль</span>}
                 <Link to='/authorization_mail'>
                 <span className={s.spanForgot} style={props.colorB==='light' ? {color:'black'} : {color:'white'}}>Забыл пароль</span>
             </Link>
         </div>
       
         <Link to={(pass.length<10) || (pass.length > 25) || (resp === 'Incorrect login or password') || (resp === '') ? '/authorization' : '/success_a'}>
-        <button onClick={() => {
+        <button onClick={ () => {
             validateFields()
-
-             postRequest()
+           if ( login !== '' && pass !== ''){
+              postRequest()
+           }
             
-
-        }} className={`${s.greetings_btn2} ${props.colorB==="light" ? s.authPassword1 : s.authPassword1}` }>Далее</button>
+        }
+} className={`${s.greetings_btn2} ${props.colorB==="light" ? s.authPassword1 : s.authPassword1}` }>Далее</button>
         </Link>
         </div>
       

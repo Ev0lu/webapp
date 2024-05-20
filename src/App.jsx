@@ -66,7 +66,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Greetings colorB={colorB}/>} />
           <Route path="/create" element={<Create tg={tg} colorB={colorB}/>} />
-          <Route path="/edit/:order_id" element={<Edit tg={tg} colorB={colorB}/>} />
+          <Route path="/update/:order_id" element={<Edit tg={tg} colorB={colorB}/>} />
           <Route path="/registration" element={<Reg tg={tg} colorB={colorB} />} />
           <Route path="/authorization" element={<Auth  tg={tg} colorB={colorB} />} />
           <Route path="/isp_reg" element={<Isp tg={tg} colorB={colorB}/>} />
