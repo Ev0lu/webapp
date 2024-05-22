@@ -49,7 +49,6 @@ function Auth3(props) {
 
     const checking = () => {
         if ((pass !== pass2) || (login === '') || (tele === '') || (mail === '')) {
-            console.log('error')
             setRlink('/zak_reg')
         } else {
             setRlink('/zak1_reg')
@@ -76,18 +75,13 @@ const postRequest2 = async () => {
     });
     if (response.ok) {
       const data = await response.json();
-      console.log(data)
-      console.log(token)
 
     } else {
       const data = await response.json();
-      console.log(data)
-      console.log(token)
 
     }
   } catch (error) {
     setCheck('')
-    console.log(error)
   }
 }
 

@@ -483,17 +483,14 @@ const handleInputChange2 = (e) => {
         const response = await fetch(`https://assista1.ru/api/v1/items/language/levels?language=${country[0]}`);
         if (response.ok) {
             const data = await response.json();
-            console.log(data);
             const levelsToDelete = data.items.map(level => level[1]);
             setSelectedCountries2__2(prev => {
                 const updated = prev.filter(c => c !== country[0]);
-                console.log('Updated selectedCountries2 after removal:', updated);
                 return updated;
             });
 
             setSelectedCountries2Id__2(prev => {
                 const updated = prev.filter(c => c !== country[1]);
-                console.log('Updated selectedCountries2Id after removal:', updated);
                 return updated;
             });
 
@@ -504,7 +501,6 @@ const handleInputChange2 = (e) => {
                         delete updatedLevels[levelId];
                     }
                 });
-                console.log('Updated selectedLangLevels after removal:', updatedLevels);
                 return updatedLevels;
             });
 
@@ -515,12 +511,10 @@ const handleInputChange2 = (e) => {
                         delete updatedLevels[levelId];
                     }
                 });
-                console.log('Updated langLevels after removal:', updatedLevels);
                 return updatedLevels;
             });
 
         } else {
-            console.log('Ошибка при запросе уровней языка');
         }
     } catch (error) {
         console.error('Ошибка сети:', error);
@@ -546,13 +540,10 @@ const handleInputChange2 = (e) => {
                       [country[1]]: levels[0].value // Исправлено: используем идентификатор языка в качестве ключа
                   }));
               } else {
-                  console.log('Пустой ответ на запрос уровней языка');
               }
             } else {
-                console.log('Ошибка при запросе уровней языка');
             }
         } catch (error) {
-            console.error('Ошибка сети:', error);
         }
     }
 };
@@ -586,11 +577,9 @@ const handleLevelChange = (language, level) => {
 
 
   useEffect(() => {
-    console.log('Updated selectedLangLevels:', selectedLangLevels);
 }, [selectedLangLevels]);
 
 useEffect(() => {
-    console.log('Updated langLevels:', langLevels);
 }, [langLevels]);
 const fetchSkills = async () => {
 
@@ -664,7 +653,6 @@ useEffect(() => {
         }
       });
       const data = await response.json();
-      console.log(data)
       setName(`${data.full_name.split(' ')[0]}`)
       setLname(`${data.full_name.split(' ')[1]}`)
       setFname(`${data.full_name.split(' ')[2]}`)
@@ -696,10 +684,8 @@ useEffect(() => {
                       tempSelectedLangLevels[lang.value] = fetchedLevels[0].value;
                   }
               } else {
-                  console.log('Пустой ответ на запрос уровней языка');
               }
           } else {
-              console.log('Ошибка при запросе уровней языка');
           }
       }
       setLangLevels(tempLangLevels);
@@ -723,12 +709,6 @@ useEffect(() => {
   useEffect(() => {
     fetchInfo()
   },[])
-  useEffect(() => {
-    console.log('Updated langLevels:', langLevels);
-    console.log('Updated selectedLangLevels:', selectedLangLevels);
-}, [langLevels, selectedLangLevels]);
-
-
 
 
 

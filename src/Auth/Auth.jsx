@@ -82,7 +82,6 @@ const Auth = (props) => {
 
     if (response.ok) {
             const responseData = await response.json();
-            console.log(responseData)
             setTokenRefresh(responseData.refresh_token)
             setTokenAccess(responseData.access_token)
             const data = {
@@ -103,7 +102,6 @@ const Auth = (props) => {
              setResp(responseData.detail)
 
 
-            console.log(responseData)
 
               }
   } catch (error) {
