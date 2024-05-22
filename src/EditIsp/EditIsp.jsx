@@ -23,7 +23,7 @@ function EditIsp(props) {
   const [telegram_id, setTelegram_id] = useState(searchParams.get('telegram_id'));
   const [today, setToday] = useState(new Date())
   // Получение значений параметров access_token и refresh_token из URL
-  const [langLevels, setLangLevels] = useState([])
+  const [langLevels, setLangLevels] = useState({});
   const [selectedLangLevels, setSelectedLangLevels] = useState({});
   const [debounceTimeout, setDebounceTimeout] = useState(null); // Таймаут для задержки запроса
   const [isCancelled, setIsCancelled] = useState(false); // Флаг отмены запроса
@@ -479,57 +479,94 @@ const handleInputChange2 = (e) => {
     const isSelected2 = selectedCountries2Id__2.includes(country[1]);
 
     if (isSelected) {
-      
-      setSelectedCountries2__2(selectedCountries2__2.filter(c => c !== country[0]));
-
-      setSelectedCountries2Id__2(selectedCountries2Id__2.filter(c => c !== country[1]));
-      setSelectedLangLevels(prevLevels => {
-        const updatedLevels = { ...prevLevels };
-        delete updatedLevels[country[0]];
-        return updatedLevels;
-      });
-       console.log(selectedLangLevels)
-} else {
-      setSelectedCountries2__2([...selectedCountries2__2, country[0]]);
-      setSelectedCountries2Id__2([...selectedCountries2Id__2, country[1]]);
-
       try {
         const response = await fetch(`https://assista1.ru/api/v1/items/language/levels?language=${country[0]}`);
         if (response.ok) {
-          const data = await response.json();
-          const levels = data.items.map(([level, id]) => ({ label: level, value: id }));
-          setLangLevels(levels);
-          setSelectedLangLevels(prevLevels => ({
-            ...prevLevels,
-            [country[0]]: levels[0].value // По умолчанию выбираем первый уровень
-          }));
-          console.log(selectedLangLevels)
+            const data = await response.json();
+            console.log(data);
+            const levelsToDelete = data.items.map(level => level[1]);
+            setSelectedCountries2__2(prev => {
+                const updated = prev.filter(c => c !== country[0]);
+                console.log('Updated selectedCountries2 after removal:', updated);
+                return updated;
+            });
+
+            setSelectedCountries2Id__2(prev => {
+                const updated = prev.filter(c => c !== country[1]);
+                console.log('Updated selectedCountries2Id after removal:', updated);
+                return updated;
+            });
+
+            setSelectedLangLevels(prevLevels => {
+                const updatedLevels = { ...prevLevels };
+                levelsToDelete.forEach(levelId => {
+                    if (levelId in updatedLevels) {
+                        delete updatedLevels[levelId];
+                    }
+                });
+                console.log('Updated selectedLangLevels after removal:', updatedLevels);
+                return updatedLevels;
+            });
+
+            setLangLevels(prevLevels => {
+                const updatedLevels = { ...prevLevels };
+                levelsToDelete.forEach(levelId => {
+                    if (levelId in updatedLevels) {
+                        delete updatedLevels[levelId];
+                    }
+                });
+                console.log('Updated langLevels after removal:', updatedLevels);
+                return updatedLevels;
+            });
 
         } else {
-          console.log('Ошибка при запросе уровней языка');
-
-          // Обработка ошибки при запросе
+            console.log('Ошибка при запросе уровней языка');
         }
-      } catch (error) {
-        // Обработка ошибки при сетевом запросе
+    } catch (error) {
         console.error('Ошибка сети:', error);
-
-      }
-      
-      
-
     }
 
-  };
 
+   
+    } else {
+        setSelectedCountries2__2([...selectedCountries2__2, country[0]]);
+        setSelectedCountries2Id__2([...selectedCountries2Id__2, country[1]]);
+        try {
+            const response = await fetch(`https://assista1.ru/api/v1/items/language/levels?language=${country[0]}`);
+            if (response.ok) {
+              const data = await response.json();
+              if (data && data.items && data.items.length > 0) {
+                  const levels = data.items.map(([label, value]) => ({ label, value }));
+                  setLangLevels(prevLevels => ({
+                      ...prevLevels,
+                      [country[1]]: levels // Исправлено: используем идентификатор языка в качестве ключа
+                  }));
+                  setSelectedLangLevels(prevLevels => ({
+                      ...prevLevels,
+                      [country[1]]: levels[0].value // Исправлено: используем идентификатор языка в качестве ключа
+                  }));
+              } else {
+                  console.log('Пустой ответ на запрос уровней языка');
+              }
+            } else {
+                console.log('Ошибка при запросе уровней языка');
+            }
+        } catch (error) {
+            console.error('Ошибка сети:', error);
+        }
+    }
+};
 
-  const handleLevelChange = (language, level) => {
+const handleLevelChange = (language, level) => {
     setSelectedLangLevels(prevLevels => ({
-      ...prevLevels,
-      [language]: level
+        ...prevLevels,
+        [language]: level
     }));
-  };
-  
+};
+
+
+
+ 
 
   const handleScroll1__2 = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
@@ -548,6 +585,13 @@ const handleInputChange2 = (e) => {
   };
 
 
+  useEffect(() => {
+    console.log('Updated selectedLangLevels:', selectedLangLevels);
+}, [selectedLangLevels]);
+
+useEffect(() => {
+    console.log('Updated langLevels:', langLevels);
+}, [langLevels]);
 const fetchSkills = async () => {
 
 
@@ -632,7 +676,40 @@ useEffect(() => {
       setSelectedCountries1Id__2(data.worker.skills.map(lang => lang[1]))
       selectCountry(['', ''])
       selectCountry2(['', data.worker.location.city_id])
-      const levels = data.worker.languages.map(lang => ({ label: lang[2], value: lang[0] }));
+      try {
+        const tempLangLevels = { ...langLevels };
+        const tempSelectedLangLevels = { ...selectedLangLevels };
+
+        const levels = data.worker.languages.map(lang => ({ label: lang[2], value: lang[0], name: lang[1] }));
+        for (const lang of levels) {
+          const response = await fetch(`https://assista1.ru/api/v1/items/language/levels?language=${lang.name}`);
+          if (response.ok) {
+              const data = await response.json();
+              if (data && data.items && data.items.length > 0) {
+                  const fetchedLevels = data.items.map(([level, id]) => ({ label: level, value: id }));
+                  tempLangLevels[lang.value] = fetchedLevels;
+
+                  const selectedLevel = fetchedLevels.find(level => level.label === lang.label);
+                  if (selectedLevel) {
+                      tempSelectedLangLevels[lang.value] = selectedLevel.value;
+                  } else {
+                      tempSelectedLangLevels[lang.value] = fetchedLevels[0].value;
+                  }
+              } else {
+                  console.log('Пустой ответ на запрос уровней языка');
+              }
+          } else {
+              console.log('Ошибка при запросе уровней языка');
+          }
+      }
+      setLangLevels(tempLangLevels);
+      setSelectedLangLevels(tempSelectedLangLevels);
+      } catch (error) {
+        // Обработка ошибки при сетевом запросе
+        console.error('Ошибка сети:', error);
+
+      }
+  
       setLangLevels(levels);
 
 
@@ -646,8 +723,10 @@ useEffect(() => {
   useEffect(() => {
     fetchInfo()
   },[])
-
-
+  useEffect(() => {
+    console.log('Updated langLevels:', langLevels);
+    console.log('Updated selectedLangLevels:', selectedLangLevels);
+}, [langLevels, selectedLangLevels]);
 
 
 
@@ -957,27 +1036,23 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
           { selectedCountries2__2.length === 0 && (errorFields.selectedCountries2__2 && <span className={s.error_message}>Пожалуйста, выберите языки</span>)}
 
         </div>
-
         <div className={s.language_wrapper}>
-              {selectedCountries2__2.map((lang, index) => (
+            {selectedCountries2__2.map((lang, index) => (
                 <div key={index} className={s.language_select_wrapper}>
-                  <div className={s.language_label} style={props.colorB === 'light' ? { color: 'black' } : { color: 'white' }}>{lang}</div>
-                  <select
-                    className={s.language_select}
-                    style={props.colorB === 'light' ? {  backgroundColor: 'white', color: 'black' } : { backgroundColor: '#373737', color: 'white'}}
-                    value={selectedLangLevels[lang] || ''}
-                    onChange={(e) => handleLevelChange(lang, e.target.value)}
-                  >
-                    {langLevels.map((level, index) => (
-                      <option key={index} value={level.value} >{level.label}</option>
-                    ))}
-                  </select>
+                    <div className={s.language_label} style={props.colorB === 'light' ? { color: 'black' } : { color: 'white' }}>{lang}</div>
+                    <select
+                        className={s.language_select}
+                        style={props.colorB === 'light' ? { backgroundColor: 'white', color: 'black' } : { backgroundColor: '#373737', color: 'white' }}
+                        value={selectedLangLevels[selectedCountries2Id__2[index]] || ''}
+                        onChange={(e) => handleLevelChange(selectedCountries2Id__2[index], e.target.value)}
+                    >
+                        {(langLevels[selectedCountries2Id__2[index]] || []).map((level, index) => (
+                            <option key={index} value={level.value}>{level.label}</option>
+                        ))}
+                    </select>
                 </div>
-              ))}
-            </div>
-
-    
-
+            ))}
+        </div>
 
            
       <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/update/worker' : '/update/worker'}>

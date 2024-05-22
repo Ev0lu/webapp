@@ -246,7 +246,7 @@ const refreshTok = async () => {
             <input
                 style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
                 disabled={Boolean(exist)}
-                type={'text'}
+                type='text'
                 placeholder="Имя*"
                 className={`${s.password_field} ${errorFields.name && s.error}`}
                 value={name}
@@ -257,8 +257,10 @@ const refreshTok = async () => {
         </div>
         <div className={`${s.password_input}`}>
             <input
-            style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }                type={'text'}
+            style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} } 
+                           type='text'
                 placeholder="Фамилия*"
+                
                 className={`${s.password_field} ${errorFields.lname && s.error}`}
                 value={lname}
                  disabled={Boolean(exist)}
@@ -268,7 +270,8 @@ const refreshTok = async () => {
         </div>
         <div className={s.password_input3}>
             <input
-style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }                type={'text'}
+style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }    
+            type='text'
                 placeholder="Отчество"
                 className={s.password_field}
                  disabled={Boolean(exist)}

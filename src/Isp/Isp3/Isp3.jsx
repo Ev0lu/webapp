@@ -50,6 +50,7 @@ function Isp3(props) {
     selectedCountries1: false,
     selectedCountries2: false
 });
+
   const validateFields = () => {
     const errors = {
       selectedCountries1: selectedCountries1.length === 0,
@@ -133,51 +134,50 @@ function Isp3(props) {
     const isSelected2 = selectedCountries2Id.includes(country[1]);
 
     if (isSelected) {
-      
-      setSelectedCountries2(selectedCountries2.filter(c => c !== country[0]));
-
-      setSelectedCountries2Id(selectedCountries2Id.filter(c => c !== country[1]));
-      setSelectedLangLevels(prevLevels => {
-        const updatedLevels = { ...prevLevels };
-        delete updatedLevels[country[0]];
-        return updatedLevels;
-      });
-       console.log(selectedLangLevels)
-} else {
-      setSelectedCountries2([...selectedCountries2, country[0]]);
-      setSelectedCountries2Id([...selectedCountries2Id, country[1]]);
-      try {
-        const response = await fetch(`https://assista1.ru/api/v1/items/language/levels?language=${country[0]}`);
-        if (response.ok) {
-          const data = await response.json();
-          const levels = data.items.map(([level, id]) => ({ label: level, value: id }));
-          setLangLevels(levels);
-          setSelectedLangLevels(prevLevels => ({
-            ...prevLevels,
-            [country[0]]: levels[0].value // По умолчанию выбираем первый уровень
-          }));
-          console.log(selectedLangLevels)
-
-        } else {
-          console.log('Ошибка при запросе уровней языка');
-
-          // Обработка ошибки при запросе
+        setSelectedCountries2(selectedCountries2.filter(c => c !== country[0]));
+        setSelectedCountries2Id(selectedCountries2Id.filter(c => c !== country[1]));
+        setSelectedLangLevels(prevLevels => {
+            const updatedLevels = { ...prevLevels };
+            delete updatedLevels[country[0]];
+            return updatedLevels;
+        });
+        setLangLevels(prevLevels => {
+            const updatedLevels = { ...prevLevels };
+            delete updatedLevels[country[0]];
+            return updatedLevels;
+        });
+    } else {
+        setSelectedCountries2([...selectedCountries2, country[0]]);
+        setSelectedCountries2Id([...selectedCountries2Id, country[1]]);
+        try {
+            const response = await fetch(`https://assista1.ru/api/v1/items/language/levels?language=${country[0]}`);
+            if (response.ok) {
+                const data = await response.json();
+                const levels = data.items.map(([label, value]) => ({ label, value }));
+                setLangLevels(prevLevels => ({
+                    ...prevLevels,
+                    [country[0]]: levels
+                }));
+                setSelectedLangLevels(prevLevels => ({
+                    ...prevLevels,
+                    [country[0]]: levels[0].value // По умолчанию выбираем первый уровень
+                }));
+            } else {
+                console.log('Ошибка при запросе уровней языка');
+            }
+        } catch (error) {
+            console.error('Ошибка сети:', error);
         }
-      } catch (error) {
-        // Обработка ошибки при сетевом запросе
-        console.error('Ошибка сети:', error);
-
-      }
-
     }
+};
 
-  };
-  const handleLevelChange = (language, level) => {
+const handleLevelChange = (language, level) => {
     setSelectedLangLevels(prevLevels => ({
-      ...prevLevels,
-      [language]: level
+        ...prevLevels,
+        [language]: level
     }));
-  };
+};
+
   
   const handleScroll1 = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
@@ -300,6 +300,7 @@ const reg = async () => {
       body: JSON.stringify(user)
     });
 
+    
     if (response.ok) {
       const data = await response.json();
       sessionStorage.setItem('access_token', data.access_token)
@@ -322,87 +323,6 @@ console.log(error)
 
 
 
-
-var x, i, j, l, ll, selElmnt, a, b, c;
-/* Look for any elements with the class "custom-select": */
-x = document.getElementsByClassName("language_select");
-l = x.length;
-for (i = 0; i < l; i++) {
-  selElmnt = x[i].getElementsByTagName("select")[0];
-  ll = selElmnt.length;
-  /* For each element, create a new DIV that will act as the selected item: */
-  a = document.createElement("DIV");
-  a.setAttribute("class", "select-selected");
-  a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
-  x[i].appendChild(a);
-  /* For each element, create a new DIV that will contain the option list: */
-  b = document.createElement("DIV");
-  b.setAttribute("class", "select-items select-hide");
-  for (j = 1; j < ll; j++) {
-    /* For each option in the original select element,
-    create a new DIV that will act as an option item: */
-    c = document.createElement("DIV");
-    c.innerHTML = selElmnt.options[j].innerHTML;
-    c.addEventListener("click", function(e) {
-        /* When an item is clicked, update the original select box,
-        and the selected item: */
-        var y, i, k, s, h, sl, yl;
-        s = this.parentNode.parentNode.getElementsByTagName("select")[0];
-        sl = s.length;
-        h = this.parentNode.previousSibling;
-        for (i = 0; i < sl; i++) {
-          if (s.options[i].innerHTML == this.innerHTML) {
-            s.selectedIndex = i;
-            h.innerHTML = this.innerHTML;
-            y = this.parentNode.getElementsByClassName("same-as-selected");
-            yl = y.length;
-            for (k = 0; k < yl; k++) {
-              y[k].removeAttribute("class");
-            }
-            this.setAttribute("class", "same-as-selected");
-            break;
-          }
-        }
-        h.click();
-    });
-    b.appendChild(c);
-  }
-  x[i].appendChild(b);
-  a.addEventListener("click", function(e) {
-    /* When the select box is clicked, close any other select boxes,
-    and open/close the current select box: */
-    e.stopPropagation();
-    closeAllSelect(this);
-    this.nextSibling.classList.toggle("select-hide");
-    this.classList.toggle("select-arrow-active");
-  });
-}
-
-function closeAllSelect(elmnt) {
-  /* A function that will close all select boxes in the document,
-  except the current select box: */
-  var x, y, i, xl, yl, arrNo = [];
-  x = document.getElementsByClassName("select-items");
-  y = document.getElementsByClassName("select-selected");
-  xl = x.length;
-  yl = y.length;
-  for (i = 0; i < yl; i++) {
-    if (elmnt == y[i]) {
-      arrNo.push(i)
-    } else {
-      y[i].classList.remove("select-arrow-active");
-    }
-  }
-  for (i = 0; i < xl; i++) {
-    if (arrNo.indexOf(i)) {
-      x[i].classList.add("select-hide");
-    }
-  }
-}
-
-/* If the user clicks anywhere outside the select box,
-then close all select boxes: */
-document.addEventListener("click", closeAllSelect);
 
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>  
@@ -518,33 +438,33 @@ document.addEventListener("click", closeAllSelect);
           { selectedCountries2.length === 0 && (errorFields.selectedCountries2 && <span className={s.error_message}>Пожалуйста, выберите языки</span>)}
 
         </div>
-            <div className={s.language_wrapper}>
-              {selectedCountries2.map((lang, index) => (
-                <div key={index} className={s.language_select_wrapper}>
-                  <div className={s.language_label} style={props.colorB === 'light' ? { color: 'black' } : { color: 'white' }}>{lang}</div>
-                  <select
-                    className={s.language_select}
-                    style={props.colorB === 'light' ? {  backgroundColor: 'white', color: 'black' } : { backgroundColor: '#373737', color: 'white'}}
-                    value={selectedLangLevels[lang] || ''}
-                    onChange={(e) => handleLevelChange(lang, e.target.value)}
-                  >
-                    {langLevels.map((level, index) => (
-                      <option key={index} value={level.value} >{level.label}</option>
-                    ))}
-                  </select>
-                </div>
-              ))}
-            </div>
+        <div className={s.language_wrapper}>
+    {selectedCountries2.map((lang, index) => (
+        <div key={index} className={s.language_select_wrapper}>
+            <div className={s.language_label} style={props.colorB === 'light' ? { color: 'black' } : { color: 'white' }}>{lang}</div>
+            <select
+                className={s.language_select}
+                style={props.colorB === 'light' ? { backgroundColor: 'white', color: 'black' } : { backgroundColor: '#373737', color: 'white'}}
+                value={selectedLangLevels[lang] || ''}
+                onChange={(e) => handleLevelChange(lang, e.target.value)}
+            >
+                {(langLevels[lang] || []).map((level, index) => (
+                    <option key={index} value={level.value}>{level.label}</option>
+                ))}
+            </select>
+        </div>
+    ))}
+</div>
 
-        <Link to={selectedCountries1.length !== 0 || selectedCountries2.length !== 0 ? '' : '/isp3_reg'}>
+        <Link to={selectedCountries1.length !== 0 &&  selectedCountries2.length !== 0 ? '' : '/isp3_reg'}>
           <button onClick={() => {
             validateFields()
-
+            console.log(Object.values(selectedLangLevels))
             sessionStorage.setItem('selectedLang', selectedCountries2)
             sessionStorage.setItem('selectedSkills', selectedCountries1)
             sessionStorage.setItem('selectedLangId', selectedCountries2Id)
             sessionStorage.setItem('selectedSkillsId', selectedCountries1Id)
-            if ((selectedCountries1.length !== 0) || (selectedCountries2.length !== 0) || (sessionStorage.getItem('login') !== null) || (sessionStorage.getItem('pass') !== null) || (sessionStorage.getItem('gender') !== null)  || (sessionStorage.getItem('tele') !== null)   || (sessionStorage.getItem('name') !== null)) {
+            if ((selectedCountries1.length !== 0) && (selectedCountries2.length !== 0) && (sessionStorage.getItem('login') !== null) && (sessionStorage.getItem('pass') !== null) && (sessionStorage.getItem('gender') !== null)  && (sessionStorage.getItem('tele') !== null)   && (sessionStorage.getItem('name') !== null)) {
               reg()
             }
 
