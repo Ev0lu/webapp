@@ -551,7 +551,7 @@ useState(() => {
                 style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#373737', color:'#C7C7C7'} }
 
             />
-        {tele === '' && (errorFields.tele && <span className={s.error_message}>Пожалуйста, введите телефон</span>)}
+        {tele === '' && (errorFields.tele && <span className={s.error_message}>Пожалуйста, введите описание</span>)}
 
         </div>
 
