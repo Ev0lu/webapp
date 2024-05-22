@@ -105,10 +105,10 @@ const postRequest = async () => {
     if (response.ok) {
       const responseData = await response.json();
       // Handle response data if needed
-      if (responseData.sessionToken) {
+      if (responseData.session_token) {
         sessionStorage.setItem('session_token', responseData.session_token)
      
-        return navigate("/isp_reg_pass")
+        return navigate("/zak_reg_pass")
         }
     } else {
      const responseData = await response.json();
