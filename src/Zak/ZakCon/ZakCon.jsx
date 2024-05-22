@@ -98,8 +98,6 @@ const postRequest = async () => {
       setInvalid(false)
       setToken(`${data.session_token}`)
       sessionStorage.setItem('session_token', `${data.session_token}`)
-      console.log(data.session_token)
-      console.log(data)
     } else {
        const data = await response.json();
       setCode1('')
@@ -110,7 +108,6 @@ const postRequest = async () => {
       postRequest2()
       }
       setInvalid(true)
-      console.log(data)
     }
        
   } catch (error) {

@@ -84,7 +84,6 @@ const refreshTok = async () => {
 
     const checking = () => {
         if ((gender === '') || (name === '') || (lname === '')) {
-            console.log('error')
             setRlink('/zak_reg')
         } else {
             setRlink('/zak1_reg')

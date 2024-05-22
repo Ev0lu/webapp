@@ -163,10 +163,8 @@ function Isp3(props) {
                     [country[0]]: levels[0].value // По умолчанию выбираем первый уровень
                 }));
             } else {
-                console.log('Ошибка при запросе уровней языка');
             }
         } catch (error) {
-            console.error('Ошибка сети:', error);
         }
     }
 };
@@ -241,9 +239,7 @@ const fetchSkills = async () => {
 
       setLang(prevCountries => [...prevCountries, ...newCountries]); // Добавляем загруженные страны к списку
       setOffset2(prevOffset => prevOffset + limit2); // Увеличиваем offset для следующего запроса
-      console.log(data)
     } catch (error) {
-      console.log(error)
     }
 
     setLoading(false);
@@ -267,7 +263,6 @@ useEffect(() => {
 
   
 const reg = async () => {  
-  console.log(Object.values(selectedLangLevels))
   let user = {
     profile: {
       telegram_id: Number(sessionStorage.getItem('tgId')),
@@ -313,7 +308,6 @@ const reg = async () => {
     }
 
   } catch (error) {
-console.log(error)
   }
 }
 
@@ -459,7 +453,6 @@ console.log(error)
         <Link to={selectedCountries1.length !== 0 &&  selectedCountries2.length !== 0 ? '' : '/isp3_reg'}>
           <button onClick={() => {
             validateFields()
-            console.log(Object.values(selectedLangLevels))
             sessionStorage.setItem('selectedLang', selectedCountries2)
             sessionStorage.setItem('selectedSkills', selectedCountries1)
             sessionStorage.setItem('selectedLangId', selectedCountries2Id)

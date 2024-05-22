@@ -104,7 +104,6 @@ const postRequest = async () => {
     if (response.ok) {
     const responseData = await response.json();
     
-    console.log(mail)
     
      if (responseData.session_token) {
    
@@ -114,7 +113,6 @@ const postRequest = async () => {
         }
     } else {
      const responseData = await response.json();
-     console.log(responseData)
     }
   } catch (error) {
   }

@@ -33,9 +33,7 @@ function ZakPh(props) {
 
 const handleAvatarChange = (event) => {
   const file = event.target.files[0];
-  console.log(file)
     if (file.size > 500 * 1024) {
-      console.log(file.size)
       setSize(true)
       setAvatar(null);
       return;
@@ -64,13 +62,9 @@ const handleAvatarChange = (event) => {
 const uploadPhoto = async () => {
     const formData = new FormData();
     formData.append('photo', filepic);
-    console.log(formData)
-  console.log(sessionStorage.getItem('access_token'))
     if (!filepic) {
       return;
     }
-  console.log(formData)
-  console.log(sessionStorage.getItem('access_token'))
     
   setLoading(true)
   try {
@@ -84,7 +78,6 @@ const uploadPhoto = async () => {
 
     if (response.ok) {
       const responseData = await response.json();
-      console.log(responseData)
         const data = {
           access_token: sessionStorage.getItem('access_token'),
           refresh_token: sessionStorage.getItem('refresh_token'),
@@ -98,7 +91,6 @@ const uploadPhoto = async () => {
 
     }
   } catch (error) {
-     console.log(error)
 
   }
 };

@@ -72,7 +72,6 @@ function Isp2(props) {
 
     const checking = () => {
         if ((pass !== pass2) || (login === '') || (tele === '') || (mail === '')) {
-            console.log('error')
             setRlink('/zak_reg')
         } else {
             setRlink('/zak1_reg')

@@ -305,7 +305,6 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
 
                 changeFio()
                 validateFields()
-                console.log(isexist)
             }}>Далее</button>
         </Link>
         </div>
