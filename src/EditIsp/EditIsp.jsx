@@ -1057,8 +1057,11 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
            
       <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/update/worker' : '/update/worker'}>
         <button onClick={() => {
+
           validateFields()
-          patchProfile()
+          if (selectedCountries2Id__2.length !== 0 && name !== '' && lname !== '' && fname !== '' && selectedCountries1__2.length !== 0){
+               patchProfile()
+          }
 
         }}className={`${s.greetings_btn} ${props.colorB === 'light' ? s.light : s.dark}`}>Применить</button>
       </Link>

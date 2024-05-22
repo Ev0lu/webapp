@@ -5,7 +5,7 @@ import arrowsvg2 from '../assets/angle-dark.svg';
 import blackarr from '../assets/black.svg';
 import Vector from '../assets/Vector.svg'
 import { Link } from 'react-router-dom';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 
 
 
@@ -16,7 +16,7 @@ function Edit(props) {
   const limit = 25; // Количество элементов, которые необходимо загрузить при каждом запросе
   const [searchQuery, setSearchQuery] = useState(''); // Input value for country search
   const { order_id } = useParams();
-
+ const navigate = useNavigate()
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const [accessToken, setAccessToken] = useState(searchParams.get('access_token'));
@@ -498,11 +498,12 @@ const fetchSkills = async () => {
         } else {
          const responseData = await response.json();
           // Handle response data if needed
-            const data = {
+           /* const data = {
                 "status": "unauthorized"
             }
-            props.tg.sendData(JSON.stringify(data))
-
+            props.tg.sendData(JSON.stringify(data))*/
+            
+            navigate('/failure_edit')
         }
       } catch (error) {
     
