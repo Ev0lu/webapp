@@ -1,4 +1,17 @@
 
+.toggle_password {
+  position: absolute;
+
+  right: 10px;
+  top: 7px;
+  cursor: pointer;
+}
+
+.toggle_password svg {
+  fill: #666;
+  width: 100%; /* Заполнение всей ширины контейнера */
+  height: 100%; /* Заполнение всей высоты контейнера */
+}
 .greetings{
   height: 100%;
   background-color: #232323;

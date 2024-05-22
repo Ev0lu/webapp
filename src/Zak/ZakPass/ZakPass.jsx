@@ -4,8 +4,11 @@ import { Link } from "react-router-dom";
 import arrowsvg from '../../assets/arrow.svg'
 import blackarr from '../../assets/black.svg'
 import { useNavigate  } from 'react-router-dom';
+import eyed from '../../assets/eye-clos.svg'
+import eyeLight from '../../assets/eye-closed.svg'
 
 function ZakPass(props) {
+  const [showPassword, setShowPassword] = useState(true);
 
     const [pass, setPass] = useState('')
     const [pass2, setPass2] = useState('')
@@ -25,7 +28,29 @@ function ZakPass(props) {
         checkPh: false
     });
   const [isVerified, setIsVerified] = useState(false);
+  useEffect(() => {
+    setTimeout(() => { setShowPassword(false)}, 500)
+},[])
+useEffect(() => {
 
+      setShowPassword(false)
+
+  
+      
+},[])
+const handleTogglePassword = () => {
+setShowPassword(!showPassword);
+};
+useEffect(() => {
+    if (pass == '') {
+        setShowPassword(true)
+    } else {
+      setTimeout(() => setShowPassword(false), 200)
+
+
+    }
+        
+},[pass, pass2])
     const validateFields = () => {
         const errors = {
             pass: pass === '',
@@ -121,7 +146,7 @@ const reg = async () => {
 
         <div className={s.password_input}>
             <input
-                type={'text'}
+                type={showPassword ? 'text' : 'password'}
                 placeholder="Пароль"
                 className={`${s.password_field} ${errorFields.pass && s.error}`}
                 value={pass}
@@ -129,12 +154,14 @@ const reg = async () => {
                 style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
                 
             />
+            <img className={s.toggle_password} onClick={handleTogglePassword} src={props.colorB === 'dark' ? eyed : eyeLight}></img>
+
             {pass === '' && (errorFields.pass && <span className={s.error_message}>Пожалуйста, введите пароль</span>)}
 
              </div>
         <div className={s.password_input}>
              <input
-                type={'text'}
+                type={showPassword ? 'text' : 'password'}
                 placeholder="Подтверждение пароля"
                 className={`${s.password_field} ${errorFields.pass2 && s.error}`}
                 value={pass2}
