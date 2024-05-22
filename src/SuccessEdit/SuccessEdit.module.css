@@ -1,24 +1,24 @@
 .greetings{
-    height: 100%;
-  }
+  height: 100%;
+}
 
+
+.greetings_wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding-top: 40px;
   
-  .greetings_wrapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    padding-top: 40px;
-    
-    
-  }
   
-  .greetings_text{
-    color: black;
-    font-size: 28px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  }
+}
+
+.greetings_text{
+  color: black;
+  font-size: 28px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
   .greetings_btn{
     border: none;
     outline: none;

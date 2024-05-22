@@ -8,6 +8,8 @@ import Greetings from './Greetings/Greetings';
 import Payment from './Payment/Payment';
 import SuccessAuth from './SuccessAuth/SuccessAuth';
 import SuccessReg from './SuccessReg/SuccessReg';
+import SuccessEdit from './SuccessEdit/SuccessEdit';
+
 
 
 import Edit from './Edit/Edit';
@@ -91,6 +93,8 @@ function App() {
           <Route path="/authorization_pass" element={<Auth3 tg={tg} colorB={colorB} />} />
           <Route path="/isp_reg_pass" element={<IspPass tg={tg} colorB={colorB} />} />
           <Route path="/zak_reg_pass" element={<ZakPass tg={tg} colorB={colorB} />} />
+          <Route path="/failure_edit" element={<SuccessEdit tg={tg} colorB={colorB} />} />
+
 
           
           
