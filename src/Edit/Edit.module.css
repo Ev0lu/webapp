@@ -15,7 +15,9 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 font-weight: 400;
 color: white;
 }
-
+.greetings_btn1{
+  margin-bottom: 30px;
+}
 label {
 font-size: 14px; /* Размер текста надписи */
 }

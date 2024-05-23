@@ -789,7 +789,7 @@ const fetchSkills = async () => {
       <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? `/update/:${order_id}?access_token=${accessToken}&refresh_token=${refreshToken}&telegram_id=${telegram_id}` : `/update/:${order_id}?access_token=${accessToken}&refresh_token=${refreshToken}&telegram_id=${telegram_id}`}>
         <button onClick={() => {
             props.tg.close()
-        }}className={`${s.greetings_btn} ${props.colorB === 'light' ? s.light : s.dark}`}>Отменить</button>
+        }}className={`${s.greetings_btn} ${props.colorB === 'light' ? s.light : s.dark} ${s.greetings_btn1}`}>Отменить</button>
       </Link>
       </div>
     </div>

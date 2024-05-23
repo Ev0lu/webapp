@@ -1048,7 +1048,7 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
       <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/update/worker' : '/update/worker'}>
         <button onClick={() => {
             props.tg.close()
-        }}className={`${s.greetings_btn} ${props.colorB === 'light' ? s.light : s.dark}`}>Отменить</button>
+        }}className={`${s.greetings_btn} ${props.colorB === 'light' ? s.light : s.dark} ${s.greetings_btn1}`}>Отменить</button>
       </Link>
       </div>
     </div>

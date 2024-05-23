@@ -59,7 +59,7 @@ border: 2px solid white;
 }
   
 .greetings{
-    height: 165vh;
+
     background-color: #232323;
   
   }
@@ -91,6 +91,11 @@ border: 2px solid white;
     transition: background-color 0.2s ease;
     
   }
+  .greetings_btn1{
+    margin-bottom: 40px;
+    
+  }
+
 
 
 

@@ -19,6 +19,10 @@ color: white;
 label {
 font-size: 14px; /* Размер текста надписи */
 }
+.greetings_btn1{
+  margin-bottom: 40px;
+  
+}
 
 input[type="radio"] {
 margin-right: 10px;
