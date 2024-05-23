@@ -20,6 +20,9 @@
   font-size: 28px;
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+.greetings_btn1{
+  margin-bottom: 30px;
+}
 .greetings_btn{
   border: none;
   outline: none;

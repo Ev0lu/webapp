@@ -104,3 +104,11 @@
     color: white;
     background-color: #232323;
 }
+.greetings_btn.lightMode.noHover:hover {
+  color: black !important;
+  background-color: white !important; 
+}
+.greetings_btn.darkMode.noHover:hover {
+  color: white !important;
+  background-color: #232323 !important;
+}

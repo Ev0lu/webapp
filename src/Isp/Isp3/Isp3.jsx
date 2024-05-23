@@ -461,7 +461,7 @@ const reg = async () => {
               reg()
             }
 
-          }} className={s.greetings_btn}>Далее</button>
+          }} className={`${s.greetings_btn} ${s.greetings_btn1}`}>Далее</button>
         </Link>
       </div>
     </div>

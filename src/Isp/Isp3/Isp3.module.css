@@ -1,6 +1,5 @@
 
 .greetings{
-    height: 130vh;
     background-color: #232323;
   
   }
@@ -23,7 +22,9 @@
     padding-top: 40px;
     
   }
-  
+  .greetings_btn1{
+    margin-bottom: 230px;
+  }
   .greetings_text{
     color: black;
     font-size: 28px;
