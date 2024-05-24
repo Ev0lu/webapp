@@ -538,7 +538,7 @@ useState(() => {
                 style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#373737', color:'#C7C7C7'} }
 
             />
-            {login === '' && (errorFields.login && <span className={s.error_message}>Пожалуйста, введите логин</span>)}
+            {login === '' && (errorFields.login && <span className={s.error_message}>Пожалуйста, введите название</span>)}
 
         </div>
         <div className={s.password_input2}>
