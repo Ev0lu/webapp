@@ -1,8 +1,8 @@
 
 .greetings{
-    height: 100%;
-    background-color: #232323;
-  
+  background-color: #232323;
+  height: 87%;
+
   }
   
   .greetings_wrapper{
@@ -12,7 +12,6 @@
     align-items: center;
     gap: 30px;
     padding-top: 40px;
-    
   }
   
   .greetings_text{

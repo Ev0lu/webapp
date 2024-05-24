@@ -1,11 +1,9 @@
 
-/*
-body {
-  background: var(--tg-color-scheme);
-  color: var(--tg-color-scheme);
-
-
-}*/
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
 h1 {
   font-size: 3.2em;

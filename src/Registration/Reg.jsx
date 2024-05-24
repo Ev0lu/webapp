@@ -71,7 +71,7 @@ function Reg(props) {
                 sessionStorage.setItem('accessToken', accessToken)
                 sessionStorage.setItem('tgId', telegram_id)  
                  sessionStorage.setItem('refresh_token', refreshToken)  
-                setIsRegistered2(false)}} className={`${s.greetings_btn} ${isRegistered ? s.lightMode1 : (props.colorB === 'light' ? s.lightMode : s.darkMode)} ${searchParams.get('exists')  === 'true' ? s.noHover : ''}`}>Я заказчик</button>
+                setIsRegistered2(false)}} className={`${s.greetings_btn} ${isRegistered ? s.lightMode1 : (props.colorB === 'light' ? s.lightMode : s.darkMode)} ${searchParams.get('exists') === 'true' ? s.noHover : ''}`}>Я заказчик</button>
             </Link> 
             <Link to="/isp_reg">
                 <button  disabled={Boolean(disabledWorker)} onClick={() => {
@@ -83,7 +83,7 @@ function Reg(props) {
                     sessionStorage.setItem('accessToken', accessToken)
                     setIsRegistered(false)
                 
-                }} className={`${s.greetings_btn} ${isRegistered2 ? s.lightMode1 : (props.colorB === 'light' ? s.lightMode : s.darkMode)} ${searchParams.get('exists')  === 'true' ? s.noHover : ''}`}>Я исполнитель</button>
+                }} className={`${s.greetings_btn} ${isRegistered2 ? s.lightMode1 : (props.colorB === 'light' ? s.lightMode : s.darkMode)} ${searchParams.get('exists') === 'true' ? s.noHover : ''}`}>Я исполнитель</button>
             </Link>
         </div>
       </div>
