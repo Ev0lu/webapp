@@ -103,11 +103,20 @@
     color: white;
     background-color: #232323;
 }
+.greetings_btn.lightMode.noHover {
+  color: rgb(80, 78, 78) !important;
+  background-color: white !important; 
+}
+.greetings_btn.darkMode.noHover {
+  color: rgb(194, 192, 192) !important;
+  background-color: #232323 !important;
+}
+
 .greetings_btn.lightMode.noHover:hover {
-  color: black !important;
+  color: rgb(80, 78, 78) !important;
   background-color: white !important; 
 }
 .greetings_btn.darkMode.noHover:hover {
-  color: white !important;
+  color: rgb(194, 192, 192) !important;
   background-color: #232323 !important;
 }
