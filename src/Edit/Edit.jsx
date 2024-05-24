@@ -304,8 +304,8 @@ const handleInputChange2 = (e) => {
 
       }
       else if(termScale == 100){
-          setTerm('90+')
-          setTermH('90+')
+          setTerm('90')
+          setTermH('90')
       }
     },[termScale])
   const [scrollbarHeight1__1, setScrollbarHeight1__1] = useState(0);
@@ -789,7 +789,7 @@ const fetchSkills = async () => {
       <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? `/update/:${order_id}?access_token=${accessToken}&refresh_token=${refreshToken}&telegram_id=${telegram_id}` : `/update/:${order_id}?access_token=${accessToken}&refresh_token=${refreshToken}&telegram_id=${telegram_id}`}>
         <button onClick={() => {
             props.tg.close()
-        }}className={`${s.greetings_btn} ${props.colorB === 'light' ? s.light : s.dark} ${s.greetings_btn1}`}>Отменить</button>
+        }}className={`${s.greetings_btn} ${s.greetings_btn1} ${props.colorB === 'light' ? s.light : s.dark}`}>Отменить</button>
       </Link>
       </div>
     </div>

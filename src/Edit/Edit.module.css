@@ -15,9 +15,7 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 font-weight: 400;
 color: white;
 }
-.greetings_btn1{
-  margin-bottom: 30px;
-}
+
 label {
 font-size: 14px; /* Размер текста надписи */
 }
@@ -61,7 +59,6 @@ border: 2px solid white;
 }
   
 .greetings{
-  height: 175vh;
     background-color: #232323;
   
   }
@@ -73,6 +70,9 @@ border: 2px solid white;
     align-items: center;
     gap: 30px;
     padding-top: 40px;
+    height: 87%;
+    
+
     
   }
   
@@ -821,4 +821,8 @@ font-size: 14px;
 }
 .span6{
   
+}
+
+.greetings_btn1{
+  margin-bottom: 30px;
 }

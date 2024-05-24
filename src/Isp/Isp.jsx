@@ -294,7 +294,7 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
             {isexist === undefined  && (<span className={s.error_message}>Пожалуйста, откройте приложение в телеграме</span>) }        </div>
             
         <Link to={gender === '' || name === '' || lname === '' || isexist === true || isexist === null ? '/isp_reg' : '/isp1_reg'}>
-            <button className={`${s.greetings_btn} ${s.greetings_btn1}`} onClick={() => {
+            <button className={s.greetings_btn} onClick={() => {
                 sessionStorage.setItem('name', name)
                 sessionStorage.setItem('lname', lname)
                 sessionStorage.setItem('fname', fname)

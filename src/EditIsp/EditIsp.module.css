@@ -59,7 +59,7 @@ border: 2px solid white;
 }
   
 .greetings{
-
+  
     background-color: #232323;
   
   }
@@ -71,7 +71,7 @@ border: 2px solid white;
     align-items: center;
     gap: 30px;
     padding-top: 40px;
-    
+    height: 87%;
   }
   
   .greetings_text{
@@ -91,11 +91,6 @@ border: 2px solid white;
     transition: background-color 0.2s ease;
     
   }
-  .greetings_btn1{
-    margin-bottom: 40px;
-    
-  }
-
 
 
 
@@ -110,7 +105,9 @@ border: 2px solid white;
     background-color: #B7AA8C;
     color: white;
   }
-
+.greetings_btn1{
+  margin-bottom: 30px;
+}
 
   .dropdown_container {
     position: relative;

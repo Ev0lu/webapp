@@ -286,7 +286,7 @@ const checkUniqueF = async () => {
 
 
         <Link to={(login !== '' && tele.split('').length > 6 && teleCon !== '' && mail !== '' && check !== '' && checkPh !== ''  && teleerr === '' && loginerr === '' && tele === teleCon)  ? linka : '/isp2_reg'}>
-            <button className={`${s.greetings_btn} ${s.greetings_btn1}`} onClick={() => {
+            <button className={`${s.greetings_btn}`} onClick={() => {
                 sessionStorage.setItem('login', login)
                 sessionStorage.setItem('tele', teleCon)
                 sessionStorage.setItem('mail', mail)
