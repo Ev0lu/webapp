@@ -200,7 +200,9 @@ const checkUniqueF = async () => {
 
           setLogin(`${data.login}`)
           setTele(`${data.phone.split('-').join('')}`)
-
+          sessionStorage.setItem('login', data.login)
+          sessionStorage.setItem('tele', data.phone.split('-').join(''))
+          sessionStorage.setItem('mail', data.email)
           setTeleCon(`${data.phone.split('-').join('')}`)
           setMail(`${data.email}`)
           setTeleerr('')
@@ -294,10 +296,11 @@ const checkUniqueF = async () => {
 
         <Link to={(login !== '' && tele.split('').length > 6 && teleCon !== '' && mail !== '' && check !== '' && checkPh !== '' && teleerr === '' && loginerr === ''  && tele === teleCon) ? linka : '/zak2_reg'}>
             <button className={`${s.greetings_btn}`} onClick={() => {
+              if (sessionStorage.getItem('exist') !== 'true') {
                 sessionStorage.setItem('login', login)
                 sessionStorage.setItem('tele', teleCon)
                 sessionStorage.setItem('mail', mail)
-
+              }
                 if (login !== '' && tele.split('').length > 6 && teleCon !== '' && mail !== '' && check !== '' && checkPh !== ''  && teleerr === '' && loginerr === ''  && tele === teleCon) {
                     postRequest()
                 }

@@ -203,17 +203,22 @@ const refreshTok = async () => {
 
         if(response.status !== 401) {
                   const data = await response.json();
-            
+                  sessionStorage.setItem('name', data.full_name.split(' ')[0])
+                  sessionStorage.setItem('lname', data.full_name.split(' ')[1])
+                  sessionStorage.setItem('fname', data.full_name.split(' ')[2])
+                  sessionStorage.setItem('gender', data.gender)
+
                       setName(`${data.full_name.split(' ')[0]}`)
                       setLname(`${data.full_name.split(' ')[1]}`)
-                      setFname(`${data.full_name.split(' ')[2]}`)
+                      setFname(data.full_name.split(' ')[2] ? `${data.full_name.split(' ')[2]}` : '')
                       setGender(`${data.gender}`)
                       handleGenderChange(`${data.gender}`)
-            
+
                       handleChange(`${data.full_name.split(' ')[0]}`)
                       handleChange2(`${data.full_name.split(' ')[1]}`)
                       handleChange3(`${data.full_name.split(' ')[2]}`)
-            
+
+                       
                     
                       validateFields()
             
@@ -229,10 +234,9 @@ const refreshTok = async () => {
   };
 
   useEffect(() => {
-      if(exist === true){
-    fetchInfo()
-
-      }
+    if(sessionStorage.getItem('exist') === 'true'){
+      fetchInfo()
+        }
   },[])
 
 
@@ -298,10 +302,12 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
             
         <Link to={gender === '' || name === '' || lname === '' || isexist === true || isexist === null ? '/zak_reg' : '/zak1_reg'}>
             <button className={s.greetings_btn} onClick={() => {
+               if (sessionStorage.getItem('exist') !== 'true') {
                 sessionStorage.setItem('name', name)
                 sessionStorage.setItem('lname', lname)
                 sessionStorage.setItem('fname', fname)
                 sessionStorage.setItem('gender', gender)
+               }
 
                 changeFio()
                 validateFields()

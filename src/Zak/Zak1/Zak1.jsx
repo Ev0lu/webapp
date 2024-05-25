@@ -75,7 +75,9 @@ function Zak1(props) {
     
       const handleDateClick = (day) => {
         setSelectedDate(new Date(selectedYear, selectedMonth, day));
-        //setShowCalendar(!showCalendar);
+        setSelectedDateStr(`${day < 10 ? '0' : ''}${day}.${selectedMonth - 1 < 10 ? '0' : ''}${selectedMonth + 1}.${selectedYear}`);
+
+        setShowCalendar(!showCalendar);
 
       };      
 
@@ -86,8 +88,61 @@ function Zak1(props) {
              setSelectedDate(new Date(Number(sessionStorage.getItem('birth_date').split('-').reverse()[2]), Number(sessionStorage.getItem('birth_date').split('-').reverse()[1])-1, Number(sessionStorage.getItem('birth_date').split('-').reverse()[0])));
              setSelectedYear(Number(sessionStorage.getItem('birth_date').split('-').reverse()[2]))
              setSelectedMonth(Number(sessionStorage.getItem('birth_date').split('-').reverse()[1])-1)
+             setSelectedDateStr(new Date(Number(sessionStorage.getItem('birth_date').split('-').reverse()[2]), Number(sessionStorage.getItem('birth_date').split('-').reverse()[1])-1, Number(sessionStorage.getItem('birth_date').split('-').reverse()[0])).toLocaleDateString('ru-RU'));
+
          }
     }, [])
+
+
+
+    function BirthDateInput(props) {
+      const [selectedDate, setSelectedDate] = useState('');
+      const [errorFields, setErrorFields] = useState({ selectedDate: false });
+    }
+    const isValidDate = (day, month, year) => {
+      const date = new Date(year, month - 1, day);
+      return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
+  };
+
+  const handleDateChange = (e) => {
+      let input = e.target.value.replace(/\D/g, ''); // Удаляем все нечисловые символы
+      if (input.length > 8) input = input.slice(0, 8); // Ограничиваем длину строки
+
+      let formattedDate = '';
+      if (input.length > 4) {
+          formattedDate = input.slice(0, 2) + '.' + input.slice(2, 4) + '.' + input.slice(4, 8);
+      } else if (input.length > 2) {
+          formattedDate = input.slice(0, 2) + '.' + input.slice(2, 4);
+      } else {
+          formattedDate = input;
+      }
+
+      setSelectedDateStr(formattedDate);
+
+      if (input.length === 8) {
+          const day = parseInt(formattedDate.slice(0, 2), 10);
+          const month = parseInt(formattedDate.slice(3, 5), 10);
+          const year = parseInt(formattedDate.slice(6, 10), 10);
+
+          if (isValidDate(day, month, year)) {
+              const formattedDay = day < 10 ? '0' + day : day;
+              const formattedMonth = month < 10 ? '0' + month : month;
+
+              sessionStorage.setItem('birth_date', `${formattedDay}-${formattedMonth}-${year}`);
+
+              const birthDate = new Date(year, month - 1, day);
+
+              setSelectedDate(birthDate);
+              setSelectedYear(year);
+              setSelectedMonth(month - 1);
+          } else {
+              setSelectedDate(null);
+          }
+      }
+  };
+
+
+  const [selectedDateStr, setSelectedDateStr] = useState('');
 
     return (
       <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>             
@@ -105,9 +160,9 @@ function Zak1(props) {
         className={`${s.password_field} ${errorFields.selectedDate && s.error}`}
         style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
 
-        value={selectedDate ? selectedDate.toLocaleDateString('ru-RU') :
-        ''}
-        readOnly
+        value={selectedDateStr}
+        onChange={handleDateChange}
+
       />
 
 
