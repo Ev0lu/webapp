@@ -20,11 +20,7 @@ function Reg(props) {
                 sessionStorage.setItem('refresh_token', refreshToken)  
       }, [])
       const fetchInfo = async () => {
-      
-      
-      
-          
-      
+
           try {
             const response = await fetch(`https://assista1.ru/api/v1/users/me`,{
               method: 'GET',
@@ -43,14 +39,10 @@ function Reg(props) {
               setDisabledClient(true)
               
             }
-      
-      
-      
             
           } catch (error) {
       
           }
-      
         };
       
         useEffect(() => {
@@ -75,8 +67,8 @@ function Reg(props) {
             </Link> 
             <Link to="/isp_reg">
                 <button  disabled={Boolean(disabledWorker)} onClick={() => {
-                   
-                    setIsRegistered2(true)
+                                       setIsRegistered2(true)
+
                     sessionStorage.setItem('refresh_token', refreshToken)  
                     sessionStorage.setItem('tgId', telegram_id)   
                     sessionStorage.setItem('exist', exist)
