@@ -316,8 +316,8 @@ const handleInputChange2 = (e) => {
 
         }
         else if(termScale == 100){
-            setTerm('90+')
-            setTermH('90+')
+            setTerm('90')
+            setTermH('90')
         }
     },[termScale])
   const [scrollbarHeight1__1, setScrollbarHeight1__1] = useState(0);
@@ -689,11 +689,13 @@ useState(() => {
                 style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#373737', color:'#C7C7C7'} }
 
             />
+           {price === '' && (errorFields.login && <span className={s.error_message}>Пожалуйста, укажите цену</span>)}
+
               </div>
 
-            {price === '' && (errorFields.login && <span className={s.error_message}>Пожалуйста, введите логин</span>)}
 
         </div>
+
             <div className={s.password_input3}>
               
                 <h3                 style={props.colorB==='light' ? {color:'black'} : {color:'white'} }

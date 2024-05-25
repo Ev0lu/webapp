@@ -59,9 +59,9 @@ border: 2px solid white;
 }
   
 .greetings{
-  height: 87%;
-    background-color: #232323;
   
+    background-color: #232323;
+
   }
   
   .greetings_wrapper{
@@ -72,6 +72,7 @@ border: 2px solid white;
     gap: 30px;
     padding-top: 40px;
     
+    padding-bottom: 50px;
   }
   
   .greetings_text{
@@ -89,9 +90,10 @@ border: 2px solid white;
     width: 320px;
     border-radius: 25px;
     transition: background-color 0.2s ease;
- 
   }
-
+.greetings_btn0{
+  margin-top: 30px;
+}
 
   .greetings_btn:active{
   
@@ -770,20 +772,30 @@ h3{
   border: 1px solid #FF0000;
 }
 
-.error_message {
- position: absolute;
+.error_message3 {
+  position: absolute;
  margin-top:5px;
-  color: #FF0000;
-  font-size: 12px;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
-}
-.error_message1 {
- position: absolute;
- margin-top:25px;
-  color: #FF0000;
-  font-size: 12px;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
-}
+   color: #FF0000;
+   font-size: 12px;
+   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+ }
+ .error_message2 {
+  position: absolute;
+  margin-top:25px;
+   color: #FF0000;
+   font-size: 12px;
+   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+ }
+ .error_message {
+   color: #FF0000;
+   font-size: 12px;
+   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+ }
+ .error_message1 {
+   color: #FF0000;
+   font-size: 12px;
+   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+ }
 .date_flex{
   display: flex;
   flex-direction: column;

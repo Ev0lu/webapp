@@ -58,7 +58,9 @@ function EditZak(props) {
     const errors = {
 
       selectedDate: selectedDate === null,
-      err: err === ''
+      err: err === true,
+      name: name === '',
+      lname: lname === '',
     };
     setErrorFields(errors);
     return !Object.values(errors).some(Boolean);
@@ -111,13 +113,13 @@ function EditZak(props) {
      useEffect(() => {
          setNowYear(nowYear-17)
      },[])
-       useEffect(() => {
-        if (selectedYear > (new Date().getFullYear())-17 || selectedYear < (new Date().getFullYear()) - 100) {
-              setErr(false)
-         } else {
-             setErr(true)
-         }
-     },[selectedYear,selectedDate])
+     useEffect(() => {
+      if (selectedYear > (new Date().getFullYear())-17 || selectedYear < (new Date().getFullYear()) - 100) {
+          setErr(true);
+      } else {
+          setErr(false);
+      }
+  }, [selectedYear,selectedDate]);
 
 
       const toggleCalendar = () => {
@@ -143,7 +145,9 @@ function EditZak(props) {
     
       const handleDateClick = (day) => {
         setSelectedDate(new Date(selectedYear, selectedMonth, day));
-        //setShowCalendar(!showCalendar);
+        setSelectedDateStr(`${day < 10 ? '0' : ''}${day}.${selectedMonth - 1 < 10 ? '0' : ''}${selectedMonth + 1}.${selectedYear}`);
+
+        setShowCalendar(!showCalendar);
       };      
 
       const daysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate();
@@ -162,16 +166,17 @@ function EditZak(props) {
         }
       });
       const data = await response.json();
-
+      console.log(data)
       setName(`${data.full_name.split(' ')[0]}`)
       setLname(`${data.full_name.split(' ')[1]}`)
-      setFname(`${data.full_name.split(' ')[2]}`)
+      setFname(data.full_name.split(' ')[2] ? `${data.full_name.split(' ')[2]}` : '')
       setGender(`${data.gender}`)
       setPhone(`${data.phone}`)
       setSelectedDate(new Date(Number(data.client.birth_date.split('-').reverse()[2]), Number(data.client.birth_date.split('-').reverse()[1])-1, Number(data.client.birth_date.split('-').reverse()[0])));
       setSelectedYear(Number(data.client.birth_date.split('-').reverse()[2]))
       setSelectedMonth(Number(data.client.birth_date.split('-').reverse()[1])-1)
-      
+      setSelectedDateStr(new Date(Number(data.client.birth_date.split('-').reverse()[2]), Number(data.client.birth_date.split('-').reverse()[1])-1, Number(data.client.birth_date.split('-').reverse()[0])).toLocaleDateString('ru-RU'));
+
       if (response.status === 401 || response.status === 400){
           const data = {
             "status": "unauthorized"
@@ -277,7 +282,49 @@ const patchProfile = async () => {
     }
 };
 
-  
+const handleDateChange = (e) => {
+  let input = e.target.value.replace(/\D/g, ''); // Удаляем все нечисловые символы
+  if (input.length > 8) input = input.slice(0, 8); // Ограничиваем длину строки
+
+  let formattedDate = '';
+  if (input.length > 4) {
+      formattedDate = input.slice(0, 2) + '.' + input.slice(2, 4) + '.' + input.slice(4, 8);
+  } else if (input.length > 2) {
+      formattedDate = input.slice(0, 2) + '.' + input.slice(2, 4);
+  } else {
+      formattedDate = input;
+  }
+
+  setSelectedDateStr(formattedDate);
+
+  if (input.length === 8) {
+      const day = parseInt(formattedDate.slice(0, 2), 10);
+      const month = parseInt(formattedDate.slice(3, 5), 10);
+      const year = parseInt(formattedDate.slice(6, 10), 10);
+
+      if (isValidDate(day, month, year)) {
+          const formattedDay = day < 10 ? '0' + day : day;
+          const formattedMonth = month < 10 ? '0' + month : month;
+
+          sessionStorage.setItem('birth_date', `${formattedDay}-${formattedMonth}-${year}`);
+
+          const birthDate = new Date(year, month - 1, day);
+
+          setSelectedDate(birthDate);
+          setSelectedYear(year);
+          setSelectedMonth(month - 1);
+      } else {
+          setSelectedDate(null);
+      }
+  }
+};
+
+const isValidDate = (day, month, year) => {
+  const date = new Date(year, month - 1, day);
+  return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
+};
+const [selectedDateStr, setSelectedDateStr] = useState('');
+
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>  
          <div className={s.greetings_wrapper}>
@@ -295,7 +342,7 @@ const patchProfile = async () => {
                 value={name}
                 onChange={handleChange}
             />
-            { name === '' && (errorFields.name && <span className={s.error_message}>Пожалуйста, введите дату рождения</span>)}
+            { name === '' && (errorFields.name && <span className={s.error_message}>Пожалуйста, введите ваше имя</span>)}
 
         </div>
         <div className={`${s.password_input}`}>
@@ -332,25 +379,25 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
             </div>
         </div>
 
- <div className={s.date_picker}>
+        <div className={s.date_picker}>
       <div className={s.date_flex}>
       <input
         type="text"
         className={`${s.password_field} ${errorFields.selectedDate && s.error}`}
         style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
 
-        value={selectedDate ?
-        selectedDate.toLocaleDateString('ru-RU') : ''}
-        readOnly
+        value={selectedDateStr}
+        onChange={handleDateChange}
+
       />
-     
+
 
       </div>
-      <div className={`${s.icon} ${errorFields.selectedDate && s.open}`} onClick={toggleCalendar}>
+      <div className={`${s.icon} `} onClick={toggleCalendar}>
         {showCalendar ? <img src={props.colorB === 'light' ? lightplus : plus}></img>: <img src={props.colorB === 'dark' ? minus : lightminus}></img>}
       </div>
-      {selectedDate === null && (errorFields.selectedDate && <span className={s.error_message}>Пожалуйста, введите дату</span>)}
-      {errorFields.err && <span className={s.error_message1}>Вы должны быть старше 16 лет</span>}
+      {selectedDate === null && (errorFields.selectedDate && <span className={s.error_message2}>Пожалуйста, введите дату</span>)}
+      {errorFields.err && <span className={s.error_message3}>Вы должны быть старше 16 лет</span>}
       {showCalendar && (
         <div className={`${s.calendar} ${props.colorB === 'light' ? s.light : s.dark}`}>
           <div className={s.nav}>
@@ -387,10 +434,11 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
       <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/update/client' : '/update/client'}>
         <button onClick={() => {
           validateFields()
-         
+          if (selectedDate !== null && err !== true && name !== '' && lname !== ''){
+
           patchProfile()
-          
-        }}className={`${s.greetings_btn} ${props.colorB === 'light' ? s.light : s.dark}`}>Редактировать</button>
+          }
+        }}className={`${s.greetings_btn} ${s.greetings_btn0} ${props.colorB === 'light' ? s.light : s.dark}`}>Редактировать</button>
       </Link>
       <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/update/client' : '/update/client'}>
         <button onClick={() => {

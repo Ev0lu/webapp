@@ -59,9 +59,9 @@ border: 2px solid white;
 }
   
 .greetings{
-  height: 87%;
     background-color: #232323;
-  
+    height: 165%;
+
   }
   
   .greetings_wrapper{
@@ -71,7 +71,7 @@ border: 2px solid white;
     align-items: center;
     gap: 30px;
     padding-top: 40px;
-    
+
   }
   
   .greetings_text{

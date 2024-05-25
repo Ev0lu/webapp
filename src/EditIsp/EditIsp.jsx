@@ -119,7 +119,7 @@ function EditIsp(props) {
             phone: phone === '',
             checkPh: checkPh === '',
             name: name === '',
-            lname: name === '',
+            lname: lname === '',
             
     };
     setErrorFields(errors);
@@ -655,7 +655,7 @@ useEffect(() => {
       const data = await response.json();
       setName(`${data.full_name.split(' ')[0]}`)
       setLname(`${data.full_name.split(' ')[1]}`)
-      setFname(`${data.full_name.split(' ')[2]}`)
+      setFname(data.full_name.split(' ')[2] ? `${data.full_name.split(' ')[2]}` : '')
       setGender(`${data.gender}`)
       setPhone(`${data.phone}`)
       setSelectedCountries2Id__2(data.worker.languages.map(lang => lang[0]))
@@ -1039,7 +1039,7 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
         <button onClick={() => {
 
           validateFields()
-          if (selectedCountries2Id__2.length !== 0 && name !== '' && lname !== '' && fname !== '' && selectedCountries1__2.length !== 0){
+          if (selectedCountries2Id__2.length !== 0 && name !== '' && lname !== '' && selectedCountries1__2.length !== 0){
                patchProfile()
           }
 
