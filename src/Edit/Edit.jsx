@@ -62,7 +62,9 @@ function Edit(props) {
     selectedCountry: false,
     selectedCountries1__1: false,
     tele: false,
-    login: false
+    login: false,
+    price: false,
+    term: false
   });
 useEffect(()=>{
   setAccessToken(sessionStorage.getItem('accessToken') !== null ? sessionStorage.getItem('accessToken') : searchParams.get('access_token'))
@@ -75,7 +77,9 @@ useEffect(()=>{
       selectedCountry: selectedCountry === '',
       selectedCountries1__1: selectedCountries1__1.length === 0,
       tele: tele === '',
-      login: login === ''
+      login: login === '',
+      price: price === '',
+      term: term === ''
     };
     setErrorFields(errors);
     return !Object.values(errors).some(Boolean);
@@ -726,7 +730,7 @@ const fetchSkills = async () => {
               <div style={{display:'flex'}}>
                 <h3 style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Цена</h3>
               </div>
-            <div style={{display:'flex'}}>            <input
+            <div style={{display:'flex', flexDirection: "column"}}>            <input
                 type='number'
                 placeholder=""
                 className={`${s.password_field3} ${errorFields.login && s.error}`}
@@ -735,16 +739,17 @@ const fetchSkills = async () => {
                 style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#373737', color:'#C7C7C7'} }
 
             />
+                        {price === '' && (errorFields.price && <span className={s.error_message}>Пожалуйста, введите цену</span>)}
+
               </div>
 
-            {price === '' && (errorFields.login && <span className={s.error_message}>Пожалуйста, введите логин</span>)}
 
         </div>
             <div className={s.password_input3}>
               
                 <h3                 style={props.colorB==='light' ? {color:'black'} : {color:'white'} }
 >Срок</h3>
-  
+<div style={{display:'flex', flexDirection: 'column'}}>   
             <input
                 type='number'
                 placeholder=""
@@ -755,7 +760,8 @@ const fetchSkills = async () => {
                 
 
             />
-            {term === '' && (errorFields.term && <span className={s.error_message}>Пожалуйста, укажите срок</span>)}
+            {(errorFields.term && <span className={s.error_message}>Пожалуйста, укажите срок</span>)}
+            </div>
 
         </div>
 
