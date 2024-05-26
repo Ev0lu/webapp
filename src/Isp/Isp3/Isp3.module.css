@@ -137,9 +137,36 @@
     position: relative;
     max-height: inherit;
     overflow-y: scroll;
-    scrollbar-width: none;
-    padding-right: 10px;
+    overflow-x: hidden;
+    padding-right: 20px;
+    height: 150px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     
+  }
+  
+  .scroll_container::-webkit-scrollbar {
+    width: 10px;
+    
+  }
+  
+  /* Track */
+  .scroll_container::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 55px lightgray; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  .scroll_container::-webkit-scrollbar-thumb {
+    width: 5px;
+    background: rgb(136, 133, 133);
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  .scroll_container::-webkit-scrollbar-thumb:hover {
+    background: darkgray; 
   }
   .scrollbar {
     position: absolute;
@@ -160,7 +187,7 @@
     background-color: #bbb;
   }
 
-  .scrollbar_1{
+ /* .scrollbar_1{
     position: absolute;
     top: 0px;
     right: -2.5px;
@@ -174,7 +201,7 @@
 
   }
 
-
+*/
 
   .dropdown_container__1 {
     position: relative;
@@ -259,9 +286,38 @@
     position: relative;
     max-height: inherit;
     overflow-y: scroll;
-    scrollbar-width: none;
-    padding-right: 10px;
+    overflow-x: hidden;
+
+    padding-right: 20px;
+    height: 150px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     
+  }
+
+  
+  .scroll_container__1::-webkit-scrollbar {
+    width: 10px;
+    
+  }
+  
+  /* Track */
+  .scroll_container__1::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 55px lightgray; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  .scroll_container__1::-webkit-scrollbar-thumb {
+    width: 5px;
+    background: rgb(136, 133, 133);
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  .scroll_container__1::-webkit-scrollbar-thumb:hover {
+    background: darkgray; 
   }
   .scrollbar__1 {
     position: absolute;
@@ -284,7 +340,7 @@
   }
   
 
-  .scrollbar_1__1{
+/*  .scrollbar_1__1{
     position: absolute;
     top: 0px;
     right: -2.5px;
@@ -297,7 +353,7 @@
     margin-top: 3%;    
 
   }
- 
+ */
 
 
   .dropdown_option__1 label {

@@ -181,16 +181,16 @@ const handleLevelChange = (language, level) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
     const scrollbarHeightPercentage1 = (clientHeight / scrollHeight) * 100;
     setScrollbarHeight1(scrollbarHeightPercentage1);
-    scrollbarRef1.current.style.height = `${(scrollbarHeightPercentage1) - 13}%`;
-    scrollbarRef1.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
+  //  scrollbarRef1.current.style.height = `${(scrollbarHeightPercentage1) - 13}%`;
+   // scrollbarRef1.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
   };
 
   const handleScroll2 = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
     const scrollbarHeightPercentage2 = (clientHeight / scrollHeight) * 100;
     setScrollbarHeight2(scrollbarHeightPercentage2);
-    scrollbarRef2.current.style.height = `${(scrollbarHeightPercentage2) - 13}%`;
-    scrollbarRef2.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
+  //  scrollbarRef2.current.style.height = `${(scrollbarHeightPercentage2) - 13}%`;
+   // scrollbarRef2.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
     if (
       scrollTop + clientHeight >= scrollHeight-30
     ) {
@@ -364,9 +364,10 @@ const reg = async () => {
              </div>
               ))}
             </div>
-            <div className={`${s.scrollbar_1} ${props.colorB === 'light' ? s.light : s.dark}`}  />
-            <div className={`${s.scrollbar} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef1} style={{ height: `${scrollbarHeight1}%` }} />
-          </div>
+          {  <div className={`${s.scrollbar_1} ${props.colorB === 'light' ? s.light : s.dark}`}  />
+           // <div className={`${s.scrollbar} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef1} style={{ height: `${scrollbarHeight1}%` }} />
+            }
+            </div>
           { selectedCountries1.length === 0 && (errorFields.selectedCountries1 && <span className={s.error_message}>Пожалуйста, выберите навыки</span>)}
 
         </div>
@@ -426,9 +427,10 @@ const reg = async () => {
               ))}
             </div>
             
-            <div className={`${s.scrollbar_1__1} ${props.colorB === 'light' ? s.light : s.dark}`} />
-            <div className={`${s.scrollbar__1} ${props.colorB === 'light' ? s.light : s.dark}`}  ref={scrollbarRef2} style={{ height: `${scrollbarHeight2}%` }} />
-          </div>
+          {  <div className={`${s.scrollbar_1__1} ${props.colorB === 'light' ? s.light : s.dark}`} />
+          //  <div className={`${s.scrollbar__1} ${props.colorB === 'light' ? s.light : s.dark}`}  ref={scrollbarRef2} style={{ height: `${scrollbarHeight2}%` }} />
+}
+            </div>
           { selectedCountries2.length === 0 && (errorFields.selectedCountries2 && <span className={s.error_message}>Пожалуйста, выберите языки</span>)}
 
         </div>

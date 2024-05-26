@@ -157,10 +157,12 @@ function Isp1(props) {
 
       setCities(prevCountries => [...prevCountries, ...newCities]); // Добавляем загруженные страны к списку
       setOffset2(prevOffset => prevOffset + limit2); // Увеличиваем offset для следующего запроса
+      setLoading2(false);
     } catch (error) {
+      setLoading2(false);
     }
 
-    setLoading2(false);
+  
   };
 
 useEffect(() => {
@@ -190,8 +192,8 @@ useEffect(() => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
     const scrollbarHeightPercentage = (clientHeight / scrollHeight) * 100;
     setScrollbarHeight(scrollbarHeightPercentage);
-    scrollbarRef.current.style.height = `${(scrollbarHeightPercentage-13)}%`;
-    scrollbarRef.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
+  //  scrollbarRef.current.style.height = `${(scrollbarHeightPercentage-13)}%`;
+   // scrollbarRef.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
     if (
       scrollTop + clientHeight >= scrollHeight - (0.10 *scrollTop + 0.10 *clientHeight)
     ) {
@@ -219,8 +221,8 @@ useEffect(() => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
     const scrollbarHeightPercentage = (clientHeight / scrollHeight) * 100;
     setScrollbarHeight2(scrollbarHeightPercentage);
-    scrollbarRef2.current.style.height = `${(scrollbarHeightPercentage)-13}%`;
-    scrollbarRef2.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
+  //  scrollbarRef2.current.style.height = `${(scrollbarHeightPercentage)-13}%`;
+  //  scrollbarRef2.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
     if (
       scrollTop + clientHeight >= scrollHeight-30
     ) {
@@ -233,9 +235,10 @@ useEffect(() => {
         if (searchQuery2 !== ''){
         const timeout = setTimeout(() => {
           fetchCities();
-        }, 300); // Задержка выполнения запроса на 300 миллисекунд после последнего изменения поискового запроса
+        }, 300); 
+        setDebounceTimeout(timeout);// Задержка выполнения запроса на 300 миллисекунд после последнего изменения поискового запроса
       }
-        setDebounceTimeout(timeout);
+        
         return () => {
           setIsCancelled(true); // Установка флага отмены перед размонтированием компонента
         }; // Загружаем следующую порцию стран при достижении конца прокрутки
@@ -306,7 +309,7 @@ const handleInputChange2 = (e) => {
       <input
         type="text"
         value={searchQuery}
-        placeholder="Страна"
+        placeholder="Страна (Начните вводить...)"
         onChange={(e) => {handleInputChange(e)}}
         onClick={toggleDropdown}
 
@@ -320,9 +323,9 @@ const handleInputChange2 = (e) => {
             </div>
           ))}
         </div>
-        <div className={`${s.scrollbar_1} ${props.colorB === 'light' ? s.light : s.dark}`} style={{ height: `90%`}} />
-        <div className={`${s.scrollbar} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef} style={{ height: `${scrollbarHeight}%` }} />
-        
+      {  <div className={`${s.scrollbar_1} ${props.colorB === 'light' ? s.light : s.dark}`} style={{ height: `90%`}} />
+        //<div className={`${s.scrollbar} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef} style={{ height: `${scrollbarHeight}%` }} />
+        } 
       </div>
       
       {selectedCountry === '' && (errorFields.selectedCountry && <span className={s.error_message}>Выберите вашу страну</span>)}
@@ -331,7 +334,7 @@ const handleInputChange2 = (e) => {
       <div className={s.dropdown_container2} ref={dropdownRef2}>
         <input
           type="text"
-          placeholder="Город"
+          placeholder="Город (Начните вводить...)"
           value={searchQuery2}
           className={`${s.password_field2} ${props.colorB === 'light' ? s.light : s.dark}`}
           onChange={(e) => {handleInputChange2(e)}}
@@ -345,9 +348,9 @@ const handleInputChange2 = (e) => {
             </div>
           ))}
         </div>
-        <div className={`${s.scrollbar_12} ${props.colorB === 'light' ? s.light : s.dark}`} style={{ height: `90%`}} />
-        <div className={`${s.scrollbar2} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef2} style={{ height: `${scrollbarHeight2}%` }} />
-        
+       { <div className={`${s.scrollbar_12} ${props.colorB === 'light' ? s.light : s.dark}`} style={{ height: `90%`}} />
+ //       <div className={`${s.scrollbar2} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef2} style={{ height: `${scrollbarHeight2}%` }} />
+}
       </div>
         {selectedCountry2 === '' && (errorFields.selectedCountry2 && <span className={s.error_message}>Выберите ваш город</span>)}
 
