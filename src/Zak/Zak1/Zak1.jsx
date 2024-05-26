@@ -75,7 +75,7 @@ function Zak1(props) {
     
       const handleDateClick = (day) => {
         setSelectedDate(new Date(selectedYear, selectedMonth, day));
-        setSelectedDateStr(`${day < 10 ? '0' : ''}${day}.${selectedMonth - 1 < 10 ? '0' : ''}${selectedMonth + 1}.${selectedYear}`);
+        setSelectedDateStr(`${day < 10 ? '0' : ''}${day}.${selectedMonth - 1 < 8 ? '0' : ''}${selectedMonth + 1}.${selectedYear}`);
 
         setShowCalendar(!showCalendar);
 
