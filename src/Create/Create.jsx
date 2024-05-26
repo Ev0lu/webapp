@@ -142,7 +142,7 @@ function Create(props) {
 
 
   const fetchCountries = async () => {
-    if (isCancelled) return;
+    if (loading) return;
 
 
 
@@ -161,7 +161,7 @@ function Create(props) {
     setLoading(false);
   };
   const fetchCities = async () => {
-    if (isCancelled) return;
+    if (loading2) return;
 
   if (selectedCountry[1] === '' || selectedCountry[1] === undefined) {
       return;
@@ -544,7 +544,7 @@ useState(() => {
 
         </div>
         <div className={s.password_input2}>
-            <textarea rows="10" cols="40" maxLength="350"
+            <textarea rows="10" cols="40" maxLength="1000"
                 type={'text'}
                 placeholder="Техническое задание"
                 className={`${s.password_field2} ${errorFields.tele && s.error}`}
@@ -575,7 +575,7 @@ useState(() => {
                         <input
                           type="text"
                           value={searchQuery}
-                          placeholder="Страна"
+                          placeholder="Страна (Начните вводить...)"
                           onChange={(e) => {handleInputChange(e)}}
                           onClick={toggleDropdown}
                   
@@ -589,9 +589,9 @@ useState(() => {
                               </div>
                             ))}
                           </div>
-                          <div className={`${s.scrollbar_1} ${props.colorB === 'light' ? s.light : s.dark}`} style={{ height: `90%`}} />
-                          <div className={`${s.scrollbar} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef} style={{ height: `${scrollbarHeight}%` }} />
-                          
+                         { <div className={`${s.scrollbar_1} ${props.colorB === 'light' ? s.light : s.dark}`} style={{ height: `90%`}} />
+                         // <div className={`${s.scrollbar} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef} style={{ height: `${scrollbarHeight}%` }} />
+                        }
                         </div>
                         
                         {selectedCountry === '' && (errorFields.selectedCountry && <span className={s.error_message}>Выберите вашу страну</span>)}
@@ -603,7 +603,7 @@ useState(() => {
                         <div className={s.dropdown_container2} ref={dropdownRef2}>
                           <input
                             type="text"
-                            placeholder="Город"
+                            placeholder="Город (Начните вводить...)"
                             value={searchQuery2}
                             className={`${s.password_field} ${props.colorB === 'light' ? s.light : s.dark}`}
                             onChange={(e) => {handleInputChange2(e)}}
@@ -617,9 +617,9 @@ useState(() => {
                               </div>
                             ))}
                           </div>
-                          <div className={`${s.scrollbar_12} ${props.colorB === 'light' ? s.light : s.dark}`} style={{ height: `90%`}} />
-                          <div className={`${s.scrollbar2} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef2} style={{ height: `${scrollbarHeight2}%` }} />
-                          
+                          {<div className={`${s.scrollbar_12} ${props.colorB === 'light' ? s.light : s.dark}`} style={{ height: `90%`}} />
+                         // <div className={`${s.scrollbar2} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef2} style={{ height: `${scrollbarHeight2}%` }} />
+}
                         </div>
                           {selectedCountry2 === '' && (errorFields.selectedCountry2 && <span className={s.error_message}>Выберите ваш город</span>)}
                   
@@ -667,9 +667,10 @@ useState(() => {
              </div>
               ))}
             </div>
-            <div className={`${s.scrollbar_1__1} ${props.colorB === 'light' ? s.light : s.dark}`}  />
-            <div className={`${s.scrollbar__1} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef1__1} style={{ height: `${scrollbarHeight1__1}%` }} />
-          </div>
+           { <div className={`${s.scrollbar_1__1} ${props.colorB === 'light' ? s.light : s.dark}`}  />
+           // <div className={`${s.scrollbar__1} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef1__1} style={{ height: `${scrollbarHeight1__1}%` }} />
+            }
+            </div>
           { selectedCountries1__1.length === 0 && (errorFields.selectedCountries1__1 && <span className={s.error_message}>Пожалуйста, выберите навыки</span>)}
 
         </div>

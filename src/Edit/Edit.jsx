@@ -153,7 +153,7 @@ useEffect(()=>{
 
 
   const fetchCountries = async () => {
-    if (isCancelled) return;
+    if (loading) return;
 
 
 
@@ -172,7 +172,7 @@ useEffect(()=>{
     setLoading(false);
   };
   const fetchCities = async () => {
-    if (isCancelled) return;
+    if (loading2) return;
 
   if (selectedCountry[1] === '' || selectedCountry[1] === undefined) {
       return;
@@ -188,9 +188,11 @@ useEffect(()=>{
       setCities(prevCountries => [...prevCountries, ...newCities]); // Добавляем загруженные страны к списку
       setOffset2(prevOffset => prevOffset + limit2); // Увеличиваем offset для следующего запроса
     } catch (error) {
+    }finally {
+      setLoading2(false);
     }
 
-    setLoading2(false);
+    
   };
 
 useEffect(() => {
@@ -218,33 +220,45 @@ useEffect(() => {
       scrollTop + clientHeight >= scrollHeight-30
     ) {
       if (!loading) {
+        setLoading(true);
+
+      
         fetchCountries(); // Загружаем следующую порцию стран при достижении конца прокрутки
+        setLoading(false);
       }
     }
   };
 
-    const handleScroll2 = (e) => {
-    const { scrollTop, scrollHeight, clientHeight } = e.target;
-    const scrollbarHeightPercentage = (clientHeight / scrollHeight) * 100;
-    setScrollbarHeight2(scrollbarHeightPercentage);
-    scrollbarRef2.current.style.height = `${(scrollbarHeightPercentage)-13}%`;
-    scrollbarRef2.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
+    const handleScroll2 =  (e) => {
+      const { scrollTop, scrollHeight, clientHeight } = e.target;
+      const scrollbarHeightPercentage2 = (clientHeight / scrollHeight) * 100;
+      setScrollbarHeight2(scrollbarHeightPercentage2);
+      const maxTopPosition = 100 - scrollbarHeightPercentage2;
+      scrollbarRef2.current.style.height = `${scrollbarHeightPercentage2-13}%`;
+      scrollbarRef2.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
+  
     if (
       scrollTop + clientHeight >= scrollHeight-30
     ) {
       if (!loading2) {
+        setLoading2(true);
+
         fetchCities(); // Загружаем следующую порцию стран при достижении конца прокрутки
+        setLoading2(false);
+
       }
     }
   };
   
 useEffect(() => {
    if (searchQuery !== ''){
-    fetchCountries(); // Call fetchCountries whenever searchQuery changes
+      fetchCountries(); // Call fetchCountries whenever searchQuery changes
   }
 }, [searchQuery]);
 useEffect(() => {
-  fetchCities(); // Call fetchCountries whenever searchQuery changes
+  if (searchQuery !== ''){
+     fetchCities(); // Call fetchCountries whenever searchQuery changes
+  }
 }, [searchQuery2]);
 
 const handleInputChange = (e) => {
@@ -396,8 +410,8 @@ useEffect(() => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
     const scrollbarHeightPercentage1 = (clientHeight / scrollHeight) * 100;
     setScrollbarHeight1__1(scrollbarHeightPercentage1);
-    scrollbarRef1__1.current.style.height = `${(scrollbarHeightPercentage1) - 13}%`;
-    scrollbarRef1__1.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
+   // scrollbarRef1__1.current.style.height = `${(scrollbarHeightPercentage1) - 13}%`;
+   // scrollbarRef1__1.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
   };
 
 
@@ -592,7 +606,7 @@ const fetchSkills = async () => {
 
         </div>
         <div className={s.password_input2}>
-            <textarea rows="10" cols="40" maxLength="350"
+            <textarea rows="10" cols="40" maxLength="1000"
                 type={'text'}
                 placeholder="Техническое задание"
                 className={`${s.password_field2} ${errorFields.tele && s.error}`}
@@ -623,7 +637,7 @@ const fetchSkills = async () => {
                         <input
                           type="text"
                           value={searchQuery}
-                          placeholder="Страна"
+                          placeholder="Страна (Начните вводить...)"
                           onChange={(e) => {handleInputChange(e)}}
                           onClick={toggleDropdown}
                   
@@ -637,9 +651,9 @@ const fetchSkills = async () => {
                               </div>
                             ))}
                           </div>
-                          <div className={`${s.scrollbar_1} ${props.colorB === 'light' ? s.light : s.dark}`} style={{ height: `90%`}} />
+                          {//<div className={`${s.scrollbar_1} ${props.colorB === 'light' ? s.light : s.dark}`} style={{ height: `90%`}} />
                           <div className={`${s.scrollbar} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef} style={{ height: `${scrollbarHeight}%` }} />
-                          
+}
                         </div>
                         
                         {selectedCountry === '' && (errorFields.selectedCountry && <span className={s.error_message}>Выберите вашу страну</span>)}
@@ -651,7 +665,7 @@ const fetchSkills = async () => {
                         <div className={s.dropdown_container2} ref={dropdownRef2}>
                           <input
                             type="text"
-                            placeholder="Город"
+                            placeholder="Город (Начните вводить...)"
                             value={searchQuery2}
                             className={`${s.password_field} ${props.colorB === 'light' ? s.light : s.dark}`}
                             onChange={(e) => {handleInputChange2(e)}}
@@ -665,9 +679,8 @@ const fetchSkills = async () => {
                               </div>
                             ))}
                           </div>
-                          <div className={`${s.scrollbar_12} ${props.colorB === 'light' ? s.light : s.dark}`} style={{ height: `90%`}} />
-                          <div className={`${s.scrollbar2} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef2} style={{ height: `${scrollbarHeight2}%` }} />
-                          
+                         { <div className={`${s.scrollbar2} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef2} style={{ height: `${scrollbarHeight2}%` }} />
+                          }
                         </div>
                           {selectedCountry2 === '' && (errorFields.selectedCountry2 && <span className={s.error_message}>Выберите ваш город</span>)}
                   
@@ -715,9 +728,10 @@ const fetchSkills = async () => {
              </div>
               ))}
             </div>
-            <div className={`${s.scrollbar_1__1} ${props.colorB === 'light' ? s.light : s.dark}`}  />
-            <div className={`${s.scrollbar__1} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef1__1} style={{ height: `${scrollbarHeight1__1}%` }} />
-          </div>
+          { <div className={`${s.scrollbar_1__1} ${props.colorB === 'light' ? s.light : s.dark}`}  />
+            //<div className={`${s.scrollbar__1} ${props.colorB === 'light' ? s.light : s.dark}`} ref={scrollbarRef1__1} style={{ height: `${scrollbarHeight1__1}%` }} />
+            }
+            </div>
           { selectedCountries1__1.length === 0 && (errorFields.selectedCountries1__1 && <span className={s.error_message}>Пожалуйста, выберите навыки</span>)}
 
         </div>

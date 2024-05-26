@@ -194,15 +194,44 @@ border: 2px solid white;
     padding-bottom: 15px;
     
   }
+
   .scroll_container {
     position: relative;
     max-height: inherit;
     overflow-y: scroll;
-    scrollbar-width: none;
-    padding-right: 10px;
+    padding-right: 20px;
+    height: 150px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+  }
+
+
+  .scroll_container::-webkit-scrollbar {
+    width: 10px;
     
   }
-  .scrollbar {
+  
+  /* Track */
+  .scroll_container::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 55px lightgray; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  .scroll_container::-webkit-scrollbar-thumb {
+    width: 5px;
+    background: rgb(136, 133, 133);
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  .scroll_container::-webkit-scrollbar-thumb:hover {
+    background: darkgray; 
+  }
+
+ /* .scrollbar {
     position: absolute;
     top: 0px;
     bottom: 0px;
@@ -216,7 +245,7 @@ border: 2px solid white;
     margin-right: 20px;
     margin-top: 12.5px;
     
-  }
+  }*/
   
   .scrollbar:hover {
     background-color: #bbb;
@@ -408,11 +437,36 @@ border: 2px solid white;
     position: relative;
     max-height: inherit;
     overflow-y: scroll;
-    scrollbar-width: none;
-    padding-right: 10px;
+    padding-right: 20px;
+    height: 150px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+  }
+  .scroll_container2::-webkit-scrollbar {
+    width: 10px;
     
   }
-  .scrollbar2 {
+  
+  /* Track */
+  .scroll_container2::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 55px lightgray; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  .scroll_container2::-webkit-scrollbar-thumb {
+    width: 5px;
+    background: rgb(136, 133, 133);
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  .scroll_container2::-webkit-scrollbar-thumb:hover {
+    background: darkgray; 
+  }
+  /*.scrollbar2 {
     position: absolute;
     top: 0px;
     bottom: 0px;
@@ -426,7 +480,7 @@ border: 2px solid white;
     margin-right: 20px;
     margin-top: 12.5px;
     
-  }
+  }*/
   
   .scrollbar2:hover {
     background-color: #bbb;
@@ -658,15 +712,45 @@ h3{
     padding-bottom: 15px;
     
   }
-  .scroll_container__1 {
+  .scroll_container__1{
     position: relative;
     max-height: inherit;
     overflow-y: scroll;
-    scrollbar-width: none;
-    padding-right: 10px;
+    overflow-x: hidden;
+    padding-right: 20px;
+    height: 150px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  
+  }
+  .scroll_container__1::-webkit-scrollbar {
+    width: 10px;
     
   }
-  .scrollbar__1 {
+  .scroll_container__1::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 55px lightgray; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  .scroll_container__1::-webkit-scrollbar-thumb {
+    width: 5px;
+    background: rgb(136, 133, 133);
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  .scroll_container__1::-webkit-scrollbar-thumb:hover {
+    background: darkgray; 
+  }
+
+
+
+
+
+
+  /*.scrollbar__1 {
     position: absolute;
     top: 0px;
     bottom: 0px;
@@ -680,27 +764,14 @@ h3{
     margin-right: 20px;
     margin-top: 4%;
     
-  }
+  }*/
   
   .scrollbar__1:hover {
     background-color: #bbb;
   }
   
-
-  .scrollbar_1__1{
-    position: absolute;
-    top: 0px;
-    right: -2.5px;
-    width: 10px;
-    height: 90%;
-    margin-right: 20.3px;
-    background-color: lightgray;
-    border-radius: 5px;
-    z-index: 1;
-    margin-top: 3%;    
-
-  }
  
+
 
 
   .dropdown_option__1 label {
