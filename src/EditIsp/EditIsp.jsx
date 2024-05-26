@@ -505,14 +505,14 @@ const handleInputChange2 = (e) => {
             });
 
             setLangLevels(prevLevels => {
-                const updatedLevels = { ...prevLevels };
-                levelsToDelete.forEach(levelId => {
-                    if (levelId in updatedLevels) {
-                        delete updatedLevels[levelId];
-                    }
-                });
-                return updatedLevels;
-            });
+              const updatedLevels = { ...prevLevels };
+              levelsToDelete.forEach(levelId => {
+                  if (levelId in updatedLevels) {
+                      delete updatedLevels[levelId];
+                  }
+              });
+              return updatedLevels;
+          });
 
         } else {
         }
@@ -576,11 +576,7 @@ const handleLevelChange = (language, level) => {
   };
 
 
-  useEffect(() => {
-}, [selectedLangLevels]);
 
-useEffect(() => {
-}, [langLevels]);
 const fetchSkills = async () => {
 
 
@@ -665,11 +661,12 @@ useEffect(() => {
       selectCountry(['', ''])
       selectCountry2(['', data.worker.location.city_id])
       try {
-        const tempLangLevels = { ...langLevels };
-        const tempSelectedLangLevels = { ...selectedLangLevels };
-
+        const tempLangLevels = {  };
+        const tempSelectedLangLevels = {  };
         const levels = data.worker.languages.map(lang => ({ label: lang[2], value: lang[0], name: lang[1] }));
+
         for (const lang of levels) {
+
           const response = await fetch(`https://assista1.ru/api/v1/items/language/levels?language=${lang.name}`);
           if (response.ok) {
               const data = await response.json();
@@ -794,6 +791,9 @@ const patchProfile = async () => {
     }
 };
 
+useEffect(() => {
+  console.log(selectedCountries2Id__2, langLevels, selectedLangLevels)
+}, [selectedCountries2Id__2, langLevels, selectedLangLevels])
 
   
   return (
@@ -1032,6 +1032,8 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
                     </select>
                 </div>
             ))}
+           {         selectedCountries2Id__2.length === 0 && (<span className={s.error_message2}>Пожалуйста, выберите языки</span>)}
+
         </div>
 
            
@@ -1039,7 +1041,7 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
         <button onClick={() => {
 
           validateFields()
-          if (selectedCountries2Id__2.length !== 0 && name !== '' && lname !== '' && selectedCountries1__2.length !== 0){
+          if (selectedLangLevels.length !== 0 && selectedCountries2Id__2.length !== 0 && name !== '' && lname !== '' && selectedCountries1__2.length !== 0){
                patchProfile()
           }
 
