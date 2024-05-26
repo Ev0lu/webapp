@@ -60,7 +60,7 @@ border: 2px solid white;
   
 .greetings{
     background-color: #232323;
-    height: 165%;
+    height: 180%;
 
   }
   
@@ -543,6 +543,7 @@ border: 2px solid white;
 .password_input3{
   display: flex;
   flex-direction: row;
+
   align-items: center;
   justify-content:center;
   gap: 25px;
@@ -817,4 +818,9 @@ font-size: 14px;
 }
 .span6{
   
+}
+
+.priceFlex{
+  display: flex;
+  flex-direction: column;
 }

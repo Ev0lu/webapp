@@ -58,7 +58,8 @@ function Create(props) {
     selectedCountry: false,
     selectedCountries1__1: false,
     tele: false,
-    login: false
+    login: false,
+    term : false
   });
 
   const validateFields = () => {
@@ -67,7 +68,8 @@ function Create(props) {
       selectedCountry: selectedCountry === '',
       selectedCountries1__1: selectedCountries1__1.length === 0,
       tele: tele === '',
-      login: login === ''
+      login: login === '',
+      term: term === ''
     };
     setErrorFields(errors);
     return !Object.values(errors).some(Boolean);
@@ -532,7 +534,7 @@ useState(() => {
             <input
                 type={'text'}
                 placeholder="Название"
-                className={`${s.password_field} ${errorFields.login && s.error}`}
+                className={`${s.password_field} `}
                 value={login}
                 onChange={handleChange}
                 style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#373737', color:'#C7C7C7'} }
@@ -677,10 +679,9 @@ useState(() => {
 
            
             <div className={s.password_input3}>
-              <div style={{display:'flex'}}>
                 <h3 style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Цена</h3>
-              </div>
-            <div style={{display:'flex'}}>            <input
+              <div style={{display:'flex', flexDirection: 'column'}}>   
+                      <input
                 type='number'
                 placeholder=""
                 className={`${s.password_field3} ${errorFields.login && s.error}`}
@@ -697,10 +698,13 @@ useState(() => {
         </div>
 
             <div className={s.password_input3}>
-              
+ 
                 <h3                 style={props.colorB==='light' ? {color:'black'} : {color:'white'} }
 >Срок</h3>
-  
+<div style={{display:'flex', flexDirection: 'column'}}>   
+
+
+
             <input
                 type='number'
                 placeholder=""
@@ -711,8 +715,11 @@ useState(() => {
                 
 
             />
+         
+          
             {term === '' && (errorFields.term && <span className={s.error_message}>Пожалуйста, укажите срок</span>)}
-
+          
+</div>
         </div>
 
 
