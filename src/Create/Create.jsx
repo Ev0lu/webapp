@@ -201,8 +201,8 @@ useEffect(() => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
     const scrollbarHeightPercentage = (clientHeight / scrollHeight) * 100;
     setScrollbarHeight(scrollbarHeightPercentage);
-    scrollbarRef.current.style.height = `${(scrollbarHeightPercentage)-13}%`;
-    scrollbarRef.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
+   // scrollbarRef.current.style.height = `${(scrollbarHeightPercentage)-13}%`;
+    //scrollbarRef.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
     if (
       scrollTop + clientHeight >= scrollHeight-30
     ) {
@@ -216,8 +216,8 @@ useEffect(() => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
     const scrollbarHeightPercentage = (clientHeight / scrollHeight) * 100;
     setScrollbarHeight2(scrollbarHeightPercentage);
-    scrollbarRef2.current.style.height = `${(scrollbarHeightPercentage)-13}%`;
-    scrollbarRef2.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
+   // scrollbarRef2.current.style.height = `${(scrollbarHeightPercentage)-13}%`;
+  //  scrollbarRef2.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
     if (
       scrollTop + clientHeight >= scrollHeight-30
     ) {
@@ -406,8 +406,8 @@ useEffect(() => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
     const scrollbarHeightPercentage1 = (clientHeight / scrollHeight) * 100;
     setScrollbarHeight1__1(scrollbarHeightPercentage1);
-    scrollbarRef1__1.current.style.height = `${(scrollbarHeightPercentage1) - 13}%`;
-    scrollbarRef1__1.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
+ //   scrollbarRef1__1.current.style.height = `${(scrollbarHeightPercentage1) - 13}%`;
+  //  scrollbarRef1__1.current.style.top = `${(scrollTop / scrollHeight) * 100}%`;
   };
 
 
