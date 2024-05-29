@@ -83,8 +83,9 @@ const uploadPhoto = async () => {
           refresh_token: sessionStorage.getItem('refresh_token'),
           profile_id: sessionStorage.getItem('profile_id')
       };
-      props.tg.sendData(JSON.stringify(data))
       setLoading(false)
+
+      props.tg.sendData(JSON.stringify(data))
     } else if (response.status === 401) {
       const responseData = await response.json();
       refreshTok()

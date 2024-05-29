@@ -23,16 +23,22 @@ function Zak(props) {
     
 
 
-
-    const handleChange = (event) => {
-        setName(event.target.value);
-    };
-    const handleChange2 = (event) => {
-        setLname(event.target.value);
-    };
-    const handleChange3 = (event) => {
-        setFname(event.target.value);
-    };
+  const handleChange = (event) => {
+    const sanitizedValue = event.target.value.replace(/[<>%$&!*^`/"',.|#@()\[\]{}0-9]/g, '');
+    
+      setName(sanitizedValue);
+    
+  };
+  const handleChange2 = (event) => {
+    const sanitizedValue = event.target.value.replace(/[<>%$&!*^`/"',.|#@()\[\]{}0-9]/g, '');
+    
+      setLname(sanitizedValue);
+  };
+  const handleChange3 = (event) => {
+    const sanitizedValue = event.target.value.replace(/[<>%$&!*^`/"',.|#@()\[\]{}0-9]/g, '');
+    
+      setFname(sanitizedValue);
+  };
 
 
     const [gender, setGender] = useState('');

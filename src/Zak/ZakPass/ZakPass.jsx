@@ -147,7 +147,7 @@ const reg = async () => {
         <div className={s.password_input}>
             <input
                 type={showPassword ? 'text' : 'password'}
-                placeholder="Пароль"
+                placeholder="Придумайте пароль"
                 className={`${s.password_field} ${errorFields.pass && s.error}`}
                 value={pass}
                 onChange={handleChange4}
