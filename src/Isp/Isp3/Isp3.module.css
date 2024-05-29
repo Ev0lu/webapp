@@ -1,8 +1,8 @@
 
 .greetings{
-  height: 87%;
     background-color: #232323;
-  
+    min-height: 87%;
+
   }
   .reg{
     display: flex;
@@ -14,7 +14,13 @@
     margin-right: 50px;
     margin-top: 3px;
     }
+
+.greetings_btn1{
+  margin-bottom: 20px;
+}
+
   .greetings_wrapper{
+
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -332,7 +332,7 @@ const reg = async () => {
             type="text"
             value={searchQuery1}
 
-            placeholder="Навыки"
+            placeholder="Ваши сильные навыки"
             onClick={toggleDropdown1}
             onChange={(e) => setSearchQuery1(e.target.value)}
             
@@ -463,7 +463,7 @@ const reg = async () => {
               reg()
             }
 
-          }} className={s.greetings_btn}>Далее</button>
+          }} className={`${s.greetings_btn} ${s.greetings_btn1}`}>Далее</button>
         </Link>
       </div>
     </div>

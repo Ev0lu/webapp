@@ -1,4 +1,10 @@
-
+.reg{
+  display: flex;
+  width: 315px;
+  align-items: center;
+  text-align: center;
+  
+  }
 .greetings {
   height: 87%;
 }

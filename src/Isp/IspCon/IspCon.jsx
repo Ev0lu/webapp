@@ -155,8 +155,9 @@ const handlePaste = (e) => {
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }> 
     <div className={s.greetings_wrapper}>
-    <h1 className={s.greetings_text} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Подтверждение</h1>
-
+    <div className={s.reg}>
+       <h1 className={s.greetings_text} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Введите код, который был отправлен вам на почту</h1>
+</div>
         <div className={s.code_input}>
           <input
             id="code-box-0"

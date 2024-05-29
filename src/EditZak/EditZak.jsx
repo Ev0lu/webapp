@@ -165,25 +165,23 @@ function EditZak(props) {
            'Authorization': `Bearer ${accessToken}`,
         }
       });
+      
+      if (response.status === 401 || response.status === 400){
+        refreshTok()
+      
+    }
       const data = await response.json();
-      console.log(data)
       setName(`${data.full_name.split(' ')[0]}`)
       setLname(`${data.full_name.split(' ')[1]}`)
       setFname(data.full_name.split(' ')[2] ? `${data.full_name.split(' ')[2]}` : '')
       setGender(`${data.gender}`)
-      setPhone(`${data.phone}`)
+      setTele(`${data.phone.split('-').join('')}`)
+      setTeleCon(`${data.phone.split('-').join('')}`)
       setSelectedDate(new Date(Number(data.client.birth_date.split('-').reverse()[2]), Number(data.client.birth_date.split('-').reverse()[1])-1, Number(data.client.birth_date.split('-').reverse()[0])));
       setSelectedYear(Number(data.client.birth_date.split('-').reverse()[2]))
       setSelectedMonth(Number(data.client.birth_date.split('-').reverse()[1])-1)
       setSelectedDateStr(new Date(Number(data.client.birth_date.split('-').reverse()[2]), Number(data.client.birth_date.split('-').reverse()[1])-1, Number(data.client.birth_date.split('-').reverse()[0])).toLocaleDateString('ru-RU'));
 
-      if (response.status === 401 || response.status === 400){
-          const data = {
-            "status": "unauthorized"
-        }
-          props.tg.sendData(JSON.stringify(data))
-        
-      }
 
 
 
@@ -200,6 +198,9 @@ function EditZak(props) {
   },[])
 
 
+  const [teleCon, setTeleCon] = useState('');
+
+  const [teleerr, setTeleerr] = useState('');
 
 
 
@@ -251,7 +252,7 @@ const patchProfile = async () => {
       "profile": {
           "full_name": name + ' ' + lname + `${fname !== '' ? ' ' + fname : ''}`,
           "gender": `${gender}`,
-          "phone": `${phone}`
+          "phone": `${tele}`
         }
       
     }
@@ -267,16 +268,27 @@ const patchProfile = async () => {
       });
 
 
-      if (response.ok) {
-        const data = await response.json();
-        props.tg.sendData(JSON.stringify(data))
-
-        // Обработка полученных данных
-      } else {
-        if (response.status === 401 || response.status === 400 ) {
-          refreshTok()
-        }
-      }
+ 
+        if (response.ok) {
+          const data = await response.json();
+          props.tg.sendData(JSON.stringify(data))
+  
+          // Обработка полученных данных
+        } else if (response.status === 401) {
+             refreshTok()
+          
+        } else if (response.status === 400){
+          const responseData = await response.json();
+  
+            if (responseData.detail.includes("phone")) {
+             setTeleerr('true')
+            setMessageerr('Указанный телефон уже существует')
+          }} else if (response.status === 422){
+          
+             setTeleerr('true')
+            setMessageerr('Телефон не валиден')
+          }
+      
     } catch (error) {
 
     }
@@ -324,6 +336,19 @@ const isValidDate = (day, month, year) => {
   return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
 };
 const [selectedDateStr, setSelectedDateStr] = useState('');
+const [checkPh,setCheckPh] = useState('')
+const [messageerr, setMessageerr] = useState('')
+const handleChangePhone = (event) => {
+  const isValidPhone = /^\+/.test(event.target.value)
+  if (isValidPhone === true) {
+      setCheckPh('ex')
+  } else{
+      setCheckPh('')
+  }
+  setTele(event.target.value);
+  setTeleerr('')
+};
+const [tele, setTele] = useState('');
 
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>  
@@ -365,7 +390,23 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
             />
 
         </div>
+        <div className={s.password_input}>
+            <input
+                type={'text'}
+                placeholder="Номер телефона"
+                className={`${s.password_field} ${(errorFields.tele || errorFields.checkPh) && s.error}`}
+                value={tele}
+                onChange={handleChangePhone}
+                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
 
+            />
+        {teleCon === '' && (errorFields.tele && <span className={s.error_message}>Пожалуйста, введите телефон</span>)}
+        {tele.split('').length < 7 && (errorFields.tele && <span className={s.error_message}>Пожалуйста, введите правильный телефон</span>)}
+        {teleerr === 'true' && <span className={s.error_message}>{messageerr}</span> }
+        {errorFields.checkPh && <span className={s.error_message}>Номер должен начинаться с кода страны(+...)</span>}
+
+
+        </div>
 
         <div className={`${s.radio_gender}`} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>
             <label htmlFor="gender" style={{ fontSize: '14px' }}>Ваш пол:</label>
@@ -434,7 +475,7 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
       <Link to={(selectedCountry2 === '') || (selectedCountry == '') ? '/update/client' : '/update/client'}>
         <button onClick={() => {
           validateFields()
-          if (selectedDate !== null && err !== true && name !== '' && lname !== ''){
+          if (selectedDate !== null && err !== true && name !== '' && lname !== '' && tele !== ''){
 
           patchProfile()
           }

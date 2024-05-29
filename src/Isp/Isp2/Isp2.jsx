@@ -240,7 +240,7 @@ const checkUniqueF = async () => {
             <input
                                 disabled={Boolean(exist)}
                 type={'text'}
-                placeholder="Логин"
+                placeholder="Придумайте логин"
                 className={`${s.password_field} ${errorFields.login && s.error}`}
                 value={login}
                 onChange={handleChange}

@@ -4,6 +4,7 @@ import { Route, Routes, Link, Router } from 'react-router-dom';
 function Payment(props) {
     const [isRegistered, setIsRegistered] = useState(false);
     const [isRegistered2, setIsRegistered2] = useState(false);
+    setTimeout(() => props.tg.close(), 3000)
     return (
         <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"}}>   
         <div className={s.greetings_wrapper}>
