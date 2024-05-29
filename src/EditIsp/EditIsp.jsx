@@ -68,15 +68,21 @@ function EditIsp(props) {
    
 
 
-
     const handleChange = (event) => {
-        setName(event.target.value);
+      const sanitizedValue = event.target.value.replace(/[<>%$&!*^`/"',.|#@()\[\]{}0-9]/g, '');
+      
+        setName(sanitizedValue);
+      
     };
     const handleChange2 = (event) => {
-        setLname(event.target.value);
+      const sanitizedValue = event.target.value.replace(/[<>%$&!*^`/"',.|#@()\[\]{}0-9]/g, '');
+      
+        setLname(sanitizedValue);
     };
     const handleChange3 = (event) => {
-        setFname(event.target.value);
+      const sanitizedValue = event.target.value.replace(/[<>%$&!*^`/"',.|#@()\[\]{}0-9]/g, '');
+      
+        setFname(sanitizedValue);
     };
     const handleChange4 = (event) => {
         const isValidPhone = /^\+/.test(event.target.value)
