@@ -65,6 +65,7 @@ function EditIsp(props) {
     const [rlink, setRlink] = useState('/zak1_reg')
 
     const [checkPh,setCheckPh] = useState('')
+   
 
 
 
@@ -103,13 +104,16 @@ function EditIsp(props) {
 
   
   const [errorFields, setErrorFields] = useState({
+    login: false,
     selectedCountry2: false,
     selectedCountry: false,
     name: false,
     lname: false,
     gender: false,
     checkPh: false,
-    phone: false
+    phone: false,
+    tele: false,
+
   });
 
   const validateFields = () => {
@@ -120,6 +124,7 @@ function EditIsp(props) {
             checkPh: checkPh === '',
             name: name === '',
             lname: lname === '',
+            login: login === '',
             
     };
     setErrorFields(errors);
@@ -358,8 +363,10 @@ const handleInputChange2 = (e) => {
 
 
 
+const [teleCon, setTeleCon] = useState('');
 
-
+const [teleerr, setTeleerr] = useState('');
+const [exist, setExist] = useState('');
 
 
 
@@ -479,43 +486,45 @@ const handleInputChange2 = (e) => {
   const selectCountry2__2 = async (country) => {
     const isSelected = selectedCountries2__2.includes(country[0]);
     const isSelected2 = selectedCountries2Id__2.includes(country[1]);
-
     if (isSelected) {
       try {
         const response = await fetch(`https://assista1.ru/api/v1/items/language/levels?language=${country[0]}`);
         if (response.ok) {
             const data = await response.json();
             const levelsToDelete = data.items.map(level => level[1]);
-            setSelectedCountries2__2(prev => {
-                const updated = prev.filter(c => c !== country[0]);
-                return updated;
-            });
-
+            const indexToRemove = selectedCountries2__2.indexOf(country[0]);
             setSelectedCountries2Id__2(prev => {
-                const updated = prev.filter(c => c !== country[1]);
-                return updated;
-            });
-
-            setSelectedLangLevels(prevLevels => {
-                const updatedLevels = { ...prevLevels };
-                levelsToDelete.forEach(levelId => {
-                    if (levelId in updatedLevels) {
-                        delete updatedLevels[levelId];
-                    }
-                });
-                return updatedLevels;
-            });
-
-            setLangLevels(prevLevels => {
-              const updatedLevels = { ...prevLevels };
-              levelsToDelete.forEach(levelId => {
-                  if (levelId in updatedLevels) {
-                      delete updatedLevels[levelId];
-                  }
-              });
-              return updatedLevels;
+              const updated = [...prev];
+              updated.splice(indexToRemove, 1);              // Если ничего не удалено через filter
+             /* if (selectedCountries2__2[0] === country[0]){
+                if (updated.length === prev.length) {
+                  updated = prev.slice(1); // Удалить первый элемент массива
+              }              }
+              if (selectedCountries2__2[selectedCountries2__2.length - 1] === country[0]){
+                if (updated.length === prev.length) {
+                  updated = prev.slice(0, -1); // Удалить первый элемент массива
+              }
+            }*/
+     
+              return updated;
           });
+            setSelectedCountries2__2(prev => prev.filter(label => label !== country[0]));
 
+
+          setSelectedLangLevels(prevLevels => {
+            const updatedLevels = { ...prevLevels };
+            levelsToDelete.forEach(levelId => {
+                if (levelId in updatedLevels) {
+                    delete updatedLevels[levelId];
+                }
+            });
+            return updatedLevels;
+        });
+        setLangLevels(prevLevels => {
+          const updatedLevels = { ...prevLevels };
+          delete updatedLevels[country[1]];
+          return updatedLevels;
+      });
         } else {
         }
     } catch (error) {
@@ -549,7 +558,12 @@ const handleInputChange2 = (e) => {
         }
     }
 };
-
+/*useEffect(() => {
+ console.log(selectedCountries2Id__2, 'selectedCountries2Id__2')
+ console.log(langLevels, 'langLevels')
+ console.log(selectedLangLevels, 'selectedLangLevels')
+}, [selectedCountries2Id__2, langLevels, selectedLangLevels])
+*/
 const handleLevelChange = (language, level) => {
     setSelectedLangLevels(prevLevels => ({
         ...prevLevels,
@@ -597,6 +611,7 @@ const fetchSkills = async () => {
     setLoading(false);
   };
 
+
   useEffect(() => {
     fetchSkills(); // Call fetchCountries whenever searchQuery changes
   }, []);
@@ -636,7 +651,7 @@ useEffect(() => {
      return skill.label.toLowerCase().includes(searchQuery1__2.toLowerCase())});
 
   
-
+const [fetchedLevelsA, setFetchedLevelsA] = useState([])
      const fetchInfo = async () => {
 
 
@@ -650,12 +665,23 @@ useEffect(() => {
            'Authorization': `Bearer ${accessToken}`,
         }
       });
+      if (response.status === 401){
+        refreshTok()
+
+      
+
+        
+      } else {
       const data = await response.json();
+    
+      setLogin(`${data.login}`)
       setName(`${data.full_name.split(' ')[0]}`)
       setLname(`${data.full_name.split(' ')[1]}`)
       setFname(data.full_name.split(' ')[2] ? `${data.full_name.split(' ')[2]}` : '')
       setGender(`${data.gender}`)
-      setPhone(`${data.phone}`)
+      setTele(`${data.phone.split('-').join('')}`)
+      setTeleCon(`${data.phone.split('-').join('')}`)
+      setCheckPh('exist')
       setSelectedCountries2Id__2(data.worker.languages.map(lang => lang[0]))
       setSelectedCountries2__2(data.worker.languages.map(lang => lang[1]))
       setSelectedCountries1__2(data.worker.skills.map(lang => lang[0]))
@@ -673,10 +699,12 @@ useEffect(() => {
           if (response.ok) {
               const data = await response.json();
               if (data && data.items && data.items.length > 0) {
+                
                   const fetchedLevels = data.items.map(([level, id]) => ({ label: level, value: id }));
-                  tempLangLevels[lang.value] = fetchedLevels;
 
+                  tempLangLevels[lang.value] = fetchedLevels;
                   const selectedLevel = fetchedLevels.find(level => level.label === lang.label);
+
                   if (selectedLevel) {
                       tempSelectedLangLevels[lang.value] = selectedLevel.value;
                   } else {
@@ -686,9 +714,11 @@ useEffect(() => {
               }
           } else {
           }
-      }
+        }
       setLangLevels(tempLangLevels);
+      setFetchedLevelsA(tempSelectedLangLevels)
       setSelectedLangLevels(tempSelectedLangLevels);
+      
       } catch (error) {
         // Обработка ошибки при сетевом запросе
         console.error('Ошибка сети:', error);
@@ -698,7 +728,7 @@ useEffect(() => {
       setLangLevels(levels);
 
 
-      
+    }
     } catch (error) {
 
     }
@@ -744,6 +774,7 @@ useEffect(() => {
               "status": "unauthorized"
           }
           props.tg.sendData(JSON.stringify(data))
+          props.tg.close()
 
       }
     } catch (error) {
@@ -763,7 +794,7 @@ const patchProfile = async () => {
         "profile": {
           "full_name": name + ' ' + lname + `${fname !== '' ? ' ' + fname : ''}`,
           "gender": `${gender}`,
-          "phone": `${phone}`
+          "phone": `${tele}`
         }
     };
 
@@ -783,18 +814,36 @@ const patchProfile = async () => {
         props.tg.sendData(JSON.stringify(data))
 
         // Обработка полученных данных
-      } else {
-        if (response.status === 401 || response.status === 400 ) {
+      } else if (response.status === 401) {
           refreshTok()
+        
+      } else if (response.status === 400){
+        const responseData = await response.json();
+
+          if (responseData.detail.includes("phone")) {
+           setTeleerr('true')
+          setMessageerr('Указанный телефон уже существует')
+        }} else if (response.status === 422){
+        
+           setTeleerr('true')
+          setMessageerr('Телефон не валиден')
         }
-      }
     } catch (error) {
 
     }
 };
-
-
-  
+const [messageerr, setMessageerr] = useState('')
+const handleChangePhone = (event) => {
+  const isValidPhone = /^\+/.test(event.target.value)
+  if (isValidPhone === true) {
+      setCheckPh('ex')
+  } else{
+      setCheckPh('')
+  }
+  setTele(event.target.value);
+  setTeleerr('')
+};
+     
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }>  
          <div className={s.greetings_wrapper}>
@@ -836,7 +885,23 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
             />
 
         </div>
+        <div className={s.password_input}>
+            <input
+                type={'text'}
+                placeholder="Номер телефона"
+                className={`${s.password_field} ${(errorFields.tele || errorFields.checkPh) && s.error}`}
+                value={tele}
+                onChange={handleChangePhone}
+                style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#232323', color:'#C7C7C7'} }
 
+            />
+        {teleCon === '' && (errorFields.tele && <span className={s.error_message}>Пожалуйста, введите телефон</span>)}
+        {tele.split('').length < 7 && (errorFields.tele && <span className={s.error_message}>Пожалуйста, введите правильный телефон</span>)}
+        {teleerr === 'true' && <span className={s.error_message}>{messageerr}</span> }
+        {errorFields.checkPh && <span className={s.error_message}>Номер должен начинаться с кода страны(+...)</span>}
+
+
+        </div>
           
         <div className={`${s.radio_gender}`} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>
             <label htmlFor="gender" style={{ fontSize: '14px' }}>Ваш пол:</label>
@@ -915,7 +980,7 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
             type="text"
             value={searchQuery1__2}
 
-            placeholder="Навыки"
+            placeholder="Ваши сильные навыки"
             onClick={toggleDropdown1__2}
             onChange={(e) => setSearchQuery1__2(e.target.value)}
             
@@ -975,7 +1040,8 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
                      type="checkbox"
                      className={`${s.inputCheck__2} ${props.colorB === 'light' ? s.light : s.dark}`}
                      checked={selectedCountries2__2.includes(' ' + lang.label)}
-                     onChange={() => selectCountry2__2([lang.label, lang.value])}
+                     onChange={() => {
+                      selectCountry2__2([lang.label, lang.value])}}
                      style={{
                       width: 20,
                       height: 20,
@@ -989,8 +1055,10 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
                      type="checkbox"
                      className={`${s.inputCheck__2} ${props.colorB === 'light' ? s.light : s.dark}`}
                      checked={selectedCountries2__2.includes(' ' + lang.label)}
-                     onChange={() => selectCountry2__2([lang.label, lang.value])}
-                     style={{
+                     onChange={() => {
+                      selectCountry2__2([lang.label, lang.value])}
+                    }                  
+                       style={{
                       width: 20,
                       height: 20,
                       backgroundColor: '#232323',
@@ -1042,7 +1110,7 @@ style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {back
         <button onClick={() => {
 
           validateFields()
-          if (selectedLangLevels.length !== 0 && selectedCountries2Id__2.length !== 0 && name !== '' && lname !== '' && selectedCountries1__2.length !== 0){
+          if (selectedLangLevels.length !== 0 && selectedCountries2Id__2.length !== 0 && name !== '' && lname !== '' && selectedCountries1__2.length !== 0 && tele !== '' && teleerr == ''){
                patchProfile()
           }
 
