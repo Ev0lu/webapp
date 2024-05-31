@@ -2,7 +2,13 @@
   height: 87%;
   }
 
-  
+    .reg{
+    display: flex;
+    width: 319px;
+    align-items: center;
+    text-align: center;
+    
+    }
   .greetings_wrapper{
     display: flex;
     flex-direction: column;
