@@ -596,7 +596,7 @@ const fetchSkills = async () => {
             <input
                 type={'text'}
                 placeholder="Название"
-                className={`${s.password_field} ${errorFields.login && s.error}`}
+                className={`${s.password_field}`}
                 value={login}
                 onChange={handleChange}
                 style={props.colorB==='light' ? {backgroundColor:'white', color:'black'} : {backgroundColor:'#373737', color:'#C7C7C7'} }
