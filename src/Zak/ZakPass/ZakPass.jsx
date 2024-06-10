@@ -103,7 +103,7 @@ const reg = async () => {
             }
       };
      } else {
-       let user = {
+         let user = {
             profile: {
               telegram_id: Number(sessionStorage.getItem('tgId')),
               login: sessionStorage.getItem('login'),
@@ -112,6 +112,9 @@ const reg = async () => {
               phone: sessionStorage.getItem('tele'),
               gender: sessionStorage.getItem('gender'),
               password: pass,
+            },
+            client:{
+              birth_date: null
             }
       };
      }
