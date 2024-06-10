@@ -97,7 +97,7 @@ const reg = async () => {
               password: pass,
             },
             client:{
-              birth_date: `${sessionStorage.getItem('birth_date') !== null ? sessionStorage.getItem('birth_date') : null}`
+              birth_date: sessionStorage.getItem('birth_date') !== null ? sessionStorage.getItem('birth_date') : null
             }
       };
    
