@@ -86,8 +86,6 @@ useEffect(() => {
 
 
 const reg = async () => {
-     if(sessionStorage.getItem('birth_date') !== null) {
-         
          let user = {
             profile: {
               telegram_id: Number(sessionStorage.getItem('tgId')),
@@ -99,25 +97,10 @@ const reg = async () => {
               password: pass,
             },
             client:{
-              birth_date: sessionStorage.getItem('birth_date')
+              birth_date: `${sessionStorage.getItem('birth_date') !== null ? sessionStorage.getItem('birth_date') : null}`
             }
       };
-     } else {
-         let user = {
-            profile: {
-              telegram_id: Number(sessionStorage.getItem('tgId')),
-              login: sessionStorage.getItem('login'),
-              email: sessionStorage.getItem('mail'),
-              full_name: sessionStorage.getItem('name') + ' ' + sessionStorage.getItem('lname') + `${sessionStorage.getItem('fname') !== null ? ' ' + sessionStorage.getItem('fname') : ''}`,
-              phone: sessionStorage.getItem('tele'),
-              gender: sessionStorage.getItem('gender'),
-              password: pass,
-            },
-            client:{
-              birth_date: null
-            }
-      };
-     }
+   
   try {
     const response = await fetch(`https://assista1.ru/api/v1/auth/registration/client`, {
       method: 'POST',
