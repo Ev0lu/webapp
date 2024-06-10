@@ -213,6 +213,11 @@ function Zak1(props) {
 
       }} className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>Далее</button>
     </Link>
+    <Link to={"/zak2_reg"}>
+        <button onClick={() => {
+
+      }} className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`}>Пропустить</button>
+    </Link>
         </div>
       </div>
     )
