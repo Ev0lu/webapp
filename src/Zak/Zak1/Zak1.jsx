@@ -128,7 +128,9 @@ function Zak1(props) {
               const formattedDay = day < 10 ? '0' + day : day;
               const formattedMonth = month < 10 ? '0' + month : month;
 
-              sessionStorage.setItem('birth_date', `${formattedDay}-${formattedMonth}-${year}`);
+              if ((year > (new Date().getFullYear()-100)) && (year < (new Date().getFullYear()-16))) {
+                    sessionStorage.setItem('birth_date', `${year}-${formattedMonth}-${formattedDay}`);
+              }
 
               const birthDate = new Date(year, month - 1, day);
 
@@ -149,7 +151,11 @@ function Zak1(props) {
        <div className={s.greetings_wrapper}>
         <div className={s.reg}>
             <Link to='/zak_reg'>
-                <img src={props.colorB === 'light' ? blackarr : arrowsvg} className={s.reg_arrow}></img>
+                <img  onClick={() => {
+                             if (selectedDate !== null && errorDate !== true && (selectedYear > (new Date().getFullYear()-100)) && (selectedYear < (new Date().getFullYear()-16))){
+                              sessionStorage.setItem('birth_date', `${selectedYear}-${selectedMonth+1 < 10 ? '0' + `${selectedMonth+1}` : selectedMonth+1 }-${selectedDate.getDate() < 10 ? '0' + `${selectedDate.getDate()}` : selectedDate.getDate()  }`)
+                  }
+                      }}  src={props.colorB === 'light' ? blackarr : arrowsvg} className={s.reg_arrow}></img>
             </Link>
             <h1 className={s.greetings_text} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Дата рождения</h1>
         </div>
