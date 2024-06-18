@@ -122,9 +122,8 @@ const postRequest2 = async () => {
   const handlePaste = (e) => {
     e.preventDefault();
     const pasteData = e.clipboardData.getData('text').replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
-    if (pasteData.length === 4) {
-      setCode(pasteData);
-    }
+    setCode(pasteData);
+    
   };
   
   return (
