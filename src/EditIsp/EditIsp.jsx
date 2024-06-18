@@ -69,18 +69,18 @@ function EditIsp(props) {
 
 
     const handleChange = (event) => {
-  const sanitizedValue = event.target.value.replace(/[<>%$&!*^`/"',.|#@()\[\]{}\s0-9]/g, '');
+  const sanitizedValue = event.target.value.replace(/[<>%$&!*^`/"',.|#@()\[\]{}\s0-9:;?]/g, '');
       
         setName(sanitizedValue);
       
     };
     const handleChange2 = (event) => {
-  const sanitizedValue = event.target.value.replace(/[<>%$&!*^`/"',.|#@()\[\]{}\s0-9]/g, '');
+  const sanitizedValue = event.target.value.replace(/[<>%$&!*^`/"',.|#@()\[\]{}\s0-9:;?]/g, '');
       
         setLname(sanitizedValue);
     };
     const handleChange3 = (event) => {
-  const sanitizedValue = event.target.value.replace(/[<>%$&!*^`/"',.|#@()\[\]{}\s0-9]/g, '');
+  const sanitizedValue = event.target.value.replace(/[<>%$&!*^`/"',.|#@()\[\]{}\s0-9:;?]/g, '');
       
         setFname(sanitizedValue);
     };
