@@ -8,7 +8,6 @@ const AuthCon = (props) => {
   const [code2, setCode2] = useState('');
   const [code3, setCode3] = useState('');
   const [code4, setCode4] = useState('');
-    const [code, setCode] = useState('');
 
   const [error, setError] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
