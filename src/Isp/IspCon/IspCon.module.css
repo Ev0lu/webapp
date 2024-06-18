@@ -18,6 +18,54 @@
   padding-top: 40px;
 }
 
+.single_code_input{
+  display: flex;
+  text-align:center;
+
+}
+
+.code_input{
+  position: relative;
+}
+
+
+.single_code_input:focus {
+  outline: none; 
+  overflow: hidden;
+  width: 160px;/* Убираем контур фокуса при активации */
+}
+.dot{
+  position: absolute;
+  height: 16px;
+  width: 20px;
+  top: 29%;
+  left: 21%;
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
+}
+.dot1{
+
+  position: absolute;
+  height: 16px;
+  width: 20px;
+  top: 29%;
+  left: 42%;
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
+}
+.dot2{
+
+  position: absolute;
+  height: 16px;
+  width: 20px;
+  top: 29%;
+  left: 63%;
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
+}
 .greetings_text {
   color: #333; /* Dark gray text */
   font-size: 28px;
