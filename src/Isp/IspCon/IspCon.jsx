@@ -12,7 +12,6 @@ const IspCon = (props) => {
 
   const [error, setError] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
-  const [code, setCode] = useState('');
   const [invalid, setInvalid] = useState(false)
   const [tries, setTries] = useState(0)
   const [mail, setMail] = useState()
