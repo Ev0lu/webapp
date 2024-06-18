@@ -164,7 +164,7 @@ const handleRequestCodeAgain = () => {
         </div>
         {invalid === true && <span className={s.error_message}>Неправильный код. На почту был выслан новый код</span>}
         {tries > 3  && <span className={s.error_message}>Вы исчерпали количество попыток, начните регистрацию заново</span>}
-    <Link to={code1 == '' || code2 == '' || code3 == '' || code4 == '' || tries > 3 || isVerified === false ? '/authorization_verify' : '/authorization_pass'}>
+    <Link to={code == '' || tries > 3 || isVerified === false ? '/authorization_verify' : '/authorization_pass'}>
         <button className={`${s.greetings_btn} ${props.colorB === 'light' ? s.lightMode : s.darkMode}`} onClick={() => {
 
       }}>
