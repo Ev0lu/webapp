@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import s from './AuthCon.module.css';
 import { Link } from 'react-router-dom';
+import dot from '../../assets/dot.svg'
 
 const AuthCon = (props) => {
   const [code1, setCode1] = useState('');
   const [code2, setCode2] = useState('');
   const [code3, setCode3] = useState('');
   const [code4, setCode4] = useState('');
+    const [code, setCode] = useState('');
+
   const [error, setError] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
   const [code, setCode] = useState('');
@@ -21,51 +24,30 @@ const AuthCon = (props) => {
         setMail(sessionStorage.getItem('mail') !== null ? sessionStorage.getItem('mail') : '')
       }, [])
   useEffect(() => {
-    if (code1 != '' && code2 != '' && code3 != '' && code4 != '' && tries < 4){
-      handleSubmit()
+    if (code.length === 4 && tries < 4) {
+      handleSubmit();
     }
   }, [code4])
-  const handleCodeChange = (index, value) => {
-    switch (index) {
-      case 0:
-        setCode1(value.toUpperCase());
-        break;
-      case 1:
-        setCode2(value.toUpperCase());
-        break;
-      case 2:
-        setCode3(value.toUpperCase());
-        break;
-      case 3:
-        setCode4(value.toUpperCase());
-        break;
-      default:
-        break;
-    }
-    if (value.length === 1) {
-      const nextIndex = index + 1;
-      if (nextIndex < 4) {
-        document.getElementById(`code-box-${nextIndex}`).focus();
-      }
+  const handleChange = (e) => {
+    const value = e.target.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
+    if (value.length <= 4) {
+      setCode(value);
     }
   };
 
-  const handleKeyPress = (event) => {
-    if (event.key === 'Backspace' && event.target.value === '') {
-      const prevIndex = event.target.id.split('-')[2] - 1;
-      if (prevIndex >= 0) {
-        document.getElementById(`code-box-${prevIndex}`).focus();
-      }
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Backspace' && code.length > 0) {
+      setCode(code.slice(0, -1));
     }
   };
 
   const handleSubmit = () => {
-    const code = `${code1}${code2}${code3}${code4}`;
 
     if (code.length !== 4) {
     } else {
       setIsVerified(true)
-      postRequest()
+      postRequest(code)
       setTries(tries + 1)
 
       
@@ -75,12 +57,12 @@ const AuthCon = (props) => {
 
 
   
-const postRequest = async () => {  
+const postRequest = async (codeStr) => {  
   let user = {
    
     email: mail,
     
-    code: `${code1}${code2}${code3}${code4}`
+    code: codeStr
     
   };
 
@@ -102,10 +84,8 @@ const postRequest = async () => {
 
     } else {
       const data = await response.json();
-      setCode1('')
-      setCode2('')
-      setCode3('')
-      setCode4('')
+      setCode('')
+
   if (tries < 4) {
     postRequest2()
 }
@@ -152,69 +132,36 @@ const handleRequestCodeAgain = () => {
 
 
 
-const handlePaste = (e) => {
-  e.preventDefault();
-  const pasteData = e.clipboardData.getData('text');
-  if (pasteData.length === 4) {
-    setCode1(pasteData[0].toUpperCase());
-    setCode2(pasteData[1].toUpperCase());
-    setCode3(pasteData[2].toUpperCase());
-    setCode4(pasteData[3].toUpperCase());
-  }
-};
+  const handlePaste = (e) => {
+    e.preventDefault();
+    const pasteData = e.clipboardData.getData('text').replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
+    setCode(pasteData);
+    
+  };
   
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }> 
     <div className={s.greetings_wrapper}>
     <h1 className={s.greetings_text} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Подтверждение</h1>
 
-        <div className={s.code_input}>
+       <div className={s.code_input}>
           <input
-            id="code-box-0"
-            autoComplete="off"
-            value={code1}
-            onChange={(e) => handleCodeChange(0, e.target.value)}
-            className={s.code_box}
-            onFocus={(e) => e.target.select()}
-            onKeyDown={handleKeyPress}
-            maxLength={1}
-            onPaste={(e) => handlePaste(e)}
-            style={{ width: 'auto', padding: '10px', maxWidth: 40 }} // Add this line
-          />
-          <input
-            id="code-box-1"
-            autoComplete="off"
+            value={code}
+            onChange={handleChange}
+            style={{ width: '160px', padding: '10px', maxWidth: '160px', textAlign: code.length == 4 ? 'center' : 'start', paddingLeft: '20px',paddingRight: code.length === 4 ? '20px' : '', overflow: 'hidden', letterSpacing: code.length == 4 ? 'normal' : code[2] === 'I' ? '2.15em' : '2em' }}
 
-            value={code2}
-            onChange={(e) => handleCodeChange(1, e.target.value)}
-            className={s.code_box}
-            onFocus={(e) => e.target.select()}
-            onKeyDown={handleKeyPress}
-            maxLength={1}
-            style={{ width: 'auto', padding: '10px', maxWidth: 40 }} // Add this line
+            className={s.single_code_input}
+            /*onKeyDown={handleKeyPress} letterSpacing: '2em' ,*/
+            onPaste={handlePaste}
+            maxLength={4}
           />
-          <input
-            id="code-box-2"
+          { code.length !== 4 ? <>
+          <img className={s.dot} src={dot}></img>
+          <img className={s.dot1} src={dot}></img>
+          <img className={s.dot2} src={dot}></img>
+           </> : ''
+          }
 
-            value={code3}
-            onChange={(e) => handleCodeChange(2, e.target.value)}
-            className={s.code_box}
-            onFocus={(e) => e.target.select()}
-            onKeyDown={handleKeyPress}
-            maxLength={1}
-            style={{ width: 'auto', padding: '10px', maxWidth: 40 }} // Add this line
-          />
-          <input
-            id="code-box-3"
-
-            value={code4}
-            onChange={(e) => handleCodeChange(3, e.target.value)}
-            className={s.code_box}
-            onFocus={(e) => e.target.select()}
-            onKeyDown={handleKeyPress}
-            maxLength={1}
-            style={{ width: 'auto', padding: '10px', maxWidth: 40 }} // Add this line
-          />
         </div>
         {invalid === true && <span className={s.error_message}>Неправильный код. На почту был выслан новый код</span>}
         {tries > 3  && <span className={s.error_message}>Вы исчерпали количество попыток, начните регистрацию заново</span>}
