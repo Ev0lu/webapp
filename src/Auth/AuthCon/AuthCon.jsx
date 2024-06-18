@@ -26,7 +26,7 @@ const AuthCon = (props) => {
     if (code.length === 4 && tries < 4) {
       handleSubmit();
     }
-  }, [code4])
+  }, [code])
   const handleChange = (e) => {
     const value = e.target.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
     if (value.length <= 4) {
