@@ -124,32 +124,32 @@ const postRequest2 = async () => {
     setCode(pasteData);
     
   };
-  
+  const handleClick = () => {
+    inputRef.current.focus(); // Устанавливаем фокус на поле ввода
+  };
   return (
     <div className={s.greetings} style={props.colorB==="light" ? {backgroundColor:"white"} : {backgroundColor:"#232323"} }> 
     <div className={s.greetings_wrapper}>
     <div className={s.reg}>
        <h1 className={s.greetings_text} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Введите код, который был отправлен вам на почту</h1>
 </div>
-       <div className={s.code_input}>
-          <input
-            value={code}
-            onChange={handleChange}
-            style={{ width: '160px', padding: '10px', maxWidth: '160px', textAlign: code.length == 4 ? 'center' : 'start', paddingLeft: '20px',paddingRight: code.length === 4 ? '20px' : '', overflow: 'hidden', letterSpacing: code.length == 4 ? 'normal' : code[2] === 'I' ? '2.15em' : '2em' }}
-
-            className={s.single_code_input}
-            /*onKeyDown={handleKeyPress} letterSpacing: '2em' ,*/
-            onPaste={handlePaste}
-            maxLength={4}
-          />
-          { code.length !== 4 ? <>
-          <img className={s.dot} src={dot}></img>
-          <img className={s.dot1} src={dot}></img>
-          <img className={s.dot2} src={dot}></img>
-           </> : ''
-          }
-
-        </div>
+      <div className={s.code_input}>
+            <input
+              type="password"
+              value={code}
+              onChange={handleChange}
+             
+              className={s.single_code_input}
+              maxLength={4}
+            />
+            <div className={s.dots_container}>
+              {[0, 1, 2, 3].map((i) => (
+                <span key={i} className={s.dotText} >
+                  {code[i] || <img src={dot} className={s.dot} alt="dot" />}
+                </span>
+              ))}
+            </div>
+          </div>
         {invalid === true && <span className={s.error_message}>Неправильный код. На почту был выслан новый код</span>}
         {tries > 3  && <span className={s.error_message}>Вы исчерпали количество попыток, начните регистрацию заново</span>}
     <Link to={code == '' || tries > 3 || isVerified === false ? '/zak_con' : '/zak_reg_pass'}>

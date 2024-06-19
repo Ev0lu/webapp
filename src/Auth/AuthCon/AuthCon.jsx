@@ -143,25 +143,23 @@ const handleRequestCodeAgain = () => {
     <div className={s.greetings_wrapper}>
     <h1 className={s.greetings_text} style={props.colorB==='light' ? {color:'black'} : {color:'white'} }>Подтверждение</h1>
 
-       <div className={s.code_input}>
-          <input
-            value={code}
-            onChange={handleChange}
-            style={{ width: '160px', padding: '10px', maxWidth: '160px', textAlign: code.length == 4 ? 'center' : 'start', paddingLeft: '20px',paddingRight: code.length === 4 ? '20px' : '', overflow: 'hidden', letterSpacing: code.length == 4 ? 'normal' : code[2] === 'I' ? '2.15em' : '2em' }}
-
-            className={s.single_code_input}
-            /*onKeyDown={handleKeyPress} letterSpacing: '2em' ,*/
-            onPaste={handlePaste}
-            maxLength={4}
-          />
-          { code.length !== 4 ? <>
-          <img className={s.dot} src={dot}></img>
-          <img className={s.dot1} src={dot}></img>
-          <img className={s.dot2} src={dot}></img>
-           </> : ''
-          }
-
-        </div>
+    <div className={s.code_input}>
+      <input
+        type="password"
+        value={code}
+        onChange={handleChange}
+        style={{ width: '260px', padding: '20px', maxWidth: '260px', textAlign: 'center', opacity: 0, position: 'absolute', zIndex: '123123123'}}
+        className={s.single_code_input}
+        maxLength={4}
+      />
+      <div className={s.dots_container}>
+        {[0, 1, 2, 3].map((i) => (
+          <span key={i} className={s.dotText} >
+            {code[i] || <img src={dot} className={s.dot} alt="dot" />}
+          </span>
+        ))}
+      </div>
+    </div>
         {invalid === true && <span className={s.error_message}>Неправильный код. На почту был выслан новый код</span>}
         {tries > 3  && <span className={s.error_message}>Вы исчерпали количество попыток, начните регистрацию заново</span>}
     <Link to={code == '' || tries > 3 || isVerified === false ? '/authorization_verify' : '/authorization_pass'}>
